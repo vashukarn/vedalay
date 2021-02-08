@@ -1,0 +1,12 @@
+require('../assets/js/jquery-3.5.1.min.js');
+require('../assets/js/popper.min.js');
+require('../assets/js/bootstrap.min.js');
+require('../assets/js/jquery.magnific-popup.min.js');
+require('../assets/js/owl.carousel.min.js');
+require('../assets/js/jquery.ajaxchimp.min.js');
+require('../assets/js/form-validator.min.js');
+require('../assets/js/contact-form-script.js');
+require('../assets/js/jquery.meanmenu.min.js');
+require('../assets/js/jquery.waypoints.js');
+require('../assets/js/counter-up.js');
+require('../assets/js/script.js');

@@ -1,0 +1,163 @@
+@extends('layouts.admin')
+@section('title', $title)
+@push('scripts')
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+<script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
+<script src="{{ asset('/custom/slider.js') }}"></script>
+    <script>
+    $('#lfm').filemanager('image');
+    </script>
+@endpush
+@section('content')
+@include('admin.shared.image_upload')
+    <section class="content-header pt-0"></section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ @$title }}</h3>
+                    <div class="card-tools">
+                        <a href="{{ route('slider.index') }}" type="button" class="btn btn-tool">
+                            <i class="fa fa-list"></i></a>
+                    </div>
+                </div>
+                @include('admin.shared.error-messages')
+                <div class="card-body">
+                    @if (isset($slider_info))
+                        {{ Form::open(['url' => route('slider.update', $slider_info->id), 'files' => true, 'class' => 'form', 'name' => 'slider_form']) }}
+                        @method('put')
+                    @else
+                        {{ Form::open(['url' => route('slider.store'), 'files' => true, 'class' => 'form', 'name' => 'slider_form']) }}
+                    @endif
+                    <label for="id of input"></label>
+                    <div class="row">
+                        {{-- <input type="hidden" name="roles" value="1" placeholder="dummy"> --}}
+                        <div class="col-sm-10 offset-lg-1">
+                            {{-- {{ dd($slider_info->title['en']) }} --}}
+                            <div class="form-group row {{ $errors->has('en_title') ? 'has-error' : '' }}">
+                                {{ Form::label('en_title', 'Slider Name (EN):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('en_title', @$slider_info->title['en'], ['class' => 'form-control', 'id' => 'en_title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('en_title')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('np_title') ? 'has-error' : '' }}">
+                                {{ Form::label('np_title', 'Slider Name (NP):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('np_title', @$slider_info->title['np'], ['class' => 'form-control', 'id' => 'np_title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('np_title')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('en_sub_title') ? 'has-error' : '' }}">
+                                {{ Form::label('en_sub_title', 'Slider Sub Title (EN):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('en_sub_title', @$slider_info->sub_title['en'], ['class' => 'form-control', 'id' => 'en_sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
+                                    @error('en_sub_title')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('np_sub_title') ? 'has-error' : '' }}">
+                                {{ Form::label('np_sub_title', 'Slider Sub Title (NP):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('np_sub_title', @$slider_info->sub_title['np'], ['class' => 'form-control', 'id' => 'np_sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
+                                    @error('np_sub_title')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('en_description') ? 'has-error' : '' }}">
+                                {{ Form::label('en_description', 'Slider Description (EN):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::textarea('en_description', @$slider_info->description['en'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('en_description')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('np_description') ? 'has-error' : '' }}">
+                                {{ Form::label('np_description', 'Slider Description (NP):*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::textarea('np_description', @$slider_info->description['np'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('np_description')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('slider_type') ? 'has-error' : '' }}">
+                                {{ Form::label('slider_type', 'Slider Type :*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::select('slider_type', SLIDER_TYPE,  @$slider_info->slider_type, ['id' => 'slider_type', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
+                                    @error('slider_type')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('external_url') ? 'has-error' : '' }}">
+                                {{ Form::label('external_url', 'Slider External Url :*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('external_url', @$slider_info->external_url, ['class' => 'form-control', 'id' => 'external_url', 'placeholder' => 'Slider External Url', 'style' => 'width:80%']) }}
+                                    @error('description')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('position') ? 'has-error' : '' }}">
+                                {{ Form::label('position', 'Slider Position :*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::number('position', @$slider_info->position, ['class' => 'form-control', 'id' => 'position', 'placeholder' => 'Slider Position', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('description')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
+                                {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$slider_info->publish_status, ['id' => 'publish_status', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
+                                    @error('publish_status')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
+                                {{ Form::label('image', 'Slider Image:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <a id="lfm" data-input="image" data-preview="holder" class="btn btn-primary">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                          </a>
+                                        </span>
+                                        <input id="image" class="form-control" type="text" name="image">
+                                      </div>
+                                      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                                    @error('image')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                                {{ Form::label('', '', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
+                                    {{ Form::button("<i class='fas fa-sync-alt'></i> Reset", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
+                                </div>
+                            </div>
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
