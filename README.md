@@ -1,12 +1,9 @@
-<p align="center"><a href="https://nectardigit.com" target="_blank"><img src="https://www.nectardigit.com/uploads/nectar-digit.png" width="400"></a></p>
+## About GURU
 
-
-## About News Portal
-
-News Portal web app. Design & Developed by Nectar Digit Pvt.Ltd
+GURU web app. Design & Developed by Vashu Karn
 
 ## License
 
-Nectar Digit Pvt.Ltd Lincense.
-For More Detail Please contact: nectardigit@gmail.com
-OR Visit - **[Nectar Digit Pvt.Ltd](https://nectardigit.com/)**
+Vashu Karn License.
+For More Detail Please contact: jaykarvashu@gmail.com
+OR Visit - **[Vashu Karn](https://vashukarn.github.io/)**
