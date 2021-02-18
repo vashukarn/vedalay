@@ -20,6 +20,7 @@ class DashboardController extends Controller
     }
 
     public function index(){
+        
         $count_data['admin'] = User::where('type', 'admin')->where('publish_status', '1')->count();
         $count_data['staff'] = User::where('type', 'staff')->where('publish_status', '1')->count();
         $count_data['user'] = User::where('type', 'user')->where('publish_status', '1')->count();
@@ -34,13 +35,4 @@ class DashboardController extends Controller
         return view('admin.dashboard')->with($data);
     }
 
-    public function map_dashboard(Request $request){
-        $city= City::pluck('name','id');
-        if($request->city){
-                $latlng=City::select('latitude','longitude')->where('id',$request->city)->first();
-        }else{
-            $latlng=City::select('latitude','longitude')->first();
-        }
-        return view('admin.mapdashboard.map-dashboard',compact('city','latlng'));
-    }
 }

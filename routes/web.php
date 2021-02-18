@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,15 +30,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
+
 Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 Route::get('two-factor-recovery', [UserController::class, 'recovery'])->middleware('guest');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::get('/website-content-format', [AppSettingController::class, 'websiteContentFormat'])->name('websiteContentFormat');
-    Route::post('/setup-website-content', [AppSettingController::class, 'setupWebsiteContentFormat'])->name('setupWebsiteContentFormat');
-    Route::get('/website-content', [AppSettingController::class, 'websiteContent'])->name('websiteContent');
-    Route::post('/upate-website-content', [AppSettingController::class, 'updateWebsiteContent'])->name('updateWebsiteContent');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
@@ -60,6 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('faq', FaqController::class);
     Route::resource('information', InformationController::class);
+    Route::resource('student', StudentController::class);
 
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');

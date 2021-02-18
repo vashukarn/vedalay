@@ -52,8 +52,7 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/Utilities/Helpers.php",
-            "app/Utilities/Images.php"
+            "app/Utilities/Helpers.php"
         ]
     },
     "minimum-stability": "dev",

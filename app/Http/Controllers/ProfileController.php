@@ -74,7 +74,6 @@ class ProfileController extends Controller
                 'publish_status' => $request->publish_status,
                 'created_by' => Auth::user()->id,
             ]);
-            moveImage($request->image_name, profileimagepath);
             $profile = Profile::create([
                 'user_id' => $user->id,
                 'image' => $request->image_name ?? null,

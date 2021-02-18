@@ -16,12 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('np_name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->enum('publish_status',['0','1','2'])->default(1);
-            $table->enum('type',['superadmin','admin','staff', 'reporter','user'])->default('user');
+            $table->enum('type',['superadmin','admin','staff','teacher','parent','student'])->default('student');
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

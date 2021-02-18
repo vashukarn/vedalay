@@ -18,20 +18,13 @@ class CreateAppSettingsTable extends Migration
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->text('phone')->nullable();
             $table->string('is_favicon')->nullable();
             $table->string('app_url')->nullable();
             $table->string('app_image')->nullable();
-            $table->enum('website_content_format', ['English', 'Nepali', 'Other', 'Both'])->default('English');
-            $table->text('website_content_item')->nullable();
             $table->string('twitter')->nullable();
-            $table->string('front_feature_description')->nullable();
-            $table->string('front_counter_description')->nullable();
-            $table->string('front_testimonial_description')->nullable();
-
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
-          
             $table->string('is_meta')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_keyword')->nullable();

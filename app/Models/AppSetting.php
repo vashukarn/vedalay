@@ -51,7 +51,6 @@ class AppSetting extends Model
         'phone',
         'is_favicon',
         'app_url',
-        "website_content_format", 
         "website_content_item",
         'app_image',
         'twitter',
