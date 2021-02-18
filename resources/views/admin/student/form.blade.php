@@ -64,8 +64,18 @@
                             <div class="form-group row {{ $errors->has('phone') ? 'has-error' : '' }}">
                                 {{ Form::label('phone', 'Phone :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('phone', @$student_info->phone, ['class' => 'form-control', 'id' => 'phone', 'placeholder' => 'Phone','style' => 'width:80%']) }}
+                                    {{ Form::number('phone', @$student_info->phone, ['class' => 'form-control', 'id' => 'phone', 'placeholder' => 'Phone','style' => 'width:80%']) }}
                                     @error('phone')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row {{ $errors->has('dob') ? 'has-error' : '' }}">
+                                {{ Form::label('dob', 'Date of Birth:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::date('dob', @$student_info->dob, ['class' => 'form-control', 'id' => 'dob', 'placeholder' => 'dob','style' => 'width:80%']) }}
+                                    @error('dob')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -247,7 +257,7 @@
                             </div>
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'Slider Image:*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
                                 
                                 <div class="col-sm-6">
                                     <div class="input-group">

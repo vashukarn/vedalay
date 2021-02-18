@@ -44,8 +44,8 @@ class StudentController extends Controller
     public function create()
     {
         $student_info = null;
-        $classes = Level::all();
         $session = Session::pluck('title','title');
+        $classes = Level::all();
         foreach ($classes as $value) {
             if(isset($value->section)){
                 $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
@@ -91,6 +91,7 @@ class StudentController extends Controller
                 'user_id' => $user->id,
                 'image' => $request->image ?? null,
                 'phone' => $request->phone,
+                'dob' => $request->dob,
                 'level_id' => $request->level,
                 'session' => $request->session,
                 'aadhar_number' => $request->aadhar_number,
@@ -179,6 +180,7 @@ class StudentController extends Controller
             $student->phone = $request->phone;
             $student->level_id = $request->level;
             $student->session = $request->session;
+            $student->dob = $request->dob;
             $student->aadhar_number = $request->aadhar_number;
             $student->blood_group = $request->blood_group;
             $student->gender = $request->gender;

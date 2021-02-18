@@ -15,6 +15,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->string('session')->nullable();
+            $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
             $table->string('caste_category')->nullable();
             $table->enum('disability',['0','1'])->default('0');
