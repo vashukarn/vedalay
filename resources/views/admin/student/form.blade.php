@@ -13,7 +13,7 @@
 @push('scripts')
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-{{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
+<script src="{{ asset('/custom/student.js') }}"></script>
     <script>
     $('#lfm').filemanager('image');
     </script>
@@ -130,14 +130,14 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('fatheroccupation') ? 'has-error' : '' }}">
-                                {{ Form::label('fatheroccupation', "Father's Occupation :*", ['class' => 'col-sm-3']) }}
+                                {{ Form::label('fatheroccupation', "Father's Occupation :", ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-3">
                                     {{ Form::text('fatheroccupation',@$student_info->fatheroccupation, ['class' => 'form-control', 'placeholder' => 'Father Occupation', 'id' => 'fatheroccupation','style' => 'width:80%']) }}
                                     @error('fatheroccupation')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                {{ Form::label('motheroccupation', "Mother's Occupation :*", ['class' => 'col-sm-3']) }}
+                                {{ Form::label('motheroccupation', "Mother's Occupation :", ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-3">
                                     {{ Form::text('motheroccupation', @$student_info->motheroccupation, ['class' => 'form-control', 'placeholder' => 'Mother Occupation', 'id' => 'motheroccupation','style' => 'width:80%']) }}
                                     @error('motheroccupation')
@@ -181,7 +181,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('guardian_name') ? 'has-error' : '' }}">
-                                {{ Form::label('guardian_name', 'Guardian Name :*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('guardian_name', 'Local Guardian Name :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-3">
                                     {{ Form::text('guardian_name',@$student_info->guardian_name, ['class' => 'form-control', 'placeholder' => 'Guardian Name', 'id' => 'guardian_name','style' => 'width:80%']) }}
                                     @error('guardian_name')
@@ -247,7 +247,7 @@
                             </div>
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'Slider Image:*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('image', 'Profile photo:*', ['class' => 'col-sm-3']) }}
                                 
                                 <div class="col-sm-6">
                                     <div class="input-group">
