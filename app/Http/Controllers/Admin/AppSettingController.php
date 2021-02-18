@@ -17,70 +17,6 @@ class AppSettingController extends Controller
         $this->appSetting = $appSetting;
         $this->smsSetting = $smsSetting;
     }
-    public function websiteContentFormat(Request $request)
-    {
-        $appsetting = $this->appSetting->first();
-        // dd($appsetting);
-        if (!$appsetting) {
-            $appsetting = $this->appSetting->create();
-        }
-        return view('admin/setting/websiteContentFormat', compact('appsetting'));
-    }
-    public function setupWebsiteContentFormat(Request $request)
-    {
-        // dd($request->all());
-        // dd( $this->appSetting);
-        $appsetting = $this->appSetting->first();
-        // dd($appsetting);
-        if (!$appsetting) {
-            $appsetting = $this->appSetting->create();
-        }
-        $this->validate($request, [
-            'website_content_format' => 'required|string|in:English,Nepali,Other,Both',
-        ]);
-        try {
-            // dd($appsetting);
-
-            $appsetting->fill(['website_content_format' => $request->website_content_format])->save();
-            session()->put('_website', @$appsetting->website_content_format);
-            $request->session()->flash('success', 'Website content format setup has been updated successfully.');
-            return redirect()->route('websiteContentFormat');
-        } catch (\Exception $error) {
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->back();
-        }
-    }
-
-    public function websiteContent(){
-        $appsetting = $this->appSetting->first();
-        $data = [
-            'appsetting' => $appsetting,
-            "website_content_item" => $appsetting->website_content_item
-        ];
-        return view('admin/setting/websiteContent', $data);
-    }
-    public function updateWebsiteContent(Request $request){
-        // dd($request->all());
-        $appsetting = $this->appSetting->first();
-        if (!$appsetting) {
-            $appsetting = $this->appSetting->create();
-        }
-        $appsetting->website_content_item =  $request->content;
-        try {
-            $appsetting->save();
-            $request->session()->flash('success', 'Website content updated successfully.');
-            return redirect()->route('websiteContent');
-
-        }catch(\Exception $error){
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->route('websiteContent');
-        }
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         if ($this->appSetting) {
@@ -136,7 +72,6 @@ class AppSettingController extends Controller
             'commission' => $request->commission,
             'facebook' => $request->facebook,
             'youtube' => $request->youtube,
-            "website_content_format" => $request->website_content_format,
 
             'is_meta' => $request->is_meta,
             'meta_title' => $request->meta_title,

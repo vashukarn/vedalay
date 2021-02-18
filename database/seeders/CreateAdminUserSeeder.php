@@ -18,8 +18,8 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Nectar Digit',
-            'email' => 'nectardigit@gmail.com',
+            'name' => 'Guru Super Admin',
+            'email' => 'superadmin@guru.com',
             'password' => Hash::make('admin123'),
         ]);
 
@@ -29,12 +29,15 @@ class CreateAdminUserSeeder extends Seeder
         $user->assignRole([$role->id]);
 
         $adminuser = User::create([
-            'name' => 'News Portal Admin',
-            'email' => 'admin@newsportal.com',
+            'name' => 'Guru Admin',
+            'email' => 'admin@guru.com',
             'password' => Hash::make('admin123'),
         ]);
         $roleadmin = Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'Reporter']);
+        Role::create(['name' => 'Staff']);
+        Role::create(['name' => 'Teacher']);
+        Role::create(['name' => 'Parent']);
+        Role::create(['name' => 'Student']);
         $adminuser->assignRole([$roleadmin->id]);
     }
 }

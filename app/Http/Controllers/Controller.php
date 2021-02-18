@@ -17,13 +17,6 @@ class Controller extends BaseController
     }
     public function get_web()
     {
-        // dd('dsfsdfsdf');
-      $_website =  session()->get('_website');
-        if (!$_website) {
-            $website = AppSetting::select('website_content_format')->orderBy('created_at', 'desc')->first();
-            $_website = @$website->website_content_format;
-            session()->put('_website',$_website );
-        }
-    $this->_website = $_website;
+        
     }
 }

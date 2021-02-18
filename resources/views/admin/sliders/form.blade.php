@@ -9,7 +9,6 @@
     </script>
 @endpush
 @section('content')
-@include('admin.shared.image_upload')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -34,58 +33,31 @@
                         {{-- <input type="hidden" name="roles" value="1" placeholder="dummy"> --}}
                         <div class="col-sm-10 offset-lg-1">
                             {{-- {{ dd($slider_info->title['en']) }} --}}
-                            <div class="form-group row {{ $errors->has('en_title') ? 'has-error' : '' }}">
-                                {{ Form::label('en_title', 'Slider Name (EN):*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
+                                {{ Form::label('title', 'Slider Name:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('en_title', @$slider_info->title['en'], ['class' => 'form-control', 'id' => 'en_title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('en_title')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('np_title') ? 'has-error' : '' }}">
-                                {{ Form::label('np_title', 'Slider Name (NP):*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::text('np_title', @$slider_info->title['np'], ['class' => 'form-control', 'id' => 'np_title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('np_title')
+                                    {{ Form::text('title', @$slider_info->title['en'], ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('title')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('en_sub_title') ? 'has-error' : '' }}">
-                                {{ Form::label('en_sub_title', 'Slider Sub Title (EN):*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('sub_title') ? 'has-error' : '' }}">
+                                {{ Form::label('sub_title', 'Slider Sub Title:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('en_sub_title', @$slider_info->sub_title['en'], ['class' => 'form-control', 'id' => 'en_sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
-                                    @error('en_sub_title')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('np_sub_title') ? 'has-error' : '' }}">
-                                {{ Form::label('np_sub_title', 'Slider Sub Title (NP):*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::text('np_sub_title', @$slider_info->sub_title['np'], ['class' => 'form-control', 'id' => 'np_sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
-                                    @error('np_sub_title')
+                                    {{ Form::text('sub_title', @$slider_info->sub_title['en'], ['class' => 'form-control', 'id' => 'sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
+                                    @error('sub_title')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('en_description') ? 'has-error' : '' }}">
-                                {{ Form::label('en_description', 'Slider Description (EN):*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
+                                {{ Form::label('description', 'Slider Description:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('en_description', @$slider_info->description['en'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('en_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('np_description') ? 'has-error' : '' }}">
-                                {{ Form::label('np_description', 'Slider Description (NP):*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::textarea('np_description', @$slider_info->description['np'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('np_description')
+                                    {{ Form::textarea('description', @$slider_info->description['en'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
+                                    @error('description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>

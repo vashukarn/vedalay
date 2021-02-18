@@ -53,38 +53,6 @@ class MenuController extends Controller
         ];
         return view('admin.menu.additional-menu')->with($data);
     }
-    protected function validate_form(){
-        if ($this->_website == 'Nepali') {
-            return [
-                'np_title' => "required|string|max:100",
-                'publish_status' => 'required|numeric|in:1,0',
-                'slug' => 'required',
-                "np_short_description" => "nullable|string|max:3000",
-               
-                "np_description" => "nullable|string",
-               
-            ];
-        } else if ($this->_website == 'English') {
-            return [
-                'en_title' => "required|string|max:100",
-                'publish_status' => 'required|numeric|in:1,0',
-                'slug' => 'required',
-                "en_short_description" => "nullable|string|max:3000",
-                "en_description" => "nullable|string",
-            ];
-        } else if ($this->_website == 'Both') {
-            return [
-                'np_title' => "required|string|max:100",
-                "en_title" => "required|string|max:100",
-                'publish_status' => 'required|numeric|in:1,0',
-                'slug' => 'required',
-                "np_short_description" => "nullable|string|max:3000",
-                "en_short_description" => "nullable|string|max:3000",
-                "np_description" => "nullable|string",
-                "en_description" => "nullable|string",
-            ];
-        }
-    }
     protected function mapMenuTitles($request, $menuInfo = null){
         $data = [
             'title' => [
@@ -131,7 +99,6 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,  $this->validate_form());
         // dd($request->all());
         \DB::beginTransaction();
         try {

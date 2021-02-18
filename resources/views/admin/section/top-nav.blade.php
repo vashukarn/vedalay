@@ -15,7 +15,6 @@
                     </div>
                 </div>
             </form>
-            {{-- {{ dd($notification) }} --}}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">

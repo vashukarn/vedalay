@@ -110,12 +110,6 @@
                                   <div class="menu-handle d-flex justify-content-between">
                                       <span>
                                         <i class="fa fa-arrows-alt"></i> &nbsp; 
-                                        @if($_website == 'Nepali' || $_website == 'Both')
-                                        {{$item->title['np']}}
-                                        @endif 
-                                        @if($_website == 'English' || $_website == 'Both')
-                                        {{$item->title['en']}}
-                                        @endif 
                                       </span>
                                       <div class="menu-options btn-group">
                                           <a href="{{ route('menu.additonal',$item->id) }}" class="btn btn-xs btn-warning }}"><i class="fas fa-list"></i></a>

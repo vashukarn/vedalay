@@ -23,11 +23,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('profile', ProfileController::class);
-    Route::post('/ajax-upload', [ImageCropController::class, 'ajaxImageUpload'])->name('ajaxImageUpload');
-    Route::post('/crop-image', [ImageCropController::class, 'uploadCropImage'])->name('uploadCropImage');
 
 
-    // Route::get('profile', [UserController::class, 'profile'])->name('profile')->middleware('password.confirm');
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
     Route::get('setting/sms', [AppSettingController::class, 'smsApi'])->name('smsApi.index')->middleware('password.confirm');
     Route::post('setting/sms', [AppSettingController::class, 'smsApiSave'])->name('smsApi.store');
@@ -47,11 +44,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
 });
 
 Route::get('/content/{slug}', [SliderController::class, 'sliderDetail'])->name('sliderDetail');
-
-/* Route::get('/map', function () {
-    return view('admin.mapdashboard.map-dashboard');
-})->name('map.dashbaord')->middleware('auth'); */
-
-Route::group(['prefix' => 'rider', 'middleware' => ['auth']], function () {
-    return 'hello';
-});

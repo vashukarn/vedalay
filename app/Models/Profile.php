@@ -11,12 +11,9 @@ class Profile extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'user_id',
-        'facebook',
         'phone',
-        'twitter',
         'address',
         'image',
-        'slug_url',
     ];
     protected $dates = ['deleted_at'];
     public function get_user()

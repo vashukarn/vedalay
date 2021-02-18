@@ -4,7 +4,6 @@
             style="opacity: .8">
         <span class="brand-text font-weight-light">{{ @$sitesetting->name ?? env('APP_NAME') }}</span>
     </a>
-   
 
     <div class="sidebar">
         <div class="user-panel mt-3 pb-0 mb-3 d-flex">
@@ -31,9 +30,40 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">USER MANAGEMENT</li>
+
+                <li class="nav-item has-treeview {{ request()->is('admin/student*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/student*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Student Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('user-create')
+                            <li class="nav-item">
+                                <a href="{{ route('student.create') }}"
+                                    class="nav-link  {{ request()->is('admin/student/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Student</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['user-list', 'user-create','user-edit','user-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('student.index') }}"
+                                class="nav-link {{ request()->is('admin/student') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Students List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
 
                 <li class="nav-header">WEB CONTENT</li>
-               @if(in_array('slider', $app_content))
                 @canany(['slider-list','slider-create','slider-edit','slider-delete'])
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
@@ -42,8 +72,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                @if(in_array('information', $app_content))
                 @canany(['information-list','information-create','information-edit','information-delete'])
                 <li class="nav-item">
                     <a href="{{ route('information.index') }}" class="nav-link {{ request()->is('admin/information*') ? 'active' : '' }}">
@@ -52,8 +80,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                @if(in_array('features', $app_content))
                 @canany(['feature-list','feature-create','feature-edit','feature-delete'])
                 <li class="nav-item">
                     <a href="{{ route('feature.index') }}" class="nav-link {{ request()->is('admin/feature*') ? 'active' : '' }}">
@@ -62,8 +88,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                @if(in_array('testimonial', $app_content))
                 @canany(['testimonial-list','testimonial-create','testimonial-edit','testimonial-delete'])
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}" class="nav-link {{ request()->is('admin/testimonial*') ? 'active' : '' }}">
@@ -72,45 +96,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                @if(in_array('news', $app_content))
-                <li class="nav-item has-treeview {{ request()->is('admin/news*') || request()->is('admin/tag*') ?'menu-open':'' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/news*')  ||  request()->is('admin/tag*')?'active':'' }}">
-                        <i class="nav-icon fas fa-bars"></i>
-                        <p>
-                            News  Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @canany(['tag-list','tag-create','tag-edit','tag-delete'])
-                        <li class="nav-item">
-                            <a href="{{ route('tag.index') }}" class="nav-link {{ request()->is('admin/tag*') ? 'active' : '' }}">
-                                <i class="fas fa-chart-line nav-icon"></i>
-                                <p>Tags</p>
-                            </a>
-                        </li>
-                        @endcanany
-                        @can('menu-create')
-                        <li class="nav-item">
-                            <a href="{{ route('news.index') }}" class="nav-link {{ request()->is('admin/news') ? 'active' : '' }}">
-                              <i class="fas fa-list nav-icon"></i>
-                                <p>News List</p>
-                            </a>
-                        </li>
-                        @endcan
-                        @canany(['menu-list', 'menu-create','menu-edit','menu-delete'])
-                        <li class="nav-item">
-                            <a href="{{ route('news.create') }}" class="nav-link {{ (request()->is('admin/news/create')&&!request()->is('admin/news/create'))?'active':'' }}">
-                              <i class="fas fa-list nav-icon"></i>
-                                <p>Add News</p>
-                            </a>
-                        </li>
-                        @endcanany
-                    </ul>
-                </li>
-                @endif 
-                @if(in_array('faq', $app_content))
                 @canany(['faq-list','faq-create','faq-edit','faq-delete'])
                 <li class="nav-item">
                     <a href="{{ route('faq.index') }}" class="nav-link {{ request()->is('admin/faq*') ? 'active' : '' }}">
@@ -119,10 +104,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-
-               
-                @if(in_array('blogs', $app_content))
                 @canany(['blog-list','blog-create','blog-edit','blog-delete'])
                 <li class="nav-item">
                     <a href="{{ route('blog.index') }}" class="nav-link {{ request()->is('admin/blog*') ? 'active' : '' }}">
@@ -131,8 +112,6 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                @if(in_array('contact', $app_content))
                 @canany(['contact-list','contact-view','contact-edit','contact-delete'])
                 <li class="nav-item">
                     <a href="{{ route('contact.index') }}" class="nav-link {{ request()->is('admin/contact*') ? 'active' : '' }}">
@@ -141,21 +120,8 @@
                     </a>
                 </li>
                 @endcanany
-                @endif 
-                
-                @if(in_array('reporter', $app_content))
                 <li class="nav-header">APP SETTINGS</li>
-                {{-- @canany(['menu-list', 'menu-create','menu-edit','menu-delete']) --}}
-                <li class="nav-item">
-                    <a href="{{ route('profile.index') }}" class="nav-link {{ (request()->is('admin/profile*')&&!request()->is('admin/menu/create'))?'active':'' }}">
-                      <i class="fas fa-microphone nav-icon"></i>
-                        <p>Reporter List</p>
-                    </a>
-                </li>
-                @endif 
-                {{-- @endcanany --}}
                 @hasanyrole('Super Admin')
-                @if(in_array('user', $app_content))
                 @canany(['user-list',
                 'user-create','user-edit','user-delete','role-list','role-create','role-edit','role-delete'])
                 <li
@@ -205,7 +171,6 @@
                     </ul>
                 </li>
                 @endcanany
-                @endif 
                 @canany(['menu-list', 'menu-create','menu-edit','menu-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/menu*') ?'menu-open':'' }}">
                     <a href="#" class="nav-link {{ request()->is('admin/menu*') ?'active':'' }}">
@@ -254,20 +219,6 @@
                                 <p>App Setting</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('websiteContentFormat') }}" class="nav-link">
-                                <i class="fas fa-cogs nav-icon"></i>
-                                <p>Website Content Format </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('websiteContent') }}" class="nav-link">
-                                <i class="fas fa-list nav-icon"></i>
-                                <p>Website Content </p>
-                            </a>
-                        </li>
-                           
-
                     </ul>
                 </li>
                 @endhasallroles
