@@ -16,6 +16,7 @@ class Student extends Model
         'permanent_address',
         'image',
         'session',
+        'dob',
         'blood_group',
         'caste_category',
         'disability',

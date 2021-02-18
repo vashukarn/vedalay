@@ -42,7 +42,7 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @can('user-create')
+                        @can('student-create')
                             <li class="nav-item">
                                 <a href="{{ route('student.create') }}"
                                     class="nav-link  {{ request()->is('admin/student/create') ? 'active' : '' }}">
@@ -51,12 +51,76 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['user-list', 'user-create','user-edit','user-delete'])
+                        @canany(['student-list', 'student-create','student-edit','student-delete'])
                         <li class="nav-item">
                             <a href="{{ route('student.index') }}"
                                 class="nav-link {{ request()->is('admin/student') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Students List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ request()->is('admin/teacher*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/teacher*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>
+                            Teacher Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('teacher-create')
+                            <li class="nav-item">
+                                <a href="{{ route('teacher.create') }}"
+                                    class="nav-link  {{ request()->is('admin/teacher/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Teacher</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['teacher-list', 'teacher-create','teacher-edit','teacher-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.index') }}"
+                                class="nav-link {{ request()->is('admin/teacher') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Teachers List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
+
+                
+                <li class="nav-header">ACADEMICS MANAGEMENT</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/subject*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>
+                            Subject Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('subject-create')
+                            <li class="nav-item">
+                                <a href="{{ route('subject.create') }}"
+                                    class="nav-link  {{ request()->is('admin/subject/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Subject</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['subject-list', 'subject-create','subject-edit','subject-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('subject.index') }}"
+                                class="nav-link {{ request()->is('admin/subject') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Subject List</p>
                             </a>
                         </li>
                         @endcanany
