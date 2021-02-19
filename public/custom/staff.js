@@ -1,5 +1,5 @@
 $(function() {
-    $("form[name='teacher_form']").validate({
+    $("form[name='staff_form']").validate({
         rules: {
             name: "required",
             phone: {

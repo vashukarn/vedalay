@@ -94,6 +94,36 @@
                     </ul>
                 </li>
 
+                <li class="nav-item has-treeview {{ request()->is('admin/staff*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/staff*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-id-card"></i>
+                        <p>
+                            Staff Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('staff-create')
+                            <li class="nav-item">
+                                <a href="{{ route('staff.create') }}"
+                                    class="nav-link  {{ request()->is('admin/staff/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Staff</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['staff-list', 'staff-create','staff-edit','staff-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('staff.index') }}"
+                                class="nav-link {{ request()->is('admin/staff') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Staff List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
                 
                 <li class="nav-header">ACADEMICS MANAGEMENT</li>
                 <li class="nav-item has-treeview {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
