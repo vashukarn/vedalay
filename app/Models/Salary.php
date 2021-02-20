@@ -6,25 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Fee extends Model
+class Salary extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'title',
         'month',
-        'fees',
-        'unique',
-        'level_id',
+        'salary',
         'rollback',
         'unique',
-        'student_id',
+        'teacher_id',
         'added_by',
         'created_by',
         'updated_by',
     ];
     protected $dates = ['deleted_at'];
     protected $casts  = [
-        'fees' => 'json',
+        'salary' => 'json',
     ];
     public function creator()
     {
@@ -36,6 +34,6 @@ class Fee extends Model
     }
     public function get_user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'student_id');
+        return $this->hasOne('App\Models\User', 'id', 'teacher_id');
     }
 }

@@ -64,6 +64,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('fee', FeeController::class);
+    Route::resource('salary', FeeController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
     Route::resource('student', StudentController::class);

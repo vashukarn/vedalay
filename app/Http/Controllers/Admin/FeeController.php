@@ -84,7 +84,6 @@ class FeeController extends Controller
             'title' => 'required|string|min:3|max:190',
             'month' => 'required|required|numeric|in:1,2,3,4,5,6,7,8,9,10,11,12',
             'level' => 'required',
-            // 'student' => 'required',
         ]);
         DB::beginTransaction();
         try {
