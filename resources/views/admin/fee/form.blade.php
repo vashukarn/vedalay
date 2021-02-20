@@ -106,7 +106,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('student') ? 'has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has(' ') ? 'has-error' : '' }}">
                                 {{ Form::label('student', 'Students:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
                                     {{ Form::select('student[]', ['Select Student'], @$student, ['id' => 'student', 'class' => 'form-control select2', 'multiple', 'style' => 'width:80%; border-color:none']) }}
