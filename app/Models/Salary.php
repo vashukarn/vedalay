@@ -14,7 +14,6 @@ class Salary extends Model
         'month',
         'salary',
         'rollback',
-        'unique',
         'teacher_id',
         'added_by',
         'created_by',

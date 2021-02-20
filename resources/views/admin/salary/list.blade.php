@@ -1,14 +1,14 @@
 @extends('layouts.admin')
-@section('title', 'Staff List')
+@section('title', 'Salary List')
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Staff List</h3>
+                    <h3 class="card-title">Salary List</h3>
                     <div class="card-tools">
-                        <a href="{{ route('staff.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('salary.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
@@ -30,59 +30,54 @@
                         </div>
                         <div class="float-right col-lg-2">
                             <div class="card-tools">
-                                @can('staff-create')
-                                <a href="{{ route('staff.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Add New staff</a>
+                                @can('salary-create')
+                                <a href="{{ route('salary.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
+                                    <i class="fa fa-plus"></i> Add Salary</a>
                                 @endcan
                             </div>
                         </div>
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
-                    <table class="table table-striped table-hover"> {{-- table-bordered--}}
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Name</th>
-                                <th>Profile Image</th>
-                                <th>Designation</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Status</th>
-                                <th style="text-align:center;" width="10%">Action</th>
+                                <th>Title</th>
+                                <th>Teacher/Staff</th>
+                                <th>Month</th>
+                                <th>Amount</th>
+                                <th>Added By</th>
+                                <th>Adding Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key=>$value)
                             <tr>
                             <td>{{ $key+1}}.</td>
+                            <td>{{ @$value->title }}</td>
                             <td>{{ @$value->get_user->name }}</td>
                             <td>
-                                  <img src="{{ $value->image }}" alt="{{ @$value->get_user->name }}" class="img img-thumbail" style="width:60px">    
-                                </td>
-                            <td>{{ @$value->position }}</td>
-                            <td>{{ @$value->phone }}</td>
-                            <td>{{ @$value->get_user->email }}</td>
-                            <td>{{ @$value->current_address }}<br>{{ @$value->permanent_address }}</td>
-                            <td>
-                                <span class="badge @if(@$value->get_user->publish_status  == '1')badge-success @elseif(@$value->get_user->publish_status  == '2') badge-danger @else badge-warning @endif">
-                                    @if(@$value->get_user->publish_status  == '1') Active @elseif(@$value->get_user->publish_status  == '2') Banned @else Inactive @endif
+                                <span class="badge badge-primary">
+                                    @if(@$value->month  == '1') January
+                                    @elseif(@$value->month  == '2') February
+                                    @elseif(@$value->month  == '3') March
+                                    @elseif(@$value->month  == '4') April
+                                    @elseif(@$value->month  == '5') May
+                                    @elseif(@$value->month  == '6') June
+                                    @elseif(@$value->month  == '7') July
+                                    @elseif(@$value->month  == '8') August
+                                    @elseif(@$value->month  == '9') September
+                                    @elseif(@$value->month  == '10') October
+                                    @elseif(@$value->month  == '11') November
+                                    @elseif(@$value->month  == '12') December
+                                    @else Not Defined
+                                    @endif
                                 </span>
                             </td>
-
-                            <td>
-                                <div class="btn-group">
-                                  @can('staff-edit')
-                                  <a href="{{route('staff.edit',@$value->id)}}" title="Edit staff" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
-                                  @endcan
-                                  @can('staff-delete')
-                                  {{Form::open(['method' => 'DELETE','route' => ['staff.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this staff?")']) }}
-                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete staff '])}}
-                                  {{ Form::close() }}
-                                  @endcan
-                              </div>
-                              </td>
+                            <td>{{ @$value->salary['total_amount'] }}</td>
+                            <td>{{ @$value->creator->name }}</td>
+                            <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             </tr>
                             @endforeach
                         </tbody>

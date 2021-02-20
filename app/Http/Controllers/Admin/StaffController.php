@@ -56,6 +56,7 @@ class StaffController extends Controller
             'email' => 'required|unique:users|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required',
+            'position' => 'required',
             'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|max:190',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
@@ -66,6 +67,7 @@ class StaffController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'type' => 'staff',
                 'password' => Hash::make($request->password),
                 'publish_status' => $request->publish_status,
                 'created_by' => Auth::user()->id,
@@ -75,6 +77,7 @@ class StaffController extends Controller
                 'image' => $request->image ?? null,
                 'phone' => $request->phone,
                 'dob' => $request->dob,
+                'position' => $request->position,
                 'salary' => $request->salary,
                 'aadhar_number' => $request->aadhar_number,
                 'gender' => $request->gender,
@@ -122,6 +125,7 @@ class StaffController extends Controller
             'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required',
+            'position' => 'required',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
         ]);
@@ -132,11 +136,12 @@ class StaffController extends Controller
             $user->email = $request->email;
             $user->publish_status = $request->publish_status;
             $user->updated_by = Auth::user()->id;
-            $status = $user->save();
+            $user->save();
             $staff = Staff::find($staff_info->id);
             $staff->phone = $request->phone;
             $staff->salary = $request->salary;
             $staff->dob = $request->dob;
+            $staff->position = $request->position;
             $staff->aadhar_number = $request->aadhar_number;
             $staff->gender = $request->gender;
             $staff->current_address = $request->current_address;
@@ -144,7 +149,7 @@ class StaffController extends Controller
             if(isset($request->image)){
                 $staff['image'] = $request->image;
             }
-            $status = $staff->save();
+            $staff->save();
             DB::commit();
             $request->session()->flash('success', 'Staff updated successfully.');
             return redirect()->route('staff.index');

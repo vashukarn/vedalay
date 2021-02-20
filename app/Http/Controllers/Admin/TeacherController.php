@@ -76,6 +76,7 @@ class TeacherController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'type' => 'teacher',
                 'password' => Hash::make($request->password),
                 'publish_status' => $request->publish_status,
                 'created_by' => Auth::user()->id,

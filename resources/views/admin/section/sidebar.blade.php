@@ -159,7 +159,7 @@
                 <li class="nav-item has-treeview {{ request()->is('admin/fee*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/fee*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-credit-card"></i>
+                        <i class="nav-icon fas fa-wallet"></i>
                         <p>
                             Fee Management
                             <i class="right fas fa-angle-left"></i>
@@ -190,7 +190,7 @@
                 <li class="nav-item has-treeview {{ request()->is('admin/salary*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/salary*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-credit-card"></i>
+                        <i class="nav-icon fas fa-money-bill"></i>
                         <p>
                             Salary Management
                             <i class="right fas fa-angle-left"></i>
@@ -212,6 +212,15 @@
                                 class="nav-link {{ request()->is('admin/salary') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Salary Addition List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                        @canany(['advancesalary-list', 'advancesalary-create','advancesalary-edit','advancesalary-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('advancesalary.index') }}"
+                                class="nav-link {{ request()->is('admin/advancesalary') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Advance Salary List</p>
                             </a>
                         </li>
                         @endcanany

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
@@ -64,9 +66,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('fee', FeeController::class);
-    Route::resource('salary', FeeController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
+    Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
+
+    Route::resource('salary', SalaryController::class);
+    Route::resource('advancesalary', AdvanceSalaryController::class);
+    Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');
     Route::resource('student', StudentController::class);
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);

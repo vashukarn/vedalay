@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FeeController extends Controller
-{public function __construct(Fee $fee)
+{
+    public function __construct(Fee $fee)
     {
         $this->middleware(['permission:fee-list|fee-create|fee-edit|fee-delete'], ['only' => ['index', 'store']]);
         $this->middleware(['permission:fee-create'], ['only' => ['create', 'store']]);
@@ -172,19 +173,6 @@ class FeeController extends Controller
             return redirect()->back();
         }
     }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($timestamp)
-    {
-        dd($fee_info);
-        foreach ($fee_info as $key => $value) {
-            
-        }
-    }
     public function rollbackTransaction(Request $request, $fee)
     {
         $fee_info = $this->fee->where('unique', $fee)->get();
@@ -216,81 +204,5 @@ class FeeController extends Controller
             $single->save();
         }
         return redirect()->back();
-    }
-
-    public function update(Request $request, $id)
-    {
-        dd($request->all());
-        $fee_info = $this->fee->where('unique', $timestamp)->get();
-        if (!$fee_info) {
-            abort(404);
-        }
-        // $fee_info = $this->fee->find($id);
-        // if (!$fee_info) {
-        //     abort(404);
-        // }
-        // $this->validate($request, [
-        //     'name' => 'required|string|min:3|max:190',
-        //     'email' => 'required|string|min:3|max:190',
-        //     'phone' => 'required|string|min:10|max:10',
-        //     'gender' => 'required|string',
-        //     'level' => 'required',
-        //     'session' => 'required',
-        //     'permanent_address' => 'required|string|min:3|max:190',
-        //     'current_address' => 'required|string|min:3|max:190',
-        // ]);
-        // DB::beginTransaction();
-        // try {
-        //     $user = User::find($fee_info->user_id);
-        //     $user->name = $request->name;
-        //     $user->email = $request->email;
-        //     $user->publish_status = $request->publish_status;
-        //     $user->updated_by = Auth::user()->id;
-        //     $status = $user->save();
-        //     $fee = fee::find($fee_info->id);
-        //     $fee->phone = $request->phone;
-        //     $fee->salary = $request->salary;
-        //     $fee->dob = $request->dob;
-        //     $fee->aadhar_number = $request->aadhar_number;
-        //     $fee->gender = $request->gender;
-        //     $fee->current_address = $request->current_address;
-        //     $fee->permanent_address = $request->permanent_address;
-        //     if(isset($request->image)){
-        //         $fee['image'] = $request->image;
-        //     }
-        //     $status = $fee->save();
-        //     DB::commit();
-        //     $request->session()->flash('success', 'fee updated successfully.');
-        //     return redirect()->route('fee.index');
-        // } catch (\Exception $error) {
-        //     DB::rollBack();
-        //     $request->session()->flash('error', $error->getMessage());
-        //     return redirect()->back();
-        // }
-
-    }
-
-    public function destroy(Request $request)
-    {
-        // $fee_info = $this->fee->find($id);
-        // if (!$fee_info) {
-        //     abort(404);
-        // }
-        // DB::beginTransaction();
-        // try {
-        //     $user = User::find($fee_info->user_id);
-        //     $fee_info->phone = $fee_info->phone . '-' . time();
-        //     $user->email = $user->email . '-' . time();
-        //     $user->save();
-        //     $fee_info->save();
-        //     $fee_info->delete();
-        //     $user->delete();
-        //     $request->session()->flash('success', 'fee removed successfully.');
-        //     DB::commit();
-        // } catch (\Exception $error) {
-        //     DB::rollBack();
-        //     $request->session()->flash('error', $error->getMessage());
-        // }
-        // return redirect()->back();
     }
 }

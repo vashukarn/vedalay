@@ -16,6 +16,9 @@
 {{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
     <script>
     $(document).ready(function() {
+        $('#level').select2({
+            placeholder: "Choose Level",
+        });
         $('#student').select2({
             placeholder: "Choose Students",
         });
@@ -89,7 +92,7 @@
                             <div class="form-group row {{ $errors->has('month') ? 'has-error' : '' }}">
                                 {{ Form::label('month', 'Month :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::selectMonth('month', @$month, ['id' => 'month', 'required' => true, 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::selectMonth('month', @$month, ['id' => 'month', 'required' => true, 'placeholder' => 'Select Month', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
                                     @error('month')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -99,7 +102,7 @@
                             <div class="form-group row {{ $errors->has('level') ? 'has-error' : '' }}">
                                 {{ Form::label('level', 'Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('level', $levels, @$fee_info->level, ['class' => 'level form-control', 'id' => 'level','style' => 'width:80%']) }}
+                                    {{ Form::select('level', $levels, @$fee_info->level, ['class' => 'level form-control select2', 'placeholder' => 'Select Level', 'id' => 'level','style' => 'width:80%']) }}
                                     @error('level')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -109,7 +112,7 @@
                             <div class="form-group row {{ $errors->has('student') ? 'has-error' : '' }}">
                                 {{ Form::label('student', 'Students:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('student[]', ['Select Student'], @$student, ['id' => 'student', 'class' => 'form-control select2', 'multiple', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('student[]', [], @$student, ['id' => 'student', 'class' => 'form-control select2', 'placeholder' => 'Select Student(s)', 'multiple', 'style' => 'width:80%; border-color:none']) }}
                                     @error('student')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
