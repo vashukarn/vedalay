@@ -257,8 +257,8 @@
                             </div>
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
                                 
+                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">

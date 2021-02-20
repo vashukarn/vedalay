@@ -1,5 +1,5 @@
 $(function() {
-    $("form[name='student_form']").validate({
+    $("form[name='staff_form']").validate({
         rules: {
             name: "required",
             phone: {
@@ -11,25 +11,6 @@ $(function() {
             email: {
                 required: true,
                 email: true,
-            },
-            fathername: {
-                required: true,
-                minlength: 3,
-
-            },
-            mothername: {
-                required: true,
-                minlength: 3,
-            },
-            guardian_name: {
-                required: true,
-                minlength: 3,
-            },
-            guardian_phone: {
-                required: true,
-                digits: true,
-                minlength: 10,
-                maxlength: 10,
             },
             password: {
                 required: true,
@@ -54,7 +35,14 @@ $(function() {
             },   
             dob: {
                 required: true,
-            },   
+            },  
+            joining_date: {
+                required: true,
+            },  
+            salary: {
+                required: true,
+            },  
+             
             },
             messages: {
             name: "Please enter name",
@@ -67,26 +55,6 @@ $(function() {
             email: {
                 required: "Email is required",
                 email: "This is not a valid email",
-            },
-            fathername: {
-                required: "Father name is required",
-                minlength: "Please enter correct father's name",
-                
-            },
-            mothername: {
-                required: "Mother name is required",
-                minlength: "Please enter correct mother's name",
-                
-            },
-            guardian_name: {
-                required: "Local guardian name required",
-                minlength: "Please enter correct guardian name",
-            },
-            guardian_phone: {
-                required: "Phone number is required",
-                digits: "Phone number should be digits only",
-                minlength: "Phone number should be of 10 digits",
-                maxlength: "Phone number should be of 10 digits only",
             },
             password: {
                 required: "This field is required" ,
@@ -111,6 +79,12 @@ $(function() {
             dob: {
                 required: "DOB is required",
             },   
+            joining_date: {
+                required: "This field is required",
+            },  
+            salary: {
+                required: "This field is required",
+            },  
         },
         submitHandler: function(form) {
             form.submit();
