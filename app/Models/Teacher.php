@@ -14,6 +14,7 @@ class Teacher extends Model
         'user_id',
         'subject',
         'dob',
+        'due_salary',
         'joining_date',
         'gender',
         'permanent_address',

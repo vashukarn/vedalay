@@ -257,11 +257,7 @@
                             </div>
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-<<<<<<< HEAD
                                 {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
-=======
-                                {{ Form::label('image', 'Profile photo:*', ['class' => 'col-sm-3']) }}
->>>>>>> 1764cbe0913c347c0523c7db7955bc84d33a7d6f
                                 
                                 <div class="col-sm-6">
                                     <div class="input-group">

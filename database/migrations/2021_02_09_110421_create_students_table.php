@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->string('session')->nullable();
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
+            $table->string('due_fee')->default(0);
             $table->string('caste_category')->nullable();
             $table->enum('disability',['0','1'])->default('0');
             $table->string('aadhar_number')->nullable();

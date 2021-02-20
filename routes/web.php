@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
@@ -62,10 +63,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('faq', FaqController::class);
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
+    Route::resource('fee', FeeController::class);
+    Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
+    Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
     Route::resource('student', StudentController::class);
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);
-
+    
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
 
