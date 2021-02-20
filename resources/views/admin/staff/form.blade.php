@@ -71,6 +71,16 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row {{ $errors->has('position') ? 'has-error' : '' }}">
+                                {{ Form::label('position', 'Designation :*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::text('position', @$staff_info->position, ['class' => 'form-control', 'id' => 'position', 'placeholder' => 'Position','style' => 'width:80%']) }}
+                                    @error('position')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group row {{ $errors->has('dob') ? 'has-error' : '' }}">
                                 {{ Form::label('dob', 'Date of Birth:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">

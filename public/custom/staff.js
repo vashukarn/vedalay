@@ -8,6 +8,9 @@ $(function() {
                 minlength: 10,
                 maxlength: 10,
             },
+            position: {
+                required: true,
+            },
             email: {
                 required: true,
                 email: true,
@@ -51,6 +54,9 @@ $(function() {
                 digits: "Phone number should be digits only",
                 minlength: "Phone number should be of 10 digits",
                 maxlength: "Phone number should be of 10 digits only",
+            },
+            position: {
+                required: "You need to add a designation to the staff",
             },
             email: {
                 required: "Email is required",

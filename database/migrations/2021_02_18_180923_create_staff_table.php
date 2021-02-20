@@ -20,6 +20,7 @@ class CreateStaffTable extends Migration
             $table->date('dob')->nullable();
             $table->date('joining_date')->nullable();
             $table->enum('gender',['male','female','others'])->default('male');
+            $table->string('position')->nullable();
             $table->string('permanent_address')->nullable();
             $table->string('current_address')->nullable();
             $table->string('aadhar_number')->nullable();

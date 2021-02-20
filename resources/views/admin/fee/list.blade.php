@@ -46,6 +46,7 @@
                                 <th>Title</th>
                                 <th>Month</th>
                                 <th>Level</th>
+                                <th>Amount</th>
                                 <th>Added By</th>
                                 <th>Adding Date</th>
                                 <th>Status</th>
@@ -76,6 +77,7 @@
                                 </span>
                             </td>
                             <td>{{ $levels[@$value->level_id] }}</td>
+                            <td>{{ @$value->fees['total_amount'] }}</td>
                             <td>{{ @$value->creator->name }}</td>
                             <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             <td>
