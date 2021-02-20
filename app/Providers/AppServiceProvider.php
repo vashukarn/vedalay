@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('website.faqs','App\Http\View\Composers\MenuComposer');
         view()->composer('admin.dashboard','App\Http\View\Composers\DashboardComposer');
         view()->composer('admin.section.top-nav','App\Http\View\Composers\NotificationComposer');
+        view()->composer('admin.section.sidebar','App\Http\View\Composers\ClassAttendanceComposer');
         view()->composer('*', 'App\Http\View\Composers\SystemLang');
     }
 }

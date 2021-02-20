@@ -66,49 +66,59 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>36,'name'=> 'blog-delete'],
 
                 ['id'=>37,'name'=> 'contact-list'],
-                ['id'=>38,'name'=> 'contact-view'],
+                ['id'=>38,'name'=> 'contact-create'],
                 ['id'=>39,'name'=> 'contact-edit'],
                 ['id'=>40,'name'=> 'contact-delete'],
 
                 ['id'=>41,'name'=> 'profile-list'],
-                ['id'=>42,'name'=> 'profile-view'],
+                ['id'=>42,'name'=> 'profile-create'],
                 ['id'=>43,'name'=> 'profile-edit'],
                 ['id'=>44,'name'=> 'profile-delete'],
 
                 ['id'=>45,'name'=> 'student-list'],
-                ['id'=>46,'name'=> 'student-view'],
+                ['id'=>46,'name'=> 'student-create'],
                 ['id'=>47,'name'=> 'student-edit'],
                 ['id'=>48,'name'=> 'student-delete'],
 
                 ['id'=>49,'name'=> 'teacher-list'],
-                ['id'=>50,'name'=> 'teacher-view'],
+                ['id'=>50,'name'=> 'teacher-create'],
                 ['id'=>51,'name'=> 'teacher-edit'],
                 ['id'=>52,'name'=> 'teacher-delete'],
 
                 ['id'=>53,'name'=> 'staff-list'],
-                ['id'=>54,'name'=> 'staff-view'],
+                ['id'=>54,'name'=> 'staff-create'],
                 ['id'=>55,'name'=> 'staff-edit'],
                 ['id'=>56,'name'=> 'staff-delete'],
 
                 ['id'=>57,'name'=> 'fee-list'],
-                ['id'=>58,'name'=> 'fee-view'],
+                ['id'=>58,'name'=> 'fee-create'],
                 ['id'=>59,'name'=> 'fee-edit'],
                 ['id'=>60,'name'=> 'fee-delete'],
 
                 ['id'=>61,'name'=> 'subject-list'],
-                ['id'=>62,'name'=> 'subject-view'],
+                ['id'=>62,'name'=> 'subject-create'],
                 ['id'=>63,'name'=> 'subject-edit'],
                 ['id'=>64,'name'=> 'subject-delete'],
 
                 ['id'=>65,'name'=> 'salary-list'],
-                ['id'=>66,'name'=> 'salary-view'],
+                ['id'=>66,'name'=> 'salary-create'],
                 ['id'=>67,'name'=> 'salary-edit'],
                 ['id'=>68,'name'=> 'salary-delete'],
 
                 ['id'=>69,'name'=> 'advancesalary-list'],
-                ['id'=>70,'name'=> 'advancesalary-view'],
+                ['id'=>70,'name'=> 'advancesalary-create'],
                 ['id'=>71,'name'=> 'advancesalary-edit'],
                 ['id'=>72,'name'=> 'advancesalary-delete'],
+
+                ['id'=>73,'name'=> 'attendance-list'],
+                ['id'=>74,'name'=> 'attendance-create'],
+                ['id'=>75,'name'=> 'attendance-edit'],
+                ['id'=>76,'name'=> 'attendance-delete'],
+
+                ['id'=>77,'name'=> 'attendancemanagement-list'],
+                ['id'=>78,'name'=> 'attendancemanagement-create'],
+                ['id'=>79,'name'=> 'attendancemanagement-edit'],
+                ['id'=>80,'name'=> 'attendancemanagement-delete'],
 
            ];
            foreach ($permissions as $permission) {

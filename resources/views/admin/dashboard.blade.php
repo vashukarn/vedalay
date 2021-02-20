@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Admin Dashboard')
+@section('title', request()->user()->roles->first()->name .' Dashboard')
 @push('scripts')
 
 

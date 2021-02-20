@@ -8,9 +8,12 @@ use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Information;
 use App\Models\Slider;
+use App\Models\Subject;
+use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -20,7 +23,6 @@ class DashboardController extends Controller
     }
 
     public function index(){
-        
         $count_data['admin'] = User::where('type', 'admin')->where('publish_status', '1')->count();
         $count_data['staff'] = User::where('type', 'staff')->where('publish_status', '1')->count();
         $count_data['user'] = User::where('type', 'user')->where('publish_status', '1')->count();

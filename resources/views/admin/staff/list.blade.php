@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
-                    <table class="table table-striped table-hover"> {{-- table-bordered--}}
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CkeditorController;
@@ -76,6 +77,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('student', StudentController::class);
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);
+    Route::resource('attendance', AttendanceController::class);
+    Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
+    Route::get('attendanceList/{id}', [AttendanceController::class, 'attendanceList'])->name('attendanceList');
+    Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
