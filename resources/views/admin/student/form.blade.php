@@ -257,19 +257,8 @@
                             </div>
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                {{ Form::label('image', 'Profile photo:*', ['class' => 'col-sm-3']) }}
-=======
-                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
->>>>>>> d9f08e14a0f57139c3983b1f2f74a3ad85328f76
-=======
-                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
-=======
-                                {{ Form::label('image', 'Profile photo:*', ['class' => 'col-sm-3']) }}
->>>>>>> 1764cbe0913c347c0523c7db7955bc84d33a7d6f
->>>>>>> 4bd980f3a8ef8fe605a956b4a70dde5bdc5cb219
                                 
+                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">

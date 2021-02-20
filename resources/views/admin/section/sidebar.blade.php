@@ -156,6 +156,67 @@
                         @endcanany
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{ request()->is('admin/fee*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/fee*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-credit-card"></i>
+                        <p>
+                            Fee Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('fee-create')
+                            <li class="nav-item">
+                                <a href="{{ route('fee.create') }}"
+                                    class="nav-link  {{ request()->is('admin/fee/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Fee</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['fee-list', 'fee-create','fee-edit','fee-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('fee.index') }}"
+                                class="nav-link {{ request()->is('admin/fee') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Fee Addition List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview {{ request()->is('admin/salary*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/salary*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-credit-card"></i>
+                        <p>
+                            Salary Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('salary-create')
+                            <li class="nav-item">
+                                <a href="{{ route('salary.create') }}"
+                                    class="nav-link  {{ request()->is('admin/salary/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Salary</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['salary-list', 'salary-create','salary-edit','salary-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('salary.index') }}"
+                                class="nav-link {{ request()->is('admin/salary') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Salary Addition List</p>
+                            </a>
+                        </li>
+                        @endcanany
+                    </ul>
+                </li>
 
                 <li class="nav-header">WEB CONTENT</li>
                 @canany(['slider-list','slider-create','slider-edit','slider-delete'])

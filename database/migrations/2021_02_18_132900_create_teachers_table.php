@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->string('subject')->nullable();
             $table->date('dob')->nullable();
+            $table->string('due_salary')->default(0);
             $table->date('joining_date')->nullable();
             $table->enum('gender',['male','female','others'])->default('male');
             $table->string('permanent_address')->nullable();

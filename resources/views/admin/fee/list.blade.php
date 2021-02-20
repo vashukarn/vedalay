@@ -1,14 +1,14 @@
 @extends('layouts.admin')
-@section('title', 'Student List')
+@section('title', 'Fee List')
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Student List</h3>
+                    <h3 class="card-title">Fee List</h3>
                     <div class="card-tools">
-                        <a href="{{ route('student.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('fee.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                         </div>
                         <div class="float-right col-lg-2">
                             <div class="card-tools">
-                                @can('student-create')
-                                <a href="{{ route('student.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Add New Student</a>
+                                @can('fee-create')
+                                <a href="{{ route('fee.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
+                                    <i class="fa fa-plus"></i> Add New fee</a>
                                 @endcan
                             </div>
                         </div>
@@ -43,12 +43,11 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Name</th>
-                                <th>Standard</th>
-                                <th>Profile Image</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Address</th>
+                                <th>Title</th>
+                                <th>Month</th>
+                                <th>Level</th>
+                                <th>Added By</th>
+                                <th>Adding Date</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
                             </tr>
@@ -57,29 +56,45 @@
                             @foreach ($data as $key=>$value)
                             <tr>
                             <td>{{ $key+1}}.</td>
-                            <td>{{ @$value->get_user->name }}</td>
-                            <td>{{ @$value->get_level->standard }}</td>
+                            <td>{{ @$value->title }}</td>
                             <td>
-                                  <img src="{{ $value->image }}" alt="{{ @$value->get_user->name }}" class="img img-thumbail" style="width:60px">    
-                                </td>
-                            <td>{{ @$value->phone }}</td>
-                            <td>{{ @$value->get_user->email }}</td>
-                            <td>{{ @$value->current_address }}<br>{{ @$value->permanent_address }}</td>
+                                <span class="badge badge-primary">
+                                    @if(@$value->month  == '1') January
+                                    @elseif(@$value->month  == '2') February
+                                    @elseif(@$value->month  == '3') March
+                                    @elseif(@$value->month  == '4') April
+                                    @elseif(@$value->month  == '5') May
+                                    @elseif(@$value->month  == '6') June
+                                    @elseif(@$value->month  == '7') July
+                                    @elseif(@$value->month  == '8') August
+                                    @elseif(@$value->month  == '9') September
+                                    @elseif(@$value->month  == '10') October
+                                    @elseif(@$value->month  == '11') November
+                                    @elseif(@$value->month  == '12') December
+                                    @else Not Defined
+                                    @endif
+                                </span>
+                            </td>
+                            <td>{{ $levels[@$value->level_id] }}</td>
+                            <td>{{ @$value->creator->name }}</td>
+                            <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             <td>
                                 <span class="badge @if(@$value->get_user->publish_status  == '1')badge-success @elseif(@$value->get_user->publish_status  == '2') badge-danger @else badge-warning @endif">
                                     @if(@$value->get_user->publish_status  == '1') Active @elseif(@$value->get_user->publish_status  == '2') Banned @else Inactive @endif
                                 </span>
                             </td>
-
                             <td>
                                 <div class="btn-group">
-                                  @can('student-edit')
-                                  <a href="{{route('student.edit',@$value->id)}}" title="Edit student" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
-                                  @endcan
-                                  @can('student-delete')
-                                  {{Form::open(['method' => 'DELETE','route' => ['student.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this student?")']) }}
-                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete student '])}}
+                                  @can('fee-edit')
+                                @if($value->created_at->toDateString() > date("Y-m-d", strtotime(date("Y-m-d"). ' - 5 days')) && $value->rollback == '0')
+                                  {{Form::open(['method' => 'POST','route' => ['rollbackTransaction', 'fee' => @$value->unique],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to undo this transaction?")']) }}
+                                  {{Form::button('<i class="fas fa-undo"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Rollback Transaction'])}}
                                   {{ Form::close() }}
+                                @elseif($value->rollback == '1')
+                                    Already Rolledback
+                                @else
+                                    Rollback Timeout
+                                @endif
                                   @endcan
                               </div>
                               </td>
