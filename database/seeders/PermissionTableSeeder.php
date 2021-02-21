@@ -125,6 +125,16 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>83,'name'=> 'staffattendance-edit'],
                 ['id'=>84,'name'=> 'staffattendance-delete'],
 
+                ['id'=>85,'name'=> 'vacancy-list'],
+                ['id'=>86,'name'=> 'vacancy-create'],
+                ['id'=>87,'name'=> 'vacancy-edit'],
+                ['id'=>88,'name'=> 'vacancy-delete'],
+
+                ['id'=>89,'name'=> 'jobapplicant-list'],
+                ['id'=>90,'name'=> 'jobapplicant-create'],
+                ['id'=>91,'name'=> 'jobapplicant-edit'],
+                ['id'=>92,'name'=> 'jobapplicant-delete'],
+
            ];
            foreach ($permissions as $permission) {
             $menu = new Permission();

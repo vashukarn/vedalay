@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('fee', FeeController::class);
+    Route::resource('vacancy', VacancyController::class);
+    Route::get('jobapplicant/{fee}', [VacancyController::class, 'jobapplicant'])->name('jobapplicant');
     // Route::resource('staffattendance', StaffAttendanceController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');

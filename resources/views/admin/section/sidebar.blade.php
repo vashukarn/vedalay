@@ -131,6 +131,37 @@
                 </li>
                 @endcanany
                 
+                @canany(['vacancy-list', 'vacancy-create','vacancy-edit','vacancy-delete'])
+                <li class="nav-item has-treeview {{ request()->is('admin/vacancy*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/vacancy*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-id-badge"></i>
+                        <p>
+                            Vacancy Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('vacancy-create')
+                            <li class="nav-item">
+                                <a href="{{ route('vacancy.create') }}"
+                                    class="nav-link  {{ request()->is('admin/vacancy/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Vacancy</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('vacancy.index') }}"
+                                class="nav-link {{ request()->is('admin/vacancy') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Vacancy List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
+                
                 @canany([
                     'subject-list', 'subject-create','subject-edit','subject-delete',
                     'fee-list', 'fee-create','fee-edit','fee-delete',
