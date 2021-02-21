@@ -262,6 +262,24 @@
                             </a>
                         </li>
                         @endcanany
+                        {{-- @can('staffattendance-create')
+                            <li class="nav-item">
+                                <a href="{{ route('staffattendance.create') }}"
+                                    class="nav-link  {{ request()->is('admin/staffattendance/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Mark Employee Attendance</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['staffattendance-list', 'staffattendance-create','staffattendance-edit','staffattendance-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('staffattendance.index') }}"
+                                class="nav-link {{ request()->is('admin/staffattendance') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Employee Attendance List</p>
+                            </a>
+                        </li>
+                        @endcanany --}}
                         @canany(['attendance-list', 'attendance-create','attendance-edit','attendance-delete'])
                         @if(isset($subjects))
                         @foreach ($subjects as $key => $item)

@@ -6,21 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Attendance extends Model
+class StaffAttendance extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'students',
-        'subject_id',
-        'holiday',
-        'holiday_reason',
-        'level_id',
+        'attendance',
         'created_by',
         'updated_by'
     ];
     protected $dates = ['deleted_at'];
     protected $casts  = [
-        'students' => 'json',
+        'attendance' => 'json',
     ];
     public function creator()
     {
@@ -30,12 +26,8 @@ class Attendance extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
-    public function get_level()
+    public function get_user()
     {
-        return $this->hasOne('App\Models\Level', 'id', 'level_id');
-    }
-    public function get_subject()
-    {
-        return $this->hasOne('App\Models\Subject', 'id', 'subject_id');
+        return $this->hasOne('App\Models\Subject', 'id', 'user_id');
     }
 }

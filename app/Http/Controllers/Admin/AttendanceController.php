@@ -51,13 +51,17 @@ class AttendanceController extends Controller
             }
             $find = Attendance::where('subject_id', $request->subject)->whereBetween('created_at', [date('Y-m-d 00:00:00'),date('Y-m-d 23:59:59')])->first();
             if(isset($find)){
-                $attendance = "Attendance Already Marked";
+                $find->students = $students;
+                $find->updated_by = Auth::user()->id;
+                $find->save();
             }
             else{
                 $attendance = Attendance::create([
                     'subject_id' => $request->subject,
                     'level_id' => $request->level,
                     'students' => $students,
+                    'holiday_reason' => $request->holiday_reason ?? null,
+                    'holiday' => $request->holiday_reason ? 1 : 0,
                     'created_by' => Auth::user()->id,
                 ]);
             }

@@ -18,6 +18,35 @@
     $("#submit").click(function() {
         submitAttendance();
     });
+    $("#holiday").click(function() {
+        console.log('clicked');
+        var attendance = [];
+        @foreach ($student_info as $item)
+        attendance['{{ $item->user_id }}'] = 0;
+        @endforeach
+        $.ajax({
+            type: 'POST',
+            url: "/admin/updateAttendance",
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'subject' : {{ $subject_info->id }},
+                'level' : {{ $subject_info->id }},
+                'attendance' : attendance,
+            },
+            success: function (data) {
+                if(data == "Attendance Already Marked"){
+                    alert(data);
+                }
+                else if(data.id){
+                    alert("Attendance Marked");
+                }
+                else{
+                    alert("Error Occurred");
+                }
+                console.log(data);
+            }
+        });
+    });
     function submitAttendance() {
         var attendance = [];
         @foreach ($student_info as $item)
@@ -35,6 +64,7 @@
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
                 'level' : {{ $subject_info->id }},
+                'holiday_reason' : $("#holiday_reason").val(),
                 'attendance' : attendance,
             },
             success: function (data) {
@@ -136,7 +166,7 @@
                         {{ Form::label('', '', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
                             {{ Form::button("<i class='fa fa-plus'></i> Submit", ['class' => 'btn btn-success btn-flat', 'id'=>'submit']) }}
-                            {{ Form::button("<i class='fas fa-ban'></i> Holiday", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
+                            {{ Form::button("<i class='fas fa-ban'></i> Holiday", ['data-toggle'=>"modal",'data-target'=>"#holidayModal",'class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -144,4 +174,27 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="holidayModal" tabindex="-1" role="dialog" aria-labelledby="holidayModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="holidayModalLabel">Mark Holiday</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="m-4">
+                <div class="form-group">
+                  <label for="holiday_reason">Holiday Reason</label>
+                  <input type="text" class="form-control" id="holiday_reason" placeholder="Enter Holiday Reason">
+                </div>
+                <div class="modal-footer">
+                    <button id="holiday" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 @endsection

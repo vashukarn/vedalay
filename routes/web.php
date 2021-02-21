@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StaffAttendanceController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('fee', FeeController::class);
+    // Route::resource('staffattendance', StaffAttendanceController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
