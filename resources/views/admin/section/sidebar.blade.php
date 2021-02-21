@@ -167,7 +167,9 @@
                     'fee-list', 'fee-create','fee-edit','fee-delete',
                     'salary-list', 'salary-create','salary-edit','salary-delete',
                     'attendacemanagement-list', 'attendacemanagement-create','attendacemanagement-edit','attendacemanagement-delete',
-                    'attendace-list', 'attendace-create','attendacemanagement-edit','attendacemanagement-delete'
+                    'attendace-list', 'attendace-create','attendace-edit','attendace-delete',
+                    'exam-list', 'exam-create','exam-edit','exam-delete',
+                    'result-list', 'result-create','exam-edit','exam-delete',
                     ])
                 <li class="nav-header">ACADEMICS MANAGEMENT</li>
                 @endcanany
@@ -331,6 +333,68 @@
                         @endforeach
                         @endif
                         @endcanany
+                    </ul>
+                </li>
+                @endcanany
+
+                @canany(['exam-list', 'exam-create','exam-edit','exam-delete'])
+                <li class="nav-item has-treeview {{ request()->is('admin/exam*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/exam*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-diagnoses"></i>
+                        <p>
+                            Exam Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('exam-create')
+                            <li class="nav-item">
+                                <a href="{{ route('exam.create') }}"
+                                    class="nav-link  {{ request()->is('admin/exam/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Exam</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('exam.index') }}"
+                                class="nav-link {{ request()->is('admin/exam') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Exam List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
+
+                @canany(['result-list', 'result-create','result-edit','result-delete'])
+                <li class="nav-item has-treeview {{ request()->is('admin/result*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/result*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-poll-h"></i>
+                        <p>
+                            Result Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('result-create')
+                            <li class="nav-item">
+                                <a href="{{ route('result.create') }}"
+                                    class="nav-link  {{ request()->is('admin/result/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Result</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('result.index') }}"
+                                class="nav-link {{ request()->is('admin/result') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Results List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endcanany
