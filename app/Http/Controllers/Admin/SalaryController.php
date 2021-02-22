@@ -78,7 +78,7 @@ class SalaryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|string|min:3|max:190',
+            'title' => 'required|min:3|max:190',
             'type' => 'required|in:Teacher,Staff',
             'month' => 'required|required|numeric|in:1,2,3,4,5,6,7,8,9,10,11,12',
         ]);
