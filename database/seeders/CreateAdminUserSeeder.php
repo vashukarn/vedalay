@@ -29,10 +29,11 @@ class CreateAdminUserSeeder extends Seeder
             'password' => Hash::make('admin123'),
         ]);
         $roleadmin = Role::create(['name' => 'Admin']);
-        Role::create(['name' => 'Staff']);
+        $adminuser->assignRole([$roleadmin->id]);
+
         Role::create(['name' => 'Teacher']);
+        Role::create(['name' => 'Staff']);
         Role::create(['name' => 'Parent']);
         Role::create(['name' => 'Student']);
-        $adminuser->assignRole([$roleadmin->id]);
     }
 }

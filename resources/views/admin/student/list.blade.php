@@ -58,7 +58,7 @@
                             <tr>
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->get_user->name }}</td>
-                            <td>{{ @$value->get_level->standard }}</td>
+                            <td>{{ @$value->get_level->standard .' '.@$value->get_level->section }}</td>
                             <td>
                                   <img src="{{ $value->image }}" alt="{{ @$value->get_user->name }}" class="img img-thumbail" style="width:60px">    
                                 </td>

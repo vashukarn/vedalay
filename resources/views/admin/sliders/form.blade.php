@@ -9,6 +9,7 @@
     </script>
 @endpush
 @section('content')
+@include('admin.section.ckeditor')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -30,9 +31,7 @@
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
-                        {{-- <input type="hidden" name="roles" value="1" placeholder="dummy"> --}}
                         <div class="col-sm-10 offset-lg-1">
-                            {{-- {{ dd($slider_info->title['en']) }} --}}
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Slider Name:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">

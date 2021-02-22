@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="" class="brand-link" style="background-color:#374f65">
-        <img src="{{ asset('img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{ asset('img/AdminLTELogo.png') }}" alt="Guru Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span class="brand-text font-weight-light">{{ @$sitesetting->name ?? env('APP_NAME') }}</span>
     </a>
@@ -26,12 +26,19 @@
                         class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Admin Dashboard
+                            {{ request()->user()->roles->first()->name }} Dashboard
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">USER MANAGEMENT</li>
 
+                @canany([
+                    'student-list', 'student-create','student-edit','student-delete',
+                    'teacher-list', 'teacher-create','teacher-edit','teacher-delete',
+                    'staff-list', 'staff-create','staff-edit','staff-delete'
+                    ])
+                <li class="nav-header">USER MANAGEMENT</li>
+                @endcanany
+                @canany(['student-list', 'student-create','student-edit','student-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/student*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/student*') ? 'active' : '' }}">
@@ -51,7 +58,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['student-list', 'student-create','student-edit','student-delete'])
                         <li class="nav-item">
                             <a href="{{ route('student.index') }}"
                                 class="nav-link {{ request()->is('admin/student') ? 'active' : '' }}">
@@ -59,10 +65,11 @@
                                 <p>Students List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
+                @endcanany
 
+                @canany(['teacher-list', 'teacher-create','teacher-edit','teacher-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/teacher*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/teacher*') ? 'active' : '' }}">
@@ -82,7 +89,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['teacher-list', 'teacher-create','teacher-edit','teacher-delete'])
                         <li class="nav-item">
                             <a href="{{ route('teacher.index') }}"
                                 class="nav-link {{ request()->is('admin/teacher') ? 'active' : '' }}">
@@ -90,10 +96,11 @@
                                 <p>Teachers List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
-
+                @endcanany
+                
+                @canany(['staff-list', 'staff-create','staff-edit','staff-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/staff*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/staff*') ? 'active' : '' }}">
@@ -113,7 +120,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['staff-list', 'staff-create','staff-edit','staff-delete'])
                         <li class="nav-item">
                             <a href="{{ route('staff.index') }}"
                                 class="nav-link {{ request()->is('admin/staff') ? 'active' : '' }}">
@@ -121,11 +127,51 @@
                                 <p>Staff List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
+                @endcanany
                 
+                @canany(['vacancy-list', 'vacancy-create','vacancy-edit','vacancy-delete'])
+                <li class="nav-item has-treeview {{ request()->is('admin/vacancy*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/vacancy*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-id-badge"></i>
+                        <p>
+                            Vacancy Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('vacancy-create')
+                            <li class="nav-item">
+                                <a href="{{ route('vacancy.create') }}"
+                                    class="nav-link  {{ request()->is('admin/vacancy/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add New Vacancy</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('vacancy.index') }}"
+                                class="nav-link {{ request()->is('admin/vacancy') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Vacancy List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
+                
+                @canany([
+                    'subject-list', 'subject-create','subject-edit','subject-delete',
+                    'fee-list', 'fee-create','fee-edit','fee-delete',
+                    'salary-list', 'salary-create','salary-edit','salary-delete',
+                    'attendacemanagement-list', 'attendacemanagement-create','attendacemanagement-edit','attendacemanagement-delete',
+                    'attendace-list', 'attendace-create','attendacemanagement-edit','attendacemanagement-delete'
+                    ])
                 <li class="nav-header">ACADEMICS MANAGEMENT</li>
+                @endcanany
+                @canany(['subject-list', 'subject-create','subject-edit','subject-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/subject*') ? 'active' : '' }}">
@@ -145,7 +191,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['subject-list', 'subject-create','subject-edit','subject-delete'])
                         <li class="nav-item">
                             <a href="{{ route('subject.index') }}"
                                 class="nav-link {{ request()->is('admin/subject') ? 'active' : '' }}">
@@ -153,9 +198,11 @@
                                 <p>Subject List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
+                @endcanany
+
+                @canany(['fee-list', 'fee-create','fee-edit','fee-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/fee*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/fee*') ? 'active' : '' }}">
@@ -175,7 +222,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['fee-list', 'fee-create','fee-edit','fee-delete'])
                         <li class="nav-item">
                             <a href="{{ route('fee.index') }}"
                                 class="nav-link {{ request()->is('admin/fee') ? 'active' : '' }}">
@@ -183,10 +229,11 @@
                                 <p>Fee Addition List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
-
+                @endcanany
+                
+                @canany(['salary-list', 'salary-create','salary-edit','salary-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/salary*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/salary*') ? 'active' : '' }}">
@@ -206,7 +253,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @canany(['salary-list', 'salary-create','salary-edit','salary-delete'])
                         <li class="nav-item">
                             <a href="{{ route('salary.index') }}"
                                 class="nav-link {{ request()->is('admin/salary') ? 'active' : '' }}">
@@ -214,20 +260,92 @@
                                 <p>Salary Addition List</p>
                             </a>
                         </li>
-                        @endcanany
                         @canany(['advancesalary-list', 'advancesalary-create','advancesalary-edit','advancesalary-delete'])
                         <li class="nav-item">
                             <a href="{{ route('advancesalary.index') }}"
-                                class="nav-link {{ request()->is('admin/advancesalary') ? 'active' : '' }}">
+                            class="nav-link {{ request()->is('admin/advancesalary') ? 'active' : '' }}">
+                            <i class="fas fa-list nav-icon"></i>
+                            <p>Advance Salary List</p>
+                        </a>
+                    </li>
+                    @endcanany
+                </ul>
+            </li>
+            @endcanany
+
+                @canany(['attendancemanagement-list', 'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete','attendance-list', 'attendance-create','attendance-edit','attendance-delete'])
+                <li class="nav-item has-treeview {{ request()->is('admin/attendance*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/attendance*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Attendance Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @canany(['attendancemanagement-list', 'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('attendance.index') }}"
+                                class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
-                                <p>Advance Salary List</p>
+                                <p>Attendance List</p>
                             </a>
                         </li>
                         @endcanany
+                        {{-- @can('staffattendance-create')
+                            <li class="nav-item">
+                                <a href="{{ route('staffattendance.create') }}"
+                                    class="nav-link  {{ request()->is('admin/staffattendance/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Mark Employee Attendance</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @canany(['staffattendance-list', 'staffattendance-create','staffattendance-edit','staffattendance-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('staffattendance.index') }}"
+                                class="nav-link {{ request()->is('admin/staffattendance') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Employee Attendance List</p>
+                            </a>
+                        </li>
+                        @endcanany --}}
+                        @canany(['attendance-list', 'attendance-create','attendance-edit','attendance-delete'])
+                        @if(isset($subjects))
+                        @foreach ($subjects as $key => $item)
+                        <li class="nav-item">
+                            <a href="{{ route('takeAttendance', $key) }}"
+                                class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>{{ $item }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('attendanceList', $key) }}"
+                                class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
+                                <i class="fas fa-archive nav-icon"></i>
+                                <p>{{ $item }} Summary</p>
+                            </a>
+                        </li>
+                        @endforeach
+                        @endif
+                        @endcanany
                     </ul>
                 </li>
+                @endcanany
 
+                @canany([
+                    'slider-list','slider-create','slider-edit','slider-delete',
+                    'information-list','information-create','information-edit','information-delete',
+                    'feature-list','feature-create','information-edit','information-delete',
+                    'testimonial-list','testimonial-create','information-edit','information-delete',
+                    'faq-list','faq-create','information-edit','information-delete',
+                    'blog-list','blog-create','information-edit','information-delete',
+                    'contact-list','contact-create','information-edit','information-delete',
+                    ])
                 <li class="nav-header">WEB CONTENT</li>
+                @endcanany
                 @canany(['slider-list','slider-create','slider-edit','slider-delete'])
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
@@ -284,10 +402,11 @@
                     </a>
                 </li>
                 @endcanany
-                <li class="nav-header">APP SETTINGS</li>
                 @hasanyrole('Super Admin')
-                @canany(['user-list',
-                'user-create','user-edit','user-delete','role-list','role-create','role-edit','role-delete'])
+                <li class="nav-header">APP SETTINGS</li>
+                @endhasanyrole
+                @hasanyrole('Super Admin')
+                @canany(['user-list','user-create','user-edit','user-delete','role-list','role-create','role-edit','role-delete'])
                 <li
                     class="nav-item has-treeview {{ request()->is('admin/users*') || request()->is('admin/roles*') ||request()->is('admin/user-log') ? 'menu-open' : '' }}">
                     <a href="#"

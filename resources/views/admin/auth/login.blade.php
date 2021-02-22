@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title',  'Admin Login')
+@section('title',  'User Login')
 @section('content')
     <div class="contents">
         <form id="login-form" action="{{ route('login') }}" method="post">
@@ -7,7 +7,7 @@
             <div class="d-flex justify-content-center">
                 <a href="" class=""><img src="{{ asset('img/AdminLTELogo.png') }}" class="img-fluid" alt=""></a>
             </div>
-            <h2 class="login-title">Admin Login</h2>
+            <h2 class="login-title">User Login</h2>
 
             <div class="form-group">
                 <div class="input-group">

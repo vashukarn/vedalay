@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CkeditorController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StaffAttendanceController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -23,6 +25,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VacancyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('information', InformationController::class);
     Route::resource('subject', SubjectController::class);
     Route::resource('fee', FeeController::class);
+    Route::resource('vacancy', VacancyController::class);
+    Route::get('jobapplicant/{fee}', [VacancyController::class, 'jobapplicant'])->name('jobapplicant');
+    // Route::resource('staffattendance', StaffAttendanceController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
@@ -76,6 +82,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('student', StudentController::class);
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);
+    Route::resource('attendance', AttendanceController::class);
+    Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
+    Route::get('attendanceList/{id}', [AttendanceController::class, 'attendanceList'])->name('attendanceList');
+    Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
