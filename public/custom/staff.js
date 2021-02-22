@@ -38,6 +38,7 @@ $(function() {
             },   
             dob: {
                 required: true,
+                date: true
             },  
             joining_date: {
                 required: true,
@@ -84,6 +85,7 @@ $(function() {
             },   
             dob: {
                 required: "DOB is required",
+                date: "Date format is required",
             },   
             joining_date: {
                 required: "This field is required",
