@@ -77,7 +77,7 @@ $(function() {
                     min:"Please enter a positive amount",
                 },
                 exam_fee: {
-                    digits: "exam Fee should be positive",
+                    digits: "Exam Fee should be positive",
                     maxlength: "Please enter a valid amount",
                     min:"Please enter a positive amount",
                 },
@@ -87,7 +87,7 @@ $(function() {
                     min:"Please enter a positive amount",
                 },
                 sports_fee: {
-                    digits: "sports  Fee should be in positive",
+                    digits: "Sports  Fee should be in positive",
                     maxlength: "Please enter a valid amount",
                     min:"Please enter a positive amount",
                 },
@@ -102,7 +102,7 @@ $(function() {
                     min:"Please enter a positive amount",
                 },
                 hostel_fee: {
-                    digits: "hostel Fee should be positive",
+                    digits: "Hostel Fee should be positive",
                     maxlength: "Please enter a valid amount",
                     min:"Please enter a positive amount",
                 },
@@ -112,7 +112,7 @@ $(function() {
                     min:"Please enter a positive amount",
                 },
                 eduaction_tax: {
-                    digits: "education Fee should be positive",
+                    digits: "Education Fee should be positive",
                     maxlength: "Please enter a valid amount",
                     min:"Please enter a positive amount",
                 },
