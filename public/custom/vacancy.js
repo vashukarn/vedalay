@@ -13,7 +13,7 @@ $(function() {
             },
             messages: {
                 job_role: "Designation is required",
-                tuition_fee: {
+                required_no: {
                     digits: "Requirement Number should be positive",
                 },
                 salary: {
