@@ -13,7 +13,7 @@
 @push('scripts')
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-{{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
+ <script src="{{ asset('/custom/salary.js') }}"></script> 
     <script>
     $(document).ready(function() {
         $('#forteacher').hide();
