@@ -80,6 +80,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     // Route::resource('staffattendance', StaffAttendanceController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
+    Route::post('getResultData', [ResultController::class, 'getResultData'])->name('getResultData');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
 
     Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');
