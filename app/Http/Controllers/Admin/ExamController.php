@@ -37,9 +37,11 @@ class ExamController extends Controller
     }
     public function index(Request $request)
     {
+        $subjects = Subject::pluck('title', 'id');
         $data = $this->getexam($request);
         $data = [
             'data' => $data,
+            'subjects' => $subjects,
         ];
         return view('admin/exam/list')->with($data);
     }
@@ -103,10 +105,10 @@ class ExamController extends Controller
         DB::beginTransaction();
         try {
             if($exam_info->publish_status){
-                $exam_info->publish_status = 0;
+                $exam_info->publish_status = '0';
             }
             else{
-                $exam_info->publish_status = 1;
+                $exam_info->publish_status = '1';
             }
             $exam_info->save();
             DB::commit();

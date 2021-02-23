@@ -30,10 +30,8 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Exam Title</th>
-                                <th>Level</th>
-                                <th>Session</th>
+                                <th>Routine</th>
                                 <th>Created By</th>
-                                <th>Adding Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,11 +39,27 @@
                             @foreach ($data as $key=>$value)
                             <tr>
                             <td>{{ $key+1}}.</td>
-                            <td>{{ @$value->title }}</td>
-                            <td>{{ @$value->get_level['standard'] }}{{ @$value->get_level['section'] ? ' - '.@$value->get_level['section'] : '' }}</td>
-                            <td>{{ @$value->get_session['title'] }}</td>
-                            <td>{{ @$value->creator->name }}</td>
-                            <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
+                            <td>{{ @$value->title }} <br> Class : {{ @$value->get_level['standard'] }}{{ @$value->get_level['section'] ? ' - '.@$value->get_level['section'] : '' }} <br>{{ @$value->get_session['title'] }}</td>
+                            <td>
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            @foreach ($value->exam_routine as $item)
+                                                <th>{{ $item['date'] }}</th>
+                                            @endforeach
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            @foreach ($value->exam_routine as $key => $item)
+                                                <td>{{ $subjects[$key] }}</td>
+                                                {{-- <td>{{ $item['shift'] }}</td> --}}
+                                            @endforeach
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>{{ @$value->creator->name }} <br> {{ ReadableDate(@$value->created_at, 'all') }}</td>
                             <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
                                 <div class="btn-group float-right">
                                   @can('staff-edit')
