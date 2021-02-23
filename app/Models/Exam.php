@@ -11,8 +11,6 @@ class Exam extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'title',
-        'start_date',
-        'end_date',
         'exam_routine',
         'publish_status',
         'session_id',
@@ -24,6 +22,14 @@ class Exam extends Model
     protected $casts  = [
         'exam_routine' => 'json',
     ];
+    public function get_session()
+    {
+        return $this->hasOne('App\Models\Session', 'id', 'session_id');
+    }
+    public function get_level()
+    {
+        return $this->hasOne('App\Models\Level', 'id', 'level_id');
+    }
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');

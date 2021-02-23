@@ -16,8 +16,6 @@ class CreateExamsTable extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
             $table->longText('exam_routine')->nullable();
             $table->enum('publish_status',['1','0'])->default(0);
             $table->unsignedBigInteger('session_id')->nullable();

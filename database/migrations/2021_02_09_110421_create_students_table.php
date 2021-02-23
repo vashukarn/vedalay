@@ -17,9 +17,11 @@ class CreateStudentsTable extends Migration
             $table->string('session')->nullable();
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
+            $table->longText('documents')->nullable();
             $table->string('due_fee')->default(0);
             $table->string('caste_category')->nullable();
             $table->enum('disability',['0','1'])->default('0');
+            $table->enum('regpriv',['REGULAR','PRIVATE'])->default('REGULAR');
             $table->string('aadhar_number')->nullable();
             $table->string('guardian_name')->nullable();
             $table->string('guardian_phone')->nullable();

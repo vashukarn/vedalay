@@ -135,14 +135,8 @@ class VacancyController extends Controller
         }
         DB::beginTransaction();
         try {
-            $user = User::find($vacancy_info->user_id);
-            $vacancy_info->phone = $vacancy_info->phone . '-' . time();
-            $user->email = $user->email . '-' . time();
-            $user->save();
-            $vacancy_info->save();
             $vacancy_info->delete();
-            $user->delete();
-            $request->session()->flash('success', 'vacancy removed successfully.');
+            $request->session()->flash('success', 'Vacancy removed successfully.');
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();

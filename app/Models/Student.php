@@ -27,6 +27,7 @@ class Student extends Model
         'gender',
         'fatheroccupation',
         'fatherincome',
+        'documents',
         'motheroccupation',
         'motherincome',
         'transfer_certificate',

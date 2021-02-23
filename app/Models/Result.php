@@ -11,6 +11,7 @@ class Result extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'marks',
+        'backlogs',
         'total_marks',
         'percentage',
         'sgpa',

@@ -17,27 +17,36 @@
     <script>
     $(document).ready(function() {
         $('#session_id').select2({
-            placeholder: "",
+            placeholder: "Please Select Session",
         });
         $('#level_id').select2({
-            placeholder: "",
+            placeholder: "Please Level Session",
         });
     });
-    $('#end_date').change(function () {
-        if(!$('#start_date').val()){
-            alert('Start Date Column is empty');
-        }else{
-            routinemaker();
-        }
-    });
-    $('#start_date').change(function () {
-        if($('#end_date').val()){
-            routinemaker();
-        }
+    var subjects = null;
+    var diff_value = 1;
+    var shift_counter = 0;
+    var thead_counter = 0;
+    $('#level_id').change(function () {
+        var level = $(this).val();
+        $.ajax({
+            type: 'POST',
+            url: "/admin/getSubjects",
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'level': level,
+            },
+            success: function (data) {
+                if(data.length < 1){
+                    alert("No Subjects found on this level");
+                }
+                else{
+                    subjects = data;
+                }
+            }
+        });
     });
     $('#shiftbtn').click(function () {
-        console.log("Add");
-
         if(!$('#start_time').val()){
             alert("Please Enter Start Time Properly");
         }
@@ -45,27 +54,78 @@
             alert("Please Enter End Time Properly");
         }
         else {
-            $('#table_row').append('<tr><td>'+$('#start_time').val()+' - '+$('#start_time').val()+'</td>');
-            var diff = routinemaker();
-            console.log(diff);
-            for (let index = 0; index < diff; index++) {
-                $('#table_row').append('<td>{{ Form::select("publish_status", [1 => 1, 0 => 0], null, ["id" => "publish_status", "required" => true, "class" => "form-control"]) }}</td></tr>');
-            }
+            shift_counter++;
+            $('#table_row').append('<tr>');
+                $('#table_row').append('<td><input id="shift_'+shift_counter+'" type="text" class="form-control" value="'+$('#start_time').val()+' - '+$('#end_time').val()+'" readonly></td>');
+                for (let index = 0; index < thead_counter; index++) {
+                    $('#table_row').append('<td><select class="form-control" id="subject_'+diff_value+'">');
+                        const subjectArray = [];
+                        Object.keys(subjects).forEach(key => subjectArray.push({
+                            id: key,
+                            name: subjects[key]
+                        }));
+                        $('#subject_'+diff_value).append('<option value="">Select Subject</option>');
+                        for (let index = 0; index < subjectArray.length; index++) {
+                            $('#subject_'+diff_value).append('<option value='+subjectArray[index]['id']+'>'+subjectArray[index]['name']+'</option>');
+                        }
+                        diff_value++;
+                    $('#table_row').append('</select></td>');
+
+                }
+            $('#table_row').append('</tr>');
         }
     });
-
-
-    function routinemaker() {
-        var enddate = new Date($('#end_date').val());
-        var startdate = new Date($('#start_date').val());
-        var timeDiff = Math.abs(enddate.getTime() - startdate.getTime());
-        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-        $('#table_head').html("<th>Date</th>");
-        for (let index = 1; index < diffDays+2; index++) {
-            $('#table_head').append('<th>Day '+ index +'</th>');
+    $('#datebtn').click(function () {
+        if(!$('#exam_date').val()){
+            alert("Please Enter Date");
         }
-        return diffDays+1;
-    }
+        else {
+            document.getElementById("table_head").innerHTML += '<th><input id="'+thead_counter+'" type="text" class="form-control" value="'+ $('#exam_date').val() +'" readonly></th>';
+            thead_counter++;
+        }
+    });
+    var request_count = 0;
+    $('#exam_form').on('submit', function(e) {
+        e.preventDefault();
+        var temp = 1;
+        var senddata = $('#exam_form').serializeArray();
+        for (let index = 0; index < thead_counter; index++) {
+            for (let inde = 1; inde <= shift_counter; inde++) {
+                var shiftsubject = {
+                    date : $('#'+index).val(),
+                    shift : $('#shift_'+inde).val(),
+                    subject : $('#subject_'+temp).val() ? $('#subject_'+temp).val() : null,
+                };
+                temp++;
+                request_count++;
+                senddata.push({name: 'routine_'+request_count, value: shiftsubject});
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            url: "/admin/addExam",
+            data: {
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+                'data': senddata,
+                'request_count': request_count,
+            },
+            success: function (data) {
+                if(data.length < 1){
+                    alert("No Data Found");
+                }
+                else{
+                    if(!data.title){
+                        alert("Error has been occurred");
+                    }
+                    else{
+                        alert("Exam Added Successfully");
+                        window.location = "{{ route('exam.index') }}";
+                    }
+                }
+            }
+        });
+        request_count = 0;
+    });
     </script>
 
 @endpush
@@ -88,7 +148,7 @@
                         {{ Form::open(['url' => route('exam.update', $exam_info->id), 'files' => true, 'class' => 'form', 'name' => 'exam_form']) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'name' => 'exam_form']) }}
+                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'id' => 'exam_form', 'name' => 'exam_form']) }}
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
@@ -127,44 +187,24 @@
                             <div class="form-group row {{ $errors->has('level_id') ? 'has-error' : '' }}">
                                 {{ Form::label('level_id', 'Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('level_id', @$levels, @$level_id, ['id' => 'level_id', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('level_id', @$levels, null, ['id' => 'level_id', 'class' => 'form-control select2', 'placeholder' => 'Select Level', 'style' => 'width:80%; border-color:none']) }}
                                     @error('level_id')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('start_date') ? 'has-error' : '' }}">
-                                {{ Form::label('start_date', 'Start Date :', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::date('start_date', @$exam_info->start_date, ['class' => 'form-control', 'id' => 'start_date','style' => 'width:80%']) }}
-                                    @error('start_date')
+                            <div class="form-group row {{ $errors->has('exam_date') ? 'has-error' : '' }}">
+                                {{ Form::label('exam_date', 'Date of Exam :', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-4">
+                                    {{ Form::date('exam_date', @$exam_info->exam_date, ['class' => 'form-control', 'id' => 'exam_date','style' => 'width:80%']) }}
+                                    @error('exam_date')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Date", ['id' => 'datebtn','class' => 'btn btn-primary btn-flat']) }}
                             </div>
 
-                            <div class="form-group row {{ $errors->has('end_date') ? 'has-error' : '' }}">
-                                {{ Form::label('end_date', 'End Date :', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::date('end_date', @$exam_info->end_date, ['class' => 'form-control', 'id' => 'end_date','style' => 'width:80%']) }}
-                                    @error('end_date')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
-                                {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$slider_info->publish_status, ['id' => 'publish_status', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
-                                    @error('publish_status')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div id="tohide">
                             <div class="form-group row {{ $errors->has('start_time') ? 'has-error' : '' }}">
                                 {{ Form::label('start_time', 'Start Time :*', ['class' => 'col-sm-2']) }}
                                 <div class="col-sm-2">
@@ -181,22 +221,18 @@
                                     @enderror
                                 </div>
                                 {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Shift", ['id' => 'shiftbtn','class' => 'btn btn-primary btn-flat']) }}
+                            </div>                            
+                            <div style="overflow-x: scroll" class="card-body card-format">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr id="table_head">
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_row">
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
-
-                            
-                <div style="overflow-x: scroll" class="card-body card-format">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr id="table_head">
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody id="table_row">
-                        </tbody>
-                    </table>
-                </div>
-
                         </div>
                     </div>
                     <div class="form-group row">

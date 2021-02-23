@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\Level;
 use App\Models\Session;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExamController extends Controller
 {
@@ -27,6 +29,11 @@ class ExamController extends Controller
             $query = $query->where('title', $keyword);
         }
         return $query->paginate(20);
+    }
+    protected function getSubjects(Request $request)
+    {
+        $subjects = Subject::where('publish_status', '1')->where('level_id', $request->level)->pluck('title', 'id');
+        return response()->json($subjects);
     }
     public function index(Request $request)
     {
@@ -58,6 +65,57 @@ class ExamController extends Controller
             'exam_info' => $exam_info,
         ];
         return view('admin/exam/form')->with($data);
+    }
+    public function addExam(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $routine = [];
+            for ($i=1; $i <= $request->request_count; $i++) { 
+                if($request->data[$i + 7]['value']['subject']){
+                    $routine[$request->data[$i + 7]['value']['subject']] = [
+                        'date' => $request->data[$i + 7]['value']['date'],
+                        'shift' => $request->data[$i + 7]['value']['shift'],
+                    ];
+                }
+            }
+            $exam = Exam::create([
+                'title' => $request->data[1]['value'],
+                'session_id' => $request->data[3]['value'],
+                'level_id' => $request->data[4]['value'],
+                'exam_routine' => $routine,
+                'created_by' => Auth::user()->id,
+            ]);
+            DB::commit();
+            return response()->json($exam);
+        } catch (\Exception $error) {
+            DB::rollBack();
+            return response()->json($error->getMessage());
+        }
+    }
+
+    public function publishExam($id)
+    {
+        $exam_info = $this->exam->find($id);
+        if (!$exam_info) {
+            abort(404);
+        }
+        DB::beginTransaction();
+        try {
+            if($exam_info->publish_status){
+                $exam_info->publish_status = 0;
+            }
+            else{
+                $exam_info->publish_status = 1;
+            }
+            $exam_info->save();
+            DB::commit();
+            return redirect()->back();
+
+        } catch (\Exception $error) {
+            DB::rollBack();
+            return redirect()->back();
+        }
     }
 
     public function store(Request $request)
@@ -95,48 +153,10 @@ class ExamController extends Controller
 
     public function edit($id)
     {
-        $exam_info = $this->exam->find($id);
-        if (!$exam_info) {
-            abort(404);
-        }
-        $title = 'Edit exam';
-        $data = [
-            'title' => $title,
-            'exam_info' => $exam_info,
-        ];
-        return view('admin/exam/form')->with($data);
     }
 
     public function update(Request $request, $id)
     {
-        $exam_info = $this->exam->find($id);
-        if (!$exam_info) {
-            abort(404);
-        }
-        $this->validate($request, [
-            'job_role' => 'required|string|min:3|max:190',
-            'required_no' => 'nullable|numeric',
-            'salary' => 'nullable|numeric',
-            'publish_status' => 'required|in:1,0',
-        ]);
-        DB::beginTransaction();
-        try {
-            $exam = exam::find($id);
-            $exam->job_role = $request->job_role;
-            $exam->description = $request->description;
-            $exam->salary = $request->salary ?? null;
-            $exam->required_no = $request->required_no ?? 1;
-            $exam->publish_status = $request->publish_status;
-            $exam->updated_by = Auth::user()->id;
-            $status = $exam->save();
-            DB::commit();
-            $request->session()->flash('success', 'exam updated successfully.');
-            return redirect()->route('exam.index');
-        } catch (\Exception $error) {
-            DB::rollBack();
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->back();
-        }
 
     }
 
@@ -148,14 +168,8 @@ class ExamController extends Controller
         }
         DB::beginTransaction();
         try {
-            $user = User::find($exam_info->user_id);
-            $exam_info->phone = $exam_info->phone . '-' . time();
-            $user->email = $user->email . '-' . time();
-            $user->save();
-            $exam_info->save();
             $exam_info->delete();
-            $user->delete();
-            $request->session()->flash('success', 'exam removed successfully.');
+            $request->session()->flash('success', 'Exam removed successfully.');
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();

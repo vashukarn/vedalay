@@ -16,11 +16,13 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->longText('marks')->nullable();
+            $table->longText('backlogs')->nullable();
             $table->integer('total_marks')->nullable();
             $table->integer('percentage')->nullable();
             $table->integer('sgpa')->nullable();
             $table->integer('cgpa')->nullable();
             $table->enum('status',['PASS','FAIL','WITHHELD'])->default('WITHHELD');
+            $table->string('withheld_reason')->nullable();
             $table->enum('publish_status',['1','0'])->default(0);
             $table->unsignedBigInteger('exam_id')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();

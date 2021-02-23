@@ -74,11 +74,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('vacancy', VacancyController::class);
     Route::resource('exam', ExamController::class);
     Route::resource('result', ResultController::class);
+    Route::post('addExam', [ExamController::class, 'addExam'])->name('addExam');
+    Route::get('publishExam/{id}', [ExamController::class, 'publishExam'])->name('publishExam');
     Route::get('jobapplicant/{fee}', [VacancyController::class, 'jobapplicant'])->name('jobapplicant');
     // Route::resource('staffattendance', StaffAttendanceController::class);
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
+
+    Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');
 
     Route::resource('salary', SalaryController::class);
     Route::resource('advancesalary', AdvanceSalaryController::class);

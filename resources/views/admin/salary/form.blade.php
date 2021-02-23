@@ -43,7 +43,7 @@
                 'type': type,
             },
             success: function (data) {
-                if(data == "Invalid Argument Supplied"){
+                if(data == "Please select a valid employee type"){
                     users.empty();
                     alert(data);
                 }
