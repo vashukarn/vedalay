@@ -110,6 +110,7 @@ class ExamController extends Controller
             else{
                 $exam_info->publish_status = '1';
             }
+            $exam_info->updated_by = Auth::user()->id;
             $exam_info->save();
             DB::commit();
             return redirect()->back();

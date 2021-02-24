@@ -14,6 +14,9 @@ class Result extends Model
         'backlogs',
         'total_marks',
         'percentage',
+        'marks_obtained',
+        'grade',
+        'withheld_reason',
         'sgpa',
         'cgpa',
         'status',
@@ -26,10 +29,23 @@ class Result extends Model
     protected $dates = ['deleted_at'];
     protected $casts  = [
         'marks' => 'json',
+        'backlogs' => 'json',
     ];
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+    public function student()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'student_id');
+    }
+    public function get_level()
+    {
+        return $this->hasOne('App\Models\Level', 'id', 'level_id');
+    }
+    public function get_exam()
+    {
+        return $this->hasOne('App\Models\Exam', 'id', 'exam_id');
     }
     public function updater()
     {

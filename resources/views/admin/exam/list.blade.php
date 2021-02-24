@@ -59,7 +59,7 @@
                                     </tbody>
                                 </table>
                             </td>
-                            <td>{{ @$value->creator->name }} <br> {{ ReadableDate(@$value->created_at, 'all') }}</td>
+                            <td>{{ @$value->creator->name }} <br> {{ ReadableDate(@$value->created_at, 'all') }}<br> {{ @$value->updater->name ? "Updated By - ".@$value->updater->name : "" }}</td>
                             <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
                                 <div class="btn-group float-right">
                                   @can('staff-edit')

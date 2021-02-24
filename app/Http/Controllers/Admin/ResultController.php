@@ -7,7 +7,10 @@ use App\Models\Exam;
 use App\Models\Level;
 use App\Models\Result;
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ResultController extends Controller
 {
@@ -28,19 +31,111 @@ class ResultController extends Controller
         }
         return $query->paginate(20);
     }
+    public function addResult(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $backsubjects = [];
+            $marks = [];
+            foreach ($request->data[11]['value'] as $item) {
+                $marks[$item['value']['subjectid']] = [
+                    'name' => $item['value']['subjectname'],
+                    'totalmarks' => $item['value']['totmarks'],
+                    'passmarks' => $item['value']['passmark'],
+                    'marksobtained' => $item['value']['marksobt'],
+                    'grade' => $item['value']['grade']
+                ];
+            }
+            if(isset($request->data[12]['value'])){
+                foreach ($request->data[12]['value'] as $item) {
+                    $backsubjects[$item['id']] = $item['name'];
+                }
+            }
+            $temp = [
+                'marks' => $marks,
+                'backlogs' => $backsubjects,
+                'level_id' => $request->data[1]['value'],
+                'exam_id' => $request->data[2]['value'],
+                'student_id' => $request->data[3]['value'],
+                'total_marks' => $request->data[4]['value'],
+                'marks_obtained' => $request->data[5]['value'],
+                'percentage' => $request->data[6]['value'],
+                'sgpa' => round($request->data[7]['value'], 2),
+                'grade' => $request->data[8]['value'],
+                'status' => $request->data[9]['value'],
+                'created_by' => Auth::user()->id,
+            ];
+            if($request->data[10]['value']){
+                $temp['withheld_reason'] = $request->data[10]['value'];
+            }
+            dd($temp);
+            $result = Result::create($temp);
+            DB::commit();
+            return response()->json($result);
+        } catch (\Exception $error) {
+            DB::rollBack();
+            return response()->json($error->getMessage());
+        }
+    }
     protected function getResultData(Request $request)
     {
-        $exam = Exam::where('level_id', $request->level)->pluck('title', 'id');
+        $tempo = Exam::where('level_id', $request->level)->get();
         $temp = Student::where('level_id', $request->level)->get();
+        $tempoo = Subject::where('level_id', $request->level)->get();
+        $student = [];
+        $exam = [];
+        foreach ($tempo as $value) {
+            $exam[] = [
+                'id' => $value->id,
+                'value' => $value->title
+            ];
+        }
         $student = [];
         foreach ($temp as $value) {
-            $student[$value->user_id] = $value->get_user->name.' - '.$value->phone;
+            $student[] = [
+                'id' => $value->user_id,
+                'value' => $value->get_user->name.' - '.$value->phone
+            ];
+        }
+        $subject = [];
+        foreach ($tempoo as $value) {
+            $subject[] = [
+                'id' => $value->id,
+                'name' => $value->title,
+                'type' => $value->type,
+                'value' => $value->value,
+            ];
         }
         $data = [
             'exams' => $exam,
             'students' => $student,
+            'subjects' => $subject,
         ];
         return response()->json($data);
+    }
+    public function publishResult($id)
+    {
+        $result_info = $this->result->find($id);
+        if (!$result_info) {
+            abort(404);
+        }
+        DB::beginTransaction();
+        try {
+            if($result_info->publish_status){
+                $result_info->publish_status = '0';
+            }
+            else{
+                $result_info->publish_status = '1';
+            }
+            $result_info->updated_by = Auth::user()->id;
+            $result_info->save();
+            DB::commit();
+            return redirect()->back();
+
+        } catch (\Exception $error) {
+            DB::rollBack();
+            return redirect()->back();
+        }
     }
     public function index(Request $request)
     {
@@ -74,6 +169,7 @@ class ResultController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'job_role' => 'required|string|min:3|max:190',
             'required_no' => 'nullable|numeric',
