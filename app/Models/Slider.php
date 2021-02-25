@@ -14,10 +14,5 @@ class Slider extends Model
         'title', 'sub_title', 'description','image', 'slider_type', 'external_url'
         , 'show_on', 'position', 'publish_status', 'updated_by', 'created_by'
     ];
-    protected $casts  = [
-        'title' => 'json',
-        'sub_title' => 'json',
-        'description' => 'json',
-    ];
     protected $dates  = ['deleted_at'];
 }

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeeController;
+use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ResultController;
@@ -50,12 +51,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('customers', CustomerController::class);
-
     Route::resource('profile', ProfileController::class);
     Route::get('profiledetail', [UserController::class, 'profiledetail'])->name('profiledetail')->middleware('password.confirm');
-
     Route::resource('news', NewsController::class);
-
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
     Route::get('setting/sms', [AppSettingController::class, 'smsApi'])->name('smsApi.index')->middleware('password.confirm');
     Route::post('setting/sms', [AppSettingController::class, 'smsApiSave'])->name('smsApi.store');
@@ -74,6 +72,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('vacancy', VacancyController::class);
     Route::resource('exam', ExamController::class);
     Route::resource('result', ResultController::class);
+
+    Route::resource('homepage', HomePageController::class);
+
+    
     Route::post('addExam', [ExamController::class, 'addExam'])->name('addExam');
     Route::post('addResult', [ResultController::class, 'addResult'])->name('addResult');
     Route::get('publishExam/{id}', [ExamController::class, 'publishExam'])->name('publishExam');
@@ -84,9 +86,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
     Route::post('getResultData', [ResultController::class, 'getResultData'])->name('getResultData');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
-
     Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');
-
     Route::resource('salary', SalaryController::class);
     Route::resource('advancesalary', AdvanceSalaryController::class);
     Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');
@@ -97,9 +97,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
     Route::get('attendanceList/{id}', [AttendanceController::class, 'attendanceList'])->name('attendanceList');
     Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
-    
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
 
 });
-Route::get('/content/{slug}', [SliderController::class, 'sliderDetail'])->name('sliderDetail');

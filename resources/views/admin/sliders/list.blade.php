@@ -52,7 +52,6 @@
                                 <th style="width: 10px">#</th>
                                 <th>Slider</th>
                                 <th>Image</th>
-                                <th>Type</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
                             </tr>
@@ -62,12 +61,9 @@
                             {{-- {{ dd($value->image) }} --}}
                             <tr>
                               <td>{{$key+1}}.</td>
-                              <td>{{ @$value->title['en'] }} - {{ @$value->title['np'] }}</td>
+                              <td>{{ @$value->title }}</td>
                               <td>
-                                <img src="{{ asset('uploads/photos/thumbs/'.@$value->image)}}" alt="{{ @$value->title['en']}}" class="img img-thumbail" style="width:60px">    
-                            </td>
-                            <td> 
-                                {{  @$value->slider_type }}
+                                <img src="{{ asset(@$value->image) }}" alt="{{ @$value->title}}" class="img img-thumbail" style="width:60px">    
                             </td>
 
                               <td>
@@ -75,7 +71,6 @@
                                 {{ $value->publish_status=='1'?'Active':'Inactive' }}
                                 </span>
                               </td>
-
                               <td>
                                 <div class="btn-group">
                                   @can('rider-edit')

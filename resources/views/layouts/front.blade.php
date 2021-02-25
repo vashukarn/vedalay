@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-
     <meta charset="utf-8">
     <meta name="author" content="Vashu Karn">
     <meta property="og:site_name" content="{{ __(env('APP_NAME', 'Vedalay School Management')) }}">
@@ -10,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>
-    {{ @$sitesetting->name ? @$sitesetting->name : __(env('APP_NAME', 'Vedalay School Management')) }} | @yield('page_title')
+    {{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')
     </title>
     <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/plugins/combine/style.css') }}" type='text/css' media='all' />
     <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/include/css/page-builder.css') }}" type='text/css' media='all' />
@@ -20,7 +18,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700%2C400" rel="stylesheet" property="stylesheet" type="text/css" media="all">
     <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CABeeZee%3Aregular%2Citalic&amp;subset=latin%2Clatin-ext%2Cdevanagari&amp;ver=5.0.3" type='text/css' media='all' />
-    <link rel="icon" href="{{ asset('/uploads/settings/' . @$sitesetting->favicon) }}" type="image/png" sizes="16x16">
+    <link rel="icon" href="@$sitesetting->favicon }}" type="image/png" sizes="16x16">
     @stack('styles')
 
 </head>
@@ -30,7 +28,7 @@
             <div class="kingster-mobile-header-container kingster-container clearfix">
                 <div class="kingster-logo  kingster-item-pdlr">
                     <div class="kingster-logo-inner">
-                        <a class="" href="{{ url('/') }}"><img src="images/logo.png" alt="" /></a>
+                        <a class="" href="{{ url('/') }}"><img src="{{ @$sitesetting->logo }}" alt="" /></a>
                     </div>
                 </div>
                 <div class="kingster-mobile-menu-right">
@@ -51,12 +49,7 @@
                     <div class="kingster-mobile-menu"><a class="kingster-mm-menu-button kingster-mobile-menu-button kingster-mobile-button-hamburger" href="#kingster-mobile-menu"><span></span></a>
                         <div class="kingster-mm-menu-wrap kingster-navigation-font" id="kingster-mobile-menu" data-slide="right">
                             <ul id="menu-main-navigation" class="m-menu">
-                                <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="{{ url('/') }}">Home</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item menu-item-home"><a href="{{ url('/') }}">Homepage 1</a></li>
-                                        <li class="menu-item"><a href="homepage-2.html">Homepage 2</a></li>
-                                    </ul>
-                                </li>
+                                <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="{{ url('/') }}">Home</a></li>
                                 <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
                                     <ul class="sub-menu">
                                         <li class="menu-item"><a href="about-us.html">About KU</a></li>
@@ -195,14 +188,14 @@
                 <div class="kingster-top-bar-background"></div>
                 <div class="kingster-top-bar-container kingster-container ">
                     <div class="kingster-top-bar-container-inner clearfix">
-                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" id="i_fd84_0"></i> contact@KUTheme.edu <i class="fa fa-phone" id="i_fd84_1"></i> +1-3435-2356-222</div>
+                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" id="i_fd84_0"></i> <a href="mailto:{{ @$sitesetting->email[0] }}"> {{ @$sitesetting->email[0] }} </a><i class="fa fa-phone" id="i_fd84_1"></i> <a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></div>
                         <div class="kingster-top-bar-right kingster-item-pdlr">
                             <ul id="kingster-top-bar-menu" class="sf-menu kingster-top-bar-menu kingster-top-bar-right-menu">
-                                <li class="menu-item kingster-normal-menu"><a href="#">Alumni</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Calendar</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Portal</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">About</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">Academics</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">Contact</a></li>
                             </ul>
-                            <div class="kingster-top-bar-right-social"></div><a class="kingster-top-bar-right-button" href="#" target="_blank">Support KU</a></div>
+                            <div class="kingster-top-bar-right-social"></div><a class="kingster-top-bar-right-button" href="{{ url('/login') }}">Login</a></div>
                     </div>
                 </div>
             </div>
@@ -212,18 +205,13 @@
                     <div class="kingster-header-container-inner clearfix">
                         <div class="kingster-logo  kingster-item-pdlr">
                             <div class="kingster-logo-inner">
-                                <a class="" href="{{ url('/') }}"><img src="images/logo.png" alt="" /></a>
+                                <a class="" href="{{ url('/') }}"><img style="height: 50px !important;" src="{{ @$sitesetting->logo }}" alt="{{ @$sitesetting->name }}" /></a>
                             </div>
                         </div>
                         <div class="kingster-navigation kingster-item-pdlr clearfix ">
                             <div class="kingster-main-menu" id="kingster-main-menu">
                                 <ul id="menu-main-navigation-1" class="sf-menu">
-                                    <li class="menu-item menu-item-home current-menu-item menu-item-has-children kingster-normal-menu"><a href="{{ url('/') }}" class="sf-with-ul-pre">Home</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item menu-item-home" data-size="60"><a href="{{ url('/') }}">Homepage 1</a></li>
-                                            <li class="menu-item" data-size="60"><a href="homepage-2.html">Homepage 2</a></li>
-                                        </ul>
-                                    </li>
+                                    <li class="menu-item menu-item-home current-menu-item menu-item-has-children kingster-normal-menu"><a href="{{ url('/') }}" class="sf-with-ul-pre">Home</a></li>
                                     <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Pages</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item" data-size="60"><a href="about-us.html">About KU</a></li>
@@ -334,25 +322,6 @@
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="apply-to-kingster.html" class="sf-with-ul-pre">Admissions</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item" data-size="60"><a href="apply-to-kingster.html">Apply To Kingster</a></li>
-                                            <li class="menu-item" data-size="60"><a href="campus-tour.html">Campus Tour</a></li>
-                                            <li class="menu-item" data-size="60"><a href="scholarships.html">Scholarships</a></li>
-                                            <li class="menu-item" data-size="60"><a href="athletics.html">Athletics</a></li>
-                                            <li class="menu-item" data-size="60"><a href="give-to-kingster.html">Give To Kingster</a></li>
-                                            <li class="menu-item" data-size="60"><a href="alumni.html">Alumni</a></li>
-                                            <li class="menu-item" data-size="60"><a href="event-calendar.html">Event Calendar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Courses</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item" data-size="60"><a href="course-list-1.html">Course List 1</a></li>
-                                            <li class="menu-item" data-size="60"><a href="course-list-2.html">Course List 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item kingster-normal-menu"><a href="athletics.html">Athletics</a></li>
-                                    <li class="menu-item kingster-normal-menu"><a href="university-life.html">University Life</a></li>
                                 </ul>
                                 <div class="kingster-navigation-slide-bar" id="kingster-navigation-slide-bar"></div>
                             </div>
@@ -388,14 +357,13 @@
                         <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
                             <div id="text-2" class="widget widget_text kingster-widget">
                                 <div class="textwidget">
-                                    <p><img src="upload/footer-logo.png" alt="" />
+                                    <p><img src="{{ @$sitesetting->favicon }}" alt="" />
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_10"></span>
-                                        <br /> Box 35300
-                                        <br /> 1810 Campus Way NE
-                                        <br /> Bothell, WA 98011-8246</p>
-                                    <p><span id="span_1dd7_11">+1-2534-4456-345</span>
+                                        <br /> {{ @$sitesetting->address[0] }}
+                                        <br /> {{ @$sitesetting->address[1] }}</p>
+                                    <p><span id="span_1dd7_11"><a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></span>
                                         <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_12"></span>
-                                        <br /> <a id="a_1dd7_8" href="mailto:admin@kingsteruni.edu">admin@kingsteruni.edu</a></p>
+                                        <br /> <a id="a_1dd7_8" href="mailto:{{ @$sitesetting->email[0] }}">{{ @$sitesetting->email[0] }}</a></p>
                                     <div class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-left-align">
                                         <div class="gdlr-core-divider-line gdlr-core-skin-divider" id="div_1dd7_111"></div>
                                     </div>
@@ -452,26 +420,26 @@
                 
                 <div class="kingster-copyright-wrapper">
                     <div class="kingster-copyright-container kingster-container clearfix">
-                        <div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2019, Max Themes</div>
+                        <div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2021, <a href="{{ url('/') }}">Vedyalay.com</a></div>
                         <div class="kingster-copyright-right kingster-item-pdlr">
                             <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" id="div_1dd7_112">
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
+                                <a href="{{ @$sitesetting->facebook }}" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
                                     <i class="fa fa-facebook" ></i>
                                 </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus">
-                                    <i class="fa fa-google-plus" ></i>
+                                <a href="{{ @$sitesetting->instagram }}" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
+                                    <i class="fa fa-instagram" ></i>
                                 </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
+                                <a href="{{ @$sitesetting->linkedin }}" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
                                     <i class="fa fa-linkedin" ></i>
                                 </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype">
+                                <a href="{{ @$sitesetting->skype }}" target="_blank" class="gdlr-core-social-network-icon" title="skype">
                                     <i class="fa fa-skype" ></i>
                                 </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
+                                <a href="{{ @$sitesetting->twitter }}" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
                                     <i class="fa fa-twitter" ></i>
                                 </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
-                                    <i class="fa fa-instagram" ></i>
+                                <a href="{{ @$sitesetting->youtube }}" target="_blank" class="gdlr-core-social-network-icon" title="youtube">
+                                    <i class="fa fa-youtube" ></i>
                                 </a>
                             </div>
                         </div>
@@ -585,7 +553,6 @@
     </script>
 
     <script type="text/javascript">
-        /*<![CDATA[*/
         function revslider_showDoubleJqueryError(sliderID) {
             var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
             errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
@@ -593,7 +560,7 @@
             errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
             errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>";
             jQuery(sliderID).show().html(errorMessage);
-        } /*]]>*/
+        }
     </script>
     <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/plugins/combine/script.js') }}"></script>
     <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/include/js/page-builder.js') }}"></script>
@@ -601,7 +568,6 @@
     <script type='text/javascript' src="{{ asset('assets/js/jquery/ui/effect.min.js') }}"></script>
     <script type='text/javascript' src="{{ asset('assets/js/plugins.min.js') }}"></script>
 	<script>
-	    /*<![CDATA[*/
 	    var htmlDiv = document.getElementById("rs-plugin-settings-inline-css");
 	    var htmlDivCss = "";
 	    if (htmlDiv) {
@@ -610,7 +576,7 @@
 	        var htmlDiv = document.createElement("div");
 	        htmlDiv.innerHTML = "<style>" + htmlDivCss + "</style>";
 	        document.getElementsByTagName("head")[0].appendChild(htmlDiv.childNodes[0]);
-	    } /*]]>*/
+	    }
 	</script>
 	<script type="text/javascript">
 	    /*<![CDATA[*/
@@ -718,18 +684,6 @@
 	            };
 	        };
 	    }()); /*]]>*/
-	</script>
-	<script>
-	    /*<![CDATA[*/
-	    var htmlDivCss = unescape("%23rev_slider_1_1%20.uranus.tparrows%20%7B%0A%20%20width%3A50px%3B%0A%20%20height%3A50px%3B%0A%20%20background%3Argba%28255%2C255%2C255%2C0%29%3B%0A%20%7D%0A%20%23rev_slider_1_1%20.uranus.tparrows%3Abefore%20%7B%0A%20width%3A50px%3B%0A%20height%3A50px%3B%0A%20line-height%3A50px%3B%0A%20font-size%3A40px%3B%0A%20transition%3Aall%200.3s%3B%0A-webkit-transition%3Aall%200.3s%3B%0A%20%7D%0A%20%0A%20%20%23rev_slider_1_1%20.uranus.tparrows%3Ahover%3Abefore%20%7B%0A%20%20%20%20opacity%3A0.75%3B%0A%20%20%7D%0A%23rev_slider_1_1%20.uranus%20.tp-bullet%7B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C%20255%2C%20255%2C%200%29%3B%0A%20%20-webkit-transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20transition%3A%20box-shadow%200.3s%20ease%3B%0A%20%20background%3Atransparent%3B%0A%20%20width%3A15px%3B%0A%20%20height%3A15px%3B%0A%7D%0A%23rev_slider_1_1%20.uranus%20.tp-bullet.selected%2C%0A%23rev_slider_1_1%20.uranus%20.tp-bullet%3Ahover%20%7B%0A%20%20box-shadow%3A%200%200%200%202px%20rgba%28255%2C%20255%2C%20255%2C1%29%3B%0A%20%20border%3Anone%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background%3Atransparent%3B%0A%7D%0A%0A%23rev_slider_1_1%20.uranus%20.tp-bullet-inner%20%7B%0A%20%20-webkit-transition%3A%20background-color%200.3s%20ease%2C%20-webkit-transform%200.3s%20ease%3B%0A%20%20transition%3A%20background-color%200.3s%20ease%2C%20transform%200.3s%20ease%3B%0A%20%20top%3A%200%3B%0A%20%20left%3A%200%3B%0A%20%20width%3A%20100%25%3B%0A%20%20height%3A%20100%25%3B%0A%20%20outline%3A%20none%3B%0A%20%20border-radius%3A%2050%25%3B%0A%20%20background-color%3A%20rgb%28255%2C%20255%2C%20255%29%3B%0A%20%20background-color%3A%20rgba%28255%2C%20255%2C%20255%2C%200.3%29%3B%0A%20%20text-indent%3A%20-999em%3B%0A%20%20cursor%3A%20pointer%3B%0A%20%20position%3A%20absolute%3B%0A%7D%0A%0A%23rev_slider_1_1%20.uranus%20.tp-bullet.selected%20.tp-bullet-inner%2C%0A%23rev_slider_1_1%20.uranus%20.tp-bullet%3Ahover%20.tp-bullet-inner%7B%0A%20transform%3A%20scale%280.4%29%3B%0A%20-webkit-transform%3A%20scale%280.4%29%3B%0A%20background-color%3Argb%28255%2C%20255%2C%20255%29%3B%0A%7D%0A");
-	    var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
-	    if (htmlDiv) {
-	        htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
-	    } else {
-	        var htmlDiv = document.createElement('div');
-	        htmlDiv.innerHTML = '<style>' + htmlDivCss + '</style>';
-	        document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
-	    } /*]]>*/
 	</script>
 </body>
 </html>

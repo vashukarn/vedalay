@@ -101,16 +101,26 @@
 
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
                                 {{ Form::label('image', 'Slider Image:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
+                                <div class="col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                          <a id="lfm" data-input="image" data-preview="holder" class="btn btn-primary">
+                                          <a id="lfm" data-input="image" data-preview="holder" class="btn btn-primary text-white">
                                             <i class="fa fa-picture-o"></i> Choose
                                           </a>
                                         </span>
                                         <input id="image" class="form-control" type="text" name="image">
-                                      </div>
-                                      <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+                                    </div>
+                                    <div id="holder" style="
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
+                                    </div>
+                                    @if (isset($site_detail->image))
+                                    Old Image: &nbsp; <img src="{{ @$site_detail->image }}" alt="Couldn't load image" 
+                                    class="img img-thumbail mt-2" style="width: 100px">
+                                    @endif
                                     @error('image')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

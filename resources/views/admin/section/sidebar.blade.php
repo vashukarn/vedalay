@@ -410,6 +410,26 @@
                     ])
                 <li class="nav-header">WEB CONTENT</li>
                 @endcanany
+                <li class="nav-item has-treeview {{ request()->is('admin/result*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('admin/result*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-poll-h"></i>
+                        <p>
+                            Page Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('homepage-edit')
+                        <li class="nav-item">
+                            <a href="{{ route('homepage.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-sliders-h"></i>
+                                <p>Home Page Details</p>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
                 @canany(['slider-list','slider-create','slider-edit','slider-delete'])
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">

@@ -3,38 +3,32 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\AppSetting;
-use App\Models\SmsSetting;
+use App\Models\HomePage;
 use Illuminate\Http\Request;
 
-class AppSettingController extends Controller
+class HomePageController extends Controller
 {
-    protected $appSetting;
-    protected $smsSetting;
-    public function __construct(AppSetting $appSetting, SmsSetting $smsSetting)
+    public function __construct(HomePage $homepage)
     {
-        $this->middleware(['role:Super Admin']);
-        $this->appSetting = $appSetting;
-        $this->smsSetting = $smsSetting;
+        $this->middleware(['permission:slider-list|slider-create|slider-edit|slider-delete'], ['only' => ['index','store']]);
+        $this->middleware(['permission:slider-create'], ['only' => ['create','store']]);
+        $this->middleware(['permission:slider-edit'], ['only' => ['edit','update']]);
+        $this->middleware(['permission:slider-delete'], ['only' => ['destroy']]);
+        $this->homepage = $homepage;
     }
     public function index()
     {
-        if ($this->appSetting) {
-            $this->appSetting = $this->appSetting->orderBy('created_at', 'desc')->first();
+        if ($this->homepage) {
+            $this->homepage = $this->homepage->orderBy('created_at', 'desc')->first();
         } else {
-            $this->appSetting = [];
+            $this->homepage = [];
         }
-        return view('admin.setting.app-setting')->with('site_detail', $this->appSetting);
-    }
-
-    public function create()
-    {
-        //
+        return view('admin.pages.indexform')->with('page_detail', $this->homepage);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
         ]);
@@ -57,7 +51,7 @@ class AppSettingController extends Controller
             'is_meta' => $request->is_meta,
         ];
         try {
-            $this->appSetting->fill($data)->save();
+            $this->homepage->fill($data)->save();
             $request->session()->flash('success', 'Settings saved successfully.');
             return redirect()->route('setting.index');
         } catch (\Exception $error) {
@@ -66,11 +60,21 @@ class AppSettingController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        //
+    }
+
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $appSetting = $this->appSetting->find($id);
-        if (!$appSetting) {
+        $homepage = $this->homepage->find($id);
+        if (!$homepage) {
             abort(404);
         }
         $data = [
@@ -93,12 +97,17 @@ class AppSettingController extends Controller
         ];
 
         try {
-            $appSetting->fill($data)->save();
+            $homepage->fill($data)->save();
             $request->session()->flash('success', 'Settings updated successfully.');
             return redirect()->route('setting.index');
         } catch (\Exception $error) {
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
+    }
+
+    public function destroy($id)
+    {
+        //
     }
 }

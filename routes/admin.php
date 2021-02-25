@@ -23,8 +23,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('profile', ProfileController::class);
-
-
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
     Route::get('setting/sms', [AppSettingController::class, 'smsApi'])->name('smsApi.index')->middleware('password.confirm');
     Route::post('setting/sms', [AppSettingController::class, 'smsApiSave'])->name('smsApi.store');

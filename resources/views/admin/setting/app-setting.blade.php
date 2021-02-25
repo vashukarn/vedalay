@@ -75,40 +75,40 @@
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('address1', 'Primary Address*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('address[0]', 'Primary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('address1', @$site_detail->address1, ['class' => 'form-control', 'id' => 'address1', 'placeholder' => 'Primary Address', 'required' => true]) }}
-                                @error('address1')
+                                {{ Form::text('address[0]', @$site_detail->address[0], ['class' => 'form-control', 'id' => 'address[0]', 'placeholder' => 'Primary Address', 'required' => true]) }}
+                                @error('address[0]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('address2', 'Secondary Address*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('address[1]', 'Secondary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('address2', @$site_detail->address2, ['class' => 'form-control', 'id' => 'address2', 'placeholder' => 'Secondary Address', 'required' => true]) }}
-                                @error('address2')
+                                {{ Form::text('address[1]', @$site_detail->address[1], ['class' => 'form-control', 'id' => 'address[1]', 'placeholder' => 'Secondary Address', 'required' => true]) }}
+                                @error('address[1]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('email1', 'Contact Email*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('email[0]', 'Contact Email*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('email1', @$site_detail->email1, ['class' => 'form-control', 'id' => 'email1', 'placeholder' => 'Contact Email', 'required' => true]) }}
-                                @error('email1')
+                                {{ Form::text('email[0]', @$site_detail->email[0], ['class' => 'form-control', 'id' => 'email[0]', 'placeholder' => 'Contact Email', 'required' => true]) }}
+                                @error('email[0]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('email2', 'Email for Admissions*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('email[1]', 'Email for Admissions*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('email2', @$site_detail->email2, ['class' => 'form-control', 'id' => 'email2', 'placeholder' => 'Email for Admissions', 'required' => true]) }}
-                                @error('email2')
+                                {{ Form::text('email[1]', @$site_detail->email[1], ['class' => 'form-control', 'id' => 'email[1]', 'placeholder' => 'Email for Admissions', 'required' => true]) }}
+                                @error('email[1]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -119,14 +119,14 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        {{ Form::number('contact_no[0][phone_number]', @$site_detail->contact_no[0]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Primary Phone Number ', 'required' => true]) }}
+                                        {{ Form::number('contact_no[0][phone_number]', @$site_detail->phone[0]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Primary Phone Number ', 'required' => true]) }}
                                         @error('phone')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
 
                                     </div>
                                     <div class="col-lg-6">
-                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->contact_no[0]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
+                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->phone[0]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -136,13 +136,13 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        {{ Form::number('contact_no[1][phone_number]', @$site_detail->contact_no[1]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Alternative Phone Number']) }}
+                                        {{ Form::number('contact_no[1][phone_number]', @$site_detail->phone[1]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Alternative Phone Number']) }}
                                         @error('phone')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6">
-                                        {!! Form::text('contact_no[1][contact_city]', @$site_detail->contact_no[1]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
+                                        {!! Form::text('contact_no[1][contact_city]', @$site_detail->phone[1]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
                                         
                                     </div>
                                 </div>
@@ -361,42 +361,37 @@
 
                         <div id="metatag-details">
                             <div class="form-group row">
-                                {{ Form::label('meta_title', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
+                                {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
                                 <div class="col-sm-6">
-                                    {{ Form::textarea('meta_title', @$site_detail->meta_title, ['class' => 'form-control', 'id' => 'meta_title', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
-                                    @error('meta_title')
+                                    {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
+                                    @error('meta[title]')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                {{ Form::label('meta_key', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
+                                {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
                                 <div class="col-sm-6">
-                                    {{ Form::textarea('meta_key', @$site_detail->meta_key, ['class' => 'form-control', 'id' => 'meta_key', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
-                                    @error('meta_key')
+                                    {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
+                                    @error('meta[key]')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                {{ Form::label('meta_desc', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
+                                {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
                                 <div class="col-sm-6">
-                                    {{ Form::textarea('meta_desc', @$site_detail->meta_desc, ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
-                                    @error('meta_desc')
+                                    {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
+                                    @error('meta[description]')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-
                         </div>
-
                         </div>
                     </div>
-
-                    
-
                 </div>
             </div>
         </div>

@@ -20,7 +20,11 @@ class FrontEndController extends Controller
 {
     public function home()
     {
-        return view('website.index');
+        $sliders = Slider::where('publish_status', '1')->get();
+        $data = [
+            'sliders' => $sliders,
+        ];
+        return view('website.index')->with($data);
     }
     public function register()
     {
