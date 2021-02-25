@@ -20,27 +20,7 @@ class FrontEndController extends Controller
 {
     public function home()
     {
-
-        // dd(Config::get('app.locale'));
-        // dd(Session::get('locale'));
-        $menus = Menu::where('publish_status', 'active')->orderBy('position', 'ASC')->get();
-        $sliders = Slider::where('publish_status', '1')->orderBy('id', 'DESC')->where('show_on', 'web')->orWhere('show_on', 'both')->get();
-        $testimonials = Testimonial::where('publish_status', '1')->orderBy('position', 'ASC')->get();
-        $features = Feature::where('publish_status', '1')->orderBy('position', 'ASC')->get();
-        $result['feedback'] = Contact::count();
-        $result['feedback'] = Contact::count();
-        $result['setting'] = AppSetting::orderBy('created_at', 'desc')->latest()->first();
-        $result['information'] = Information::where('publish_status', '1')->orderBy('id', 'desc')->limit(3)->get();
-        $result['blogdescription'] = @$blogdesc->description;
-        $result['blogs'] = Blog::where('publish_status', '1')->orderBy('id', 'desc')->where('delete_status', '0')->limit(5)->get();
-        $usercount = User::count();
-        $meta = AppSetting::orderBy('created_at', 'desc')->first();
-        if ($meta != null) {
-            $meta->meta_title = @$pagedata->meta_title;
-            $meta->meta_keyword = @$pagedata->meta_keyword;
-            $meta->meta_description = @$pagedata->meta_description;
-        }
-        return view('website.index', compact('sliders', 'testimonials', 'result', 'features', 'pagedata', 'meta', 'usercount'));
+        return view('website.index');
     }
     public function register()
     {

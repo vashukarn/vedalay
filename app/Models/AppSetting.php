@@ -4,72 +4,44 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AppSetting extends Model
 {
-    use HasFactory;
-    // protected $fillable = [
-    //     'name',
-    //     'address',
-    //     'email',
-    //     'phone',
-    //     'is_favicon',
-    //     'twitter',
-    //     'facebook',
-    //     'youtube',
-    //     'otp_expire',
-    //     'from_time',
-    //     'commission',
-    //     'to_time',
-    //     'driver_app_url',
-    //     'customer_app_url',
-    //     'is_meta',
-    //     'vat',
-    //     'vat_discount_status',
-    //     'vat_status',
-    //     'meta_title',
-    //     'meta_key',
-    //     'meta_key',
-    //     'driver_app_image',
-    //     'customer_app_image',
-    //     'meta_desc',
-    //     'logo',
-    //     'favicon',
-    //     'og_image',
-    //     "from_time",
-    //     "to_time",
-    //     'front_feature_description',
-    //     'front_counter_description',
-    //     'front_testimonial_description',
-    //     "contact_no"
-    // ];
-
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'name',
         'address',
         'email',
         'phone',
         'is_favicon',
-        'app_url',
-        "website_content_item",
-        'app_image',
         'twitter',
-        'front_feature_description',
-        'front_counter_description',
-        'front_testimonial_description',
+        'instagram',
+        'linkedin',
+        'skype',
         'facebook',
         'youtube',
         'is_meta',
-        'meta_title',
-        'meta_keyword',
-        'meta_description',
-        'meta_keyphrase',
+        'meta',
         'logo',
         'favicon',
         'og_image',
+        'created_by',
+        'updated_by',
     ];
-    protected $casts = [
-        'contact_no' => 'json',
-        "website_content_item" => "json"
+    protected $dates = ['deleted_at'];
+    protected $casts  = [
+        'address' => 'json',
+        'email' => 'json',
+        'phone' => 'json',
+        'meta' => 'json',
     ];
+    public function creator()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+    public function updater()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
+    }
 }

@@ -12,12 +12,13 @@
         </style>
     @endpush
     @push('scripts')
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
         <script src="{{ asset('/custom/appsetting.js') }}"></script>
         <script>
-             UpdateMeta("{{ @$site_detail->is_meta == 1 ? 'YES' : 'NO' }}");
-             UpdateFavOg("{{ @$site_detail->is_favicon == 1 ? 'YES' : 'NO' }}");
-
+            UpdateMeta("{{ @$site_detail->is_meta == 1 ? 'YES' : 'NO' }}");
+            UpdateFavOg("{{ @$site_detail->is_favicon == 1 ? 'YES' : 'NO' }}");
+            $('#lfm').filemanager('logo');
         </script>
     @endpush
 @section('content')
@@ -37,7 +38,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
                             href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
-                            aria-selected="true">Company</a>
+                            aria-selected="true">Institution</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
@@ -62,9 +63,9 @@
                     <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
                         aria-labelledby="custom-tabs-three-home-tab">
                         <div class="form-group row">
-                            {{ Form::label('name', 'Office Name*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('name', 'Institution Name*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('name', @$site_detail->name, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'Office Name', 'required' => true]) }}
+                                {{ Form::text('name', @$site_detail->name, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'University/College/School Name', 'required' => true]) }}
                                 @error('name')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -72,20 +73,40 @@
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('address', 'Office Address*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('address1', 'Primary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('address', @$site_detail->address, ['class' => 'form-control', 'id' => 'address', 'placeholder' => 'Office Address', 'required' => true]) }}
-                                @error('address')
+                                {{ Form::text('address1', @$site_detail->address1, ['class' => 'form-control', 'id' => 'address1', 'placeholder' => 'Primary Address', 'required' => true]) }}
+                                @error('address1')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {{ Form::label('email', 'Oficial Email*', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('address2', 'Secondary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('email', @$site_detail->email, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Oficial Email', 'required' => true]) }}
-                                @error('email')
+                                {{ Form::text('address2', @$site_detail->address2, ['class' => 'form-control', 'id' => 'address2', 'placeholder' => 'Secondary Address', 'required' => true]) }}
+                                @error('address2')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('email1', 'Contact Email*', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::text('email1', @$site_detail->email1, ['class' => 'form-control', 'id' => 'email1', 'placeholder' => 'Contact Email', 'required' => true]) }}
+                                @error('email1')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('email2', 'Email for Admissions*', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::text('email2', @$site_detail->email2, ['class' => 'form-control', 'id' => 'email2', 'placeholder' => 'Email for Admissions', 'required' => true]) }}
+                                @error('email2')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -96,7 +117,6 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        {{-- {{ dd($site_detail) }} --}}
                                         {{ Form::number('contact_no[0][phone_number]', @$site_detail->contact_no[0]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Primary Phone Number ', 'required' => true]) }}
                                         @error('phone')
                                             <span class="help-block error">{{ $message }}</span>
@@ -104,47 +124,55 @@
 
                                     </div>
                                     <div class="col-lg-6">
-                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->contact_no[0]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City name ']) !!}
+                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->contact_no[0]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
-                            {{ Form::label('phone_number_one', 'Phone Number One (Optional)', ['class' => 'col-sm-4 col-form-label']) }}
+                            {{ Form::label('phone_number_one', 'Alternative Phone Number (Optional)', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        {{ Form::number('contact_no[1][phone_number]', @$site_detail->contact_no[1]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Phone Number One']) }}
+                                        {{ Form::number('contact_no[1][phone_number]', @$site_detail->contact_no[1]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Alternative Phone Number']) }}
                                         @error('phone')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
                                     </div>
                                     <div class="col-lg-6">
-                                        {!! Form::text('contact_no[1][contact_city]', @$site_detail->contact_no[1]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City name ']) !!}
+                                        {!! Form::text('contact_no[1][contact_city]', @$site_detail->contact_no[1]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
                                         
                                     </div>
                                 </div>
                                
                             </div>
                         </div>
-                        <div class="form-group row">
-                            {{ Form::label('logo', 'Official Logo*', ['class' => 'col-sm-4 col-form-label']) }}
-                            <div class="col-sm-8">
-                                {{ Form::file('logo', ['id' => 'logo', 'required' => @$site_detail->logo == null ? true : false, 'class' => 'd-block mb-2', 'accept' => 'image/*']) }}
+
+                        <div class="form-group row {{ $errors->has('logo') ? 'has-error' : '' }}">    
+                            {{ Form::label('logo', 'Institution Logo:*', ['class' => 'col-sm-3']) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <a id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary text-white">
+                                        <i class="fa fa-picture-o"></i> Choose
+                                      </a>
+                                    </span>
+                                    <input id="logo" class="form-control" type="text" name="logo">
+                                </div>
+                                <div id="holder" style="
+                                    border: 1px solid #ddd;
+                                    border-radius: 4px;
+                                    padding: 5px;
+                                    width: 150px;
+                                    margin-top:15px;">
+                                </div>
+                                @if (isset($site_detail->logo))
+                                Old Logo: &nbsp; <img src="{{ @$site_detail->logo }}" alt="Couldn't load logo" 
+                                class="img img-thumbail mt-2" style="width: 100px">
+                                @endif
                                 @error('logo')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
-                                <img id="image_view" src="#" alt="image" class="d-none img-fluid img-thumbnail"
-                                    style="height: 80px" />
-                                <div class="col-sm-4">
-                                    @if (isset($site_detail->logo))
-                                        @if (file_exists(public_path() . '/uploads/settings/' . @$site_detail->logo))
-                                            <img src="{{ asset('/uploads/settings/' . @$site_detail->logo) }}"
-                                                alt="{{ $site_detail->logo }}" class="img img-fluid img-thumbnail"
-                                                style="height:80px" id="img_edit">
-                                        @endif
-                                    @endif
-                                </div>
                             </div>
                         </div>
 
@@ -164,42 +192,61 @@
                         </div>
 
                         <div id="fav_icon-details">
-                            <div class="form-group row">
-                                {{ Form::label('favicon', 'Favicon Image', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-8">
-                                    {{ Form::file('favicon', ['id' => 'favicon', 'required' => false, 'class' => 'd-inline-block', 'accept' => 'image/*']) }}
-                                    @error('favicon')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                    <br>
-                                <img id="favicon_view" src="#" alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                    @if (isset($site_detail->favicon))
-                                        @if (file_exists(public_path() . '/uploads/settings/' . @$site_detail->favicon))
-                                            <img src="{{ asset('/uploads/settings/' . @$site_detail->favicon) }}"
-                                                alt="{{ $site_detail->favicon }}" class="img img-fluid img-thumbnail"
-                                                style="height:40px;">
-                                        @endif
-                                    @endif
+                        <div class="form-group row {{ $errors->has('favicon') ? 'has-error' : '' }}">    
+                            {{ Form::label('favicon', 'Institution favicon:*', ['class' => 'col-sm-3']) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary text-white">
+                                        <i class="fa fa-picture-o"></i> Choose
+                                      </a>
+                                    </span>
+                                    <input id="favicon" class="form-control" type="text" name="favicon">
                                 </div>
+                                <div id="holder" style="
+                                    border: 1px solid #ddd;
+                                    border-radius: 4px;
+                                    padding: 5px;
+                                    width: 150px;
+                                    margin-top:15px;">
+                                </div>
+                                @if (isset($site_detail->favicon))
+                                Old favicon: &nbsp; <img src="{{ @$site_detail->favicon }}" alt="Couldn't load favicon" 
+                                class="img img-thumbail mt-2" style="width: 100px">
+                                @endif
+                                @error('favicon')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                {{ Form::label('og_image', 'OG Image', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-8">
-                                    {{ Form::file('og_image', ['id' => 'og_image', 'required' => false, 'class' => 'd-block mb-2', 'accept' => 'image/*']) }}
-                                    @error('og_image')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                    <img id="og_image_view" src="#" alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                    @if (isset($site_detail->og_image))
-                                        @if (file_exists(public_path() . '/uploads/settings/' . @$site_detail->og_image))
-                                            <img src="{{ asset('/uploads/settings/' . @$site_detail->og_image) }}"
-                                                alt="{{ $site_detail->og_image }}" class="img img-fluid img-thumbnail"
-                                                style="height:80px;">
-                                        @endif
-                                    @endif
+                        <div class="form-group row {{ $errors->has('og_image') ? 'has-error' : '' }}">    
+                            {{ Form::label('og_image', 'Meta OG Image:*', ['class' => 'col-sm-3']) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <a id="lfm" data-input="og_image" data-preview="holder" class="btn btn-primary text-white">
+                                        <i class="fa fa-picture-o"></i> Choose
+                                      </a>
+                                    </span>
+                                    <input id="og_image" class="form-control" type="text" name="og_image">
                                 </div>
+                                <div id="holder" style="
+                                    border: 1px solid #ddd;
+                                    border-radius: 4px;
+                                    padding: 5px;
+                                    width: 150px;
+                                    margin-top:15px;">
+                                </div>
+                                @if (isset($site_detail->og_image))
+                                Old Meta OG Image: &nbsp; <img src="{{ @$site_detail->og_image }}" alt="Couldn't load Old OG Image" 
+                                class="img img-thumbail mt-2" style="width: 100px">
+                                @endif
+                                @error('og_image')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
                             </div>
+                        </div>
                         </div>
 
 
@@ -207,33 +254,22 @@
 
                     <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
                         aria-labelledby="custom-tabs-three-profile-tab">
-
-                        <div class="form-group row">
-                            {{ Form::label('app_url', '  App URL*', ['class' => 'col-sm-4 col-form-label']) }}
-                            <div class="col-sm-6">
-                                {{ Form::text('app_url', @$site_detail->app_url, ['class' => 'form-control', 'id' => 'app_url', 'placeholder' => 'Android App URL', 'required' => true]) }}
-                                @error('app_url')
-                                    <span class="help-block error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
                          
-                        <div class="form-group row">
-                            {{ Form::label('twitter', 'Official Twitter', ['class' => 'col-sm-4 col-form-label']) }}
-                            <div class="col-sm-6">
-                                {{ Form::url('twitter', @$site_detail->twitter, ['class' => 'form-control', 'id' => 'twitter', 'placeholder' => 'Official Twitter(Eg.https://twitter.com/shrivahan)', 'required' => true]) }}
-                                @error('twitter')
-                                    <span class="help-block error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             {{ Form::label('facebook', 'Official Facebook', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('facebook', @$site_detail->facebook, ['class' => 'form-control', 'id' => 'facebook', 'placeholder' => 'Official Facebook (Eg.https://facebook.com/shrivahan)', 'required' => true]) }}
+                                {{ Form::url('facebook', @$site_detail->facebook, ['class' => 'form-control', 'id' => 'facebook', 'placeholder' => 'Official Facebook Page URL', 'required' => true]) }}
                                 @error('facebook')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('instagram', 'Official Instagram', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::url('instagram', @$site_detail->instagram, ['class' => 'form-control', 'id' => 'instagram', 'placeholder' => 'Official Instagram Page URL', 'required' => true]) }}
+                                @error('instagram')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -242,12 +278,43 @@
                         <div class="form-group row">
                             {{ Form::label('youtube', 'Official Youtube', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('youtube', @$site_detail->youtube, ['class' => 'form-control', 'id' => 'youtube', 'placeholder' => 'Official Youtue (Eg.https://youtube.com/channel_url)', 'required' => true]) }}
+                                {{ Form::url('youtube', @$site_detail->youtube, ['class' => 'form-control', 'id' => 'youtube', 'placeholder' => 'Official Youtube Channel URL', 'required' => true]) }}
                                 @error('youtube')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('linkedin', 'Official Linkedin', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::url('linkedin', @$site_detail->linkedin, ['class' => 'form-control', 'id' => 'linkedin', 'placeholder' => 'Official LinkedIn Profile URL', 'required' => true]) }}
+                                @error('linkedin')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('skype', 'Official Skype', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::url('skype', @$site_detail->skype, ['class' => 'form-control', 'id' => 'skype', 'placeholder' => 'Official Skype URL', 'required' => true]) }}
+                                @error('skype')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {{ Form::label('twitter', 'Official Twitter', ['class' => 'col-sm-4 col-form-label']) }}
+                            <div class="col-sm-6">
+                                {{ Form::url('twitter', @$site_detail->twitter, ['class' => 'form-control', 'id' => 'twitter', 'placeholder' => 'Official Twitter URL', 'required' => true]) }}
+                                @error('twitter')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                     </div>
 
@@ -263,46 +330,6 @@
                                     @error('front_feature_description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                {{ Form::label('front_counter_description', 'Front Counter Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::text('front_counter_description', @$site_detail->front_counter_description, ['class' => 'form-control', 'id' => 'front_counter_description', 'placeholder' => 'Front Counter Description', 'required' => true]) }}
-                                    @error('front_counter_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                {{ Form::label('front_testimonial_description', 'Front Testimonial Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::text('front_testimonial_description', @$site_detail->front_testimonial_description, ['class' => 'form-control', 'id' => 'front_testimonial_description', 'placeholder' => 'Front Testimonial Description', 'required' => true]) }}
-                                    @error('front_testimonial_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                {{ Form::label('app_image', '  App Image', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-8">
-                                    {{ Form::file('app_image', ['id' => 'app_image', 'required' => false, 'class' => 'd-block mb-2', 'accept' => 'image/*']) }}
-                                    @error('app_image')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                  <img id="app_image_view" src="#" alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-
-                                    @if (isset($site_detail->app_image))
-                                        @if (file_exists(public_path() . '/uploads/settings/' . @$site_detail->app_image))
-                                            <img src="{{ asset('/uploads/settings/' . @$site_detail->app_image) }}"
-                                                alt="{{ $site_detail->app_image }}"
-                                                class="img img-fluid img-thumbnail" style="height:80px;">
-                                        @endif
-                                    @endif
                                 </div>
                             </div>
 

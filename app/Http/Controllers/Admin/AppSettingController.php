@@ -27,11 +27,6 @@ class AppSettingController extends Controller
         return view('admin.setting.app-setting')->with('site_detail', $this->appSetting);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -39,6 +34,7 @@ class AppSettingController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
         ]);
