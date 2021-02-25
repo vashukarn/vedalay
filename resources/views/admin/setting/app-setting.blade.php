@@ -18,7 +18,9 @@
         <script>
             UpdateMeta("{{ @$site_detail->is_meta == 1 ? 'YES' : 'NO' }}");
             UpdateFavOg("{{ @$site_detail->is_favicon == 1 ? 'YES' : 'NO' }}");
-            $('#lfm').filemanager('logo');
+            $('#lfm').filemanager('image');
+            $('#lfm1').filemanager('image');
+            $('#lfm2').filemanager('image');
         </script>
     @endpush
 @section('content')
@@ -148,7 +150,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row {{ $errors->has('logo') ? 'has-error' : '' }}">    
+                        <div class="form-group row {{ $errors->has('logo') ? 'has-error' : '' }}">
                             {{ Form::label('logo', 'Institution Logo:*', ['class' => 'col-sm-3']) }}
                             <div class="col-sm-6">
                                 <div class="input-group">
@@ -197,7 +199,7 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm" data-input="favicon" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm1" data-input="favicon" data-preview="holder" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
@@ -225,7 +227,7 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm" data-input="og_image" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm2" data-input="og_image" data-preview="holder" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
