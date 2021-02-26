@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\HomePage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomePageController extends Controller
 {
@@ -26,12 +27,13 @@ class HomePageController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'topTopics' => $request->topTopics,
+            // 'topTopics' => $request->topTopics,
             'firstjumbotron' => $request->firstjumbotron,
             'aboutinfo' => $request->aboutinfo,
-            'features' => $request->features,
+            // 'features' => $request->features,
             'threefeatures' => $request->threefeatures,
             'logo' => $request->logo,
+            'created_by' => Auth::user()->id,
         ];
         // dd($data);
         try {
@@ -51,12 +53,13 @@ class HomePageController extends Controller
             abort(404);
         }
         $data = [
-            'topTopics' => $request->topTopics,
+            // 'topTopics' => $request->topTopics,
             'firstjumbotron' => $request->firstjumbotron,
             'aboutinfo' => $request->aboutinfo,
-            'features' => $request->features,
+            // 'features' => $request->features,
             'threefeatures' => $request->threefeatures,
             'logo' => $request->logo,
+            'updated_by' => Auth::user()->id,
         ];
 
         try {

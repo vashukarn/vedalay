@@ -11,11 +11,12 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('session')->nullable();
             $table->integer('cgpa')->nullable();
+            $table->foreign('session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->unsignedBigInteger('level_id')->nullable();
             $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
-            $table->string('session')->nullable();
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
             $table->longText('documents')->nullable();

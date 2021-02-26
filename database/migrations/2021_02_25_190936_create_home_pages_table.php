@@ -10,7 +10,7 @@ class CreateHomePagesTable extends Migration
     {
         Schema::create('home_pages', function (Blueprint $table) {
             $table->id();
-            $table->longText('topTopics')->nullable();
+            // $table->longText('topTopics')->nullable();
             $table->longText('firstjumbotron')->nullable();
             $table->longText('aboutinfo')->nullable();
             $table->longText('features')->nullable();

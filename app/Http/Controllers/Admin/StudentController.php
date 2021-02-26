@@ -44,7 +44,10 @@ class StudentController extends Controller
     public function create()
     {
         $student_info = null;
-        $session = Session::pluck('title','title');
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $session[$value->id] = $value->start_year.' - ' .$value->end_year;
+        }
         $classes = Level::all();
         foreach ($classes as $value) {
             if(isset($value->section)){

@@ -10,7 +10,7 @@ class HomePage extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'topTopics',
+        // 'topTopics',
         'firstjumbotron',
         'aboutinfo',
         'features',
@@ -21,7 +21,7 @@ class HomePage extends Model
     ];
     protected $dates = ['deleted_at'];
     protected $casts  = [
-        'topTopics' => 'json',
+        // 'topTopics' => 'json',
         'firstjumbotron' => 'json',
         'aboutinfo' => 'json',
         'features' => 'json',

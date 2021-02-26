@@ -10,8 +10,14 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
+            $table->string('start_year')->unique()->nullable();
+            $table->string('end_year')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

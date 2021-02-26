@@ -7,13 +7,9 @@ use App\Models\AppSetting;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Contact;
-use App\Models\Feature;
-use App\Models\Information;
-use App\Models\Menu;
+use App\Models\HomePage;
 use App\Models\Slider;
 use App\Models\Tag;
-use App\Models\Testimonial;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
@@ -21,8 +17,11 @@ class FrontEndController extends Controller
     public function home()
     {
         $sliders = Slider::where('publish_status', '1')->get();
+        $pagedata = HomePage::latest()->first();
+        // dd($pagedata);
         $data = [
             'sliders' => $sliders,
+            'page' => $pagedata,
         ];
         return view('website.index')->with($data);
     }

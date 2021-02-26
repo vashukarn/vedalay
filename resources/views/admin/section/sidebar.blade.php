@@ -399,6 +399,16 @@
                 </li>
                 @endcanany
 
+                @canany(['session-list', 'session-create','session-edit','session-delete'])
+                <li class="nav-item">
+                    <a href="{{ route('session.index') }}"
+                        class="nav-link {{ request()->is('admin/session') ? 'active' : '' }}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Session Management</p>
+                    </a>
+                </li>
+                @endcanany
+
                 @canany([
                     'slider-list','slider-create','slider-edit','slider-delete',
                     'information-list','information-create','information-edit','information-delete',

@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\StaffAttendanceController;
 use App\Http\Controllers\Admin\StaffController;
@@ -64,6 +65,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('category', CategoryController::class);
     Route::resource('tag', TagController::class);
     Route::resource('blog', BlogController::class);
+    Route::resource('session', SessionController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('faq', FaqController::class);
     Route::resource('information', InformationController::class);

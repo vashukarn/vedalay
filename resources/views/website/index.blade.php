@@ -11,7 +11,7 @@
     <div class="gdlr-core-page-builder-body">
         @if(isset($sliders))
         <div class="gdlr-core-pbf-wrapper " style="padding: 0px 0px 0px 0px;">
-            <div class="gdlr-core-pbf-background-wrap" style="background-image: url('{{ $sliders[0]->image }}'); background-color: #192f59 ;"></div>
+            <div class="gdlr-core-pbf-background-wrap" style="background-image: url('{{ @$sliders[0]->image }}'); background-color: #192f59 ;"></div>
             <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
                 <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
                     <div class="gdlr-core-pbf-element">
@@ -38,82 +38,6 @@
             </div>
         </div>
         @endif
-        <div class="gdlr-core-pbf-wrapper  hp1-col-services"  data-skin="Blue Title" id="gdlr-core-wrapper-1">
-            <div class="gdlr-core-pbf-background-wrap"></div>
-            <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
-                    <div class=" gdlr-core-pbf-wrapper-container-inner gdlr-core-item-mglr clearfix" id="div_1dd7_0">
-                        <div class="gdlr-core-pbf-column gdlr-core-column-15 gdlr-core-column-first">
-                            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_1">
-                                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                    <div class="gdlr-core-pbf-element">
-                                        <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-with-caption gdlr-core-item-pdlr" id="div_1dd7_2">
-                                            <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="upload/icon-1.png" alt="" width="40" height="40" title="icon-1" /></div>
-                                            <div class="gdlr-core-column-service-content-wrapper">
-                                                <div class="gdlr-core-column-service-title-wrap">
-                                                    <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_0">University Life</h3>
-                                                    <div class="gdlr-core-column-service-caption gdlr-core-info-font gdlr-core-skin-caption" id="div_1dd7_3">Overall in here</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-1">
-                            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_4">
-                                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                    <div class="gdlr-core-pbf-element">
-                                        <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-with-caption gdlr-core-item-pdlr" id="div_1dd7_5">
-                                            <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="upload/icon-2.png" alt="" width="44" height="40" title="icon-2" /></div>
-                                            <div class="gdlr-core-column-service-content-wrapper">
-                                                <div class="gdlr-core-column-service-title-wrap">
-                                                    <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_1">Graduation</h3>
-                                                    <div class="gdlr-core-column-service-caption gdlr-core-info-font gdlr-core-skin-caption" id="div_1dd7_6">Getting Diploma</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-2">
-                            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_7">
-                                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                    <div class="gdlr-core-pbf-element">
-                                        <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-with-caption gdlr-core-item-pdlr" id="div_1dd7_8">
-                                            <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="upload/icon-3.png" alt="" width="44" height="39" title="icon-3" /></div>
-                                            <div class="gdlr-core-column-service-content-wrapper">
-                                                <div class="gdlr-core-column-service-title-wrap">
-                                                    <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_2">Athletics</h3>
-                                                    <div class="gdlr-core-column-service-caption gdlr-core-info-font gdlr-core-skin-caption" id="div_1dd7_9">Sport Clubs</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-3">
-                            <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_10">
-                                <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                    <div class="gdlr-core-pbf-element">
-                                        <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-with-caption gdlr-core-item-pdlr" id="div_1dd7_11">
-                                            <div class="gdlr-core-column-service-media gdlr-core-media-image"><img src="upload/icon-4.png" alt="" width="41" height="41" title="icon-4" /></div>
-                                            <div class="gdlr-core-column-service-content-wrapper">
-                                                <div class="gdlr-core-column-service-title-wrap">
-                                                    <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_3">Social</h3>
-                                                    <div class="gdlr-core-column-service-caption gdlr-core-info-font gdlr-core-skin-caption" id="div_1dd7_12">Overall in here</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="gdlr-core-pbf-wrapper "  id="gdlr-core-wrapper-2">
             <div class="gdlr-core-pbf-background-wrap">
@@ -124,7 +48,7 @@
                     <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first">
                         <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_14" data-sync-height="height-1">
                             <div class="gdlr-core-pbf-background-wrap">
-                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_1dd7_15" data-parallax-speed="0"></div>
+                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ $page->firstjumbotron['left_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0"></div>
                             </div>
                             <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
                         </div>
@@ -132,23 +56,20 @@
                     <div class="gdlr-core-pbf-column gdlr-core-column-30" id="gdlr-core-column-4">
                         <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_16" data-sync-height="height-1">
                             <div class="gdlr-core-pbf-background-wrap">
-                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_1dd7_17" data-parallax-speed="0.1"></div>
+                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ $page->firstjumbotron['right_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0.1"></div>
                             </div>
                             <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" id="div_1dd7_18">
                                         <div class="gdlr-core-title-item-title-wrap clearfix">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_4">Apply for Admission</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" id="span_1dd7_0">Fall 2019 applications are now open</span></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_4">{{ $page->firstjumbotron['title'] }}</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" id="span_1dd7_0">{{ $page->firstjumbotron['sub_title'] }}</span></div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_19">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_20">
-                                            <p>We don’t just give students an education and experiences that set them up for success in a career. We help them succeed in their career—to discover a field they’re passionate about and dare to lead it.</p>
+                                            <p>{{ $page->firstjumbotron['description'] }}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align"><a class="gdlr-core-button  gdlr-core-button-solid gdlr-core-button-no-border" href="#" id="a_1dd7_0"><span class="gdlr-core-content" >Apply Now</span></a></div>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +88,7 @@
                             <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align" id="div_1dd7_23">
-                                        <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_1dd7_24"><img src="upload/logo-white.png" alt="" width="262" height="35" title="logo-white" /></div>
+                                        <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_1dd7_24"><img src="{{ @$sliders[1]->image }}" alt="" width="262" height="35" title="logo-white" /></div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
@@ -185,94 +106,19 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_26">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_27">
-                                            <p>We are one of the largest, most diverse universities in the USA with over 90,000 students in USA, and a further 30,000 studying across 180 countries for Kingster University.</p>
+                                            <p>{{ $page->aboutinfo[0] }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_28">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_29">
-                                            <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the University has pioneered change in the sector.</p>
+                                            <p>{{ $page->aboutinfo[1] }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-button-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align"><a class="gdlr-core-button  gdlr-core-button-transparent gdlr-core-button-no-border" href="#" id="gdlr-core-button-id-66813"><span class="gdlr-core-content" >Read More</span><i class="gdlr-core-pos-right fa fa-long-arrow-right" id="i_1dd7_0"  ></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gdlr-core-pbf-wrapper " id="div_1dd7_30" data-skin="Column Service">
-            <div class="gdlr-core-pbf-background-wrap" id="div_1dd7_31"></div>
-            <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                    <div class="gdlr-core-pbf-column gdlr-core-column-15 gdlr-core-column-first">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-top gdlr-core-no-caption gdlr-core-item-pdlr" id="div_1dd7_32">
-                                        <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_1dd7_33"><img src="upload/col-icon-1.png" alt="" width="41" height="41" title="col-icon-1" /></div>
-                                        <div class="gdlr-core-column-service-content-wrapper">
-                                            <div class="gdlr-core-column-service-title-wrap">
-                                                <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_6">Education Services</h3></div>
-                                            <div class="gdlr-core-column-service-content" id="div_1dd7_34">
-                                                <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized.</p> <a class="gdlr-core-column-service-read-more gdlr-core-info-font" href="#" id="a_1dd7_1">Learn More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-5">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-top gdlr-core-no-caption gdlr-core-item-pdlr" id="div_1dd7_35">
-                                        <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_1dd7_36"><img src="upload/col-icon-2.png" alt="" width="43" height="45" title="col-icon-2" /></div>
-                                        <div class="gdlr-core-column-service-content-wrapper">
-                                            <div class="gdlr-core-column-service-title-wrap">
-                                                <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_7">International Hubs</h3></div>
-                                            <div class="gdlr-core-column-service-content" id="div_1dd7_37">
-                                                <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized.</p> <a class="gdlr-core-column-service-read-more gdlr-core-info-font" href="#" id="a_1dd7_2">Learn More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-6">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-top gdlr-core-no-caption gdlr-core-item-pdlr" id="div_1dd7_38">
-                                        <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_1dd7_39"><img src="upload/col-icon-3.png" alt="" width="40" height="43" title="col-icon-3" /></div>
-                                        <div class="gdlr-core-column-service-content-wrapper">
-                                            <div class="gdlr-core-column-service-title-wrap">
-                                                <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_8">Bachelor’s and Master’s</h3></div>
-                                            <div class="gdlr-core-column-service-content" id="div_1dd7_40">
-                                                <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized.</p> <a class="gdlr-core-column-service-read-more gdlr-core-info-font" href="#" id="a_1dd7_3">Learn More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-column gdlr-core-column-15" id="gdlr-core-column-7">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-top gdlr-core-no-caption gdlr-core-item-pdlr" id="div_1dd7_41">
-                                        <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_1dd7_42"><img src="upload/col-icon-4.png" alt="" width="47" height="47" title="col-icon-4" /></div>
-                                        <div class="gdlr-core-column-service-content-wrapper">
-                                            <div class="gdlr-core-column-service-title-wrap">
-                                                <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_9">University Life</h3></div>
-                                            <div class="gdlr-core-column-service-content" id="div_1dd7_43">
-                                                <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized.</p> <a class="gdlr-core-column-service-read-more gdlr-core-info-font" href="#" id="a_1dd7_4">Learn More</a></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -482,199 +328,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gdlr-core-pbf-column gdlr-core-column-40 gdlr-core-column-first" data-skin="Blue Title">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-left" id="div_1dd7_64" data-sync-height="height-3" data-sync-height-center>
-                            <div class="gdlr-core-pbf-background-wrap" id="div_1dd7_65"></div>
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                        <div class="gdlr-core-text-box-item-content" id="div_1dd7_66">
-                                            <div class="gdlr-core-twitter-item gdlr-core-item-pdb" id="div_1dd7_67">
-                                                <div class="gdlr-core-block-item-title-nav ">
-                                                    <div class="gdlr-core-flexslider-nav gdlr-core-plain-style gdlr-core-block-center"></div>
-                                                </div>
-                                                
-                                                <div class="gdlr-core-twitter-content">
-                                                    <div class="gdlr-core-flexslider flexslider gdlr-core-js-2 " data-type="carousel" data-column="1" data-nav="navigation" data-nav-parent="gdlr-core-twitter-item">
-                                                        <ul class="slides" id="ul_1dd7_0">
-                                                            <li class="gdlr-core-item-mglr">
-                                                                <div class="gdlr-core-twitter-item-list">
-                                                                    <span class="gdlr-core-twitter-item-list-content">Shaking off the working week! What&#8217;s on the agenda for the weekend? by KonstantinKolosov via… 
-                                                                        <a target="_blank" href="https://t.co/fSyxq53H6P">https://t.co/fSyxq53H6P</a>
-                                                                    </span>
-                                                                    <span class="gdlr-core-twitter-item-list-date gdlr-core-skin-caption">
-                                                                        <a class="gdlr-core-twitter-date" href="http://twitter.com/Envato/statuses/1030582660324892674" target="_blank"> 18 hours ago</a>
-                                                                    </span>
-                                                                </div>
-                                                            </li>
-                                                            <li class="gdlr-core-item-mglr">
-                                                                <div class="gdlr-core-twitter-item-list">
-                                                                    <span class="gdlr-core-twitter-item-list-content">RT 
-                                                                        <a href="http://www.twitter.com/placeitapp">@placeitapp</a>: Making a 
-                                                                        <a target="_blank" href="http://twitter.com/search?q=YouTube">#YouTube</a> banner for your channel is easy with Placeit&#8217;s 
-                                                                        <a target="_blank" href="http://twitter.com/search?q=bannermaker!">#bannermaker!</a> Make your own in sec… 
-                                                                        <a target="_blank" href="https://t.co/0X22tX3wtm">https://t.co/0X22tX3wtm</a>
-                                                                    </span>
-                                                                    <span class="gdlr-core-twitter-item-list-date gdlr-core-skin-caption">
-                                                                        <a class="gdlr-core-twitter-date" href="http://twitter.com/Envato/statuses/1030338474891792385" target="_blank"> yesterday</a>
-                                                                    </span>
-                                                                </div>
-                                                            </li>
-                                                            <li class="gdlr-core-item-mglr">
-                                                                <div class="gdlr-core-twitter-item-list">
-                                                                    <span class="gdlr-core-twitter-item-list-content">Our Chief People Officer 
-                                                                        <a href="http://www.twitter.com/MRidsdale16">@MRidsdale16</a> joined 
-                                                                        <a href="http://www.twitter.com/benjaminlaw">@benjaminlaw</a>  and 
-                                                                        <a href="http://www.twitter.com/raejohnston">@raejohnston</a> on 
-                                                                        <a href="http://www.twitter.com/tsushow">@tsushow</a> to discuss all things Cultu… 
-                                                                        <a target="_blank" href="https://t.co/uszxz0qicU">https://t.co/uszxz0qicU</a>
-                                                                    </span>
-                                                                    <span class="gdlr-core-twitter-item-list-date gdlr-core-skin-caption">
-                                                                        <a class="gdlr-core-twitter-date" href="http://twitter.com/Envato/statuses/1029988653282541570" target="_blank"> 2 days ago</a>
-                                                                    </span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-column gdlr-core-column-20" data-skin="White Text">
-                        <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-right" id="div_1dd7_68" data-sync-height="height-3">
-                            <div class="gdlr-core-pbf-background-wrap" id="div_1dd7_69"></div>
-                            <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-column-service-item gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-column-service-icon-left gdlr-core-no-caption gdlr-core-item-pdlr" id="div_1dd7_70">
-                                        <div class="gdlr-core-column-service-media gdlr-core-media-image" id="div_1dd7_71"><img src="upload/apply-logo.png" alt="" width="42" height="39" title="apply-logo" /></div>
-                                        <div class="gdlr-core-column-service-content-wrapper">
-                                            <div class="gdlr-core-column-service-title-wrap">
-                                                <h3 class="gdlr-core-column-service-title gdlr-core-skin-title" id="h3_1dd7_22">Apply To Kingster</h3></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="gdlr-core-pbf-column-link" href="#" target="_self"></a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="gdlr-core-pbf-wrapper " id="div_1dd7_72">
-            <div class="gdlr-core-pbf-background-wrap">
-                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_1dd7_73" data-parallax-speed="0.2"></div>
-            </div>
-            <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container-custom" id="div_1dd7_74">
-                    <div class="gdlr-core-pbf-element">
-                        <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-center-align" id="div_1dd7_75">
-                            <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_1dd7_76">
-                                <a class="gdlr-core-lightgallery gdlr-core-js " href="https://www.youtube.com/watch?v=C5pKtnmHTxg"><img src="upload/icon-play.png" alt="" width="82" height="82" title="icon-play" /></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-element">
-                        <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr">
-                            <div class="gdlr-core-title-item-title-wrap clearfix">
-                                <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_23">Video Tour in Kingster</h3></div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-element">
-                        <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-center-align" id="div_1dd7_77">
-                            <div class="gdlr-core-text-box-item-content" id="div_1dd7_78">
-                                <p>Take a tour in Kingster and you will find the best university in the state. The video will take you to every places in this university.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gdlr-core-pbf-wrapper " id="div_1dd7_79">
-            <div class="gdlr-core-pbf-background-wrap" id="div_1dd7_80"></div>
-            <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                    <div class="gdlr-core-pbf-element">
-                        <div class="gdlr-core-tab-item gdlr-core-js gdlr-core-item-pdb  gdlr-core-left-align gdlr-core-tab-style1-horizontal gdlr-core-item-pdlr">
-                            
-                            <div class="gdlr-core-tab-item-content-image-wrap clearfix">
-                                <div class="gdlr-core-tab-item-image  gdlr-core-active" data-tab-id="1">
-                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="https://www.youtube.com/watch?v=C5pKtnmHTxg">
-                                        <span class="gdlr-core-tab-item-image-background" id="span_1dd7_1"  ></span>
-                                        <i class="fa fa-play" ></i>
-                                    </a>
-                                </div>
-                                <div class="gdlr-core-tab-item-image " data-tab-id="2">
-                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="https://www.youtube.com/watch?v=C5pKtnmHTxg">
-                                        <span class="gdlr-core-tab-item-image-background" id="span_1dd7_2"  ></span>
-                                        <i class="fa fa-play" ></i>
-                                    </a>
-                                </div>
-                                <div class="gdlr-core-tab-item-image " data-tab-id="3">
-                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="https://www.youtube.com/watch?v=C5pKtnmHTxg">
-                                        <span class="gdlr-core-tab-item-image-background" id="span_1dd7_3"  ></span>
-                                        <i class="fa fa-play" ></i>
-                                    </a>
-                                </div>
-                                <div class="gdlr-core-tab-item-image " data-tab-id="4">
-                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="https://www.youtube.com/watch?v=C5pKtnmHTxg">
-                                        <span class="gdlr-core-tab-item-image-background" id="span_1dd7_4"  ></span>
-                                        <i class="fa fa-play" ></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="gdlr-core-tab-item-wrap">
-                                <div class="gdlr-core-tab-item-title-wrap clearfix gdlr-core-title-font">
-                                    <div class="gdlr-core-tab-item-title  gdlr-core-active" data-tab-id="1">Benefits</div>
-                                    <div class="gdlr-core-tab-item-title " data-tab-id="2">Self Development</div>
-                                    <div class="gdlr-core-tab-item-title " data-tab-id="3">Spirituality</div>
-                                    <div class="gdlr-core-tab-item-title " data-tab-id="4">Alumni</div>
-                                </div>
-                                <div class="gdlr-core-tab-item-content-wrap clearfix">
-                                    <div class="gdlr-core-tab-item-content  gdlr-core-active" data-tab-id="1" >
-                                        <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top">
-                                            <div class="gdlr-core-title-item-title-wrap ">
-                                                <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_24">Why Choose Kingster?<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                        </div>
-                                        <p>The Kingster University Alumni Association is excited to announce the arrival of KU Alumni Connect. This is a new community building platform for Kinster’s alumni. It is the only place online where you can find, and connect with, all 90,000 Kingster’s alumni. All alumni are automatically enrolled!</p>
-                                        <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the University has pioneered change in the sector.</p>
-                                    </div>
-                                    <div class="gdlr-core-tab-item-content " data-tab-id="2" >
-                                        <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top">
-                                            <div class="gdlr-core-title-item-title-wrap ">
-                                                <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_25">Self Development<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                        </div>
-                                        <p>The Kingster University Alumni Association is excited to announce the arrival of KU Alumni Connect. This is a new community building platform for Kinster’s alumni. It is the only place online where you can find, and connect with, all 90,000 Kingster’s alumni. All alumni are automatically enrolled!</p>
-                                        <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the University has pioneered change in the sector.</p>
-                                    </div>
-                                    <div class="gdlr-core-tab-item-content " data-tab-id="3" >
-                                        <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top">
-                                            <div class="gdlr-core-title-item-title-wrap ">
-                                                <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_26">Spirituality<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                        </div>
-                                        <p>The Kingster University Alumni Association is excited to announce the arrival of KU Alumni Connect. This is a new community building platform for Kinster’s alumni. It is the only place online where you can find, and connect with, all 90,000 Kingster’s alumni. All alumni are automatically enrolled!</p>
-                                        <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the University has pioneered change in the sector.</p>
-                                    </div>
-                                    <div class="gdlr-core-tab-item-content " data-tab-id="4" >
-                                        <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top">
-                                            <div class="gdlr-core-title-item-title-wrap ">
-                                                <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_27">Alumni<span class="gdlr-core-title-item-title-divider gdlr-core-skin-divider" ></span></h3></div>
-                                        </div>
-                                        <p>The Kingster University Alumni Association is excited to announce the arrival of KU Alumni Connect. This is a new community building platform for Kinster’s alumni. It is the only place online where you can find, and connect with, all 90,000 Kingster’s alumni. All alumni are automatically enrolled!</p>
-                                        <p>Kingster University was established by John Smith in 1920 for the public benefit and it is recognized globally. Throughout our great history, Kingster has offered access to a wide range of academic opportunities. As a world leader in higher education, the University has pioneered change in the sector.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="gdlr-core-pbf-wrapper "  id="gdlr-core-wrapper-3">
             <div class="gdlr-core-pbf-background-wrap"></div>
             <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
