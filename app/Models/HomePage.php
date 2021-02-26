@@ -26,7 +26,7 @@ class HomePage extends Model
         'aboutinfo' => 'json',
         'features' => 'json',
         'threefeatures' => 'json',
-        'logos' => 'json',
+        'logo' => 'json',
     ];
     public function creator()
     {
