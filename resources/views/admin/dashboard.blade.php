@@ -1,119 +1,209 @@
 @extends('layouts.admin')
 @section('title', request()->user()->roles->first()->name .' Dashboard')
 @push('scripts')
-
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
- 
 @endpush
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
+                @role('Super Admin')
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ @$usertotal->superadmincount }}</h3>
+                            <p>Super Admin</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-admin"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                @endrole
+
+                @hasanyrole('Super Admin|Admin')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{ $count_data['admin'] }}</h3>
+                            <h3>{{ @$usertotal->admincount }}</h3>
                             <p>Admins</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-user-cog"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-navy">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$usertotal->teachercount }}</h3>
+                            <p>Teachers</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <a href="{{ route('teacher.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-warning">
                         <div class="inner" style="color:#fff;">
-                            <h3>{{ $count_data['staff'] }}</h3>
+                            <h3>{{ @$usertotal->staffcount }}</h3>
                             <p>Staffs</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-street-view"></i>
+                            <i class="fas fa-id-card"></i>
                         </div>
-                        <a href=" " class="small-box-footer" color="#fff">More info <i
+                        <a href="{{ route('staff.index') }}" class="small-box-footer" color="#fff">More info <i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
+                
                 <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>{{ $count_data['user'] }}</h3>
-                            <p>Users</p>
+                    <div class="small-box bg-primary">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$usertotal->studentcount }}</h3>
+                            <p>Students</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
+                @endhasanyrole
+                
+                @hasanyrole('Teacher')
                 <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-navy">
-                        <div class="inner">
-                            <h3>{{ $count_data['slider'] }}</h3>
-                            <p>Sliders</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-sliders-h"></i>
-                        </div>
-                        <a href=" " class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-secondary">
-                        <div class="inner">
-                            <h3>{{ $count_data['information'] }}</h3>
-                            <p>Information</p>
+                    <div class="small-box bg-primary">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$subjectcount }}</h3>
+                            <p>Subjects</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
                 <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-primary">
-                        <div class="inner">
-                            <h3>{{ $count_data['feature'] }}</h3>
-                            <p>Features</p>
+                    <div class="small-box bg-secondary">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$extraclass }}</h3>
+                            <p>Extra Class Earnings</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
+                @endhasanyrole
+                @hasanyrole('Staff')
                 <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h3>{{ @$users->all_users }}</h3>
-                            <p>Total Categories</p>
+                    <div class="small-box bg-secondary">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$incentives }}</h3>
+                            <p>Incentives till now</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-biking"></i>
+                            <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href=" " class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-
+                @endhasanyrole
+                @hasanyrole('Teacher|Staff')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>{{ @$users->all_users }}</h3>
-                            <p>Total Categories</p>
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$daycount }}</h3>
+                            <p>Days for Month End</p>
                         </div>
                         <div class="icon">
-                            <i class="fas fa-biking"></i>
+                            <i class="fas fa-calendar"></i>
                         </div>
-                        <a href=" " class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-success">
+                        <div class="inner" style="color:#fff;">
+                            <h3>Rs. {{ @$paidsalary }}</h3>
+                            <p>Salary till now</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-warning">
+                        <div class="inner" style="color:#fff;">
+                            <h3>Rs. {{ @$advancesalary }}</h3>
+                            <p>Advance Salary</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                @endhasanyrole
+                @hasanyrole('Student')
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-info">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$attendance_percentage }} %</h3>
+                            <p>Attendance</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-success">
+                        <div class="inner" style="color:#fff;">
+                            <h3>Rs. {{ @$due_fee }}</h3>
+                            <p>Due Fee Till Now</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-warning">
+                        <div class="inner" style="color:#fff;">
+                            <h3>Rs. {{ @$advancesalary }}</h3>
+                            <p>Advance Salary</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                @endhasanyrole
                  
             </div>
 

@@ -40,7 +40,7 @@
                             <td>
                                 @foreach ($value->students as $key => $item)
                                     @if($item == '0')
-                                    - {{ $students[$key] }}
+                                    - {{ @$students[$key] }}
                                     @endif
                                 @endforeach
                             </td>

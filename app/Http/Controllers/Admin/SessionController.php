@@ -65,4 +65,63 @@ class SessionController extends Controller
             return redirect()->back();
         }
     }
+    public function edit($id)
+    {
+        $session_info = $this->session->find($id);
+        if (!$session_info) {
+            abort(404);
+        }
+        $title = 'Edit Session';
+        $data = [
+            'title' => $title,
+            'session_info' => $session_info,
+        ];
+        return view('admin/session/form')->with($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $session_info = $this->session->find($id);
+        if (!$session_info) {
+            abort(404);
+        }
+        $this->validate($request, [
+            'start_year' => 'required|numeric|min:2021|max:2030|different:end_year',
+            'end_year' => 'required|numeric|min:2022|max:2031',
+        ]);
+        DB::beginTransaction();
+        try {
+            $session_info->start_year = $request->start_year;
+            $session_info->end_year = $request->end_year;
+            $session_info->updated_by = Auth::user()->id;
+            $session_info->save();
+            DB::commit();
+            $request->session()->flash('success', 'Session updated successfully.');
+            return redirect()->route('session.index');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $session_info = $this->session->find($id);
+        if (!$session_info) {
+            abort(404);
+        }
+        DB::beginTransaction();
+        try {
+            $session_info->updated_by = Auth::user()->id;
+            $session_info->save();
+            $session_info->delete();
+            $request->session()->flash('success', 'Session removed successfully.');
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+        }
+        return redirect()->back();
+    }
 }

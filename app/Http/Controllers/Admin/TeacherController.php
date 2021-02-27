@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\LogActivity;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
@@ -93,6 +94,7 @@ class TeacherController extends Controller
                 'gender' => $request->gender,
                 'current_address' => $request->current_address,
                 'permanent_address' => $request->permanent_address,
+                'created_by' => Auth::user()->id,
             ]);
             DB::commit();
             $user->assignRole('Teacher');
@@ -162,6 +164,7 @@ class TeacherController extends Controller
             $teacher->gender = $request->gender;
             $teacher->current_address = $request->current_address;
             $teacher->permanent_address = $request->permanent_address;
+            $teacher->updated_by = Auth::user()->id;
             if(isset($request->image)){
                 $teacher['image'] = $request->image;
             }
@@ -187,6 +190,7 @@ class TeacherController extends Controller
         try {
             $user = User::find($teacher_info->user_id);
             $teacher_info->phone = $teacher_info->phone . '-' . time();
+            $teacher_info->updated_by = Auth::user()->id;
             $user->email = $user->email . '-' . time();
             $user->save();
             $teacher_info->save();

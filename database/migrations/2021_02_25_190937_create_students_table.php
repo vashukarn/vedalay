@@ -38,6 +38,10 @@ class CreateStudentsTable extends Migration
             $table->string('mothername')->nullable();
             $table->string('motheroccupation')->nullable();
             $table->string('motherincome')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
             $table->softDeletes();
         });

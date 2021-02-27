@@ -50,7 +50,10 @@ class ExamController extends Controller
     {
         $exam_info = null;
         $title = 'Add Exam';
-        $sessions = Session::pluck('title', 'id');
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $sessions[$value->id] = $value->start_year.' - ' .$value->end_year;
+        }
         $classes = Level::all();
         foreach ($classes as $value) {
             if(isset($value->section)){

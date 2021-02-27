@@ -31,6 +31,17 @@
                     </a>
                 </li>
 
+                
+                @role('Student')
+                <li class="nav-item">
+                    <a href="{{ route('result.index') }}"
+                        class="nav-link {{ request()->is('admin/result') ? 'active' : '' }}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Results</p>
+                    </a>
+                </li>
+                @endrole
+
                 @canany([
                     'student-list', 'student-create','student-edit','student-delete',
                     'teacher-list', 'teacher-create','teacher-edit','teacher-delete',
@@ -327,7 +338,7 @@
                             <a href="{{ route('attendanceList', $key) }}"
                                 class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
                                 <i class="fas fa-archive nav-icon"></i>
-                                <p>{{ $item }} Summary</p>
+                                <p>{{ $item }} View</p>
                             </a>
                         </li>
                         @endforeach
@@ -429,6 +440,9 @@
                     ])
                 <li class="nav-header">WEB CONTENT</li>
                 @endcanany
+                @canany([
+                    'homepage-list','homepage-create','homepage-edit','homepage-delete',
+                    ])
                 <li class="nav-item has-treeview {{ request()->is('admin/result*') ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ request()->is('admin/result*') ? 'active' : '' }}">
@@ -449,6 +463,7 @@
                         @endcan
                     </ul>
                 </li>
+                @endcanany
                 @canany(['slider-list','slider-create','slider-edit','slider-delete'])
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">

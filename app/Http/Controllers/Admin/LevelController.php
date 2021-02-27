@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Level;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LevelController extends Controller
 {
@@ -32,12 +34,35 @@ class LevelController extends Controller
 
     public function create()
     {
-        //
+        $level_info = null;
+        $title = 'Add Level';
+        $data = [
+            'title' => $title,
+            'level_info' => $level_info,
+        ];
+        return view('admin/level/form')->with($data);
     }
 
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'standard' => 'required',
+        ]);
+        DB::beginTransaction();
+        try {
+                Level::create([
+                    'standard' => $request->standard,
+                    'section' => $request->section,
+                    'created_by' => Auth::user()->id,
+                ]);
+            DB::commit();
+            $request->session()->flash('success', 'Level added successfully.');
+            return redirect()->route('level.index');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function show($id)
@@ -47,16 +72,60 @@ class LevelController extends Controller
 
     public function edit($id)
     {
-        //
+        $level_info = $this->level->find($id);
+        if (!$level_info) {
+            abort(404);
+        }
+        $title = 'Edit Level';
+        $data = [
+            'title' => $title,
+            'level_info' => $level_info,
+        ];
+        return view('admin/level/form')->with($data);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $level_info = $this->level->find($id);
+        if (!$level_info) {
+            abort(404);
+        }
+        $this->validate($request, [
+            'standard' => 'required',
+        ]);
+        DB::beginTransaction();
+        try {
+            $level_info->standard = $request->standard;
+            $level_info->section = $request->section;
+            $level_info->updated_by = Auth::user()->id;
+            $level_info->save();
+            DB::commit();
+            $request->session()->flash('success', 'Level updated successfully.');
+            return redirect()->route('level.index');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
+        }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $level_info = $this->level->find($id);
+        if (!$level_info) {
+            abort(404);
+        }
+        DB::beginTransaction();
+        try {
+            $level_info->updated_by = Auth::user()->id;
+            $level_info->save();
+            $level_info->delete();
+            $request->session()->flash('success', 'Level removed successfully.');
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+        }
+        return redirect()->back();
     }
 }

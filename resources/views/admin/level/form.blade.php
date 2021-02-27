@@ -3,20 +3,7 @@
 @push('scripts')
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-{{-- <script src="{{ asset('/custom/session.js') }}"></script> --}}
-<script>
-$(function() {
-    $( "#datepicker" ).datepicker({dateFormat: 'yy'});
-});
-</script>​
-@endpush
-@push('styles')
-<style>
-    .datepicker {
-   display: none;
-}
-</style>
-@endpush
+{{-- <script src="{{ asset('/custom/level.js') }}"></script> --}}
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
@@ -25,38 +12,39 @@ $(function() {
                 <div class="card-header">
                     <h3 class="card-title">{{ @$title }}</h3>
                     <div class="card-tools">
-                        <a href="{{ route('session.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('level.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
                 @include('admin.shared.error-messages')
                 <div class="card-body">
-                    @if (isset($session_info))
-                        {{ Form::open(['url' => route('session.update', $session_info->id), 'files' => true, 'class' => 'form', 'name' => 'session_form']) }}
+                    @if (isset($level_info))
+                        {{ Form::open(['url' => route('level.update', $level_info->id), 'files' => true, 'class' => 'form', 'name' => 'level_form']) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('session.store'), 'files' => true, 'class' => 'form', 'name' => 'session_form']) }}
+                        {{ Form::open(['url' => route('level.store'), 'files' => true, 'class' => 'form', 'name' => 'level_form']) }}
                     @endif
                     <div class="row">
                         <div class="col-sm-10 offset-lg-1">
 
-                            <div class="form-group row {{ $errors->has('start_year') ? 'has-error' : '' }}">
-                                {{ Form::label('start_year', 'Start Year :', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('standard') ? 'has-error' : '' }}">
+                                {{ Form::label('standard', 'Standard :', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('start_year', @$session_info->start_year, ['min'=> '2021','max'=> '2030','step'=> '1', 'class' => 'form-control', 'id' => 'start_year','style' => 'width:80%']) }}
-                                    @error('start_year')
+                                    {{ Form::text('standard', @$level_info->standard, ['placeholder'=> 'Enter Level Name / Standard Here','class' => 'form-control', 'id' => 'standard','style' => 'width:80%']) }}
+                                    @error('standard')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('end_year') ? 'has-error' : '' }}">
-                                {{ Form::label('end_year', 'End Year :', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('section') ? 'has-error' : '' }}">
+                                {{ Form::label('section', 'Section :', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('end_year', @$session_info->end_year, ['min'=> '2022','max'=> '2031','step'=> '1', 'class' => 'form-control', 'id' => 'end_year','style' => 'width:80%']) }}
-                                    @error('end_year')
+                                    {{ Form::text('section', @$level_info->section, ['placeholder'=> 'Enter Level Section Here','class' => 'form-control', 'id' => 'section','style' => 'width:80%']) }}
+                                    @error('section')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
+                                    <small>Leave blank if you do not want to add section</small>
                                 </div>
                             </div>
                         </div>

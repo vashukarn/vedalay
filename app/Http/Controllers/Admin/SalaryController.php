@@ -106,7 +106,7 @@ class SalaryController extends Controller
                     Salary::create([
                         'title' => $request->title,
                         'month' => $request->month,
-                        'teacher_id' => $request->user,
+                        'user_id' => $request->user,
                         'created_by' => Auth::user()->id,
                         'added_by' => 'Salary Management',
                         'salary' => $salary,

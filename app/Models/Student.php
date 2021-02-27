@@ -35,6 +35,8 @@ class Student extends Model
         'fathername',
         'mothername',
         'cgpa',
+        'created_by',
+        'updated_by',
     ];
     protected $dates = ['deleted_at'];
     public function get_user()

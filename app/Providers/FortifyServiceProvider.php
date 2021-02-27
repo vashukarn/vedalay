@@ -68,9 +68,9 @@ class FortifyServiceProvider extends ServiceProvider
             ->first();
             if ($user && Hash::check($request->password, $user->password)) {
                 if($user->two_factor_secret){
-                    LogActivity::addToLog('युजर लगइन भएको: '.$request->email,$user->id);
+                    LogActivity::addToLog('User Logged In '.$request->email,$user->id);
                 }else{
-                    LogActivity::addToLog('युजर लगइन भएको: '.$request->email,$user->id);
+                    LogActivity::addToLog('User Logged In '.$request->email,$user->id);
                 }
                 $request->session()->flash('success',"You are Logged in successfully");
            

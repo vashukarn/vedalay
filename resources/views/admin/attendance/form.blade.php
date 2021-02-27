@@ -30,11 +30,13 @@
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
-                'level' : {{ $subject_info->id }},
+                'level' : {{ $subject_info->level_id }},
                 'attendance' : attendance,
+                'holiday_reason' : $('#holiday_reason').val(),
+                'holiday' : '1',
             },
             success: function (data) {
-                if(data == "Attendance Already Marked"){
+                if(data == "Attendance Updated Successfully"){
                     alert(data);
                 }
                 else if(data.id){
@@ -63,19 +65,20 @@
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
-                'level' : {{ $subject_info->id }},
-                'holiday_reason' : $("#holiday_reason").val(),
+                'level' : {{ $subject_info->level_id }},
+                'holiday_reason' : $('#holiday_reason').val(),
+                'holiday' : '0',
                 'attendance' : attendance,
             },
             success: function (data) {
-                if(data == "Attendance Already Marked"){
+                if(data == "Attendance Updated Successfully"){
                     alert(data);
                 }
                 else if(data.id){
                     alert("Attendance Marked");
                 }
                 else{
-                    alert("Error Occurred");
+                    alert("Error Occurred :"+data);
                 }
                 console.log(data);
             }
@@ -89,13 +92,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">{{ @$title }}</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('attendance.index') }}" type="button" class="btn btn-tool">
-                            <i class="fa fa-list"></i></a>
-                    </div>
-                </div>
                 @include('admin.shared.error-messages')
                 <div class="card-body">
                     @if (isset($attendance_info))
@@ -166,7 +162,7 @@
                         {{ Form::label('', '', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
                             {{ Form::button("<i class='fa fa-plus'></i> Submit", ['class' => 'btn btn-success btn-flat', 'id'=>'submit']) }}
-                            {{ Form::button("<i class='fas fa-ban'></i> Holiday", ['data-toggle'=>"modal",'data-target'=>"#holidayModal",'class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
+                            {{ Form::button("<i class='fas fa-ban'></i> Cancel Class", ['data-toggle'=>"modal",'data-target'=>"#holidayModal",'class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
                         </div>
                     </div>
                     {{ Form::close() }}
@@ -179,14 +175,14 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="holidayModalLabel">Mark Holiday</h5>
+              <h5 class="modal-title" id="holidayModalLabel">Cancel Class</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="m-4">
                 <div class="form-group">
-                  <label for="holiday_reason">Holiday Reason</label>
+                  <label for="holiday_reason">Class Cancellation Reason</label>
                   <input type="text" class="form-control" id="holiday_reason" placeholder="Enter Holiday Reason">
                 </div>
                 <div class="modal-footer">

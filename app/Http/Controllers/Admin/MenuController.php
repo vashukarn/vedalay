@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
-use App\Models\Content;
 use App\Utilities\LogActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -100,20 +101,20 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $data = $this->mapMenuTitles($request) ;
             // dd($data);
            $status =  $this->menu->fill($data)->save();
            
-            LogActivity::addToLog('New Menu Added');
-            \DB::commit();
+            LogActivity::addToLog('New Menu Added', Auth::user()->id);
+            DB::commit();
             if(!$status){
                 $request->session()->flash('error',"Sorry! Error While Creating Menu");
             }
             $request->session()->flash('success', 'Menu Created Successfully');
          }catch (\Exception $e) {
-            \DB::rollback();
+            DB::rollback();
             return back()->withError($e->getMessage())->withInput();
         }
         return redirect()->route('menu.index');
@@ -146,18 +147,18 @@ class MenuController extends Controller
         if(!$this->menu){
             return redirect()->route('menu.index')->with('error','Error ! Menu Not Found');
         }
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             $data = $this->mapMenuTitles($request) ;
             $status = $this->menu->fill($data)->save();
-            LogActivity::addToLog('Menu Edited');
-            \DB::commit();
+            LogActivity::addToLog('Menu Edited', Auth::user()->id);
+            DB::commit();
             if (!$status) {
                 $request->session()->flash('error', 'Sorry! Error While Updating Menu');
             }
             $request->session()->flash('success', 'Menu Updated Successfully');
         }catch (\Exception $e) {
-            \DB::rollback();
+            DB::rollback();
             return back()->withError($e->getMessage())->withInput();
         }
         return redirect()->route('menu.index');
@@ -169,7 +170,7 @@ class MenuController extends Controller
         if(!$this->menu){
             return redirect()->route('menu.index')->with('error','Error ! Menu Not Found');
         }
-        \DB::beginTransaction();
+        DB::beginTransaction();
         try {
             if ($this->menu->parent_id == null) {
                 $menus = Menu::where('parent_id', $id)->get();
@@ -187,14 +188,14 @@ class MenuController extends Controller
                 }
                 $status = $this->menu->delete();
             }
-            LogActivity::addToLog('Menu Deleted');
-            \DB::commit();
+            LogActivity::addToLog('Menu Deleted', Auth::user()->id);
+            DB::commit();
             if (!$status) {
                 request()->session()->flash('error', 'Sorry! Error While Deleting Menu');
             }
             request()->session()->flash('success', 'Menu Updated Successfully');
         }catch (\Exception $e) {
-            \DB::rollback();
+            DB::rollback();
             return back()->withError($e->getMessage())->withInput();
         }
         return redirect()->route('menu.index');

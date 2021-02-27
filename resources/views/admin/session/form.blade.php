@@ -4,19 +4,6 @@
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
 {{-- <script src="{{ asset('/custom/session.js') }}"></script> --}}
-<script>
-$(function() {
-    $( "#datepicker" ).datepicker({dateFormat: 'yy'});
-});
-</script>​
-@endpush
-@push('styles')
-<style>
-    .datepicker {
-   display: none;
-}
-</style>
-@endpush
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
