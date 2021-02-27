@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
+use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\RoleController;
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('category', CategoryController::class);
     Route::resource('tag', TagController::class);
     Route::resource('blog', BlogController::class);
+    Route::resource('level', LevelController::class);
     Route::resource('session', SessionController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('faq', FaqController::class);
