@@ -29,23 +29,34 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Title</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Updated By</th>
-                                <th>Updated Date</th>
+                                <th>Standard</th>
+                                <th>Section</th>
+                                <th>Last Changed By</th>
+                                <th>Last Changed At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key=>$value)
                             <tr>
                             <td>{{ $key+1}}.</td>
-                            <td>{{ @$value->start_year }} - {{ @$value->end_year }}</td>
-                            <td>{{ @$value->creator->name }}</td>
-                            <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
-                            <td>{{ @$value->updater->name }}</td>
-                            <td>{{ ReadableDate(@$value->updated_at, 'all') }}</td>
-                            </tr>
+                            <td>{{ @$value->standard }}</td>
+                            <td>{{ @$value->section }}</td>
+                            <td>{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }}</td>
+                            <td>{{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}</td>
+                            <td>
+                                <div class="btn-group">
+                                  @can('level-edit')
+                                  <a href="{{route('level.edit',$value->id)}}" title="Edit level" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
+                                  @endcan
+                                  @can('level-delete')
+                                  {{Form::open(['method' => 'DELETE','route' => ['level.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this level?")']) }}
+                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete level '])}}
+                                  {{ Form::close() }}
+                                  @endcan
+                              </div>
+                              </td>
+                        </tr>
                             @endforeach
                         </tbody>
                     </table>

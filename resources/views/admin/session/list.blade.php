@@ -34,6 +34,7 @@
                                 <th>Created Date</th>
                                 <th>Updated By</th>
                                 <th>Updated Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,6 +46,18 @@
                             <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             <td>{{ @$value->updater->name }}</td>
                             <td>{{ ReadableDate(@$value->updated_at, 'all') }}</td>
+                            <td>
+                                <div class="btn-group">
+                                  @can('session-edit')
+                                  <a href="{{route('session.edit',$value->id)}}" title="Edit session" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
+                                  @endcan
+                                  @can('session-delete')
+                                  {{Form::open(['method' => 'DELETE','route' => ['session.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this session?")']) }}
+                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete session '])}}
+                                  {{ Form::close() }}
+                                  @endcan
+                              </div>
+                              </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -10,6 +10,8 @@ class Level extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
+        'section',
+        'standard',
         'created_by',
         'updated_by',
     ];
