@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\CasteCategory;
 use App\Models\Level;
+use App\Models\LogActivity;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\User;
@@ -113,6 +114,7 @@ class StudentController extends Controller
                 'guardian_phone' => $request->guardian_phone,
                 'current_address' => $request->current_address,
                 'permanent_address' => $request->permanent_address,
+                'created_by' => Auth::user()->id,
             ]);
             DB::commit();
             $user->assignRole('Student');
@@ -200,6 +202,7 @@ class StudentController extends Controller
             $student->guardian_phone = $request->guardian_phone;
             $student->current_address = $request->current_address;
             $student->permanent_address = $request->permanent_address;
+            $student->updated_by = Auth::user()->id;
             if(isset($request->image)){
                 $student['image'] = $request->image;
             }
@@ -227,6 +230,7 @@ class StudentController extends Controller
             $student_info->phone = $student_info->phone . '-' . time();
             $user->email = $user->email . '-' . time();
             $user->save();
+            $student_info->updated_by = Auth::user()->id;
             $student_info->save();
             $student_info->delete();
             $user->delete();
