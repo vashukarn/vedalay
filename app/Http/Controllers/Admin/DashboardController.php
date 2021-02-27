@@ -5,16 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AdvanceSalary;
 use App\Models\Attendance;
-use App\Models\Feature;
-use App\Models\Information;
+use App\Models\Fee;
 use App\Models\Salary;
-use App\Models\Slider;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -60,7 +58,26 @@ class DashboardController extends Controller
                 : $lastdate->diffForHumans($now);
         }
         if($type == 'student'){
-            $attendance = Attendance::all();
+            $total_attendance = 0;
+            $student_attendance = 0;
+            $due_fee = 0;
+            $student = Student::where('user_id', $id)->first();
+            $tempoo = Attendance::where('holiday', '0')->where('level_id', $student->level_id)->get();
+            $tempooo = Fee::where('rollback', '0')->where('student_id', $id)->get();
+            // dd($tempooo);
+            foreach ($tempooo as $key => $value) {
+                $due_fee += $value->fees['total_amount'];
+            }
+            foreach ($tempoo as $key => $value) {
+                foreach ($value->students as $key => $item) {
+                    if($key == $id){
+                        $total_attendance++;
+                        if($item == '1')
+                        $student_attendance++;
+                    }
+                }
+            }
+            $attendance_percentage = ($student_attendance*100)/$total_attendance;
         }
         if($type == 'admin' || $type == 'superadmin'){
             $usertotal = User::selectRaw('count(*) as total')
@@ -80,6 +97,8 @@ class DashboardController extends Controller
             'paidsalary' => $paidsalary ?? null,
             'incentives' => $incentives ?? null,
             'extraclass' => $extraclass ?? null,
+            'attendance_percentage' => $attendance_percentage ?? null,
+            'due_fee' => $due_fee ?? null,
         ];
 
         return view('admin.dashboard')->with($data);

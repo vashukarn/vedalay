@@ -52,6 +52,7 @@ class AttendanceController extends Controller
             $find = Attendance::where('subject_id', $request->subject)->whereBetween('created_at', [date('Y-m-d 00:00:00'),date('Y-m-d 23:59:59')])->first();
             $attendance = null;
             if(isset($find)){
+                $find->level_id = $request->level;
                 $find->students = $students;
                 $find->holiday = $request->holiday;
                 $find->holiday_reason = $request->holiday_reason;
@@ -70,7 +71,6 @@ class AttendanceController extends Controller
                     'created_by' => Auth::user()->id,
                 ]);
                 DB::commit();
-                // dd($attendance);
             }
         } catch (\Exception $e) {
             DB::rollBack();

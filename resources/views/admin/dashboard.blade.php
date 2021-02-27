@@ -167,8 +167,8 @@
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-info">
                         <div class="inner" style="color:#fff;">
-                            <h3>{{ @$daycount }}</h3>
-                            <p>Days for Month End</p>
+                            <h3>{{ @$attendance_percentage }} %</h3>
+                            <p>Attendance</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-calendar"></i>
@@ -180,8 +180,8 @@
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-success">
                         <div class="inner" style="color:#fff;">
-                            <h3>Rs. {{ @$paidsalary }}</h3>
-                            <p>Salary till now</p>
+                            <h3>Rs. {{ @$due_fee }}</h3>
+                            <p>Due Fee Till Now</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
