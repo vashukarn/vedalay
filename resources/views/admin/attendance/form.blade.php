@@ -68,14 +68,14 @@
                 'attendance' : attendance,
             },
             success: function (data) {
-                if(data == "Attendance Already Marked"){
+                if(data == "Attendance Updated Successfully"){
                     alert(data);
                 }
                 else if(data.id){
                     alert("Attendance Marked");
                 }
                 else{
-                    alert("Error Occurred");
+                    alert("Error Occurred :"+data);
                 }
                 console.log(data);
             }
@@ -89,13 +89,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">{{ @$title }}</h3>
-                    <div class="card-tools">
-                        <a href="{{ route('attendance.index') }}" type="button" class="btn btn-tool">
-                            <i class="fa fa-list"></i></a>
-                    </div>
-                </div>
                 @include('admin.shared.error-messages')
                 <div class="card-body">
                     @if (isset($attendance_info))

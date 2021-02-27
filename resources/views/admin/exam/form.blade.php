@@ -20,7 +20,7 @@
             placeholder: "Please Select Session",
         });
         $('#level_id').select2({
-            placeholder: "Please Level Session",
+            placeholder: "Please Select Level",
         });
     });
     var subjects = null;

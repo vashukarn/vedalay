@@ -14,7 +14,7 @@ class Salary extends Model
         'month',
         'salary',
         'rollback',
-        'teacher_id',
+        'user_id',
         'added_by',
         'created_by',
         'updated_by',
@@ -33,6 +33,6 @@ class Salary extends Model
     }
     public function get_user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'teacher_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 }

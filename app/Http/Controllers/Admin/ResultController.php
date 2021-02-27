@@ -68,7 +68,6 @@ class ResultController extends Controller
             if($request->data[10]['value']){
                 $temp['withheld_reason'] = $request->data[10]['value'];
             }
-            dd($temp);
             $result = Result::create($temp);
             DB::commit();
             return response()->json($result);

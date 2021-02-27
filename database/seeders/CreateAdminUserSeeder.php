@@ -48,7 +48,7 @@ class CreateAdminUserSeeder extends Seeder
             'phone' => '1234567890',
             'short_name' => 'VT',
             'salary' => '10000',
-            'subject' => null,
+            'subject' => ['1','2','3','4','5'],
             'dob' => null,
             'aadhar_number' => null,
             'gender' => 'male',
@@ -57,6 +57,8 @@ class CreateAdminUserSeeder extends Seeder
             'created_by' => 2,
         ]);
         $roleteacher = Role::create(['name' => 'Teacher']);
+        $teacherpermissions = ['73', '74', '75', '76'];
+        $roleteacher->syncPermissions($teacherpermissions);
         $teacheruser->assignRole([$roleteacher->id]);
 
         $staffuser = User::create([
