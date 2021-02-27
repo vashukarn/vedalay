@@ -17,8 +17,7 @@ class DashboardController extends Controller
     }
 
     public function index(){
-        $usertotal = DB::table('users')
-        ->selectRaw('count(*) as total')
+        $usertotal = User::selectRaw('count(*) as total')
         ->selectRaw("count(case when type = 'superadmin' then 1 end) as superadmincount")
         ->selectRaw("count(case when type = 'student' then 1 end) as studentcount")
         ->selectRaw("count(case when type = 'admin' then 1 end) as admincount")
