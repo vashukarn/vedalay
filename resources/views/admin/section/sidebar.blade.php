@@ -408,6 +408,15 @@
                     </a>
                 </li>
                 @endcanany
+                @canany(['level-list', 'level-create','level-edit','level-delete'])
+                <li class="nav-item">
+                    <a href="{{ route('level.index') }}"
+                        class="nav-link {{ request()->is('admin/level') ? 'active' : '' }}">
+                        <i class="fas fa-list nav-icon"></i>
+                        <p>Level/Class Management</p>
+                    </a>
+                </li>
+                @endcanany
 
                 @canany([
                     'slider-list','slider-create','slider-edit','slider-delete',

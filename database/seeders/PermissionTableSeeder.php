@@ -154,6 +154,11 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>106,'name'=> 'session-create'],
                 ['id'=>107,'name'=> 'session-edit'],
                 ['id'=>108,'name'=> 'session-delete'],
+
+                ['id'=>109,'name'=> 'level-list'],
+                ['id'=>110,'name'=> 'level-create'],
+                ['id'=>111,'name'=> 'level-edit'],
+                ['id'=>112,'name'=> 'level-delete'],
            ];
            foreach ($permissions as $permission) {
             $menu = new Permission();

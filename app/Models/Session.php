@@ -10,8 +10,6 @@ class Session extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'start_year',
-        'end_year',
         'created_by',
         'updated_by',
     ];
