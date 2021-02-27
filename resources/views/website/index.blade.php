@@ -48,7 +48,7 @@
                     <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first">
                         <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_14" data-sync-height="height-1">
                             <div class="gdlr-core-pbf-background-wrap">
-                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ $page->firstjumbotron['left_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0"></div>
+                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ @$page->firstjumbotron['left_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0"></div>
                             </div>
                             <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
                         </div>
@@ -56,18 +56,18 @@
                     <div class="gdlr-core-pbf-column gdlr-core-column-30" id="gdlr-core-column-4">
                         <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_1dd7_16" data-sync-height="height-1">
                             <div class="gdlr-core-pbf-background-wrap">
-                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ $page->firstjumbotron['right_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0.1"></div>
+                                <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url({{ @$page->firstjumbotron['right_image'] }}); height: 500px; background-size: cover; background-position: center;" data-parallax-speed="0.1"></div>
                             </div>
                             <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" id="div_1dd7_18">
                                         <div class="gdlr-core-title-item-title-wrap clearfix">
-                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_4">{{ $page->firstjumbotron['title'] }}</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" id="span_1dd7_0">{{ $page->firstjumbotron['sub_title'] }}</span></div>
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_1dd7_4">{{ @$page->firstjumbotron['title'] }}</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" id="span_1dd7_0">{{ @$page->firstjumbotron['sub_title'] }}</span></div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_19">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_20">
-                                            <p>{{ $page->firstjumbotron['description'] }}</p>
+                                            <p>{{ @$page->firstjumbotron['description'] }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -106,14 +106,14 @@
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_26">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_27">
-                                            <p>{{ $page->aboutinfo[0] }}</p>
+                                            <p>{{ @$page->aboutinfo[0] }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="gdlr-core-pbf-element">
                                     <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" id="div_1dd7_28">
                                         <div class="gdlr-core-text-box-item-content" id="div_1dd7_29">
-                                            <p>{{ $page->aboutinfo[1] }}</p>
+                                            <p>{{ @$page->aboutinfo[1] }}</p>
                                         </div>
                                     </div>
                                 </div>

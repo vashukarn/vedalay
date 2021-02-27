@@ -1,34 +1,29 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en-US" class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Vashu Karn">
-    <meta property="og:site_name" content="{{ __(env('APP_NAME', 'Vedalay School Management')) }}">
-    @yield('meta')
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>
-    {{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')
-    </title>
-    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/plugins/combine/style.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/include/css/page-builder.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/plugins/revslider/public/assets/css/settings.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/css/style-core.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/css/kingster-style-custom.css') }}" type='text/css' media='all' />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Kingster &#8211; School, College &amp; University HTML Template</title>
+
+    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/plugins/combine/style.css')}}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/include/css/page-builder.css')}}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{{ asset('assets/plugins/revslider/public/assets/css/settings.css')}}" type='text/css' media='all' />
+    <link rel='stylesheet' href="{{ asset('assets/)}}"'css/style-core.css' type='text/css' media='all' />
+    <link rel='stylesheet' href="{{ asset('assets/)}}"'css/kingster-style-custom.css' type='text/css' media='all' />
 
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700%2C400" rel="stylesheet" property="stylesheet" type="text/css" media="all">
-    <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CABeeZee%3Aregular%2Citalic&amp;subset=latin%2Clatin-ext%2Cdevanagari&amp;ver=5.0.3" type='text/css' media='all' />
-    <link rel="icon" href="@$sitesetting->favicon }}" type="image/png" sizes="16x16">
-    @stack('styles')
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CABeeZee%3Aregular%2Citalic&amp;subset=latin%2Clatin-ext%2Cdevanagari&amp;ver=5.0.3' type='text/css' media='all' />
 
 </head>
+
 <body class="home page-template-default page page-id-2039 gdlr-core-body woocommerce-no-js tribe-no-js kingster-body kingster-body-front kingster-full  kingster-with-sticky-navigation  kingster-blockquote-style-1 gdlr-core-link-to-lightbox">
     <div class="kingster-mobile-header-wrap">
         <div class="kingster-mobile-header kingster-header-background kingster-style-slide kingster-sticky-mobile-navigation " id="kingster-mobile-header">
             <div class="kingster-mobile-header-container kingster-container clearfix">
                 <div class="kingster-logo  kingster-item-pdlr">
                     <div class="kingster-logo-inner">
-                        <a class="" href="{{ url('/') }}"><img src="{{ @$sitesetting->logo }}" alt="" /></a>
+                        <a class="" href="index.html"><img src="images/logo.png" alt="" /></a>
                     </div>
                 </div>
                 <div class="kingster-mobile-menu-right">
@@ -49,8 +44,13 @@
                     <div class="kingster-mobile-menu"><a class="kingster-mm-menu-button kingster-mobile-menu-button kingster-mobile-button-hamburger" href="#kingster-mobile-menu"><span></span></a>
                         <div class="kingster-mm-menu-wrap kingster-navigation-font" id="kingster-mobile-menu" data-slide="right">
                             <ul id="menu-main-navigation" class="m-menu">
-                                <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="{{ url('/') }}">Home</a></li>
-                                <li class="menu-item menu-item-has-children"><a href="/">Pages</a>
+                                <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="index.html">Home</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-home"><a href="index.html">Homepage 1</a></li>
+                                        <li class="menu-item"><a href="homepage-2.html">Homepage 2</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
                                     <ul class="sub-menu">
                                         <li class="menu-item"><a href="about-us.html">About KU</a></li>
                                         <li class="menu-item menu-item-has-children"><a href="blog-full-right-sidebar-with-frame.html">Blog</a>
@@ -121,7 +121,7 @@
                                         <li class="menu-item"><a href="price-table.html">Price Table</a></li>
                                         <li class="menu-item"><a href="maintenance.html">Maintenance</a></li>
                                         <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li class="menu-item"><a href="404.blade.php">404 Page</a></li>
+                                        <li class="menu-item"><a href="404.html">404 Page</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item menu-item-has-children"><a href="bachelor-of-science-in-business-administration.html">Academics</a>
@@ -153,7 +153,7 @@
                                                 <li class="menu-item"><a href="introduction-to-financial-accounting.html">Single Course</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item"><a href="/">Logo</a></li>
+                                        <li class="menu-item"><a href="#">Logo</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item menu-item-has-children"><a href="apply-to-kingster.html">Admissions</a>
@@ -188,14 +188,14 @@
                 <div class="kingster-top-bar-background"></div>
                 <div class="kingster-top-bar-container kingster-container ">
                     <div class="kingster-top-bar-container-inner clearfix">
-                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" id="i_fd84_0"></i> <a href="mailto:{{ @$sitesetting->email[0] }}"> {{ @$sitesetting->email[0] }} </a><i class="fa fa-phone" id="i_fd84_1"></i> <a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></div>
+                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" style="font-size: 15px ;color: #96a2b8 ;margin-right: 8px ;"></i> contact@KUTheme.edu <i class="fa fa-phone" style="font-size: 15px ;color: #96a2b8 ;margin-left: 18px ;margin-right: 6px ;"></i> +1-3435-2356-222</div>
                         <div class="kingster-top-bar-right kingster-item-pdlr">
                             <ul id="kingster-top-bar-menu" class="sf-menu kingster-top-bar-menu kingster-top-bar-right-menu">
-                                <li class="menu-item kingster-normal-menu"><a href="#">About</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Academics</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Contact</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">Alumni</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">Calendar</a></li>
+                                <li class="menu-item kingster-normal-menu"><a href="#">Portal</a></li>
                             </ul>
-                            <div class="kingster-top-bar-right-social"></div><a class="kingster-top-bar-right-button" href="{{ url('/login') }}">Login</a></div>
+                            <div class="kingster-top-bar-right-social"></div><a class="kingster-top-bar-right-button" href="#" target="_blank">Support KU</a></div>
                     </div>
                 </div>
             </div>
@@ -205,14 +205,19 @@
                     <div class="kingster-header-container-inner clearfix">
                         <div class="kingster-logo  kingster-item-pdlr">
                             <div class="kingster-logo-inner">
-                                <a class="" href="{{ url('/') }}"><img style="height: 50px !important;" src="{{ @$sitesetting->logo }}" alt="{{ @$sitesetting->name }}" /></a>
+                                <a class="" href="index.html"><img src="images/logo.png" alt="" /></a>
                             </div>
                         </div>
                         <div class="kingster-navigation kingster-item-pdlr clearfix ">
                             <div class="kingster-main-menu" id="kingster-main-menu">
                                 <ul id="menu-main-navigation-1" class="sf-menu">
-                                    <li class="menu-item menu-item-home current-menu-item menu-item-has-children kingster-normal-menu"><a href="{{ url('/') }}" class="sf-with-ul-pre">Home</a></li>
-                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Pages</a>
+                                    <li class="menu-item menu-item-home menu-item-has-children kingster-normal-menu"><a href="index.html" class="sf-with-ul-pre">Home</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item menu-item-home" data-size="60"><a href="index.html">Homepage 1</a></li>
+                                            <li class="menu-item" data-size="60"><a href="homepage-2.html">Homepage 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item  current-menu-item  menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Pages</a>
                                         <ul class="sub-menu">
                                             <li class="menu-item" data-size="60"><a href="about-us.html">About KU</a></li>
                                             <li class="menu-item menu-item-has-children" data-size="60"><a href="blog-full-right-sidebar-with-frame.html" class="sf-with-ul-pre">Blog</a>
@@ -317,11 +322,30 @@
                                                     </ul>
                                                 </li>
                                                 <li class="menu-item" data-size="15">
-                                                    <div class="kingster-mega-menu-section-content"><img src="upload/mega-menu-logo.png" id="img_fd84_0" alt="" /> <span id="span_fd84_0">Academic offerings include 95 majors, 86 minors, and more than 100 in-major specializations</span></div>
+                                                    <div class="kingster-mega-menu-section-content"><img src="upload/mega-menu-logo.png" style="margin-bottom: 13px;" alt="" /> <span style="font-size: 14px; font-weight: 500;">Academic offerings include 95 majors, 86 minors, and more than 100 in-major specializations</span></div>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
+                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="apply-to-kingster.html" class="sf-with-ul-pre">Admissions</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item" data-size="60"><a href="apply-to-kingster.html">Apply To Kingster</a></li>
+                                            <li class="menu-item" data-size="60"><a href="campus-tour.html">Campus Tour</a></li>
+                                            <li class="menu-item" data-size="60"><a href="scholarships.html">Scholarships</a></li>
+                                            <li class="menu-item" data-size="60"><a href="athletics.html">Athletics</a></li>
+                                            <li class="menu-item" data-size="60"><a href="give-to-kingster.html">Give To Kingster</a></li>
+                                            <li class="menu-item" data-size="60"><a href="alumni.html">Alumni</a></li>
+                                            <li class="menu-item" data-size="60"><a href="event-calendar.html">Event Calendar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Courses</a>
+                                        <ul class="sub-menu">
+                                            <li class="menu-item" data-size="60"><a href="course-list-1.html">Course List 1</a></li>
+                                            <li class="menu-item" data-size="60"><a href="course-list-2.html">Course List 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item kingster-normal-menu"><a href="athletics.html">Athletics</a></li>
+                                    <li class="menu-item kingster-normal-menu"><a href="university-life.html">University Life</a></li>
                                 </ul>
                                 <div class="kingster-navigation-slide-bar" id="kingster-navigation-slide-bar"></div>
                             </div>
@@ -346,26 +370,220 @@
                 </div>
             </header>
 
-    {{-- {{ page content starts from here  }} --}}
-    @yield('content')
-    {{-- {{ page content ends here  }} --}}
-    <!-- .end home-contact-section -->
-    <!-- footer -->
+
+
+            <div class="kingster-page-title-wrap  kingster-style-large kingster-center-align">
+                <div class="kingster-header-transparent-substitute"></div>
+                <div class="kingster-page-title-overlay"></div>
+                <div class="kingster-page-title-container kingster-container">
+                    <div class="kingster-page-title-content kingster-item-pdlr">
+                        <div class="kingster-page-caption">Theme's Elements</div>
+                        <h1 class="kingster-page-title">Price Table</h1></div>
+                </div>
+            </div>
+            <div class="kingster-page-wrapper" id="kingster-page-wrapper">
+                <div class="gdlr-core-page-builder-body">
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 90px 0px 60px 0px;">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #f1f1f1 ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr"><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 17px ;">Example of price table</span>
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 45px ;letter-spacing: 0px ;text-transform: none ;">Price Table With Featured</h3></div>
+                                    </div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 50px ;">
+                                        <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-price-table-item gdlr-core-item-pdlr gdlr-core-item-pdb clearfix ">
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table ">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-lightbulb-o"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Starter Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for starter</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">9.90</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table gdlr-core-active">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-codepen"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Advanced Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for profession</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">20</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table ">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-connectdevelop"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Enterprise Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for corporate</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">50</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 110px 0px 80px 0px;">
+                        <div class="gdlr-core-pbf-background-wrap">
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(upload/image-bg-3.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.8"></div>
+                        </div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-column gdlr-core-column-60 gdlr-core-column-first" data-skin="White Text">
+                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
+                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr"><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption" style="font-size: 17px ;color: #cccccc ;">Example of price table</span>
+                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
+                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="font-size: 47px ;letter-spacing: 0px ;text-transform: none ;">Plain Price Table</h3></div>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-pbf-element">
+                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align" style="padding-bottom: 10px ;">
+                                                    <div class="gdlr-core-text-box-item-content" style="font-size: 16px ;">
+                                                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-price-table-item gdlr-core-item-pdlr gdlr-core-item-pdb clearfix " id="gdlr-core-price-table-64554">
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table ">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-lightbulb-o"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Starter Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for starter</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">9.90</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table ">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-codepen"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Advanced Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for profession</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">20</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="gdlr-core-price-table-column gdlr-core-column-20">
+                                            <div class="gdlr-core-price-table ">
+                                                <div class="gdlr-core-price-table-head">
+                                                    <div class="gdlr-core-price-table-icon"><i class="fa fa-connectdevelop"></i></div>
+                                                    <h3 class="gdlr-core-price-table-title">Enterprise Plan</h3>
+                                                    <div class="gdlr-core-price-table-caption">Suitable for corporate</div>
+                                                </div>
+                                                <div class="gdlr-core-price-table-price gdlr-core-title-font"><span class="gdlr-core-price-prefix">$</span><span class="gdlr-core-price-table-price-number">50</span><span class="gdlr-core-price-suffix">/ MO</span></div>
+                                                <div class="gdlr-core-price-table-content-wrap">
+                                                    <div class="gdlr-core-price-table-content">
+                                                        <div class="gdlr-core-price-list-shortcode">
+                                                            <ul>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                                <li><i class="fa fa-check"></i>List item here</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div><a class="gdlr-core-price-table-button gdlr-core-button" href="#" target="_self">Learn More</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <footer>
                 <div class="kingster-footer-wrapper ">
                     <div class="kingster-footer-container kingster-container clearfix">
                         <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
                             <div id="text-2" class="widget widget_text kingster-widget">
                                 <div class="textwidget">
-                                    <p><img src="{{ @$sitesetting->favicon }}" alt="" />
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_10"></span>
-                                        <br /> {{ @$sitesetting->address[0] }}
-                                        <br /> {{ @$sitesetting->address[1] }}</p>
-                                    <p><span id="span_1dd7_11"><a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></span>
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_12"></span>
-                                        <br /> <a id="a_1dd7_8" href="mailto:{{ @$sitesetting->email[0] }}">{{ @$sitesetting->email[0] }}</a></p>
+                                    <p><img src="upload/footer-logo.png" alt="" />
+                                        <br /> <span class="gdlr-core-space-shortcode" style="margin-top: 5px ;"></span>
+                                        <br /> Box 35300
+                                        <br /> 1810 Campus Way NE
+                                        <br /> Bothell, WA 98011-8246</p>
+                                    <p><span style="font-size: 15px; color: #ffffff;">+1-2534-4456-345</span>
+                                        <br /> <span class="gdlr-core-space-shortcode" style="margin-top: -20px ;"></span>
+                                        <br /> <a style="font-size: 15px; color: #ffffff;" href="mailto:admin@kingsteruni.edu">admin@kingsteruni.edu</a></p>
                                     <div class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-left-align">
-                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" id="div_1dd7_111"></div>
+                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" style="border-color: #3db166 ;border-bottom-width: 2px ;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -418,272 +636,58 @@
                     </div>
                 </div>
                 
-                <div class="kingster-copyright-wrapper">
-                    <div class="kingster-copyright-container kingster-container clearfix">
-                        <div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2021, <a href="{{ url('/') }}">Vedyalay.com</a></div>
-                        <div class="kingster-copyright-right kingster-item-pdlr">
-                            <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" id="div_1dd7_112">
-                                <a href="{{ @$sitesetting->facebook }}" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
-                                    <i class="fa fa-facebook" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->instagram }}" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
-                                    <i class="fa fa-instagram" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->linkedin }}" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
-                                    <i class="fa fa-linkedin" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->skype }}" target="_blank" class="gdlr-core-social-network-icon" title="skype">
-                                    <i class="fa fa-skype" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->twitter }}" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
-                                    <i class="fa fa-twitter" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->youtube }}" target="_blank" class="gdlr-core-social-network-icon" title="youtube">
-                                    <i class="fa fa-youtube" ></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="kingster-copyright-wrapper">
+					<div class="kingster-copyright-container kingster-container clearfix">
+						<div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2019, Max Themes</div>
+						<div class="kingster-copyright-right kingster-item-pdlr">
+							<div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" style="padding-bottom: 0px ;">
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
+									<i class="fa fa-facebook" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus">
+									<i class="fa fa-google-plus" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
+									<i class="fa fa-linkedin" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype">
+									<i class="fa fa-skype" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
+									<i class="fa fa-twitter" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
+									<i class="fa fa-instagram" ></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
             </footer>
         </div>
     </div>
 
 
-	<script type='text/javascript' src="{{ asset('assets/js/jquery/jquery.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/js/jquery/jquery-migrate.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.parallax.min.js') }}"></script>  
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.actions.min.js') }}"></script> 
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.video.min.js') }}"></script>
-
-    <script type="text/javascript">
-        /*<![CDATA[*/
-        function setREVStartSize(e) {
-            try {
-                e.c = jQuery(e.c);
-                var i = jQuery(window).width(),
-                    t = 9999,
-                    r = 0,
-                    n = 0,
-                    l = 0,
-                    f = 0,
-                    s = 0,
-                    h = 0;
-                if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
-                        f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
-                    }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
-                    var u = (e.c.width(), jQuery(window).height());
-                    if (void 0 != e.fullScreenOffsetContainer) {
-                        var c = e.fullScreenOffsetContainer.split(",");
-                        if (c) jQuery.each(c, function(e, i) {
-                            u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
-                        }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
-                    }
-                    f = u
-                } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
-                e.c.closest(".rev_slider_wrapper").css({
-                    height: f
-                })
-            } catch (d) {
-                console.log("Failure at Presize of Slider:" + d)
-            }
-        }; /*]]>*/
-    </script>
-    <script>
-        (function(body) {
-            'use strict';
-            body.className = body.className.replace(/\btribe-no-js\b/, 'tribe-js');
-        })(document.body);
-    </script>
-    <script>
-        var tribe_l10n_datatables = {
-            "aria": {
-                "sort_ascending": ": activate to sort column ascending",
-                "sort_descending": ": activate to sort column descending"
+	<script type='text/javascript' src='js/jquery/jquery.js'></script>
+    <script type='text/javascript' src='js/jquery/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='plugins/goodlayers-core/plugins/combine/script.js'></script>
+    <script type='text/javascript'>
+        var gdlr_core_pbf = {
+            "admin": "",
+            "video": {
+                "width": "640",
+                "height": "360"
             },
-            "length_menu": "Show _MENU_ entries",
-            "empty_table": "No data available in table",
-            "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-            "info_empty": "Showing 0 to 0 of 0 entries",
-            "info_filtered": "(filtered from _MAX_ total entries)",
-            "zero_records": "No matching records found",
-            "search": "Search:",
-            "all_selected_text": "All items on this page were selected. ",
-            "select_all_link": "Select all pages",
-            "clear_selection": "Clear Selection.",
-            "pagination": {
-                "all": "All",
-                "next": "Next",
-                "previous": "Previous"
-            },
-            "select": {
-                "rows": {
-                    "0": "",
-                    "_": ": Selected %d rows",
-                    "1": ": Selected 1 row"
-                }
-            },
-            "datepicker": {
-                "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                "dayNamesMin": ["S", "M", "T", "W", "T", "F", "S"],
-                "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                "monthNamesShort": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                "monthNamesMin": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                "nextText": "Next",
-                "prevText": "Prev",
-                "currentText": "Today",
-                "closeText": "Done",
-                "today": "Today",
-                "clear": "Clear"
-            }
-        };
-        var tribe_system_info = {
-            "sysinfo_optin_nonce": "a32c675aaa",
-            "clipboard_btn_text": "Copy to clipboard",
-            "clipboard_copied_text": "System info copied",
-            "clipboard_fail_text": "Press \"Cmd + C\" to copy"
+            "ajax_url": "#"
         };
     </script>
-
-    <script type="text/javascript">
-        function revslider_showDoubleJqueryError(sliderID) {
-            var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
-            errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
-            errorMessage += "<br><br> To fix it you can:<br>&nbsp;&nbsp;&nbsp; 1. In the Slider Settings -> Troubleshooting set option:  <strong><b>Put JS Includes To Body</b></strong> option to true.";
-            errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
-            errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>";
-            jQuery(sliderID).show().html(errorMessage);
-        }
+    <script type='text/javascript' src='plugins/goodlayers-core/include/js/page-builder.js'></script>
+    <script type='text/javascript' src='js/jquery/ui/effect.min.js'></script>
+    <script type='text/javascript'>
+        var kingster_script_core = {
+            "home_url": "index.html"
+        };
     </script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/plugins/combine/script.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/include/js/page-builder.js') }}"></script>
-
-    <script type='text/javascript' src="{{ asset('assets/js/jquery/ui/effect.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/js/plugins.min.js') }}"></script>
-	<script>
-	    var htmlDiv = document.getElementById("rs-plugin-settings-inline-css");
-	    var htmlDivCss = "";
-	    if (htmlDiv) {
-	        htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
-	    } else {
-	        var htmlDiv = document.createElement("div");
-	        htmlDiv.innerHTML = "<style>" + htmlDivCss + "</style>";
-	        document.getElementsByTagName("head")[0].appendChild(htmlDiv.childNodes[0]);
-	    }
-	</script>
-	<script type="text/javascript">
-	    /*<![CDATA[*/
-	    if (setREVStartSize !== undefined) setREVStartSize({
-	        c: '#rev_slider_1_1',
-	        gridwidth: [1380],
-	        gridheight: [713],
-	        sliderLayout: 'auto'
-	    });
-	    var revapi1, tpj;
-	    (function() {
-	        if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener("DOMContentLoaded", onLoad);
-	        else onLoad();
-
-	        function onLoad() {
-	            if (tpj === undefined) {
-	                tpj = jQuery;
-	                if ("off" == "on") tpj.noConflict();
-	            }
-	            if (tpj("#rev_slider_1_1").revolution == undefined) {
-	                revslider_showDoubleJqueryError("#rev_slider_1_1");
-	            } else {
-	                revapi1 = tpj("#rev_slider_1_1").show().revolution({
-	                    sliderType: "standard",
-	                    jsFileLocation: "//demo.goodlayers.com/kingster/wp-content/plugins/revslider/public/assets/js/",
-	                    sliderLayout: "auto",
-	                    dottedOverlay: "none",
-	                    delay: 9000,
-	                    navigation: {
-	                        keyboardNavigation: "off",
-	                        keyboard_direction: "horizontal",
-	                        mouseScrollNavigation: "off",
-	                        mouseScrollReverse: "default",
-	                        onHoverStop: "off",
-	                        touch: {
-	                            touchenabled: "on",
-	                            touchOnDesktop: "off",
-	                            swipe_threshold: 75,
-	                            swipe_min_touches: 1,
-	                            swipe_direction: "horizontal",
-	                            drag_block_vertical: false
-	                        },
-	                        arrows: {
-	                            style: "uranus",
-	                            enable: true,
-	                            hide_onmobile: true,
-	                            hide_under: 1500,
-	                            hide_onleave: true,
-	                            hide_delay: 200,
-	                            hide_delay_mobile: 1200,
-	                            tmp: '',
-	                            left: {
-	                                h_align: "left",
-	                                v_align: "center",
-	                                h_offset: 20,
-	                                v_offset: 0
-	                            },
-	                            right: {
-	                                h_align: "right",
-	                                v_align: "center",
-	                                h_offset: 20,
-	                                v_offset: 0
-	                            }
-	                        },
-	                        bullets: {
-	                            enable: true,
-	                            hide_onmobile: false,
-	                            hide_over: 1499,
-	                            style: "uranus",
-	                            hide_onleave: true,
-	                            hide_delay: 200,
-	                            hide_delay_mobile: 1200,
-	                            direction: "horizontal",
-	                            h_align: "center",
-	                            v_align: "bottom",
-	                            h_offset: 0,
-	                            v_offset: 30,
-	                            space: 7,
-	                            tmp: '<span class="tp-bullet-inner"></span>'
-	                        }
-	                    },
-	                    visibilityLevels: [1240, 1024, 778, 480],
-	                    gridwidth: 1380,
-	                    gridheight: 713,
-	                    lazyType: "none",
-	                    shadow: 0,
-	                    spinner: "off",
-	                    stopLoop: "off",
-	                    stopAfterLoops: -1,
-	                    stopAtSlide: -1,
-	                    shuffle: "off",
-	                    autoHeight: "off",
-	                    disableProgressBar: "on",
-	                    hideThumbsOnMobile: "off",
-	                    hideSliderAtLimit: 0,
-	                    hideCaptionAtLimit: 0,
-	                    hideAllCaptionAtLilmit: 0,
-	                    debugMode: false,
-	                    fallbacks: {
-	                        simplifyAll: "off",
-	                        nextSlideOnWindowFocus: "off",
-	                        disableFocusListener: false,
-	                    }
-	                });
-	            };
-	        };
-	    }()); /*]]>*/
-	</script>
+    <script type='text/javascript' src='js/plugins.min.js'></script>
 </body>
 </html>
