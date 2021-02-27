@@ -16,6 +16,7 @@ class CreateAdminUserSeeder extends Seeder
             'name' => 'Guru Super Admin',
             'email' => 'superadmin@guru.com',
             'password' => Hash::make('admin123'),
+            'type' => 'superadmin',
         ]);
 
         $role = Role::create(['name' => 'Super Admin']);
@@ -27,6 +28,7 @@ class CreateAdminUserSeeder extends Seeder
             'name' => 'Guru Admin',
             'email' => 'admin@guru.com',
             'password' => Hash::make('admin123'),
+            'type' => 'admin',
         ]);
         $roleadmin = Role::create(['name' => 'Admin']);
         $adminuser->assignRole([$roleadmin->id]);

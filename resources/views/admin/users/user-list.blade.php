@@ -32,7 +32,6 @@
                                 <th style="width: 10px">#</th>
                                 <th>User Name</th>
                                 <th>User Email</th>
-                                <th>Mobile</th>
                                 <th>User Role</th>
                                 <th>Status</th>
                                 <th>Updated</th>
@@ -45,7 +44,6 @@
                               <td>{{$key+1}}.</td>
                               <td>{{ $value->name }}</td>
                               <td>{{ $value->email }}</td>
-                              <td>{{$value->mobile}}</td>
                               <td>
                                 @if(!empty($value->getRoleNames()))
                                     @foreach($value->getRoleNames() as $v)
