@@ -114,6 +114,8 @@ class CreateAdminUserSeeder extends Seeder
             'created_by' => 2,
         ]);
         $rolestudent = Role::create(['name' => 'Student']);
+        $studentpermissions = ['97'];
+        $rolestudent->syncPermissions($studentpermissions);
         $studentuser->assignRole([$rolestudent->id]);
         // Role::create(['name' => 'Student']);
     }

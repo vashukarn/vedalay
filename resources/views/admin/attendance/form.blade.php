@@ -32,9 +32,11 @@
                 'subject' : {{ $subject_info->id }},
                 'level' : {{ $subject_info->id }},
                 'attendance' : attendance,
+                'holiday_reason' : $('#holiday_reason').val(),
+                'holiday' : '1',
             },
             success: function (data) {
-                if(data == "Attendance Already Marked"){
+                if(data == "Attendance Updated Successfully"){
                     alert(data);
                 }
                 else if(data.id){
@@ -64,7 +66,8 @@
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
                 'level' : {{ $subject_info->id }},
-                'holiday_reason' : $("#holiday_reason").val(),
+                'holiday_reason' : $('#holiday_reason').val(),
+                'holiday' : '0',
                 'attendance' : attendance,
             },
             success: function (data) {

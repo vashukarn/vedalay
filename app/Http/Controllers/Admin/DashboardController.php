@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdvanceSalary;
+use App\Models\Attendance;
 use App\Models\Feature;
 use App\Models\Information;
 use App\Models\Salary;
@@ -57,6 +58,9 @@ class DashboardController extends Controller
             $daycount = ($lastdate->diff($now)->days < 1)
                 ? 'Today'
                 : $lastdate->diffForHumans($now);
+        }
+        if($type == 'student'){
+            $attendance = Attendance::all();
         }
         if($type == 'admin' || $type == 'superadmin'){
             $usertotal = User::selectRaw('count(*) as total')

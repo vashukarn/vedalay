@@ -16,7 +16,7 @@ class ResultController extends Controller
 {
     public function __construct(Result $result)
     {
-        $this->middleware(['permission:result-list|result-create|result-edit|result-delete'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:result-list|result-create|result-edit|result-delete'], ['only' => ['index']]);
         $this->middleware(['permission:result-create'], ['only' => ['create', 'store']]);
         $this->middleware(['permission:result-edit'], ['only' => ['edit', 'update']]);
         $this->middleware(['permission:result-delete'], ['only' => ['destroy']]);
@@ -24,7 +24,12 @@ class ResultController extends Controller
     }
     protected function getresult($request)
     {
-        $query = $this->result->orderBy('id', 'DESC');
+        if(Auth::user()->type == 'student'){
+            $query = $this->result->orderBy('id', 'DESC')->where('student_id', Auth::user()->id)->where('publish_status', '1');
+        }
+        else{
+            $query = $this->result->orderBy('id', 'DESC');
+        }
         if ($request->keyword) {
             $keyword = $request->keyword;
             $query = $query->where('title', $keyword);
