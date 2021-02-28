@@ -75,25 +75,36 @@ class TeacherController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' =>  htmlentities($request->name),
+                'email' => htmlentities($request->email),
                 'type' => 'teacher',
                 'password' => Hash::make($request->password),
-                'publish_status' => $request->publish_status,
+                'publish_status' => htmlentities($request->publish_status),
+                'image' => htmlentities($request->image ?? null),
+                'phone' => htmlentities($request->phone),
+                'short_name' => htmlentities($request->short_name),
+                'salary' => htmlentities($request->salary),
+                'subject' => ($request->subject),
+                'dob' => htmlentities($request->dob),
+                'aadhar_number' => htmlentities($request->aadhar_number),
+                'gender' => htmlentities($request->gender),
+                'current_address' => htmlentities($request->current_address),
+                'permanent_address' => htmlentities($request->permanent_address),
                 'created_by' => Auth::user()->id,
             ]);
             Teacher::create([
                 'user_id' => $user->id,
-                'image' => $request->image ?? null,
-                'phone' => $request->phone,
-                'short_name' => $request->short_name,
-                'salary' => $request->salary,
+                'publish_status' => htmlentities($request->publish_status),
+                'image' => htmlentities($request->image) ?? null,
+                'phone' => htmlentities($request->phone),
+                'short_name' => htmlentities($request->short_name),
+                'salary' => htmlentities($request->salary),
                 'subject' => $request->subject,
-                'dob' => $request->dob,
-                'aadhar_number' => $request->aadhar_number,
-                'gender' => $request->gender,
-                'current_address' => $request->current_address,
-                'permanent_address' => $request->permanent_address,
+                'dob' => htmlentities($request->dob),
+                'aadhar_number' => htmlentities($request->aadhar_number),
+                'gender' => htmlentities($request->gender),
+                'current_address' => htmlentities($request->current_address),
+                'permanent_address' => htmlentities($request->permanent_address),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
@@ -151,22 +162,22 @@ class TeacherController extends Controller
         DB::beginTransaction();
         try {
             $user = User::find($teacher_info->user_id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->publish_status = $request->publish_status;
+            $user->name =htmlentities($request->name);
+            $user->email =htmlentities($request->email);
+            $user->publish_status =htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $status = $user->save();
             $teacher = teacher::find($teacher_info->id);
-            $teacher->phone = $request->phone;
-            $teacher->salary = $request->salary;
-            $teacher->dob = $request->dob;
-            $teacher->aadhar_number = $request->aadhar_number;
-            $teacher->gender = $request->gender;
-            $teacher->current_address = $request->current_address;
-            $teacher->permanent_address = $request->permanent_address;
+            $teacher->phone =htmlentities($request->phone);
+            $teacher->salary =htmlentities($request->salary);
+            $teacher->dob =htmlentities($request->dob);
+            $teacher->aadhar_number =htmlentities($request->aadhar_number);
+            $teacher->gender =htmlentities($request->gender);
+            $teacher->current_address =htmlentities($request->current_address);
+            $teacher->permanent_address =htmlentities($request->permanent_address);
             $teacher->updated_by = Auth::user()->id;
             if(isset($request->image)){
-                $teacher['image'] = $request->image;
+                $teacher['image'] =htmlentities($request->image);
             }
             $status = $teacher->save();
             DB::commit();

@@ -71,11 +71,11 @@ class SubjectController extends Controller
         DB::beginTransaction();
         try {
             Subject::create([
-                'title' => $request->title,
-                'level_id' => $request->level,
-                'type' => $request->type,
-                'value' => $request->value,
-                'publish_status' => $request->publish_status,
+                'title' => htmlentities($request->title),
+                'level_id' => htmlentities($request->level),
+                'type' => htmlentities($request->type),
+                'value' => htmlentities($request->value),
+                'publish_status' => htmlentities($request->publish_status),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
@@ -132,11 +132,11 @@ class SubjectController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $subject_info->title = $request->title;
-            $subject_info->type = $request->type;
-            $subject_info->value = $request->value;
-            $subject_info->publish_status = $request->publish_status;
-            $subject_info->level_id = $request->level;
+            $subject_info->title = htmlentities($request->title);
+            $subject_info->type = htmlentities($request->type);
+            $subject_info->value = htmlentities($request->value);
+            $subject_info->publish_status = htmlentities($request->publish_status);
+            $subject_info->level_id = htmlentities($request->level);
             $subject_info->updated_by = Auth::user()->id;
             $subject_info->save();
             DB::commit();

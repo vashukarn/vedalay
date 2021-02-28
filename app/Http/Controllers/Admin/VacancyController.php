@@ -58,11 +58,11 @@ class VacancyController extends Controller
         DB::beginTransaction();
         try {
             Vacancy::create([
-                'job_role' => $request->job_role,
-                'publish_status' => $request->publish_status,
-                'description' => $request->description,
-                'salary' => $request->salary ?? null,
-                'required_no' => $request->required_no ?? 1,
+                'job_role' => htmlentities($request->job_role),
+                'publish_status' => htmlentities($request->publish_status),
+                'description' => htmlentities($request->description),
+                'salary' => htmlentities($request->salary ?? null),
+                'required_no' => htmlentities($request->required_no ?? 1),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
@@ -109,11 +109,11 @@ class VacancyController extends Controller
         DB::beginTransaction();
         try {
             $vacancy = Vacancy::find($id);
-            $vacancy->job_role = $request->job_role;
-            $vacancy->description = $request->description;
-            $vacancy->salary = $request->salary ?? null;
-            $vacancy->required_no = $request->required_no ?? 1;
-            $vacancy->publish_status = $request->publish_status;
+            $vacancy->job_role = htmlentities($request->job_role);
+            $vacancy->description = htmlentities($request->description);
+            $vacancy->salary = htmlentities($request->salary ?? null);
+            $vacancy->required_no = htmlentities($request->required_no ?? 1);
+            $vacancy->publish_status = htmlentities($request->publish_status);
             $vacancy->updated_by = Auth::user()->id;
             $status = $vacancy->save();
             DB::commit();
