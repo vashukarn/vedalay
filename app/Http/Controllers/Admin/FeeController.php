@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\FeeAdditionMail;
 use App\Models\Fee;
 use App\Models\Level;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class FeeController extends Controller
 {
@@ -83,15 +86,29 @@ class FeeController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
-            'month' => 'required|required|numeric|in:1,2,3,4,5,6,7,8,9,10,11,12',
+            'student' => 'required',
+            'tuition_fee' => 'nullable|numeric',
+            'exam_fee' => 'nullable|numeric',
+            'transport_fee' => 'nullable|numeric',
+            'stationery_fee' => 'nullable|numeric',
+            'sports_fee' => 'nullable|numeric',
+            'club_fee' => 'nullable|numeric',
+            'hostel_fee' => 'nullable|numeric',
+            'laundry_fee' => 'nullable|numeric',
+            'education_tax' => 'nullable|numeric',
+            'eca_fee' => 'nullable|numeric',
+            'late_fine' => 'nullable|numeric',
+            'extra_fee' => 'nullable|numeric',
             'level' => 'required',
         ]);
         DB::beginTransaction();
         try {
             $timestamp = strtotime(date('Y-m-d'));
             foreach ($request->student as $value) {
-                
-                $fee = [
+                Fee::create([
+                    'title' => $request->title,
+                    'created_by' => Auth::user()->id ,
+                    'added_by' => 'Fee Management',
                     'tuition_fee' => $request->tuition_fee,
                     'exam_fee' => $request->exam_fee,
                     'transport_fee' => $request->transport_fee,
@@ -104,30 +121,15 @@ class FeeController extends Controller
                     'eca_fee' => $request->eca_fee,
                     'late_fine' => $request->late_fine,
                     'extra_fee' => $request->extra_fee,
-                    'total_amount' => 
-                    $request->tuition_fee +
-                    $request->exam_fee +
-                    $request->transport_fee +
-                    $request->stationery_fee +
-                    $request->sports_fee +
-                    $request->club_fee +
-                    $request->hostel_fee +
-                    $request->laundry_fee +
-                    $request->education_tax +
-                    $request->eca_fee +
-                    $request->late_fine +
-                    $request->extra_fee,
-                ];
-                Fee::create([
-                    'title' => $request->title,
-                    'month' => $request->month,
-                    'created_by' => Auth::user()->id,
-                    'added_by' => 'Fee Management',
-                    'fees' => $fee,
+                    'total_amount' => $request->tuition_fee + $request->exam_fee + $request->transport_fee + $request->stationery_fee + $request->sports_fee + $request->club_fee + $request->hostel_fee + $request->laundry_fee + $request->education_tax + $request->eca_fee + $request->late_fine + $request->extra_fee,
                     'student_id' => $value,
                     'unique' => $timestamp,
                     'level_id' => $request->level,
                 ]);
+                $student = User::find($value);
+                Mail::to($student->email)->send(new FeeAdditionMail($value));
+
+
             }
             DB::commit();
             $request->session()->flash('success', 'Fee added successfully.');

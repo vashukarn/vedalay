@@ -7,13 +7,28 @@ use App\Models\AppSetting;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Fee;
 use App\Models\HomePage;
 use App\Models\Slider;
+use App\Models\Student;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
+    public function mail()
+    {
+        $fee = Fee::select('title', 'tuition_fee', 'exam_fee', 'transport_fee',
+         'stationery_fee', 'sports_fee', 'club_fee', 'hostel_fee', 'laundry_fee', 
+         'education_tax', 'eca_fee', 'late_fine', 'extra_fee', 'total_amount')->first();
+        $student = User::select('name')->first();
+        $data = [
+            'student_info' => $student,
+            'fee_info' => $fee,
+        ];
+        return view('mail.feeadd')->with($data);
+    }
     public function home()
     {
         $sliders = Slider::where('publish_status', '1')->get();

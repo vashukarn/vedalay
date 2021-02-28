@@ -32,7 +32,7 @@
                             <div class="card-tools">
                                 @can('fee-create')
                                 <a href="{{ route('fee.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Add New fee</a>
+                                    <i class="fa fa-plus"></i> Add New Fee</a>
                                 @endcan
                             </div>
                         </div>
@@ -44,7 +44,6 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Title</th>
-                                <th>Month</th>
                                 <th>Level</th>
                                 <th>Amount</th>
                                 <th>Added By</th>
@@ -58,26 +57,8 @@
                             <tr>
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->title }}</td>
-                            <td>
-                                <span class="badge badge-primary">
-                                    @if(@$value->month  == '1') January
-                                    @elseif(@$value->month  == '2') February
-                                    @elseif(@$value->month  == '3') March
-                                    @elseif(@$value->month  == '4') April
-                                    @elseif(@$value->month  == '5') May
-                                    @elseif(@$value->month  == '6') June
-                                    @elseif(@$value->month  == '7') July
-                                    @elseif(@$value->month  == '8') August
-                                    @elseif(@$value->month  == '9') September
-                                    @elseif(@$value->month  == '10') October
-                                    @elseif(@$value->month  == '11') November
-                                    @elseif(@$value->month  == '12') December
-                                    @else Not Defined
-                                    @endif
-                                </span>
-                            </td>
                             <td>{{ $levels[@$value->level_id] }}</td>
-                            <td>{{ @$value->fees['total_amount'] }}</td>
+                            <td>{{ @$value->total_amount }}</td>
                             <td>{{ @$value->creator->name }}</td>
                             <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             <td>

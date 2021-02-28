@@ -173,7 +173,7 @@
             Number($('#club_fee').val()) +
             Number($('#hostel_fee').val()) +
             Number($('#laundry_fee').val()) +
-            Number($('#education_tac').val()) +
+            Number($('#education_tax').val()) +
             Number($('#eca_fee').val()) +
             Number($('#late_fine').val()) +
             Number($('#extra_fee').val());
@@ -289,8 +289,8 @@
                                     {{ Form::number('fee_details[laundry_fee]', @$feepayment_info->fee_details['laundry_fee'], ['id' => 'laundry_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[education_tac]', 'Education Tax :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[education_tac]', @$feepayment_info->fee_details['education_tac'], ['id' => 'education_tac','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('fee_details[education_tax]', 'Education Tax :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('fee_details[education_tax]', @$feepayment_info->fee_details['education_tax'], ['id' => 'education_tax','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                     {{ Form::label('fee_details[eca_fee]', 'ECA Fee :', ['class' => 'ml-4 col-sm-2']) }}
                                     {{ Form::number('fee_details[eca_fee]', @$feepayment_info->fee_details['eca_fee'], ['id' => 'eca_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
