@@ -51,6 +51,24 @@
         });
 
     });
+
+    $("#calculate").click(function() {
+        var total = 
+            Number($('#tuition_fee').val()) +
+            Number($('#exam_fee').val()) +
+            Number($('#transport_fee').val()) +
+            Number($('#stationery_fee').val()) +
+            Number($('#sports_fee').val()) +
+            Number($('#club_fee').val()) +
+            Number($('#hostel_fee').val()) +
+            Number($('#laundry_fee').val()) +
+            Number($('#education_tax').val()) +
+            Number($('#eca_fee').val()) +
+            Number($('#late_fine').val()) +
+            Number($('#extra_fee').val());
+        $("#total_amount").val(total);
+    });
+
     </script>
 
 @endpush
@@ -84,16 +102,6 @@
                                 <div class="col-sm-9">
                                     {{ Form::text('title', @$fee_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Title','style' => 'width:80%']) }}
                                     @error('title')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('month') ? 'has-error' : '' }}">
-                                {{ Form::label('month', 'Month :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::selectMonth('month', @$month, ['id' => 'month', 'required' => true, 'placeholder' => 'Select Month', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
-                                    @error('month')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -199,11 +207,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('eduaction_tax') ? 'has-error' : '' }}">
-                                {{ Form::label('eduaction_tax', 'Eduaction Tax:', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('education_tax') ? 'has-error' : '' }}">
+                                {{ Form::label('education_tax', 'Eduaction Tax:', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('eduaction_tax', @$fee_info->eduaction_tax, ['class' => 'form-control', 'id' => 'eduaction_tax', 'placeholder' => 'Eduaction Tax','style' => 'width:80%']) }}
-                                    @error('eduaction_tax')
+                                    {{ Form::number('education_tax', @$fee_info->education_tax, ['class' => 'form-control', 'id' => 'education_tax', 'placeholder' => 'Eduaction Tax','style' => 'width:80%']) }}
+                                    @error('education_tax')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -236,6 +244,19 @@
                                     @error('extra_fee')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-group row {{ $errors->has('total_amount') ? 'has-error' : '' }}">
+                                {{ Form::label('total_amount', 'Total Amount :', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="total_amount" name="total_amount" placeholder="Total Amount">
+                                        <div class="input-group-append">
+                                          <button class="btn btn-outline-secondary" id="calculate" type="button">Calculate</button>
+                                        </div>
+                                      </div>
                                 </div>
                             </div>
 

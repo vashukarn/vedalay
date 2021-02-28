@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FeeController;
+use App\Http\Controllers\Admin\FeePaymentController;
 use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\LevelController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VacancyController;
+use App\Http\Controllers\Front\FrontEndController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('feepayment', FeePaymentController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('profile', ProfileController::class);
     Route::get('profiledetail', [UserController::class, 'profiledetail'])->name('profiledetail')->middleware('password.confirm');
@@ -91,6 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::post('getResultData', [ResultController::class, 'getResultData'])->name('getResultData');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
     Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');
+    Route::post('getFeeDetails', [FeePaymentController::class, 'getFeeDetails'])->name('getFeeDetails');
     Route::resource('salary', SalaryController::class);
     Route::resource('advancesalary', AdvanceSalaryController::class);
     Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');
