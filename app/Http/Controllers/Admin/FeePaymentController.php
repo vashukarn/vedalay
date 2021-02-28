@@ -66,6 +66,7 @@ class FeePaymentController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'start_year' => 'required|numeric|unique:feepayments|min:2021|max:2030|different:end_year',
             'end_year' => 'required|numeric|unique:feepayments|min:2022|max:2031',

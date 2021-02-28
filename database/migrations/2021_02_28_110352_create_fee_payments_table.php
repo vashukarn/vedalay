@@ -21,7 +21,6 @@ class CreateFeePaymentsTable extends Migration
             $table->string('bank_ifsc')->nullable();
             $table->string('bank_accountno')->nullable();
             $table->string('transfer_phone')->nullable();
-            $table->string('bank_name')->nullable();
             $table->string('transfer_date')->nullable();
             $table->string('card_type')->nullable();
             $table->string('remarks')->nullable();

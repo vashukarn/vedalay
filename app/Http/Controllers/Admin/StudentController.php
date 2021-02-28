@@ -137,7 +137,10 @@ class StudentController extends Controller
             abort(404);
         }
         $classes = Level::all();
-        $session = Session::pluck('title','title');
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $session[$value->id] = $value->start_year.' - ' .$value->end_year;
+        }
         foreach ($classes as $value) {
             if(isset($value->section)){
                 $levels[$value->id] = $value->standard.' - Section: ' .$value->section;

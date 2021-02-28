@@ -16,7 +16,6 @@ class FeePayment extends Model
         'bank_ifsc',
         'bank_accountno',
         'transfer_phone',
-        'bank_name',
         'transfer_date',
         'card_type',
         'remarks',
