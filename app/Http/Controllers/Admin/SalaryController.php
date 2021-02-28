@@ -104,19 +104,19 @@ class SalaryController extends Controller
                         $request->advance_salary
                     ];
                     Salary::create([
-                        'title' => $request->title,
-                        'month' => $request->month,
-                        'user_id' => $request->user,
+                        'title' => htmlentities($request->title),
+                        'month' => htmlentities($request->month),
+                        'user_id' => htmlentities($request->user),
                         'created_by' => Auth::user()->id,
                         'added_by' => 'Salary Management',
                         'salary' => $salary,
-                        'level_id' => $request->level,
+                        'level_id' => htmlentities($request->level),
                     ]);
                     if(isset($request->advance_salary)){
                         AdvanceSalary::create([
                             'user_id' => $request->user,
                             'created_by' => Auth::user()->id,
-                            'amount' => $request->advance_salary,
+                            'amount' => $request->advance_salary ,
                         ]);
                     }
             DB::commit();

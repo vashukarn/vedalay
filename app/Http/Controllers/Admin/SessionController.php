@@ -52,8 +52,8 @@ class SessionController extends Controller
         DB::beginTransaction();
         try {
                 Session::create([
-                    'start_year' => $request->start_year,
-                    'end_year' => $request->end_year,
+                    'start_year' => htmlentities($request->start_year),
+                    'end_year' => htmlentities($request->end_year),
                     'created_by' => Auth::user()->id,
                 ]);
             DB::commit();
@@ -91,8 +91,8 @@ class SessionController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $session_info->start_year = $request->start_year;
-            $session_info->end_year = $request->end_year;
+            $session_info->start_year = htmlentities($request->start_year);
+            $session_info->end_year = htmlentities($request->end_year);
             $session_info->updated_by = Auth::user()->id;
             $session_info->save();
             DB::commit();

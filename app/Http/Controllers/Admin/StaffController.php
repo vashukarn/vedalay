@@ -65,24 +65,24 @@ class StaffController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' => htmlentities($request->name),
+                'email' => htmlentities($request->email),
                 'type' => 'staff',
-                'password' => Hash::make($request->password),
-                'publish_status' => $request->publish_status,
+                'password' => Hash::make(htmlentities($request->password)),
+                'publish_status' => htmlentities($request->publish_status),
                 'created_by' => Auth::user()->id,
             ]);
             Staff::create([
                 'user_id' => $user->id,
-                'image' => $request->image ?? null,
-                'phone' => $request->phone,
-                'dob' => $request->dob,
-                'position' => $request->position,
-                'salary' => $request->salary,
-                'aadhar_number' => $request->aadhar_number,
-                'gender' => $request->gender,
-                'current_address' => $request->current_address,
-                'permanent_address' => $request->permanent_address,
+                'image' => htmlentities($request->image ?? null),
+                'phone' => htmlentities($request->phone),
+                'dob' => htmlentities($request->dob),
+                'position' => htmlentities($request->position),
+                'salary' => htmlentities($request->salary),
+                'aadhar_number' => htmlentities($request->aadhar_number),
+                'gender' => htmlentities($request->gender),
+                'current_address' => htmlentities($request->current_address),
+                'permanent_address' => htmlentities($request->permanent_address),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
@@ -133,23 +133,23 @@ class StaffController extends Controller
         DB::beginTransaction();
         try {
             $user = User::find($staff_info->user_id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->publish_status = $request->publish_status;
+            $user->name = htmlentities($request->name);
+            $user->email = htmlentities($request->email);
+            $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $user->save();
             $staff = Staff::find($staff_info->id);
-            $staff->phone = $request->phone;
-            $staff->salary = $request->salary;
-            $staff->dob = $request->dob;
-            $staff->position = $request->position;
-            $staff->aadhar_number = $request->aadhar_number;
-            $staff->gender = $request->gender;
-            $staff->current_address = $request->current_address;
-            $staff->permanent_address = $request->permanent_address;
+            $staff->phone = htmlentities($request->phone);
+            $staff->salary = htmlentities($request->salary);
+            $staff->dob = htmlentities($request->dob);
+            $staff->position = htmlentities($request->position);
+            $staff->aadhar_number = htmlentities($request->aadhar_number);
+            $staff->gender = htmlentities($request->gender);
+            $staff->current_address = htmlentities($request->current_address);
+            $staff->permanent_address = htmlentities($request->permanent_address);
             $staff->updated_by = Auth::user()->id;
             if(isset($request->image)){
-                $staff['image'] = $request->image;
+                $staff['image'] = htmlentities($request->image);
             }
             $staff->save();
             DB::commit();

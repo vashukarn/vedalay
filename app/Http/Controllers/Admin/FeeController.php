@@ -92,31 +92,31 @@ class FeeController extends Controller
             foreach ($request->student as $value) {
                 
                 $fee = [
-                    'tuition_fee' => $request->tuition_fee,
-                    'exam_fee' => $request->exam_fee,
-                    'transport_fee' => $request->transport_fee,
-                    'stationery_fee' => $request->stationery_fee,
-                    'sports_fee' => $request->sports_fee,
-                    'club_fee' => $request->club_fee,
-                    'hostel_fee' => $request->hostel_fee,
-                    'laundry_fee' => $request->laundry_fee,
-                    'education_tax' => $request->education_tax,
-                    'eca_fee' => $request->eca_fee,
-                    'late_fine' => $request->late_fine,
-                    'extra_fee' => $request->extra_fee,
+                    'tuition_fee' => htmlentities($request->tuition_fee),
+                    'exam_fee' => htmlentities($request->exam_fee),
+                    'transport_fee' => htmlentities($request->transport_fee),
+                    'stationery_fee' => htmlentities($request->stationery_fee),
+                    'sports_fee' => htmlentities($request->sports_fee),
+                    'club_fee' => htmlentities($request->club_fee),
+                    'hostel_fee' => htmlentities($request->hostel_fee),
+                    'laundry_fee' => htmlentities($request->laundry_fee),
+                    'education_tax' => htmlentities($request->education_tax),
+                    'eca_fee' => htmlentities($request->eca_fee),
+                    'late_fine' => htmlentities($request->late_fine),
+                    'extra_fee' => htmlentities($request->extra_fee),
                     'total_amount' => 
-                    $request->tuition_fee +
-                    $request->exam_fee +
-                    $request->transport_fee +
-                    $request->stationery_fee +
-                    $request->sports_fee +
-                    $request->club_fee +
-                    $request->hostel_fee +
-                    $request->laundry_fee +
-                    $request->education_tax +
-                    $request->eca_fee +
-                    $request->late_fine +
-                    $request->extra_fee,
+                    htmlentities($request->tuition_fee) +
+                    htmlentities($request->exam_fee) +
+                    htmlentities($request->transport_fee) +
+                    htmlentities($request->stationery_fee) +
+                    htmlentities($request->sports_fee) +
+                    htmlentities($request->club_fee) +
+                    htmlentities($request->hostel_fee) +
+                    htmlentities($request->laundry_fee) +
+                    htmlentities($request->education_tax) +
+                    htmlentities($request->eca_fee) +
+                    htmlentities($request->late_fine) +
+                    htmlentities($request->extra_fee),
                 ];
                 Fee::create([
                     'title' => $request->title,

@@ -135,11 +135,11 @@ class ExamController extends Controller
         DB::beginTransaction();
         try {
             exam::create([
-                'job_role' => $request->job_role,
-                'publish_status' => $request->publish_status,
-                'description' => $request->description,
-                'salary' => $request->salary ?? null,
-                'required_no' => $request->required_no ?? 1,
+                'job_role' => htmlentities($request->job_role),
+                'publish_status' => htmlentities($request->publish_status),
+                'description' => htmlentities($request->description),
+                'salary' => htmlentities($request->salary ?? null),
+                'required_no' => htmlentities($request->required_no ?? 1),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
