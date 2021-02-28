@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CasteCategory;
 use App\Models\Level;
-use App\Models\LogActivity;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\User;
@@ -85,35 +83,35 @@ class StudentController extends Controller
         DB::beginTransaction();
         try {
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' => htmlentities($request->name),
+                'email' => htmlentities($request->email),
                 'type' => 'student',
                 'password' => Hash::make($request->password),
-                'publish_status' => $request->publish_status,
+                'publish_status' => htmlentities($request->publish_status),
                 'created_by' => Auth::user()->id,
             ]);
             $student = Student::create([
                 'user_id' => $user->id,
-                'image' => $request->image ?? null,
-                'phone' => $request->phone,
-                'dob' => $request->dob,
-                'level_id' => $request->level,
-                'session' => $request->session,
-                'aadhar_number' => $request->aadhar_number,
-                'blood_group' => $request->blood_group,
-                'gender' => $request->gender,
-                'caste_category' => $request->caste_category,
-                'disability' => $request->disability,
-                'fathername' => $request->fathername,
-                'fatheroccupation' => $request->fatheroccupation,
-                'fatherincome' => $request->fatherincome,
-                'mothername' => $request->mothername,
-                'motheroccupation' => $request->motheroccupation,
-                'motherincome' => $request->motherincome,
-                'guardian_name' => $request->guardian_name,
-                'guardian_phone' => $request->guardian_phone,
-                'current_address' => $request->current_address,
-                'permanent_address' => $request->permanent_address,
+                'image' => htmlentities($request->image) ?? null,
+                'phone' => htmlentities($request->phone),
+                'dob' => htmlentities($request->dob),
+                'level_id' => htmlentities($request->level),
+                'session' => htmlentities($request->session),
+                'aadhar_number' => htmlentities($request->aadhar_number),
+                'blood_group' => htmlentities($request->blood_group),
+                'gender' => htmlentities($request->gender),
+                'caste_category' => htmlentities($request->caste_category),
+                'disability' => htmlentities($request->disability),
+                'fathername' => htmlentities($request->fathername),
+                'fatheroccupation' => htmlentities($request->fatheroccupation),
+                'fatherincome' => htmlentities($request->fatherincome),
+                'mothername' => htmlentities($request->mothername),
+                'motheroccupation' => htmlentities($request->motheroccupation),
+                'motherincome' => htmlentities($request->motherincome),
+                'guardian_name' => htmlentities($request->guardian_name),
+                'guardian_phone' => htmlentities($request->guardian_phone),
+                'current_address' => htmlentities($request->current_address),
+                'permanent_address' => htmlentities($request->permanent_address),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();

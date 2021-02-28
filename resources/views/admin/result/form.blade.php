@@ -16,27 +16,27 @@
     <script>
         var failed_subjects = [];
         function calculateData() {
-        failed_subjects = [];
-        var marks_obtained = 0;
-        var total_marks = 0;
-        var failedsubjects = $('#failedsubjects');
-            for (let i = 0; i < main_interation.length; i++) {
-                marks_obtained += Number($('#marks_'+main_interation[i].id).val());
-                total_marks += Number($('#full_'+main_interation[i].id).val());
-                if((Number($('#marks_'+main_interation[i].id).val()) < Number($('#pass_'+main_interation[i].id).val()) || ($('#pass_'+main_interation[i].id).val() == 'F'))){
-                    failed_subjects.push({id : main_interation[i].id, name: main_interation[i].name});
+            failed_subjects = [];
+            var marks_obtained = 0;
+            var total_marks = 0;
+            var failedsubjects = $('#failedsubjects');
+                for (let i = 0; i < main_interation.length; i++) {
+                    marks_obtained += Number($('#marks_'+main_interation[i].id).val());
+                    total_marks += Number($('#full_'+main_interation[i].id).val());
+                    if((Number($('#marks_'+main_interation[i].id).val()) < Number($('#pass_'+main_interation[i].id).val()) || ($('#pass_'+main_interation[i].id).val() == 'F'))){
+                        failed_subjects.push({id : main_interation[i].id, name: main_interation[i].name});
+                    }
                 }
-            }
-            failedsubjects.empty();
-            failedsubjects.append("Failed Subjects: ");
-            for (let index = 0; index < failed_subjects.length; index++) {
-                failedsubjects.append(' - '+failed_subjects[index].name);
-            }
-            $('#marks_obtained').val(marks_obtained);
-            $('#total_marks').val(total_marks);
-            $('#percentage').val(Number(marks_obtained)/Number(main_interation.length));
-            $('#sgpa').val(Number(marks_obtained)/(Number(main_interation.length)*9.5));
-            failedsubjects.change();
+                failedsubjects.empty();
+                failedsubjects.append("Failed Subjects: ");
+                for (let index = 0; index < failed_subjects.length; index++) {
+                    failedsubjects.append(' - '+failed_subjects[index].name);
+                }
+                $('#marks_obtained').val(marks_obtained);
+                $('#total_marks').val(total_marks);
+                $('#percentage').val(Number(marks_obtained)/Number(main_interation.length));
+                $('#sgpa').val(Number(marks_obtained)/(Number(main_interation.length)*9.5));
+                failedsubjects.change();
         };
     $(document).ready(function() {
         $('#with').hide();
@@ -54,7 +54,6 @@
         else{
             $('#with').hide();
         }
-
     });
 
     $('#result_form').on('submit', function(e) {
@@ -78,7 +77,6 @@
         }
         senddata.push({ name : 'result', value : tempo });
         senddata.push({ name : 'failedsubject', value : failed_subjects ?? null });
-        console.log(senddata);
 
         $.ajax({
             type: 'POST',

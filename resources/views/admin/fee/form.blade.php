@@ -199,11 +199,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('eduaction_tax') ? 'has-error' : '' }}">
-                                {{ Form::label('eduaction_tax', 'Eduaction Tax:', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('education_tax') ? 'has-error' : '' }}">
+                                {{ Form::label('education_tax', 'Eduaction Tax:', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('eduaction_tax', @$fee_info->eduaction_tax, ['class' => 'form-control', 'id' => 'eduaction_tax', 'placeholder' => 'Eduaction Tax','style' => 'width:80%']) }}
-                                    @error('eduaction_tax')
+                                    {{ Form::number('education_tax', @$fee_info->education_tax, ['class' => 'form-control', 'id' => 'education_tax', 'placeholder' => 'Eduaction Tax','style' => 'width:80%']) }}
+                                    @error('education_tax')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>

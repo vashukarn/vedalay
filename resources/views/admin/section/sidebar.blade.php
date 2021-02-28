@@ -242,6 +242,22 @@
                                 <p>Fee Addition List</p>
                             </a>
                         </li>
+                        @can('feepayment-create')
+                            <li class="nav-item">
+                                <a href="{{ route('feepayment.create') }}"
+                                    class="nav-link  {{ request()->is('admin/feepayment/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Pay Fee</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('feepayment.index') }}"
+                                class="nav-link {{ request()->is('admin/feepayment') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Fee Payments</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endcanany

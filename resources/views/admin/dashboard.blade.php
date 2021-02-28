@@ -190,19 +190,6 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-warning">
-                        <div class="inner" style="color:#fff;">
-                            <h3>Rs. {{ @$advancesalary }}</h3>
-                            <p>Advance Salary</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-rupee-sign"></i>
-                        </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
                 @endhasanyrole
                  
             </div>
