@@ -504,6 +504,12 @@
                         <p>Contact Form</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('newsletter.index') }}" class="nav-link {{ request()->is('newsletter*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa fa-newspaper"></i>
+                        <p>Newsletter Requests</p>
+                    </a>
+                </li>
 
                 <li class="nav-header">APP SETTINGS</li>
                 <li

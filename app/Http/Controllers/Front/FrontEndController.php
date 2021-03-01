@@ -35,7 +35,7 @@ class FrontEndController extends Controller
         $sliders = Slider::where('publish_status', '1')->get();
         $pagedata = HomePage::latest()->first();
         $features = Feature::where('publish_status', '1')->get();
-        // dd($pagedata);
+        // dd($pagedata->newsletter_counters[1]);
         $data = [
             'sliders' => $sliders,
             'page' => $pagedata,

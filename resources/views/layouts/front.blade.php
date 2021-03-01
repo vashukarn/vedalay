@@ -67,9 +67,9 @@
                         <li>
                             <a class="smooth-menu" href="#overview">Overview</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a class="smooth-menu" href="#pricing">Pricing</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a class="smooth-menu" href="#team">Team</a>
                         </li>
