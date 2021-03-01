@@ -103,33 +103,31 @@ class FeeController extends Controller
         ]);
         DB::beginTransaction();
         try {
-            $timestamp = strtotime(date('Y-m-d'));
+            $timestamp = strtotime(date('Y-m-d H:i:s'));
             foreach ($request->student as $value) {
                 Fee::create([
-                    'title' => $request->title,
+                    'title' => htmlentities($request->title),
                     'created_by' => Auth::user()->id ,
                     'added_by' => 'Fee Management',
-                    'tuition_fee' => $request->tuition_fee,
-                    'exam_fee' => $request->exam_fee,
-                    'transport_fee' => $request->transport_fee,
-                    'stationery_fee' => $request->stationery_fee,
-                    'sports_fee' => $request->sports_fee,
-                    'club_fee' => $request->club_fee,
-                    'hostel_fee' => $request->hostel_fee,
-                    'laundry_fee' => $request->laundry_fee,
-                    'education_tax' => $request->education_tax,
-                    'eca_fee' => $request->eca_fee,
-                    'late_fine' => $request->late_fine,
-                    'extra_fee' => $request->extra_fee,
-                    'total_amount' => $request->tuition_fee + $request->exam_fee + $request->transport_fee + $request->stationery_fee + $request->sports_fee + $request->club_fee + $request->hostel_fee + $request->laundry_fee + $request->education_tax + $request->eca_fee + $request->late_fine + $request->extra_fee,
+                    'tuition_fee' => htmlentities($request->tuition_fee),
+                    'exam_fee' => htmlentities($request->exam_fee),
+                    'transport_fee' => htmlentities($request->transport_fee),
+                    'stationery_fee' => htmlentities($request->stationery_fee),
+                    'sports_fee' => htmlentities($request->sports_fee),
+                    'club_fee' => htmlentities($request->club_fee),
+                    'hostel_fee' => htmlentities($request->hostel_fee),
+                    'laundry_fee' => htmlentities($request->laundry_fee),
+                    'education_tax' => htmlentities($request->education_tax),
+                    'eca_fee' => htmlentities($request->eca_fee),
+                    'late_fine' => htmlentities($request->late_fine),
+                    'extra_fee' => htmlentities($request->extra_fee),
+                    'total_amount' => htmlentities($request->tuition_fee) + htmlentities($request->exam_fee) + htmlentities($request->transport_fee) + htmlentities($request->stationery_fee) + htmlentities($request->sports_fee) + htmlentities($request->club_fee) + htmlentities($request->hostel_fee) + htmlentities($request->laundry_fee) + htmlentities($request->education_tax) + htmlentities($request->eca_fee) + htmlentities($request->late_fine) + htmlentities($request->extra_fee),
                     'student_id' => $value,
                     'unique' => $timestamp,
-                    'level_id' => $request->level,
+                    'level_id' => htmlentities($request->level),
                 ]);
                 $student = User::find($value);
                 Mail::to($student->email)->send(new FeeAdditionMail($value));
-
-
             }
             DB::commit();
             $request->session()->flash('success', 'Fee added successfully.');
@@ -148,25 +146,21 @@ class FeeController extends Controller
         }
         $temp = $fee_info[0];
         foreach($fee_info as $value){
-            $fee = [
-                'tuition_fee' => $value->fees['tuition_fee'] - $temp->fees['tuition_fee'],
-                'exam_fee' => $value->fees['exam_fee'] - $temp->fees['exam_fee'],
-                'transport_fee' => $value->fees['transport_fee'] - $temp->fees['transport_fee'],
-                'stationery_fee' => $value->fees['stationery_fee'] - $temp->fees['stationery_fee'],
-                'club_fee' => $value->fees['club_fee'] - $temp->fees['club_fee'],
-                'hostel_fee' => $value->fees['hostel_fee'] - $temp->fees['hostel_fee'],
-                'laundry_fee' => $value->fees['laundry_fee'] - $temp->fees['laundry_fee'],
-                'education_tax' => $value->fees['education_tax'] - $temp->fees['education_tax'],
-                'eca_fee' => $value->fees['eca_fee'] - $temp->fees['eca_fee'],
-                'late_fine' => $value->fees['late_fine'] - $temp->fees['late_fine'],
-                'extra_fee' => $value->fees['extra_fee'] - $temp->fees['extra_fee'],
-                'total_amount' => $value->fees['total_amount'] - $temp->fees['total_amount']
-            ];
             $single = $this->fee->find($value->id);
-            $single->month = date('m');
+            $single->tuition_fee = $single->tuition_fee - $temp->tuition_fee;
+            $single->exam_fee = $single->exam_fee - $temp->exam_fee;
+            $single->transport_fee = $single->transport_fee - $temp->transport_fee;
+            $single->stationery_fee = $single->stationery_fee - $temp->stationery_fee;
+            $single->club_fee = $single->club_fee - $temp->club_fee;
+            $single->hostel_fee = $single->hostel_fee - $temp->hostel_fee;
+            $single->laundry_fee = $single->laundry_fee - $temp->laundry_fee;
+            $single->education_tax = $single->education_tax - $temp->education_tax;
+            $single->eca_fee = $single->eca_fee - $temp->eca_fee;
+            $single->late_fine = $single->late_fine - $temp->late_fine;
+            $single->extra_fee = $single->extra_fee - $temp->extra_fee;
+            $single->total_amount = $single->total_amount - $temp->total_amount;
             $single->added_by = "Roll backed";
             $single->updated_by = Auth::user()->id;
-            $single->fees = $fee;
             $single->rollback = 1;
             $single->save();
         }

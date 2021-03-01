@@ -59,15 +59,15 @@ class ResultController extends Controller
             $temp = [
                 'marks' => $marks,
                 'backlogs' => $backsubjects,
-                'level_id' => $request->data[1]['value'],
-                'exam_id' => $request->data[2]['value'],
-                'student_id' => $request->data[3]['value'],
-                'total_marks' => $request->data[4]['value'],
-                'marks_obtained' => $request->data[5]['value'],
-                'percentage' => $request->data[6]['value'],
-                'sgpa' => round($request->data[7]['value'], 2),
-                'grade' => $request->data[8]['value'],
-                'status' => $request->data[9]['value'],
+                'level_id' => htmlentities($request->data[1]['value']),
+                'exam_id' => htmlentities($request->data[2]['value']),
+                'student_id' => htmlentities($request->data[3]['value']),
+                'total_marks' => htmlentities($request->data[4]['value']),
+                'marks_obtained' => htmlentities($request->data[5]['value']),
+                'percentage' => htmlentities($request->data[6]['value']),
+                'sgpa' => round(htmlentities($request->data[7]['value']), 2),
+                'grade' => htmlentities($request->data[8]['value']),
+                'status' => htmlentities($request->data[9]['value']),
                 'created_by' => Auth::user()->id,
             ];
             if($request->data[10]['value']){
@@ -183,11 +183,11 @@ class ResultController extends Controller
         DB::beginTransaction();
         try {
             result::create([
-                'job_role' => $request->job_role,
-                'publish_status' => $request->publish_status,
-                'description' => $request->description,
-                'salary' => $request->salary ?? null,
-                'required_no' => $request->required_no ?? 1,
+                'job_role' => htmlentities($request->job_role),
+                'publish_status' => htmlentities($request->publish_status),
+                'description' => htmlentities($request->description),
+                'salary' => htmlentities($request->salary ?? null),
+                'required_no' => htmlentities($request->required_no ?? 1),
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
