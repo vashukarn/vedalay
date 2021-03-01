@@ -107,6 +107,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
-    Route::get('/{page}', 'PageController');
 
 });
