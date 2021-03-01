@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeePaymentsTable extends Migration
+class CreateAdvanceFeesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,29 +13,9 @@ class CreateFeePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fee_payments', function (Blueprint $table) {
+        Schema::create('advance_fees', function (Blueprint $table) {
             $table->id();
-            $table->string('tuition_fee')->nullable();
-            $table->string('exam_fee')->nullable();
-            $table->string('transport_fee')->nullable();
-            $table->string('stationery_fee')->nullable();
-            $table->string('sports_fee')->nullable();
-            $table->string('club_fee')->nullable();
-            $table->string('hostel_fee')->nullable();
-            $table->string('laundry_fee')->nullable();
-            $table->string('education_tax')->nullable();
-            $table->string('eca_fee')->nullable();
-            $table->string('late_fine')->nullable();
-            $table->string('extra_fee')->nullable();
-            $table->string('total_amount')->nullable();
-            $table->enum('payment_method',['Bank Transfer','Cash','UPI','Card','Paytm'])->default('Cash');
-            $table->string('upi_type')->nullable();
-            $table->string('bank_ifsc')->nullable();
-            $table->string('bank_accountno')->nullable();
-            $table->string('transfer_phone')->nullable();
-            $table->string('transfer_date')->nullable();
-            $table->string('card_type')->nullable();
-            $table->string('remarks')->nullable();
+            $table->string('amount')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -58,6 +38,6 @@ class CreateFeePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fee_payments');
+        Schema::dropIfExists('advance_fees');
     }
 }

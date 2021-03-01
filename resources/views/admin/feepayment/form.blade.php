@@ -16,6 +16,9 @@
         });
     });
     $('#level_id').change(function () {
+        $('#feedetail').hide();
+        $('#feepayment').hide();
+        $('#tablebody').empty();
         var id = $(this).val();
         var students = $('#student_id');
         students.empty();
@@ -77,34 +80,34 @@
                     var late = 0;
                     var total = 0;
                     for (var i = 0; i < data.length; i++) {
-                        total += Number(data[i].fees.total_amount);
-                        late += Number(data[i].fees.late_fine);
-                        extra += Number(data[i].fees.extra_fee);
-                        eca += Number(data[i].fees.eca_fee);
-                        education += Number(data[i].fees.education_tax);
-                        laundry += Number(data[i].fees.laundry_fee);
-                        hostel += Number(data[i].fees.hostel_fee);
-                        club += Number(data[i].fees.club_fee);
-                        sports += Number(data[i].fees.sports_fee);
-                        stationery += Number(data[i].fees.stationery_fee);
-                        transport += Number(data[i].fees.transport_fee);
-                        exam += Number(data[i].fees.exam_fee);
-                        tuition += Number(data[i].fees.tuition_fee);
+                        total += Number(data[i].total_amount);
+                        late += Number(data[i].late_fine);
+                        extra += Number(data[i].extra_fee);
+                        eca += Number(data[i].eca_fee);
+                        education += Number(data[i].education_tax);
+                        laundry += Number(data[i].laundry_fee);
+                        hostel += Number(data[i].hostel_fee);
+                        club += Number(data[i].club_fee);
+                        sports += Number(data[i].sports_fee);
+                        stationery += Number(data[i].stationery_fee);
+                        transport += Number(data[i].transport_fee);
+                        exam += Number(data[i].exam_fee);
+                        tuition += Number(data[i].tuition_fee);
                             tablebody.append('<tr>');
                             tablebody.append('<td>'+data[i].created_at.split("T")[0]+'</td>');
-                            tablebody.append('<td>'+data[i].fees.tuition_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.exam_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.transport_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.stationery_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.sports_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.club_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.hostel_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.laundry_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.education_tax+'</td>');
-                            tablebody.append('<td>'+data[i].fees.eca_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.late_fine+'</td>');
-                            tablebody.append('<td>'+data[i].fees.extra_fee+'</td>');
-                            tablebody.append('<td>'+data[i].fees.total_amount+'</td>');
+                            tablebody.append('<td>'+data[i].tuition_fee+'</td>');
+                            tablebody.append('<td>'+data[i].exam_fee+'</td>');
+                            tablebody.append('<td>'+data[i].transport_fee+'</td>');
+                            tablebody.append('<td>'+data[i].stationery_fee+'</td>');
+                            tablebody.append('<td>'+data[i].sports_fee+'</td>');
+                            tablebody.append('<td>'+data[i].club_fee+'</td>');
+                            tablebody.append('<td>'+data[i].hostel_fee+'</td>');
+                            tablebody.append('<td>'+data[i].laundry_fee+'</td>');
+                            tablebody.append('<td>'+data[i].education_tax+'</td>');
+                            tablebody.append('<td>'+data[i].eca_fee+'</td>');
+                            tablebody.append('<td>'+data[i].late_fine+'</td>');
+                            tablebody.append('<td>'+data[i].extra_fee+'</td>');
+                            tablebody.append('<td>'+data[i].total_amount+'</td>');
                             tablebody.append('</tr>');
                     }
                     
@@ -265,40 +268,40 @@
                             <div id="feepayment">
 
                                 <div class="form-group row mt-4">
-                                    {{ Form::label('fee_details[tuition_fee]', 'Tuition Fee :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[tuition_fee]', @$feepayment_info->fee_details['tuition_fee'], ['id' => 'tuition_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[exam_fee]', 'Exam Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[exam_fee]', @$feepayment_info->fee_details['exam_fee'], ['id' => 'exam_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('tuition_fee', 'Tuition Fee :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('tuition_fee', null , ['id' => 'tuition_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('exam_fee', 'Exam Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('exam_fee', null , ['id' => 'exam_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[transport_fee]', 'Transport Fee :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[transport_fee]', @$feepayment_info->fee_details['transport_fee'], ['id' => 'transport_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[stationery_fee]', 'Stationery Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[stationery_fee]', @$feepayment_info->fee_details['stationery_fee'], ['id' => 'stationery_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('transport_fee', 'Transport Fee :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('transport_fee', null , ['id' => 'transport_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('stationery_fee', 'Stationery Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('stationery_fee', null , ['id' => 'stationery_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[sports_fee]', 'Sports Fee :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[sports_fee]', @$feepayment_info->fee_details['sports_fee'], ['id' => 'sports_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[club_fee]', 'Club Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[club_fee]', @$feepayment_info->fee_details['club_fee'], ['id' => 'club_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('sports_fee', 'Sports Fee :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('sports_fee', null , ['id' => 'sports_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('club_fee', 'Club Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('club_fee', null , ['id' => 'club_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[hostel_fee]', 'Hostel Fee :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[hostel_fee]', @$feepayment_info->fee_details['hostel_fee'], ['id' => 'hostel_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[laundry_fee]', 'Laundry Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[laundry_fee]', @$feepayment_info->fee_details['laundry_fee'], ['id' => 'laundry_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('hostel_fee', 'Hostel Fee :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('hostel_fee', null , ['id' => 'hostel_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('laundry_fee', 'Laundry Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('laundry_fee', null , ['id' => 'laundry_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[education_tax]', 'Education Tax :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[education_tax]', @$feepayment_info->fee_details['education_tax'], ['id' => 'education_tax','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[eca_fee]', 'ECA Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[eca_fee]', @$feepayment_info->fee_details['eca_fee'], ['id' => 'eca_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('education_tax', 'Education Tax :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('education_tax', null , ['id' => 'education_tax','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('eca_fee', 'ECA Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('eca_fee', null , ['id' => 'eca_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row">
-                                    {{ Form::label('fee_details[late_fine]', 'Late Fine :', ['class' => 'col-sm-2']) }}
-                                    {{ Form::number('fee_details[late_fine]', @$feepayment_info->fee_details['late_fine'], ['id' => 'late_fine','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
-                                    {{ Form::label('fee_details[extra_fee]', 'Extra Fee :', ['class' => 'ml-4 col-sm-2']) }}
-                                    {{ Form::number('fee_details[extra_fee]', @$feepayment_info->fee_details['extra_fee'], ['id' => 'extra_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('late_fine', 'Late Fine :', ['class' => 'col-sm-2']) }}
+                                    {{ Form::number('late_fine', null , ['id' => 'late_fine','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
+                                    {{ Form::label('extra_fee', 'Extra Fee :', ['class' => 'ml-4 col-sm-2']) }}
+                                    {{ Form::number('extra_fee', null , ['id' => 'extra_fee','class' => 'col-sm-3 form-control','style' => 'width:80%']) }}
                                 </div>
                                 <div class="form-group row {{ $errors->has('total_amount') ? 'has-error' : '' }}">
                                     {{ Form::label('total_amount', 'Total Amount :', ['class' => 'col-sm-3']) }}

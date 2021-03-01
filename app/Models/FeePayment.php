@@ -10,7 +10,19 @@ class FeePayment extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'fee_details',
+        'tuition_fee',
+        'exam_fee',
+        'transport_fee',
+        'stationery_fee',
+        'sports_fee',
+        'club_fee',
+        'hostel_fee',
+        'laundry_fee',
+        'education_tax',
+        'eca_fee',
+        'late_fine',
+        'extra_fee',
+        'total_amount',
         'payment_method',
         'upi_type',
         'bank_ifsc',
@@ -19,16 +31,13 @@ class FeePayment extends Model
         'transfer_date',
         'card_type',
         'remarks',
-        'session',
-        'level_id',
         'student_id',
         'created_by',
         'updated_by',
+        'session',
+        'level_id',
     ];
     protected $dates = ['deleted_at'];
-    protected $casts  = [
-        'fee_details' => 'json',
-    ];
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
