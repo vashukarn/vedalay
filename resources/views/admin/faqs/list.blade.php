@@ -50,7 +50,9 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Faq</th>
+                                <th>Position</th>
+                                <th>Question</th>
+                                <th>Answer</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
                             </tr>
@@ -59,8 +61,9 @@
                             @foreach ($data as $key=>$value)
                             <tr>
                               <td>{{$key+1}}.</td>
+                              <td>{{ $value->position }}</td>
                               <td>{{ $value->title }}</td>
-
+                              <td>{{ $value->description }}</td>
                               <td>
                                 <span class="badge badge-{{ $value->publish_status=='1' ?'success':'danger' }}">
                                 {{ $value->publish_status=='1'?'Active':'Inactive' }}

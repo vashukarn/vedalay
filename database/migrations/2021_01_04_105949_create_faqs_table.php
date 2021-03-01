@@ -19,6 +19,10 @@ class CreateFaqsTable extends Migration
             $table->text('description')->nullable(true);
             $table->integer('position')->nullable(true);
             $table->enum('publish_status', ['0', '1'])->default(1);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
             $table->softDeletes();
         });

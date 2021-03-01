@@ -1,20 +1,14 @@
 @extends('layouts.admin')
-@section('title', $title )
+@section('title', $title)
     @push('scripts')
-    <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-    <script src="{{ asset('/custom/testimonial.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-                $('#image').change(function() {
-                    $('#thumbnail').removeClass('d-none');
-                })
-        })
-
-       
+        <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+        <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
+        <script src="{{ asset('/custom/testimonial.js') }}"></script>
+        <script>
+            $('#lfm').filemanager('image');
         </script>
     @endpush
 @section('content')
-@include('admin.shared.image_upload')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -38,7 +32,7 @@
                     <div class="row">
                         {{-- <input type="hidden" name="roles" value="1" placeholder="dummy"> --}}
                         <div class="col-sm-10 offset-lg-1">
-                            
+
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Testimonial Name :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
@@ -62,7 +56,7 @@
                             <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
                                 {{ Form::label('description', 'Testimonial Description :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('description', @$testimonial_info->description, ['class' => 'form-control ckeditor' , 'id' => 'my-editor', 'placeholder' => 'Testimonial Description', 'required' => true, 'style' => 'width:80%']) }}
+                                    {{ Form::textarea('description', @$testimonial_info->description, ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'placeholder' => 'Testimonial Description', 'required' => true, 'style' => 'width:80%']) }}
                                     @error('description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -88,40 +82,46 @@
                                     @enderror
                                 </div>
                             </div>
+
                             
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'Image:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::file('image', ['id' => 'image', 'class' => 'cropImage', 'name' => 'image', 'style' => 'width:80%', 'accept' => 'image/*', 'onchange' => 'uploadImage(this);']) }}
-                                    <input type="hidden" name="image_name" id="image_name"
-                                        value="{{ @$information_info->thumbnail }}">
+                                {{ Form::label('image', 'Profile Image:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <a id="lfm" data-input="image" data-preview="holder" class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                          </a>
+                                        </span>
+                                        <input id="image" class="form-control" type="text" name="image">
+                                    </div>
+                                    <div id="holder" style="
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
+                                    </div>
+                                    
+                                    @if (isset($testimonial_info->image))
+                                    Old Image: &nbsp; <img src="{{ @$testimonial_info->image }}" alt="Image Not Available" 
+                                    class="img img-thumbail mt-2" style="width: 100px">
+                                    @endif
                                     @error('image')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
-                                    <div class="col-sm-4">
-                                        <img id="thumbnail" name="thumbnail"
-                                            src="{{ getImageUrl(@$information_info->thumbnail, testimonialimagepath) }}"
-                                            alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                        @if (isset($information_info->image))
-                                            @if (file_exists(public_path('/uploads'.testimonialimagepath.'thumbnail__' . @$information_info->image)))
-                                                <img src="{{ asset('/uploads'.testimonialimagepath.'thumbnail__' . @$information_info->image) }}"
-                                                    alt="{{ $information_info->image }}" class="img img-fluid img-thumbnail"
-                                                    style="height:80px" id=" ">
-                                            @endif
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                     <div class="form-group row">
-                                {{ Form::label('', '', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
-                                    {{ Form::button("<i class='fas fa-sync-alt'></i> Reset", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
-                                </div>
-                            </div>
+                        {{ Form::label('', '', ['class' => 'col-sm-3']) }}
+                        <div class="col-sm-9">
+                            {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
+                            {{ Form::button("<i class='fas fa-sync-alt'></i> Reset", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
+                        </div>
+                    </div>
                     {{ Form::close() }}
                 </div>
             </div>

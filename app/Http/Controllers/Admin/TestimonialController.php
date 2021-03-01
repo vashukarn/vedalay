@@ -45,24 +45,24 @@ class TestimonialController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'designation' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'position' => 'nullable|numeric',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
 
         $data = [
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'description' => $request->description,
             'designation' => $request->designation,
             'position' => $request->position,
             'publish_status' => $request->publish_status,
             'created_by' => Auth::user()->id,
-            'image' => $request->image_name ?? null,
+            'image' => $request->image,
         ];
 
         try {
-            if ($request->image_name) {
-                moveImage($request->image_name, testimonialimagepath);
-            }
             $this->testimonial->fill($data)->save();
             $request->session()->flash('success', 'Testimonial created successfully.');
             return redirect()->route('testimonial.index');
@@ -78,7 +78,7 @@ class TestimonialController extends Controller
         if (!$testimonial_info) {
             abort(404);
         }
-        $title = 'Update Testimonial Type';
+        $title = 'Update Testimonial';
         return view('admin/testimonials/form', compact('testimonial_info', 'title'));
     }
 
@@ -90,26 +90,23 @@ class TestimonialController extends Controller
         }
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'designation' => 'required',
+            'description' => 'required',
+            'position' => 'nullable|numeric',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'title' => $request->title,
             'description' => $request->description,
-            'image' => $request->image_name ?? null,
+            'designation' => $request->designation,
             'position' => $request->position,
             'publish_status' => $request->publish_status,
             'updated_by' => Auth::user()->id
         ];
         
-        if($request->image && $request->image_name){
-            moveImage($request->image_name, testimonialimagepath);
-            if ($testimonial_info) {
-                $oldImage =  $testimonial_info->image;
-                if ($request->image_name != $oldImage) {
-                    removeImage($oldImage, testimonialimagepath);
-                }
-            }
+        if($request->image){
+            $data['image'] = $request->image;
         }
 
         try {

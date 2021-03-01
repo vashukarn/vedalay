@@ -499,6 +499,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('team.index') }}" class="nav-link {{ request()->is('admin/team*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa fa-users-cog"></i>
+                        <p>Team</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('contact.index') }}" class="nav-link {{ request()->is('admin/contact*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-user-circle"></i>
                         <p>Contact Form</p>

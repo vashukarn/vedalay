@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VacancyController;
@@ -69,10 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::resource('vacancy', VacancyController::class);
     Route::resource('exam', ExamController::class);
     Route::resource('result', ResultController::class);
-
+    Route::resource('team', TeamController::class);
     Route::resource('homepage', HomePageController::class);
-
-    
     Route::post('addExam', [ExamController::class, 'addExam'])->name('addExam');
     Route::post('addResult', [ResultController::class, 'addResult'])->name('addResult');
     Route::get('publishExam/{id}', [ExamController::class, 'publishExam'])->name('publishExam');

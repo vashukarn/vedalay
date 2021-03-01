@@ -15,17 +15,16 @@ class CreateTestimonialsTable extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable(true);
-            $table->string('slug')->nullable(true);
-            $table->text('description')->nullable(true);
-            $table->string('designation')->nullable(true);
-            $table->string('image')->nullable(true);
-            $table->integer('position')->nullable(true);
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('position')->nullable();
             $table->enum('publish_status', ['0', '1'])->default(1);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
             $table->softDeletes();
         });

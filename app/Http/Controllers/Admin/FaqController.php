@@ -46,6 +46,8 @@ class FaqController extends Controller
         // dd($request->all());
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'description' => 'required',
+            'position' => 'required|numeric',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
 
@@ -54,8 +56,8 @@ class FaqController extends Controller
             'description' => $request->description,
             'position' => $request->position,
             'publish_status' => $request->publish_status,
+            'created_by' => Auth::user()->id,
         ];
-        $data['created_by'] = Auth::user()->id;
 
         try {
             $this->faq->fill($data)->save();
@@ -85,6 +87,8 @@ class FaqController extends Controller
         }
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'description' => 'required',
+            'position' => 'required|numeric',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
@@ -92,9 +96,8 @@ class FaqController extends Controller
             'description' => $request->description,
             'position' => $request->position,
             'publish_status' => $request->publish_status,
+            'updated_by' => Auth::user()->id,
         ];
-        $data['updated_by'] = Auth::user()->id;
-        
         try {
             $faq_info->fill($data)->save();
             $request->session()->flash('success', 'Faq updated successfully.');

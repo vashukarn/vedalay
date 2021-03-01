@@ -271,6 +271,7 @@
 
     <!-- Start Overview 
         ============================================= -->
+        @if(isset($page))
     <div id="overview" class="work-list-area default-padding">
         <div class="container">
             <div class="row">
@@ -286,21 +287,13 @@
                     <!-- Tab Nav -->
                     <div class="tab-navigation text-center">
                         <ul class="nav nav-pills">
-                            <li class="active">
-                                <a data-toggle="tab" href="#tab1" aria-expanded="true">
-                                    Optimization
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab2" aria-expanded="false">
-                                    Integration
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#tab3" aria-expanded="false">
-                                    Performance
-                                </a>
-                            </li>
+                            @foreach ($page->work_detail as $key => $item)
+                                <li class=" {{ $key == 1 ? 'active' : '' }}">
+                                    <a data-toggle="tab" href="#tab{{ $key }}" aria-expanded="true">
+                                        {{ $item['title'] }}
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- End Tab Nav -->
@@ -309,96 +302,26 @@
                         <div class="tab-content">
 
                             <!-- Start Single Item -->
-                            <div id="tab1" class="tab-pane fade active in">
+                            
+                            @foreach ($page->work_detail as $key => $item)
+                            <div id="tab{{ $key }}" class="tab-pane fade active in">
                                 <div class="col-md-6 thumb">
-                                    <img src="assets/img/illustrations/3.svg" alt="Thumb">
+                                    <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
                                 </div>
                                 <div class="col-md-6 info">
-                                    <h3>Engineered and Optimization by conveying. Him plate you allow built grave.</h3>
-                                    <p>
-                                        Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                                        front it wound cause fully am sorry if. She jointure goodness interest debating did
-                                        outweigh. Is time from them.
-                                    </p>
+                                    <h3>{{ $item['subtitle'] }}</h3>
+                                    <p>{{ $item['description'] }}</p>
                                     <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
+                                        @foreach ($item['bullet'] as $single)
+                                            <li>
+                                                <h4>{{ $single['title'] }}</h4>
+                                                {{ $single['subtitle'] }}
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <!-- End Single Item -->
-
-                            <!-- Start Single Item -->
-                            <div id="tab2" class="tab-pane fade">
-                                <div class="col-md-6 thumb">
-                                    <img src="assets/img/illustrations/4.svg" alt="Thumb">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>Advantages end sufficient eat expression travelling those on rather either</h3>
-                                    <p>
-                                        Consulted or acuteness dejection an smallness if. Outward general passage another as
-                                        it. Very his are come man walk one next. partiality affronting unpleasant why add.
-                                        Esteem garden men yet shy course Consulted.
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Start Single Item -->
-                            <div id="tab3" class="tab-pane fade">
-                                <div class="col-md-6 thumb">
-                                    <img src="assets/img/illustrations/5.svg" alt="Thumb">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>Literature surrounded insensible at indulgence admiration mutual</h3>
-                                    <p>
-                                        Celebrated conviction stimulated principles day. Sure fail or in said west. Right my
-                                        front it wound cause fully am sorry if. She jointure goodness interest debating did
-                                        outweigh. Is time from them.
-                                    </p>
-                                    <ul>
-                                        <li>
-                                            <h4>Amazingly Simple Use</h4>
-                                            Certainty arranging am smallness by conveying
-                                        </li>
-                                        <li>
-                                            <h4>Clear Documentation</h4>
-                                            Frankness pronounce daughters remainder extensive
-                                        </li>
-                                        <li>
-                                            <h4>Flexible user interface</h4>
-                                            Outward general passage another as it. Very his are come man walk one next.
-                                            Delighted prevailed supported
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                             <!-- End Single Item -->
 
                         </div>
@@ -408,6 +331,7 @@
             </div>
         </div>
     </div>
+    @endif
     <!-- End Overview -->
 
     <!-- Start Pricing Area
@@ -499,21 +423,90 @@
     </div> --}}
     <!-- End Pricing Area -->
 
-    <!-- Start Team  
-        ============================================= -->
+    @if (count($team) > 0)
+        
     <div id="team" class="team-area default-padding bottom-less">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Innovative <span>Team</span></h2>
-                        <h4>Meet our awesome and expert team members</h4>
+                        <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
+                        <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}</h4>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="team-items">
-                    <div class="col-md-4 single-item">
+                    @foreach ($team as $item)
+
+                    <div class="col-md-3 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="{{ $item->image }}" alt="{{ $item->name }} Image">
+                                <div class="overlay">
+                                    <h4>{{ $item->title }}</h4>
+                                    <p>{{ $item->description }}</p>
+                                    <div class="social">
+                                        <ul>
+                                            @isset($item->website_link)
+                                            <li>
+                                                <a href="{{ $item->website_link }}"><i class="fab fa-superpowers"></i></a>
+                                            </li>
+                                            @endisset
+                                            @isset($item->github_link)
+                                            <li>
+                                                <a href="{{ $item->github_link }}"><i class="fab fa-github"></i></a>
+                                            </li>
+                                            @endisset
+                                            @isset($item->facebook_link)
+                                            <li>
+                                                <a href="{{ $item->facebook_link }}"><i class="fab fa-facebook"></i></a>
+                                            </li>
+                                            @endisset
+                                            @isset($item->instagram_link)
+                                            <li>
+                                                <a href="{{ $item->instagram_link }}"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                            @endisset
+                                            @isset($item->linkedin_link)
+                                            <li>
+                                                <a href="{{ $item->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
+                                            </li>
+                                            @endisset
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <span class="message">
+                                    <a href="mailto:{{ $item->email }}"><i class="fas fa-envelope-open"></i></a>
+                                </span>
+                                <h4>{{ $item->name }}</h4>
+                                <span>{{ $item->designation }}</span>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @else
+    <div id="team" class="team-area default-padding bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="site-heading text-center">
+                        <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
+                        <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="team-items">
+                    <div class="col-md-3 single-item">
                         <div class="item">
                             <div class="thumb">
                                 <img src="assets/img/team/7.jpg" alt="Thumb">
@@ -550,7 +543,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 single-item">
+                    <div class="col-md-3 single-item">
                         <div class="item">
                             <div class="thumb">
                                 <img src="assets/img/team/9.jpg" alt="Thumb">
@@ -587,7 +580,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 single-item">
+                    <div class="col-md-3 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="assets/img/team/8.jpg" alt="Thumb">
+                                <div class="overlay">
+                                    <h4>Network Builder</h4>
+                                    <p>
+                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
+                                        went Of no introduced
+                                    </p>
+                                    <div class="social">
+                                        <ul>
+                                            <li class="twitter">
+                                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                            </li>
+                                            <li class="pinterest">
+                                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                            </li>
+                                            <li class="instagram">
+                                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                            </li>
+                                            <li class="vimeo">
+                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <span class="message">
+                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                </span>
+                                <h4>Munia Ankor</h4>
+                                <span>Founder of Softing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 single-item">
                         <div class="item">
                             <div class="thumb">
                                 <img src="assets/img/team/8.jpg" alt="Thumb">
@@ -628,17 +658,17 @@
             </div>
         </div>
     </div>
+    @endif
     <!-- End Team -->
 
-    <!-- Start Testimonials 
-        ============================================= -->
+    @if(count($testimonials) > 0)
     <div class="testimonials-area bg-gray default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Customer <span>Review</span></h2>
-                        <h4>What people say about us</h4>
+                        <h2>{{ @$page->review_title ? $page->review_title : 'Customer Review' }}</span></h2>
+                        <h4>{{ @$page->review_subtitle ? $page->review_subtitle : 'What people say about us' }}</h4>
                     </div>
                 </div>
             </div>
@@ -647,59 +677,20 @@
                     <div class="row">
                         <div class="testimonial-items owl-carousel owl-theme">
                             <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="assets/img/team/2.jpg" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
-                                        <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
-                                        </p>
-                                        <h4>Bubhan Kritha</h4>
-                                        <span>Web Developer</span>
+                            @foreach ($testimonials as $item)
+                                <div class="testimonial-item">
+                                    <div class="thumb col-md-4">
+                                        <img src="{{ $item->image }}" alt="Thumb">
+                                    </div>
+                                    <div class="info col-md-8">
+                                        <div class="content">
+                                            <p>{{ $item->description }}</p>
+                                            <h4>{{ $item->name }}</h4>
+                                            <span>{{ $item->designation }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="assets/img/team/3.jpg" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
-                                        <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
-                                        </p>
-                                        <h4>Junl Sarukh</h4>
-                                        <span>Software Engineer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="testimonial-item">
-                                <div class="thumb col-md-4">
-                                    <img src="assets/img/team/4.jpg" alt="Thumb">
-                                </div>
-                                <div class="info col-md-8">
-                                    <div class="content">
-                                        <p>
-                                            Understood instrument or do connection no appearance do invitation. Dried quick
-                                            round it or order. Add past see west felt did any. plate you share. My resolve
-                                            arrived is we chamber be removal.
-                                        </p>
-                                        <h4>Makhon Daino</h4>
-                                        <span>Compnay Owner</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -707,16 +698,16 @@
         </div>
     </div>
     <!-- End Testimonials -->
+    @endif
 
-    <!-- Start Faq  
-        ============================================= -->
+    @isset($faqs)
     <div class="faq-area default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Qustion and <span>Answer</span></h2>
-                        <h4>Most common and important answer</h4>
+                        <h2><span>{{ @$page->faq_title ? $page->faq_title : 'FAQs' }}</span></h2>
+                        <h4>{{ @$page->faq_subtitle ? $page->faq_subtitle : 'General questions in your mind' }}</h4>
                     </div>
                 </div>
             </div>
@@ -724,11 +715,13 @@
                 <!-- Star Video Faq -->
                 <div class="col-md-6 video-faq">
                     <div class="video">
-                        <img src="assets/img/about/1.jpg" alt="Thumb">
-                        <a class="popup-youtube light video-play-button" href="https://www.youtube.com/watch?v=owhuBrGIOsE">
-                            <i class="fa fa-play"></i>
-                        </a>
-                        <h4>Answer with video</h4>
+                        <img src="{{ @$page->faq_image ? $page->faq_image : asset('assets/img/about/1.jpg') }}" alt="Thumb">
+                        @isset($page->faq_link)
+                            <a class="popup-youtube light video-play-button" href="{{ @$page->faq_link }}">
+                                <i class="fa fa-play"></i>
+                            </a>
+                            <h4>Answer with video</h4>
+                        @endisset
                     </div>
                 </div>
                 <!-- End Video Faq -->
@@ -738,110 +731,23 @@
                     <div class="acd-items acd-arrow">
                         <div class="panel-group symb" id="accordion">
 
-                            <!-- Single Item -->
+                            @foreach ($faqs as $key => $item)
+                                
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac1">
-                                            <span>1</span> Do I need a business plan?
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac{{ $key }}">
+                                            <span>{{ $key+1 }}</span> {{ $item->title }}
                                         </a>
                                     </h4>
                                 </div>
-                                <div id="ac1" class="panel-collapse collapse in">
+                                <div id="ac{{ $key }}" class="panel-collapse collapse {{ $key == 0 ? 'in' : '' }}">
                                     <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
+                                        <p>{{ $item->description }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac2">
-                                            <span>2</span> How long should a business plan be?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac3">
-                                            <span>3</span> What goes into a business plan?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac3" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
-                            <!-- Single Item -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac4">
-                                            <span>4</span> Where do I start?
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac4" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <p>
-                                            She wholly fat who window extent either formal. Removing welcomed civility or
-                                            hastened is. Justice elderly but perhaps expense six her are another passage.
-                                            Full her ten open fond walk not down.For request general express unknown are.
-                                        </p>
-                                        <p>
-                                            He in just mr door body held john down he. So journey greatly or garrets. Draw
-                                            door kept do so come on open mean. Estimating stimulated how reasonably
-                                            precaution diminution she simplicity sir but.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Item -->
-
+                            @endforeach
                         </div>
                     </div>
                     <!-- End Accordion -->
@@ -849,7 +755,8 @@
             </div>
         </div>
     </div>
-    <!-- End Faq  -->
+        
+    @endisset
 
     <!-- Start Blog  
         ============================================= -->
@@ -858,8 +765,8 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Latest <span>Blog</span></h2>
-                        <h4>Have a look to our latest blog</h4>
+                        <h2><span>{{ @$page->blog_title ? $page->blog_title : 'Latest Blog' }}</span></h2>
+                        <h4>{{ @$page->blog_subtitle ? $page->blog_subtitle : 'Have a look at our latest blogs' }}</h4>
                     </div>
                 </div>
             </div>

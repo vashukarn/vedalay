@@ -7,12 +7,15 @@ use App\Models\AppSetting;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Fee;
 use App\Models\HomePage;
 use App\Models\Slider;
 use App\Models\Student;
 use App\Models\Tag;
+use App\Models\Team;
+use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,11 +38,17 @@ class FrontEndController extends Controller
         $sliders = Slider::where('publish_status', '1')->get();
         $pagedata = HomePage::latest()->first();
         $features = Feature::where('publish_status', '1')->get();
-        // dd($pagedata->newsletter_counters[1]);
+        $team = Team::where('publish_status', '1')->get();
+        $testimonials = Testimonial::where('publish_status', '1')->orderBy('position', 'DESC')->get();
+        $faqs = Faq::where('publish_status', '1')->orderBy('position', 'DESC')->get();
+        // dd($pagedata->work_detail);
         $data = [
             'sliders' => $sliders,
             'page' => $pagedata,
             'features' => $features,
+            'team' => $team,
+            'testimonials' => $testimonials,
+            'faqs' => $faqs,
         ];
         return view('website.index')->with($data);
     }

@@ -45,7 +45,7 @@
                             <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
                                 {{ Form::label('description', 'Faq Answer :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('description', @$faq_info->description, ['class' => 'form-control ckeditor', 'id' => 'description my-editor', 'placeholder' => 'Faq Answer', 'required' => true, 'style' => 'width:80%']) }}
+                                    {{ Form::textarea('description', @$faq_info->description, ['class' => 'form-control', 'id' => 'description', 'placeholder' => 'Faq Answer', 'required' => true, 'style' => 'width:80%']) }}
                                     @error('description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

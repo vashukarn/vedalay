@@ -51,7 +51,8 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Name</th>
-                                <th>Image </th>
+                                <th>Designation</th>
+                                <th>Image</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
                             </tr>
@@ -61,8 +62,9 @@
                             <tr>
                               <td>{{$key+1}}.</td>
                               <td>{{ $value->title }}</td>
+                              <td>{{ $value->designation }}</td>
                               <td>
-                                <img src="{{ asset('uploads/testimonial/thumbnail__'.@$value->image)}}" alt="{{ @$value->title}}" class="img img-thumbail" style="width:60px">    
+                                <img src="{{ @$value->image }}" alt="{{ @$value->title}}" class="img img-thumbail" style="width:60px">    
                             </td>
 
                               <td>

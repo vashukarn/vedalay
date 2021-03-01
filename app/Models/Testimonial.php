@@ -9,6 +9,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Testimonial extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'description',
+        'designation',
+        'image',
+        'position',
+        'publish_status',
+        'created_by',
+        'updated_by',
+    ];
+    protected $dates = ['deleted_at'];
+    public function creator()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+    public function updater()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
+    }
 }
