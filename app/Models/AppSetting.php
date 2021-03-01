@@ -24,6 +24,7 @@ class AppSetting extends Model
         'is_meta',
         'meta',
         'logo',
+        'logo_light',
         'favicon',
         'og_image',
         'created_by',

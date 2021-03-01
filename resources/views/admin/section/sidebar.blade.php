@@ -439,7 +439,7 @@
                 <li class="nav-item">
                     <a href="{{ route('session.index') }}"
                         class="nav-link {{ request()->is('admin/session') ? 'active' : '' }}">
-                        <i class="fas fa-list nav-icon"></i>
+                        <i class="fas fa-calendar-alt nav-icon"></i>
                         <p>Session Management</p>
                     </a>
                 </li>
@@ -454,102 +454,58 @@
                 </li>
                 @endcanany
 
-                @canany([
-                    'slider-list','slider-create','slider-edit','slider-delete',
-                    'information-list','information-create','information-edit','information-delete',
-                    'feature-list','feature-create','information-edit','information-delete',
-                    'testimonial-list','testimonial-create','information-edit','information-delete',
-                    'faq-list','faq-create','information-edit','information-delete',
-                    'blog-list','blog-create','information-edit','information-delete',
-                    'contact-list','contact-create','information-edit','information-delete',
-                    ])
+                @hasanyrole('Super Admin')
                 <li class="nav-header">WEB CONTENT</li>
-                @endcanany
-                @canany([
-                    'homepage-list','homepage-create','homepage-edit','homepage-delete',
-                    ])
-                <li class="nav-item has-treeview {{ request()->is('admin/result*') ? 'menu-open' : '' }}">
-                    <a href="#"
-                        class="nav-link {{ request()->is('admin/result*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-poll-h"></i>
-                        <p>
-                            Page Management
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
+                <li class="nav-item">
+                    <a href="{{ route('homepage.index') }}" class="nav-link {{ request()->is('admin/homepage*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>Homepage Data</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        @can('homepage-edit')
-                        <li class="nav-item">
-                            <a href="{{ route('homepage.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-sliders-h"></i>
-                                <p>Home Page Details</p>
-                            </a>
-                        </li>
-                        @endcan
-                    </ul>
                 </li>
-                @endcanany
-                @canany(['slider-list','slider-create','slider-edit','slider-delete'])
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}" class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-sliders-h"></i>
                         <p>Slider</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['information-list','information-create','information-edit','information-delete'])
                 <li class="nav-item">
                     <a href="{{ route('information.index') }}" class="nav-link {{ request()->is('admin/information*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>Information</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['feature-list','feature-create','feature-edit','feature-delete'])
                 <li class="nav-item">
                     <a href="{{ route('feature.index') }}" class="nav-link {{ request()->is('admin/feature*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>Features</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['testimonial-list','testimonial-create','testimonial-edit','testimonial-delete'])
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}" class="nav-link {{ request()->is('admin/testimonial*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Testimonials</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['faq-list','faq-create','faq-edit','faq-delete'])
                 <li class="nav-item">
                     <a href="{{ route('faq.index') }}" class="nav-link {{ request()->is('admin/faq*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>Faq</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['blog-list','blog-create','blog-edit','blog-delete'])
                 <li class="nav-item">
                     <a href="{{ route('blog.index') }}" class="nav-link {{ request()->is('admin/blog*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-clone"></i>
                         <p>Blogs</p>
                     </a>
                 </li>
-                @endcanany
-                @canany(['contact-list','contact-view','contact-edit','contact-delete'])
                 <li class="nav-item">
                     <a href="{{ route('contact.index') }}" class="nav-link {{ request()->is('admin/contact*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-user-circle"></i>
-                        <p>Contact</p>
+                        <p>Contact Form</p>
                     </a>
                 </li>
-                @endcanany
-                @hasanyrole('Super Admin')
+
                 <li class="nav-header">APP SETTINGS</li>
-                @endhasanyrole
-                @hasanyrole('Super Admin')
-                @canany(['user-list','user-create','user-edit','user-delete','role-list','role-create','role-edit','role-delete'])
                 <li
                     class="nav-item has-treeview {{ request()->is('admin/users*') || request()->is('admin/roles*') ||request()->is('admin/user-log') ? 'menu-open' : '' }}">
                     <a href="#"
@@ -561,7 +517,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @can('user-create')
                             <li class="nav-item">
                                 <a href="{{ route('users.create') }}"
                                     class="nav-link  {{ request()->is('admin/users/create') ? 'active' : '' }}">
@@ -569,8 +524,6 @@
                                     <p>Add New User</p>
                                 </a>
                             </li>
-                        @endcan
-                        @canany(['user-list', 'user-create','user-edit','user-delete'])
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
                                 class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}">
@@ -578,8 +531,6 @@
                                 <p>Users List</p>
                             </a>
                         </li>
-                        @endcanany
-                        @canany(['role-list','role-create','role-edit','role-delete'])
                         <li class="nav-item">
                             <a href="{{ route('roles.index') }}"
                                 class="nav-link {{ request()->is('admin/roles*') ? 'active' : '' }}">
@@ -587,7 +538,6 @@
                                 <p>Roles & Permission</p>
                             </a>
                         </li>
-                        @endcanany
                         <li class="nav-item">
                             <a href="{{ route('user-log.index') }}" class="nav-link {{ request()->is('admin/user-log')?'active':'' }}">
                                 <i class="fas fa-history nav-icon"></i>
@@ -596,8 +546,6 @@
                         </li>
                     </ul>
                 </li>
-                @endcanany
-                @canany(['menu-list', 'menu-create','menu-edit','menu-delete'])
                 <li class="nav-item has-treeview {{ request()->is('admin/menu*') ?'menu-open':'' }}">
                     <a href="#" class="nav-link {{ request()->is('admin/menu*') ?'active':'' }}">
                         <i class="nav-icon fas fa-bars"></i>
@@ -607,28 +555,20 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @can('menu-create')
                         <li class="nav-item">
                             <a href="{{ route('menu.create') }}" class="nav-link {{ request()->is('admin/menu/create')?'active':'' }}">
                               <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Add New Menu</p>
                             </a>
                         </li>
-                        @endcan
-                        @canany(['menu-list', 'menu-create','menu-edit','menu-delete'])
                         <li class="nav-item">
                             <a href="{{ route('menu.index') }}" class="nav-link {{ (request()->is('admin/menu*')&&!request()->is('admin/menu/create'))?'active':'' }}">
                               <i class="fas fa-bars nav-icon"></i>
                                 <p>Menu List</p>
                             </a>
                         </li>
-                        @endcanany
                     </ul>
                 </li>
-                @endcanany
-                @endhasallroles
-
-                @hasanyrole('Super Admin')
                 <li class="nav-item has-treeview {{ request()->is('admin/setting*')||request()->is('admin/cities') ||request()->is('admin/vehicletype') ||request()->is('admin/ridingcost') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('admin/setting*') ||request()->is('admin/cities') ||request()->is('admin/vehicletype') ||request()->is('admin/ridingcost') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cogs"></i>

@@ -210,7 +210,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="#">Vedalay</a></p>
+                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedalay.com">Vedalay</a></p>
                         </div>
                         <div class="col-md-6 text-right link">
                             <ul>
