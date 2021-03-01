@@ -1,11 +1,3 @@
-@extends('layouts.front')
-@section('page_title', 'Home')
-    @push('styles')
-    @endpush
-@section('meta')
-    @include('website.shared.meta')
-@endsection
-@section('content')
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
 <head>
@@ -196,7 +188,7 @@
                 <div class="kingster-top-bar-background"></div>
                 <div class="kingster-top-bar-container kingster-container ">
                     <div class="kingster-top-bar-container-inner clearfix">
-                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" id="i_983a_0"></i> contact@KUTheme.edu <i class="fa fa-phone" id="i_983a_1"></i> +1-3435-2356-222</div>
+                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" style="font-size: 15px ;color: #96a2b8 ;margin-right: 8px ;"></i> contact@KUTheme.edu <i class="fa fa-phone" style="font-size: 15px ;color: #96a2b8 ;margin-left: 18px ;margin-right: 6px ;"></i> +1-3435-2356-222</div>
                         <div class="kingster-top-bar-right kingster-item-pdlr">
                             <ul id="kingster-top-bar-menu" class="sf-menu kingster-top-bar-menu kingster-top-bar-right-menu">
                                 <li class="menu-item kingster-normal-menu"><a href="#">Alumni</a></li>
@@ -330,7 +322,7 @@
                                                     </ul>
                                                 </li>
                                                 <li class="menu-item" data-size="15">
-                                                    <div class="kingster-mega-menu-section-content"><img src="upload/mega-menu-logo.png" id="img_983a_0" alt="" /> <span id="span_983a_0">Academic offerings include 95 majors, 86 minors, and more than 100 in-major specializations</span></div>
+                                                    <div class="kingster-mega-menu-section-content"><img src="upload/mega-menu-logo.png" style="margin-bottom: 13px;" alt="" /> <span style="font-size: 14px; font-weight: 500;">Academic offerings include 95 majors, 86 minors, and more than 100 in-major specializations</span></div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -379,302 +371,290 @@
             </header>
 
 
-            <div class="kingster-page-title-wrap  kingster-style-custom kingster-left-align" id="div_983a_0">
+
+            <div class="kingster-page-title-wrap  kingster-style-medium kingster-center-align">
                 <div class="kingster-header-transparent-substitute"></div>
                 <div class="kingster-page-title-overlay"></div>
-                <div class="kingster-page-title-bottom-gradient"></div>
                 <div class="kingster-page-title-container kingster-container">
-                    <div class="kingster-page-title-content kingster-item-pdlr" id="div_983a_1">
-                        <div class="kingster-page-caption" id="div_983a_2">Know Us Better</div>
-                        <h1 class="kingster-page-title" id="h1_983a_0">About Us</h1></div>
-                </div>
-            </div>
-            <div class="kingster-breadcrumbs">
-                <div class="kingster-breadcrumbs-container kingster-container">
-                    <div class="kingster-breadcrumbs-item kingster-item-pdlr"> <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to Kingster." href="index.html" class="home"><span property="name">Home</span></a>
-                        <meta property="position" content="1">
-                        </span>&gt;<span property="itemListElement" typeof="ListItem"><span property="name">About Us</span>
-                        <meta property="position" content="2">
-                        </span>
-                    </div>
+                    <div class="kingster-page-title-content kingster-item-pdlr">
+                        <h1 class="kingster-page-title">Gallery</h1></div>
                 </div>
             </div>
             <div class="kingster-page-wrapper" id="kingster-page-wrapper">
                 <div class="gdlr-core-page-builder-body">
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_3">
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 100px 20px 30px 20px;">
                         <div class="gdlr-core-pbf-background-wrap"></div>
                         <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_4">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_0">Kingster’s History</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-item-pdlr gdlr-core-left-align">
-                                                    <div class="gdlr-core-divider-container" id="div_983a_5">
-                                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" id="div_983a_6"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_7">
-                                                        <p>If you would like to study in the university in the heart of the city that focus on chaning the world for better to morrow, you’re choosin the right place. We do not use special formulas to select students. We look at every single applicant&#8217;s application, academic and personal, to select students who suit to our community with a full range of backgrounds. If you would like to study</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_8">
-                                                        <p>If you would like to study in the university in the heart of the city that focus on chaning the world for better to morrow, you’re choosin the right place. We do not use special formulas to select students. We look at every single applicantt&#8217;s application, academic and personal, to select students who suit to our community.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_9">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_10">
-                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_983a_11" data-parallax-speed="0.1"></div>
-                        </div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_12"><img src="upload/col-icon-3.png" alt="" width="40" height="43" title="col-icon-3" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_13">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_1">Our Philosophy</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_14">
-                                                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_15"><img src="upload/col-icon-4.png" alt="" width="47" height="47" title="col-icon-4" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_16">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_2">Kingster's Principle</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_17">
-                                                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-20">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js ">
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js ">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_18"><img src="upload/col-icon-2.png" alt="" width="43" height="45" title="col-icon-2" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_19">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_3">Key Of Success</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_20">
-                                                        <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_21">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_22"></div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_983a_23" data-sync-height="height-1" data-sync-height-center>
-                                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_24"></div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_25"><img src="upload/about-icon-1.png" alt="" width="65" height="65" title="about-icon-1" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_26">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_4">Special Campus Tour</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_27">
-                                                        <p>Campus on a tour designed for prospective graduate and professional students. You will see how our university like, facilities, studenst and life in this university. Meet our graduate admissions representative to learn more about our graduate programs and decide what it the best for you.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-right" data-sync-height="height-1">
-                                        <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_983a_28" data-parallax-speed="0.2"></div>
-                                        </div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_29">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_30"></div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-left" data-sync-height="height-2">
-                                        <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_983a_31" data-parallax-speed="0.2"></div>
-                                        </div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_983a_32" data-sync-height="height-2" data-sync-height-center>
-                                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_33"></div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_34"><img src="upload/about-icon-2.png" alt="" width="67" height="58" title="about-icon-2" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_35">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_5">Graduation</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_36">
-                                                        <p>Campus on a tour designed for prospective graduate and professional students. You will see how our university like, facilities, studenst and life in this university. Meet our graduate admissions representative to learn more about our graduate programs and decide what it the best for you.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_37">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_38"></div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30 gdlr-core-column-first">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js " id="div_983a_39" data-sync-height="height-3" data-sync-height-center>
-                                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_40"></div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content">
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-image-item gdlr-core-item-pdlr gdlr-core-item-pdb  gdlr-core-left-align">
-                                                    <div class="gdlr-core-image-item-wrap gdlr-core-media-image  gdlr-core-image-item-style-rectangle" id="div_983a_41"><img src="upload/about-icon-3.png" alt="" width="63" height="62" title="about-icon-3" /></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-left-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr" id="div_983a_42">
-                                                    <div class="gdlr-core-title-item-title-wrap clearfix">
-                                                        <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " id="h3_983a_6">Powerful Alumni</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-pbf-element">
-                                                <div class="gdlr-core-text-box-item gdlr-core-item-pdlr gdlr-core-item-pdb gdlr-core-left-align">
-                                                    <div class="gdlr-core-text-box-item-content" id="div_983a_43">
-                                                        <p>Campus on a tour designed for prospective graduate and professional students. You will see how our university like, facilities, studenst and life in this university. Meet our graduate admissions representative to learn more about our graduate programs and decide what it the best for you.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="gdlr-core-pbf-column gdlr-core-column-30">
-                                    <div class="gdlr-core-pbf-column-content-margin gdlr-core-js  gdlr-core-column-extend-right" data-sync-height="height-3">
-                                        <div class="gdlr-core-pbf-background-wrap">
-                                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" id="div_983a_44" data-parallax-speed="0.2"></div>
-                                        </div>
-                                        <div class="gdlr-core-pbf-column-content clearfix gdlr-core-js  gdlr-core-sync-height-content"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gdlr-core-pbf-wrapper " id="div_983a_45">
-                        <div class="gdlr-core-pbf-background-wrap" id="div_983a_46"></div>
-                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
-                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container-custom" id="div_983a_47">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full">
                                 <div class="gdlr-core-pbf-element">
-                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-grid" id="div_983a_48">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Grid Style</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">With Space</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-grid">
                                         <div class="gdlr-core-gallery-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
-                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-12 gdlr-core-column-first gdlr-core-item-pdlr gdlr-core-item-mgb">
-                                                <div class="gdlr-core-gallery-list gdlr-core-media-image"><img src="upload/banner-1.png" alt="" width="248" height="120" title="banner-1" /></div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15 gdlr-core-column-first gdlr-core-item-pdlr gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_270733466.jpg" data-lightbox-group="gdlr-core-img-group-1"><img src="upload/shutterstock_270733466-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
                                             </div>
-                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-12 gdlr-core-item-pdlr gdlr-core-item-mgb">
-                                                <div class="gdlr-core-gallery-list gdlr-core-media-image"><img src="upload/banner-2.png" alt="" width="248" height="120" title="banner-2" /></div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15 gdlr-core-item-pdlr gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_516640027.jpg" data-lightbox-group="gdlr-core-img-group-1"><img src="upload/shutterstock_516640027-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
                                             </div>
-                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-12 gdlr-core-item-pdlr gdlr-core-item-mgb">
-                                                <div class="gdlr-core-gallery-list gdlr-core-media-image"><img src="upload/banner-3.png" alt="" width="248" height="120" title="banner-3" /></div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15 gdlr-core-item-pdlr gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_734589535.jpg" data-lightbox-group="gdlr-core-img-group-1"><img src="upload/shutterstock_734589535-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
                                             </div>
-                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-12 gdlr-core-item-pdlr gdlr-core-item-mgb">
-                                                <div class="gdlr-core-gallery-list gdlr-core-media-image"><img src="upload/banner-4-1.png" alt="" width="248" height="120" title="banner-4" /></div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15 gdlr-core-item-pdlr gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_704277943.jpg" data-lightbox-group="gdlr-core-img-group-1"><img src="upload/shutterstock_704277943-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
                                             </div>
-                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-12 gdlr-core-item-pdlr gdlr-core-item-mgb">
-                                                <div class="gdlr-core-gallery-list gdlr-core-media-image"><img src="upload/banner-5.png" alt="" width="248" height="120" title="banner-5" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 0px 0px 30px 0px;">
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full-no-space">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Grid Style</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">Without Space</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-grid-no-space gdlr-core-item-pdlr ">
+                                        <div class="gdlr-core-gallery-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15 gdlr-core-column-first">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_123383902.jpg" data-lightbox-group="gdlr-core-img-group-2"><img src="upload/shutterstock_123383902-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_111027356.jpg" data-lightbox-group="gdlr-core-img-group-2"><img src="upload/shutterstock_111027356-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_787201486.jpg" data-lightbox-group="gdlr-core-img-group-2"><img src="upload/shutterstock_787201486-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-gallery-column  gdlr-core-column-15">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_331524281.jpg" data-lightbox-group="gdlr-core-img-group-2"><img src="upload/shutterstock_331524281-400x377.jpg" width="700" height="660" alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 30px 20px 50px 20px;">
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-pbf-wrapper-full">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Horizontal Scrolling</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">Hover With Center Caption</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-scroll gdlr-core-item-pdlr ">
+                                        <div class="gdlr-core-sly-slider gdlr-core-js-2">
+                                            <ul class="slides">
+                                                <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                    <div class="gdlr-core-media-image" style="height: 500px ;">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_160526219.jpg" data-lightbox-group="gdlr-core-img-group-3"><img src="upload/shutterstock_160526219-800x533.jpg" width="1280" height="853"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                    </div>
+                                                </li>
+                                                <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                    <div class="gdlr-core-media-image" style="height: 500px ;">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_106223549.jpg" data-lightbox-group="gdlr-core-img-group-3"><img src="upload/shutterstock_106223549-800x574.jpg" width="1280" height="919"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                    </div>
+                                                </li>
+                                                <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                    <div class="gdlr-core-media-image" style="height: 500px ;">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_294489926.jpg" data-lightbox-group="gdlr-core-img-group-3"><img src="upload/shutterstock_294489926-800x533.jpg" width="1800" height="1200"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                    </div>
+                                                </li>
+                                                <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                    <div class="gdlr-core-media-image" style="height: 500px ;">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_481869205.jpg" data-lightbox-group="gdlr-core-img-group-3"><img src="upload/shutterstock_481869205-800x405.jpg" width="2000" height="1013"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                    </div>
+                                                </li>
+                                                <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                    <div class="gdlr-core-media-image" style="height: 500px ;">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_734589535.jpg" data-lightbox-group="gdlr-core-img-group-3"><img src="upload/shutterstock_734589535-800x534.jpg" width="2000" height="1335"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="gdlr-core-sly-scroll">
+                                            <div class="gdlr-core-sly-scroll-handle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 120px 20px 70px 20px;" data-skin="White Text">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #0a0a0a ;">
+                            <div class="gdlr-core-pbf-background gdlr-core-parallax gdlr-core-js" style="background-image: url(upload/coming-soon.jpg) ;background-size: cover ;background-position: center ;" data-parallax-speed="0.2"></div>
+                        </div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Gallery Plain Carousel</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">Hover With Left Title & Caption</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-slider gdlr-core-item-pdlr ">
+                                        <div class="gdlr-core-flexslider flexslider gdlr-core-js-2 " data-type="slider" data-effect="default" data-nav="navigation">
+                                            <ul class="slides">
+                                                <li>
+                                                    <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_218235004.jpg" data-sub-html="Studying" data-lightbox-group="gdlr-core-img-group-4"><img src="upload/shutterstock_218235004-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-left-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Student</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Studying</span></span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_381527992.jpg" data-sub-html="Subject" data-lightbox-group="gdlr-core-img-group-4"><img src="upload/shutterstock_381527992-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-left-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Mathematic</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Subject</span></span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_450689383.jpg" data-sub-html="Women" data-lightbox-group="gdlr-core-img-group-4"><img src="upload/shutterstock_450689383-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-left-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Portrait</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Women</span></span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                        <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_284650220.jpg" data-sub-html="Group" data-lightbox-group="gdlr-core-img-group-4"><img src="upload/shutterstock_284650220-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-left-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Brainstorm</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Group</span></span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 120px 20px 50px 20px;">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #f7f7f7 ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Gallery With Thumbnail</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">Hover With Title & Caption</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-thumbnail gdlr-core-item-pdlr ">
+                                        <div class="gdlr-core-gallery-with-thumbnail-wrap gdlr-core-inside-slider">
+                                            <div class="gdlr-core-flexslider flexslider gdlr-core-js-2 " data-type="slider" data-effect="default" data-nav="none" data-thumbnail="1">
+                                                <ul class="slides">
+                                                    <li>
+                                                        <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_450689383.jpg" data-sub-html="Women" data-lightbox-group="gdlr-core-img-group-5"><img src="upload/shutterstock_450689383-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Portrait</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Women</span></span>
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_218235004.jpg" data-sub-html="Studying" data-lightbox-group="gdlr-core-img-group-5"><img src="upload/shutterstock_218235004-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Student</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Studying</span></span>
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_381527992.jpg" data-sub-html="Subject" data-lightbox-group="gdlr-core-img-group-5"><img src="upload/shutterstock_381527992-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Mathematic</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Subject</span></span>
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                            <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_284650220.jpg" data-sub-html="Group" data-lightbox-group="gdlr-core-img-group-5"><img src="upload/shutterstock_284650220-800x533.jpg" width="1500" height="1000"  alt="" /><span class="gdlr-core-image-overlay  gdlr-core-gallery-image-overlay gdlr-core-center-align"><span class="gdlr-core-image-overlay-content" ><span class="gdlr-core-image-overlay-title gdlr-core-title-font" >Brainstorm</span><span class="gdlr-core-image-overlay-caption gdlr-core-info-font">Group</span></span>
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="gdlr-core-sly-slider gdlr-core-js-2">
+                                                <ul class="slides">
+                                                    <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                        <div class="gdlr-core-media-image"><img src="upload/shutterstock_450689383-300x150.jpg" alt="" width="300" height="150" title="Portrait" /></div>
+                                                    </li>
+                                                    <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                        <div class="gdlr-core-media-image"><img src="upload/shutterstock_218235004-300x200.jpg" alt="" width="300" height="200" title="Student" /></div>
+                                                    </li>
+                                                    <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                        <div class="gdlr-core-media-image"><img src="upload/shutterstock_381527992-300x200.jpg" alt="" width="300" height="200" title="Mathematic" /></div>
+                                                    </li>
+                                                    <li class="gdlr-core-gallery-list gdlr-core-item-mglr">
+                                                        <div class="gdlr-core-media-image"><img src="upload/shutterstock_284650220-300x200.jpg" alt="" width="300" height="200" title="Brainstorm" /></div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gdlr-core-pbf-wrapper " style="padding: 120px 20px 0px 20px;">
+                        <div class="gdlr-core-pbf-background-wrap" style="background-color: #ffffff ;"></div>
+                        <div class="gdlr-core-pbf-wrapper-content gdlr-core-js ">
+                            <div class="gdlr-core-pbf-wrapper-container clearfix gdlr-core-container">
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-title-item gdlr-core-item-pdb clearfix  gdlr-core-center-align gdlr-core-title-item-caption-bottom gdlr-core-item-pdlr" style="padding-bottom: 60px ;">
+                                        <div class="gdlr-core-title-item-title-wrap clearfix">
+                                            <h3 class="gdlr-core-title-item-title gdlr-core-skin-title " style="text-transform: none ;">Gallery Vertical</h3></div><span class="gdlr-core-title-item-caption gdlr-core-info-font gdlr-core-skin-caption">Caption Underneath, Hover With Icon</span></div>
+                                </div>
+                                <div class="gdlr-core-pbf-element">
+                                    <div class="gdlr-core-gallery-item gdlr-core-item-pdb clearfix  gdlr-core-gallery-item-style-stack-image gdlr-core-item-pdlr ">
+                                        <div class="gdlr-core-gallery-item-holder gdlr-core-js-2">
+                                            <div class="gdlr-core-item-list gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_450689383.jpg" data-sub-html="Women" data-lightbox-group="gdlr-core-img-group-6"><img src="upload/shutterstock_450689383-800x400.jpg" width="2000" height="1000"  alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                                <div class="gdlr-core-gallery-caption gdlr-core-info-font">Women</div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_685407757.jpg" data-sub-html="University" data-lightbox-group="gdlr-core-img-group-6"><img src="upload/shutterstock_685407757-800x534.jpg" width="2000" height="1335"  alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                                <div class="gdlr-core-gallery-caption gdlr-core-info-font">University</div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_381527992.jpg" data-sub-html="Subject" data-lightbox-group="gdlr-core-img-group-6"><img src="upload/shutterstock_381527992-800x533.jpg" width="2000" height="1333"  alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                                <div class="gdlr-core-gallery-caption gdlr-core-info-font">Subject</div>
+                                            </div>
+                                            <div class="gdlr-core-item-list gdlr-core-item-mgb">
+                                                <div class="gdlr-core-gallery-list gdlr-core-media-image">
+                                                    <a class="gdlr-core-lightgallery gdlr-core-js " href="upload/shutterstock_218235004.jpg" data-sub-html="Studying" data-lightbox-group="gdlr-core-img-group-6"><img src="upload/shutterstock_218235004-800x533.jpg" width="2000" height="1334"  alt="" /><span class="gdlr-core-image-overlay "><i class="gdlr-core-image-overlay-icon gdlr-core-size-22 fa fa-search"  ></i></span></a>
+                                                </div>
+                                                <div class="gdlr-core-gallery-caption gdlr-core-info-font">Studying</div>
                                             </div>
                                         </div>
                                     </div>
@@ -693,15 +673,15 @@
                             <div id="text-2" class="widget widget_text kingster-widget">
                                 <div class="textwidget">
                                     <p><img src="upload/footer-logo.png" alt="" />
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_983a_1"></span>
+                                        <br /> <span class="gdlr-core-space-shortcode" style="margin-top: 5px ;"></span>
                                         <br /> Box 35300
                                         <br /> 1810 Campus Way NE
                                         <br /> Bothell, WA 98011-8246</p>
-                                    <p><span id="span_983a_2">+1-2534-4456-345</span>
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_983a_3"></span>
-                                        <br /> <a id="a_983a_0" href="mailto:admin@kingsteruni.edu">admin@kingsteruni.edu</a></p>
+                                    <p><span style="font-size: 15px; color: #ffffff;">+1-2534-4456-345</span>
+                                        <br /> <span class="gdlr-core-space-shortcode" style="margin-top: -20px ;"></span>
+                                        <br /> <a style="font-size: 15px; color: #ffffff;" href="mailto:admin@kingsteruni.edu">admin@kingsteruni.edu</a></p>
                                     <div class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-left-align">
-                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" id="div_983a_49"></div>
+                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" style="border-color: #3db166 ;border-bottom-width: 2px ;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -754,39 +734,39 @@
                     </div>
                 </div>
                 
-                <div class="kingster-copyright-wrapper">
-                    <div class="kingster-copyright-container kingster-container clearfix">
-                        <div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2019, Max Themes</div>
-                        <div class="kingster-copyright-right kingster-item-pdlr">
-                            <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" id="div_983a_50">
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
-                                    <i class="fa fa-facebook" ></i>
-                                </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus">
-                                    <i class="fa fa-google-plus" ></i>
-                                </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
-                                    <i class="fa fa-linkedin" ></i>
-                                </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype">
-                                    <i class="fa fa-skype" ></i>
-                                </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
-                                    <i class="fa fa-twitter" ></i>
-                                </a>
-                                <a href="#" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
-                                    <i class="fa fa-instagram" ></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="kingster-copyright-wrapper">
+					<div class="kingster-copyright-container kingster-container clearfix">
+						<div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2019, Max Themes</div>
+						<div class="kingster-copyright-right kingster-item-pdlr">
+							<div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" style="padding-bottom: 0px ;">
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
+									<i class="fa fa-facebook" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="google-plus">
+									<i class="fa fa-google-plus" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
+									<i class="fa fa-linkedin" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="skype">
+									<i class="fa fa-skype" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
+									<i class="fa fa-twitter" ></i>
+								</a>
+								<a href="#" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
+									<i class="fa fa-instagram" ></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
             </footer>
         </div>
     </div>
 
 
-    <script type='text/javascript' src="{{ asset('assets/js/jquery/jquery.js')}}"></script>
+	<script type='text/javascript' src="{{ asset('assets/js/jquery/jquery.js')}}"></script>
     <script type='text/javascript' src="{{ asset('assets/js/jquery/jquery-migrate.min.js')}}"></script>
     <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/plugins/combine/script.js')}}"></script>
     <script type='text/javascript'>
@@ -806,11 +786,6 @@
             "home_url": "index.html"
         };
     </script>
-    <script type='text/javascript' src="{{ asset('assets/js/plugins.min.js')}}"></script>
+    <script type='text/javascript' src='js/plugins.min.js'></script>
 </body>
 </html>
-
-@endsection
-@push('scripts')
-    {{-- scripts here --}}
-@endpush

@@ -50,7 +50,7 @@
                         <div class="kingster-mm-menu-wrap kingster-navigation-font" id="kingster-mobile-menu" data-slide="right">
                             <ul id="menu-main-navigation" class="m-menu">
                                 <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="{{ url('/') }}">Home</a></li>
-                                <li class="menu-item menu-item-has-children"><a href="#">Pages</a>
+                                <li class="menu-item menu-item-has-children"><a href="/">Pages</a>
                                     <ul class="sub-menu">
                                         <li class="menu-item"><a href="about-us.html">About KU</a></li>
                                         <li class="menu-item menu-item-has-children"><a href="blog-full-right-sidebar-with-frame.html">Blog</a>
@@ -121,7 +121,7 @@
                                         <li class="menu-item"><a href="price-table.html">Price Table</a></li>
                                         <li class="menu-item"><a href="maintenance.html">Maintenance</a></li>
                                         <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li class="menu-item"><a href="404.html">404 Page</a></li>
+                                        <li class="menu-item"><a href="404.blade.php">404 Page</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item menu-item-has-children"><a href="bachelor-of-science-in-business-administration.html">Academics</a>
@@ -153,7 +153,7 @@
                                                 <li class="menu-item"><a href="introduction-to-financial-accounting.html">Single Course</a></li>
                                             </ul>
                                         </li>
-                                        <li class="menu-item"><a href="#">Logo</a></li>
+                                        <li class="menu-item"><a href="/">Logo</a></li>
                                     </ul>
                                 </li>
                                 <li class="menu-item menu-item-has-children"><a href="apply-to-kingster.html">Admissions</a>
