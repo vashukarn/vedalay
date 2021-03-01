@@ -36,12 +36,8 @@
 <body>
     {{-- <div class="se-pre-con"></div> --}}
     <header id="home">
-        <!-- Start Navigation -->
         <nav class="navbar navbar-default active-border navbar-fixed navbar-transparent white bootsnav">
-
             <div class="container">
-
-                <!-- Start Atribute Navigation -->
                 <div class="attr-nav button theme">
                     <ul>
                         <li>
@@ -50,21 +46,15 @@
                         </li>
                     </ul>
                 </div>
-                <!-- End Atribute Navigation -->
-
-                <!-- Start Header Navigation -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-display" alt="Logo">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-scrolled" alt="Logo">
+                        <img src="{{ @$sitesetting->logo }}" class="logo logo-display" alt="Vedalay">
+                        <img src="{{ @$sitesetting->logo }}" class="logo logo-scrolled" alt="Vedalay">
                     </a>
                 </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                         <li class="dropdown dropdown-right">
@@ -96,11 +86,7 @@
         <!-- End Navigation -->
 
     </header>
-    <!-- End Header -->
-    {{-- {{ page content starts from here  }} --}}
     @yield('content')
-    {{-- {{ page content ends here  }} --}}
-    <!-- .end home-contact-section -->
     <!-- footer -->
     
     <!-- Start Footer 
