@@ -46,31 +46,18 @@ class FeatureController extends Controller
         // dd($request->all());
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'short_title' => 'required|string|min:3|max:190',
+            'icon' => 'required',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'short_title' => $request->short_title,
-            'short_description' => $request->short_description,
-            'full_description' => $request->full_description,
-            'icon' => $request->icon_name ?? null,
-            'parallax_image' => $request->parallax_image_name ?? null,
-            'feature_image' => $request->feature_image_name ?? null,
-            'position' => $request->position,
+            'icon' => $request->icon,
             'publish_status' => $request->publish_status,
             'created_by' => Auth::user()->id,
         ];
         try {
-            if ($request->icon_name) {
-                moveImage($request->icon_name, featureimagepath);
-            }
-            if ($request->parallax_name) {
-                moveImage($request->parallax_name, featureimagepath);
-            }
-            if ($request->feature_image_name) {
-                moveImage($request->feature_image_name, featureimagepath);
-            }
             $this->feature->fill($data)->save();
             $request->session()->flash('success', 'Feature created successfully.');
             return redirect()->route('feature.index');
@@ -98,51 +85,21 @@ class FeatureController extends Controller
         }
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'short_title' => 'required|string|min:3|max:190',
+            'icon' => 'required',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
             'short_title' => $request->short_title,
-            'short_description' => $request->short_description,
-            'full_description' => $request->full_description,
-            'position' => $request->position,
             'publish_status' => $request->publish_status,
-            'status' => $request->status,
             'updated_by' => Auth::user()->id,
-            'icon' => $request->icon_name ?? null,
-            'parallax_image' => $request->parallax_image_name ?? null,
-            'feature_image' => $request->feature_image_name ?? null,
         ];
 
+        if($request->icon){
+            $data['icon'] = $request->icon;
+        }
         try {
-            if($request->icon && $request->icon_name){
-                moveImage($request->icon_name, featureimagepath);
-                if ($feature_info) {
-                    $oldImage =  $feature_info->icon;
-                    if ($request->icon_name != $oldImage) {
-                        removeImage($oldImage, featureimagepath);
-                    }
-                }
-            }
-            if($request->featured_image && $request->featured_image_name){
-                moveImage($request->featured_image_name, featureimagepath);
-                if ($feature_info) {
-                    $oldImage =  $feature_info->featured_image;
-                    if ($request->featured_image_name != $oldImage) {
-                        removeImage($oldImage, featureimagepath);
-                    }
-                }
-            }
-            if($request->parallax_image && $request->parallax_image_name){
-                moveImage($request->parallax_image_name, featureimagepath);
-                if ($feature_info) {
-                    $oldImage =  $feature_info->parallax_image;
-                    if ($request->parallax_image_name != $oldImage) {
-                        removeImage($oldImage, featureimagepath);
-                    }
-                }
-            }
             $feature_info->fill($data)->save();
             $request->session()->flash('success', 'Feature updated successfully.');
             return redirect()->route('feature.index');

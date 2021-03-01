@@ -11,7 +11,12 @@ class Feature extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'title', 'created_by', 'updated_by', 'slug', 'short_title', 'full_description', 'short_description','icon', 'parallax_image', 'feature_image',  'position', 'publish_status'
+        'title',
+        'short_title',
+        'publish_status',
+        'icon',
+        'created_by',
+        'updated_by',
     ];
     protected $dates = ['deleted_at'];
 }

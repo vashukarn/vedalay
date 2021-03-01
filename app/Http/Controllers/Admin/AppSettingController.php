@@ -79,10 +79,6 @@ class AppSettingController extends Controller
             'address' => $request->address,
             'email' => $request->email,
             'phone' => $request->contact_no,
-            'logo' => $request->logo ?? null,
-            'logo_light' => $request->logo_light ?? null,
-            'favicon' => $request->favicon ?? null,
-            'og_image' => $request->og_image ?? null,
             'is_favicon' => $request->is_favicon,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
@@ -93,6 +89,18 @@ class AppSettingController extends Controller
             'meta' => $request->meta,
             'is_meta' => $request->is_meta,
         ];
+        if($request->logo){
+            $data['logo'] = $request->logo;
+        }
+        if($request->logo_light){
+            $data['logo_light'] = $request->logo_light;
+        }
+        if($request->og_image){
+            $data['og_image'] = $request->og_image;
+        }
+        if($request->favicon){
+            $data['favicon'] = $request->favicon;
+        }
 
         try {
             $appSetting->fill($data)->save();

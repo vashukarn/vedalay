@@ -10,29 +10,37 @@
 
     <!-- Start Banner 
     ============================================= -->
-    <div class="banner-area auto-height text-center text-normal text-light shadow dark-hard bg-fixed" style="background-image: url(assets/img/banner/1.jpg);">
+    <div class="banner-area auto-height text-center text-normal text-light shadow dark-hard bg-fixed" style="background-image: url('{{ $page ? $page->landing_image : asset('assets/img/main-back.jpg')}}');">
         <div class="container">
             <div class="row">
                 <div class="content-box video-popup">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="content">
-                            <h1>Get your free <span>2 weeks</span> trial right here</h1>
-                            <p>
-                                Celebrated delightful an especially increasing instrument am. Indulgence contrasted sufficient to unpleasant in insensible favourable.
-                            </p>
-                            <a class="btn circle btn-light border btn-md" href="#">Get Started</a>
-                            <a href="https://www.youtube.com/watch?v=owhuBrGIOsE" class="popup-youtube light video-play-button video-inline">
+                            <h1>{{ $page ? $page->landing_title1 : 'Get your Free' }}<span> {{ $page ? $page->landing_title2 : 'Demo' }} </span>{{ $page ? $page->landing_title3 : 'Right Here' }}</h1>
+                            <p>{{ $page ? $page->landing_subtitle : 'Use our School Management Software and be delighted to see powerful functions' }}</p>
+                            <a class="btn circle btn-light border btn-md" href="{{ url('/login') }}">Get Started</a>
+                            {{-- <a href="https://www.youtube.com/watch?v=owhuBrGIOsE" class="popup-youtube light video-play-button video-inline">
                                 <i class="fa fa-play"></i>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
+                    @if (count($sliders) > 0)
                     <div class="col-md-8 col-md-offset-2">
                         <div class="banner banner-carousel owl-carousel owl-theme">
-                            <img alt="Thumb" src="assets/img/dashboard/1.jpg">
-                            <img alt="Thumb" src="assets/img/dashboard/2.jpg">
-                            <img alt="Thumb" src="assets/img/dashboard/3.jpg">
+                            @foreach ($sliders as $item)
+                                <img alt="{{ $item->title }}" src="{{ $item->image }}">
+                            @endforeach
                         </div>
                     </div>
+                    @else
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="banner banner-carousel owl-carousel owl-theme">
+                            <img alt="School Management Example Slider" src="{{ asset('assets/img/dashboard/1.png') }}">
+                            <img alt="School Management Example Slider" src="{{ asset('assets/img/dashboard/2.png') }}">
+                            <img alt="School Management Example Slider" src="{{ asset('assets/img/dashboard/3.png') }}">
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -41,52 +49,32 @@
 
     <!-- Start Companies Area 
     ============================================= -->
+    @if (isset($page->customers_logo1) || isset($page->customers_logo2) || isset($page->customers_logo3))
     <div class="companies-area default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 info">
-                    <h3>We're Trusted by <span>2500+</span> Customer</h3>
-                    <p>
-                        Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves.
-                    </p>
+                    <h3>{{ @$page->customers_title1 }} <span>{{ @$page->customers_title2 }}</span> {{ @$page->customers_title3 }}</h3>
+                    <p>{{ @$page->customers_subtitle }}</p>
                 </div>
+                
                 <div class="col-md-6 clients">
                     <div class="clients-items owl-carousel owl-theme text-center">
                         <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/1.png" alt="Clients"></a>
+                            <a href="#"><img src="{{ $page->customers_logo1 }}" alt="Clients"></a>
                         </div>
                         <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/2.png" alt="Clients"></a>
+                            <a href="#"><img src="{{ $page->customers_logo2 }}" alt="Clients"></a>
                         </div>
                         <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/3.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/4.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/5.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/6.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/7.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/8.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/9.png" alt="Clients"></a>
-                        </div>
-                        <div class="single-item">
-                            <a href="#"><img src="assets/img/clients/10.png" alt="Clients"></a>
+                            <a href="#"><img src="{{ $page->customers_logo3 }}" alt="Clients"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endif
     <!-- End Companies Area -->
 
     <!-- Start About 
@@ -95,32 +83,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 promo-video">
-                    <a class="popup-youtube light video-play-button" href="https://www.youtube.com/watch?v=owhuBrGIOsE">
-                        <img src="assets/img/work/4.png" alt="Thumb">
+                    <a class="popup-youtube light video-play-button" href="{{ $page ? $page->whyus_link : '#' }}">
+                        <img src="{{ $page ? $page->whyus_image : asset('assets/img/work/4.png') }}" alt="{{ $page ? $page->whyus_title : 'Vedalay about us image' }}">
                         <i class="fa fa-play"></i>
                     </a>
                 </div>
                 <div class="col-md-7 default info">
-                    <h4>Why Chose Us</h4>
-                    <h2>Designed for startups <br>with expert developer</h2>
-                    <p>
-                        Both rest of know draw fond post as. It agreement defective to excellent. Feebly do engage of narrow. Extensive repulsive belonging depending if promotion be zealously as. Preference inquietude ask now are dispatched led appearance. Small meant in so doubt hopes. 
-                    </p>
+                    <h4>{{ $page ? $page->whyus_title : 'Why Choose Us' }}</h4>
+                    <h2>{{ $page ? $page->whyus_subtitle : 'Designed for Schools, Colleges & Universities' }}</h2>
+                    <p>{{ $page ? $page->whyus_paragraph : '' }}</p>
                     <ul>
+                    @if (isset($page->whyus_features))
+                        @foreach ($page->whyus_features as $item)
+                            <li>
+                                <h5>{{ $item['title'] }}</h5>
+                                <span>{{ $item['subtitle'] }}</span>
+                            </li>
+                        @endforeach
+                    @else
                         <li>
-                            <h5>Rocket Fast</h5>
-                            <span>Elderly is detract tedious assured private</span>
+                            <h5>Not any usual School Management System</h5>
+                            <span>This school management system is blazing fast depending upon the server speed</span>
                         </li>
                         <li>
-                            <h5>Custom Framework</h5>
-                            <span>Do travelling companions contrasted</span>
+                            <h5>Powerful Roles</h5>
+                            <span>We have diffrent roles and permissions specified according to their job role</span>
                         </li>
                         <li>
-                            <h5>Minimal Design</h5>
-                            <span>Mistress strongly remember up</span>
+                            <h5>Email Integration</h5>
+                            <span>Sending emails on fee addition and Fee submission along with details</span>
                         </li>
+                    @endif
                     </ul>
-                    <a href="#" class="btn circle btn-theme effect btn-md">Read more</a>
+                    <a href="{{ url('/login') }}" class="btn circle btn-theme effect btn-md">Know more</a>
                 </div>
             </div>
         </div>
@@ -134,8 +129,8 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Our <span>Features</span></h2>
-                        <h4>Checkout our leatest features</h4>
+                        <h2><span>{{ $page ? $page->features_title : 'Our Features' }}</span></h2>
+                        <h4>{{ $page ? $page->features_subtitle : 'Check our latest features' }}</h4>
                     </div>
                 </div>
             </div>
@@ -143,6 +138,22 @@
                 <div class="features-items icon-solid">
                     <div class="col-md-7">
                         <div class="items-box inc-cell">
+
+                            @if(count($features) > 0)
+                            @foreach ($features as $item)
+                                <div class="col-md-6 col-sm-6 equal-height">
+                                    <div class="item">
+                                        <div class="icon">
+                                            <img height="70px" src="{{ $item->icon }}" alt="{{ $item->title }}">
+                                        </div>
+                                        <div class="info">
+                                            <h4>{{ $item->title }}</h4>
+                                            <p>{{ $item->short_title }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @else
                             <div class="col-md-6 col-sm-6 equal-height">
                                 <div class="item">
                                     <div class="icon">
@@ -189,17 +200,17 @@
                                     </div>
                                     <div class="info">
                                         <h4>First Run</h4>
-                                        <p>
-                                            Delighted prevailed supported remainder perpetual who
+                                        <p>Delighted prevailed supported remainder perpetual who
                                         </p>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="thumb">
-                            <img src="assets/img/illustrations/2.svg" alt="Thumb">
+                            <img src="{{ $page ? $page->features_image : asset('assets/img/illustrations/2.svg') }}" alt="{{ @$page->whyus_title }} Image">
                         </div>
                     </div>
                 </div>

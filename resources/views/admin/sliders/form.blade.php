@@ -117,8 +117,8 @@
                                         width: 150px;
                                         margin-top:15px;">
                                     </div>
-                                    @if (isset($site_detail->image))
-                                    Old Image: &nbsp; <img src="{{ @$site_detail->image }}" alt="Couldn't load image" 
+                                    @if (isset($slider_info->image))
+                                    Old Image: &nbsp; <img src="{{ $slider_info->image }}" alt="Couldn't load image" 
                                     class="img img-thumbail mt-2" style="width: 100px">
                                     @endif
                                     @error('image')

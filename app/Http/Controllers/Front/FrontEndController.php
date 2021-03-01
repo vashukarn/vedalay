@@ -7,6 +7,7 @@ use App\Models\AppSetting;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Feature;
 use App\Models\Fee;
 use App\Models\HomePage;
 use App\Models\Slider;
@@ -33,10 +34,12 @@ class FrontEndController extends Controller
     {
         $sliders = Slider::where('publish_status', '1')->get();
         $pagedata = HomePage::latest()->first();
+        $features = Feature::where('publish_status', '1')->get();
         // dd($pagedata);
         $data = [
             'sliders' => $sliders,
             'page' => $pagedata,
+            'features' => $features,
         ];
         return view('website.index')->with($data);
     }

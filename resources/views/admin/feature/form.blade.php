@@ -3,23 +3,12 @@
     @push('scripts')
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
         <script src="{{ asset('/custom/feature.js') }}"></script>
+        <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script>
-            $(document).ready(function() {
-                $('#icon').change(function() {
-                    $('#icon_view').removeClass('d-none');
-                })
-                $('#feature_image').change(function() {
-                    $('#feature_image_view').removeClass('d-none');
-                })
-                $('#parallax_image').change(function() {
-                    $('#parallax_image_view').removeClass('d-none');
-                })
-            })
-
+        $('#lfm').filemanager('image');
         </script>
     @endpush
 @section('content')
-    @include('admin.shared.image_upload')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -41,7 +30,6 @@
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
-                        {{-- <input type="hidden" name="roles" value="1" placeholder="dummy"> --}}
                         <div class="col-sm-10 offset-lg-1">
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Feature Title :*', ['class' => 'col-sm-3']) }}
@@ -61,29 +49,29 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group row {{ $errors->has('short_description') ? 'has-error' : '' }}">
-                                {{ Form::label('short_description', 'Feature Short Description :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::textarea('short_description', @$feature_info->short_description, ['class' => 'form-control ckeditor', 'maxlength' => '100', 'id' => 'my-editor', 'placeholder' => 'Feature Short Description', 'style' => 'width:80%']) }}
-                                    @error('short_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('full_description') ? 'has-error' : '' }}">
-                                {{ Form::label('full_description', 'Feature Long Description :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::textarea('full_description', @$feature_info->full_description, ['class' => 'form-control ckeditor', 'id' => 'my-editor1', 'placeholder' => 'Feature Long Description', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('full_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row {{ $errors->has('position') ? 'has-error' : '' }}">
-                                {{ Form::label('position', 'Feature Position :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::number('position', @$feature_info->position, ['class' => 'form-control', 'id' => 'position', 'placeholder' => 'Feature Position', 'required' => true, 'style' => 'width:80%']) }}
-                                    @error('description')
+                            <div class="form-group row {{ $errors->has('icon') ? 'has-error' : '' }}">
+                                {{ Form::label('icon', 'Feature Icon:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <a id="lfm" data-input="icon" data-preview="holder" class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                          </a>
+                                        </span>
+                                        <input id="icon" class="form-control" type="text" name="icon">
+                                    </div>
+                                    <div id="holder" style="
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
+                                    </div>
+                                    @if (isset($slider_info->icon))
+                                    Old icon: &nbsp; <img src="{{ $slider_info->icon }}" alt="Couldn't load icon" 
+                                    class="img img-thumbail mt-2" style="width: 100px">
+                                    @endif
+                                    @error('icon')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -97,86 +85,7 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="form-group row {{ $errors->has('icon') ? 'has-error' : '' }}">
-                                {{ Form::label('icon', 'Icon:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::file('icon', ['id' => 'icon', 'class' => 'cropImage', 'name' => 'icon', 'style' => 'width:80%', 'accept' => 'image/*', 'onchange' => 'uploadImage(this);']) }}
-                                    <input type="hidden" name="icon_name" id="icon_name"
-                                        value="{{ @$feature_info->icon }}">
-                                    @error('icon')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-
-                                    <div class="col-sm-4">
-                                        <img id="icon_view"
-                                            src="{{ getImageUrl(@$feature_info->icon, featureimagepath) }}" alt="icon"
-                                            class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                        @if (isset($feature_info->icon))
-                                            @if (file_exists(public_path() . '/uploads' . featureimagepath . '/' . @$feature_info->icon))
-                                                <img src="{{ asset('/uploads' . featureimagepath . '/' . @$feature_info->icon) }}"
-                                                    alt="{{ @$feature_info->icon }}" class="img img-fluid img-thumbnail"
-                                                    style="height:80px" id=" ">
-                                            @endif
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('feature_image') ? 'has-error' : '' }}">
-                                {{ Form::label('feature_image', 'Feature Image:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::file('feature_image', ['id' => 'feature_image', 'class' => 'cropImage', 'name' => 'feature_image', 'style' => 'width:80%', 'accept' => 'image/*', 'onchange' => 'uploadImage(this);']) }}
-                                    <input type="hidden" name="feature_image_name" id="feature_image_name"
-                                        value="{{ @$feature_info->feature_image }}">
-                                    @error('feature_image')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-
-                                    <div class="col-sm-4">
-                                        <img id="feature_image_view"
-                                            src="{{ getImageUrl(@$feature_info->feature_image, featureimagepath) }}"
-                                            alt="feature_image" class="d-none img-fluid img-thumbnail"
-                                            style="height: 80px" />
-                                        @if (isset($feature_info->feature_image))
-                                            @if (file_exists(public_path() . '/uploads' . featureimagepath . '/' . @$feature_info->feature_image))
-                                                <img src="{{ asset('/uploads' . featureimagepath . '/' . @$feature_info->feature_image) }}"
-                                                    alt="{{ @$feature_info->feature_image }}"
-                                                    class="img img-fluid img-thumbnail" style="height:80px" id=" ">
-                                            @endif
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('parallax_image') ? 'has-error' : '' }}">
-                                {{ Form::label('parallax_image', 'Parallax Image:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::file('parallax_image', ['id' => 'parallax_image', 'class' => 'cropImage', 'name' => 'parallax_image', 'style' => 'width:80%', 'accept' => 'image/*', 'onchange' => 'uploadImage(this);']) }}
-                                    <input type="hidden" name="parallax_image_name" id="parallax_image_name"
-                                        value="{{ @$feature_info->parallax_image }}">
-                                    @error('parallax_image')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-
-                                    <div class="col-sm-4">
-                                        <img id="parallax_image_view"
-                                            src="{{ getImageUrl(@$feature_info->parallax_image, featureimagepath) }}"
-                                            alt="parallax_image" class="d-none img-fluid img-thumbnail"
-                                            style="height: 80px" />
-                                        @if (isset($feature_info->parallax_image))
-                                            @if (file_exists(public_path() . '/uploads' . featureimagepath . '/' . @$feature_info->parallax_image))
-                                                <img src="{{ asset('/uploads' . featureimagepath . '/' . @$feature_info->parallax_image) }}"
-                                                    alt="{{ @$feature_info->parallax_image }}"
-                                                    class="img img-fluid img-thumbnail" style="height:80px" id=" ">
-                                            @endif
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-
-
-
+                            
                         </div>
                     </div>
                     <div class="form-group row">

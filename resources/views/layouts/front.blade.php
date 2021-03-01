@@ -8,8 +8,6 @@
     <meta name="author" content="Vashu Karn">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dostart - Startup Landing Page">
-
     <!-- ========== Page Title ========== -->
     <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
 
@@ -51,14 +49,14 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-display" alt="Vedalay">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-scrolled" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo-light.png')}}" class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png')}}" class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                         <li class="dropdown dropdown-right">
-                            <a href="{{ url('/') }}" class="dropdown-toggle smooth-menu" data-toggle="dropdown" >Home</a>
+                            <a href="{{ url('/') }}" class="smooth-menu">Home</a>
                         </li>
                         <li>
                             <a class="smooth-menu" href="#about">About</a>

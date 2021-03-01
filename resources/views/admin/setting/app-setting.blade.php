@@ -178,13 +178,13 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm3" data-input="logo_light" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm1" data-input="logo_light" data-preview="holder1" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
                                     <input id="logo_light" class="form-control" type="text" name="logo_light">
                                 </div>
-                                <div id="holder" style="
+                                <div id="holder1" style="
                                     border: 1px solid #ddd;
                                     border-radius: 4px;
                                     padding: 5px;
@@ -192,7 +192,7 @@
                                     margin-top:15px;">
                                 </div>
                                 @if (isset($site_detail->logo_light))
-                                Old Logo_light: &nbsp; <img src="{{ @$site_detail->logo_light }}" alt="Couldn't load logo_light" 
+                                Old Light Logo: &nbsp; <img src="{{ @$site_detail->logo_light }}" alt="Couldn't load logo_light" 
                                 class="img img-thumbail mt-2" style="width: 100px">
                                 @endif
                                 @error('logo_light')
@@ -222,13 +222,13 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm1" data-input="favicon" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm2" data-input="favicon" data-preview="holder2" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
                                     <input id="favicon" class="form-control" type="text" name="favicon">
                                 </div>
-                                <div id="holder" style="
+                                <div id="holder2" style="
                                     border: 1px solid #ddd;
                                     border-radius: 4px;
                                     padding: 5px;
@@ -250,13 +250,13 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm2" data-input="og_image" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm3" data-input="og_image" data-preview="holder3" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
                                     <input id="og_image" class="form-control" type="text" name="og_image">
                                 </div>
-                                <div id="holder" style="
+                                <div id="holder3" style="
                                     border: 1px solid #ddd;
                                     border-radius: 4px;
                                     padding: 5px;
