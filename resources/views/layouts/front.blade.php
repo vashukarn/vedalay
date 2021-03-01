@@ -12,7 +12,7 @@
     <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{{ @$sitesetting->favicon }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png')}}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
