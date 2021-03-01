@@ -40,6 +40,21 @@ class FrontEndController extends Controller
         ];
         return view('website.index')->with($data);
     }
+    public function about()
+    {
+        $sliders = Slider::where('publish_status', '1')->get();
+        $pagedata = HomePage::latest()->first();
+        // dd($pagedata);
+        $data = [
+            'sliders' => $sliders,
+            'page' => $pagedata,
+        ];
+        return view('website.index')->with($data);
+    }
+    public function four()
+    {
+        return view('website.404');
+    }
     public function register()
     {
         $meta = AppSetting::orderBy('created_at', 'desc')->first();
