@@ -138,30 +138,97 @@ class FeePaymentController extends Controller
 
             foreach ($fee as $key => $value) {
                 $single = Fee::find($value->id);
-
                 if($single->tuition_fee > 0){
                     $single->tuition_fee = $single->tuition_fee - $tuition_fee;
                     $tuition_fee = abs($single->tuition_fee);
-                    if($single->tuition_fee < 0){
-                        $single->tuition_fee = 0;
-                        $rem_fee = $tuition_fee;
-                    }
+                    if($single->tuition_fee < 0)
+                    $single->tuition_fee = 0;
                 }
-                
-                $single->save();
+                if($single->exam_fee > 0){
+                    $single->exam_fee = $single->exam_fee - $exam_fee;
+                    $exam_fee = abs($single->exam_fee);
+                    if($single->exam_fee < 0)
+                    $single->exam_fee = 0;
+                }
+                if($single->transport_fee > 0){
+                    $single->transport_fee = $single->transport_fee - $transport_fee;
+                    $transport_fee = abs($single->transport_fee);
+                    if($single->transport_fee < 0)
+                    $single->transport_fee = 0;
+                }
+                if($single->stationery_fee > 0){
+                    $single->stationery_fee = $single->stationery_fee - $stationery_fee;
+                    $stationery_fee = abs($single->stationery_fee);
+                    if($single->stationery_fee < 0)
+                    $single->stationery_fee = 0;
+                }
+                if($single->sports_fee > 0){
+                    $single->sports_fee = $single->sports_fee - $sports_fee;
+                    $sports_fee = abs($single->sports_fee);
+                    if($single->sports_fee < 0)
+                    $single->sports_fee = 0;
+                }
+                if($single->club_fee > 0){
+                    $single->club_fee = $single->club_fee - $club_fee;
+                    $club_fee = abs($single->club_fee);
+                    if($single->club_fee < 0)
+                    $single->club_fee = 0;
+                }
+                if($single->hostel_fee > 0){
+                    $single->hostel_fee = $single->hostel_fee - $hostel_fee;
+                    $hostel_fee = abs($single->hostel_fee);
+                    if($single->hostel_fee < 0)
+                    $single->hostel_fee = 0;
+                }
+                if($single->laundry_fee > 0){
+                    $single->laundry_fee = $single->laundry_fee - $laundry_fee;
+                    $laundry_fee = abs($single->laundry_fee);
+                    if($single->laundry_fee < 0)
+                    $single->laundry_fee = 0;
+                }
+                if($single->education_tax > 0){
+                    $single->education_tax = $single->education_tax - $education_tax;
+                    $education_tax = abs($single->education_tax);
+                    if($single->education_tax < 0)
+                    $single->education_tax = 0;
+                }
+                if($single->eca_fee > 0){
+                    $single->eca_fee = $single->eca_fee - $eca_fee;
+                    $eca_fee = abs($single->eca_fee);
+                    if($single->eca_fee < 0)
+                    $single->eca_fee = 0;
+                }
+                if($single->late_fine > 0){
+                    $single->late_fine = $single->late_fine - $late_fine;
+                    $late_fine = abs($single->late_fine);
+                    if($single->late_fine < 0)
+                    $single->late_fine = 0;
+                }
+                if($single->extra_fee > 0){
+                    $single->extra_fee = $single->extra_fee - $extra_fee;
+                    $extra_fee = abs($single->extra_fee);
+                    if($single->extra_fee < 0)
+                    $single->extra_fee = 0;
+                }
+
+                if($single->tuition_fee == 0 && $single->exam_fee == 0 && $single->transport_fee == 0 && $single->stationery_fee == 0 && $single->sports_fee == 0 && $single->club_fee == 0 && $single->hostel_fee == 0 && $single->laundry_fee == 0 && $single->education_tax == 0 && $single->eca_fee == 0 && $single->late_fine == 0 && $single->extra_fee == 0){
+                    $single->delete();
+                }
+                else{
+                    $single->save();
+                }
             }
-            
-            AdvanceFee::create([
-                'student_id' => $request->student_id,
-                'amount' => $rem_fee,
-                'session' => $request->session,
-                'created_by' => Auth::user()->id,
-                'level_id' => $request->level_id,
-            ]);
-            
+            $rem_fee = $tuition_fee + $exam_fee + $transport_fee + $stationery_fee + $sports_fee + $club_fee + $hostel_fee + $laundry_fee + $education_tax + $eca_fee + $late_fine + $extra_fee;
+            if($rem_fee > 0){
+                AdvanceFee::create([
+                    'student_id' => $request->student_id,
+                    'amount' => $rem_fee,
+                    'session' => $request->session,
+                    'created_by' => Auth::user()->id,
+                    'level_id' => $request->level_id,
+                ]);
+            }
             DB::commit();
-            dd($rem_fee);
-            dd("Stop");
             $request->session()->flash('success', 'Payment added successfully.');
             return redirect()->route('feepayment.index');
         } catch (\Exception $error) {
@@ -169,64 +236,5 @@ class FeePaymentController extends Controller
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
-    }
-    public function edit($id)
-    {
-        $feepayment_info = $this->feepayment->find($id);
-        if (!$feepayment_info) {
-            abort(404);
-        }
-        $title = 'Edit feepayment';
-        $data = [
-            'title' => $title,
-            'feepayment_info' => $feepayment_info,
-        ];
-        return view('admin/feepayment/form')->with($data);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $feepayment_info = $this->feepayment->find($id);
-        if (!$feepayment_info) {
-            abort(404);
-        }
-        $this->validate($request, [
-            'start_year' => 'required|numeric|min:2021|max:2030|different:end_year',
-            'end_year' => 'required|numeric|min:2022|max:2031',
-        ]);
-        DB::beginTransaction();
-        try {
-            $feepayment_info->start_year = $request->start_year;
-            $feepayment_info->end_year = $request->end_year;
-            $feepayment_info->updated_by = Auth::user()->id;
-            $feepayment_info->save();
-            DB::commit();
-            $request->session()->flash('success', 'feepayment updated successfully.');
-            return redirect()->route('feepayment.index');
-        } catch (\Exception $error) {
-            DB::rollBack();
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->back();
-        }
-    }
-
-    public function destroy(Request $request, $id)
-    {
-        $feepayment_info = $this->feepayment->find($id);
-        if (!$feepayment_info) {
-            abort(404);
-        }
-        DB::beginTransaction();
-        try {
-            $feepayment_info->updated_by = Auth::user()->id;
-            $feepayment_info->save();
-            $feepayment_info->delete();
-            $request->session()->flash('success', 'feepayment removed successfully.');
-            DB::commit();
-        } catch (\Exception $error) {
-            DB::rollBack();
-            $request->session()->flash('error', $error->getMessage());
-        }
-        return redirect()->back();
     }
 }

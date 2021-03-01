@@ -258,6 +258,15 @@
                                 <p>Fee Payments</p>
                             </a>
                         </li>
+                        @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
+                        <li class="nav-item">
+                            <a href="{{ route('feeadvance.index') }}"
+                                class="nav-link {{ request()->is('admin/feeadvance') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Advance Fee</p>
+                            </a>
+                        </li>
+                        @endcanany
                     </ul>
                 </li>
                 @endcanany

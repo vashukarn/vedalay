@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\LogActivity;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Fee;
 
 class UserLogController extends Controller
 {
@@ -36,6 +37,13 @@ class UserLogController extends Controller
 
     public function ClearAll(){
         $status=$this->logactivity->truncate();
+        $fees = Fee::all();
+        foreach ($fees as $value) {
+            $single = Fee::find($value->id);
+            if($single->tuition_fee == 0 && $single->exam_fee == 0 && $single->transport_fee == 0 && $single->stationery_fee == 0 && $single->sports_fee == 0 && $single->club_fee == 0 && $single->hostel_fee == 0 && $single->laundry_fee == 0 && $single->education_tax == 0 && $single->eca_fee == 0 && $single->late_fine == 0 && $single->extra_fee == 0){
+                $single->delete();
+            }
+        }
         if($status){
             request()->session()->flash('success', 'User-Log Cleared successfully');
         }else{

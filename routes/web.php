@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdvanceFeeController;
 use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
 use App\Http\Controllers\Admin\AttendanceController;
@@ -23,7 +24,6 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\SessionController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\StaffAttendanceController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
@@ -32,20 +32,8 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VacancyController;
-use App\Http\Controllers\Front\FrontEndController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
- */
 
 Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 Route::get('two-factor-recovery', [UserController::class, 'recovery'])->middleware('guest');
@@ -54,6 +42,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('feeadvance', AdvanceFeeController::class);
+    Route::post('feeadvance/{id}', [AdvanceFeeController::class, 'pay'])->name('feeadvance.pay');
     Route::resource('feepayment', FeePaymentController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('profile', ProfileController::class);

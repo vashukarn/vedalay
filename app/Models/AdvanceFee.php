@@ -18,6 +18,10 @@ class AdvanceFee extends Model
         'level_id',
     ];
     protected $dates = ['deleted_at'];
+    public function student()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'student_id');
+    }
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
