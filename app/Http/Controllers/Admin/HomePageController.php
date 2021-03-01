@@ -26,6 +26,7 @@ class HomePageController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $data = [
             // 'topTopics' => $request->topTopics,
             'firstjumbotron' => $request->firstjumbotron,

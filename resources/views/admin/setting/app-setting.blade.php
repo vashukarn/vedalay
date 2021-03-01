@@ -8,7 +8,6 @@
                 border-color: #138192;
                 color: #fff;
             }
-
         </style>
     @endpush
     @push('scripts')

@@ -25,6 +25,8 @@ class CreateHomePagesTable extends Migration
             $table->string('whyus_title')->nullable();
             $table->string('whyus_subtitle')->nullable();
             $table->string('whyus_paragraph')->nullable();
+            $table->string('whyus_image')->nullable();
+            $table->string('whyus_link')->nullable();
             $table->text('whyus_features')->nullable();
             $table->string('features_title')->nullable();
             $table->string('features_subtitle')->nullable();
@@ -32,6 +34,7 @@ class CreateHomePagesTable extends Migration
             $table->string('newsletter_title')->nullable();
             $table->string('newsletter_subtitle')->nullable();
             $table->text('newsletter_counters')->nullable();
+            $table->text('newsletter_image')->nullable();
             $table->string('work_title')->nullable();
             $table->string('work_subtitle')->nullable();
             $table->text('work_detail')->nullable();
