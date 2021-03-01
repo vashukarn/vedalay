@@ -1,689 +1,266 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
+    <!-- ========== Meta Tags ========== -->
+    @yield('meta')
     <meta charset="utf-8">
     <meta name="author" content="Vashu Karn">
-    <meta property="og:site_name" content="{{ __(env('APP_NAME', 'Vedalay School Management')) }}">
-    @yield('meta')
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <title>
-    {{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')
-    </title>
-    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/plugins/combine/style.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/plugins/goodlayers-core/include/css/page-builder.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/plugins/revslider/public/assets/css/settings.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/css/style-core.css') }}" type='text/css' media='all' />
-    <link rel='stylesheet' href="{{ asset('assets/css/kingster-style-custom.css') }}" type='text/css' media='all' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dostart - Startup Landing Page">
 
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700%2C400" rel="stylesheet" property="stylesheet" type="text/css" media="all">
-    <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CABeeZee%3Aregular%2Citalic&amp;subset=latin%2Clatin-ext%2Cdevanagari&amp;ver=5.0.3" type='text/css' media='all' />
-    <link rel="icon" href="@$sitesetting->favicon }}" type="image/png" sizes="16x16">
+    <!-- ========== Page Title ========== -->
+    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{{ @$sitesetting->favicon }}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" />
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800" rel="stylesheet">
     @stack('styles')
 
 </head>
-<body class="home page-template-default page page-id-2039 gdlr-core-body woocommerce-no-js tribe-no-js kingster-body kingster-body-front kingster-full  kingster-with-sticky-navigation  kingster-blockquote-style-1 gdlr-core-link-to-lightbox">
-    <div class="kingster-mobile-header-wrap">
-        <div class="kingster-mobile-header kingster-header-background kingster-style-slide kingster-sticky-mobile-navigation " id="kingster-mobile-header">
-            <div class="kingster-mobile-header-container kingster-container clearfix">
-                <div class="kingster-logo  kingster-item-pdlr">
-                    <div class="kingster-logo-inner">
-                        <a class="" href="{{ url('/') }}"><img src="{{ @$sitesetting->logo }}" alt="" /></a>
-                    </div>
-                </div>
-                <div class="kingster-mobile-menu-right">
-                    <div class="kingster-main-menu-search" id="kingster-mobile-top-search"><i class="fa fa-search"></i></div>
-                    <div class="kingster-top-search-wrap">
-                        <div class="kingster-top-search-close"></div>
-                        <div class="kingster-top-search-row">
-                            <div class="kingster-top-search-cell">
-                                <form role="search" method="get" class="search-form" action="#">
-                                    <input type="text" class="search-field kingster-title-font" placeholder="Search..." value="" name="s">
-                                    <div class="kingster-top-search-submit"><i class="fa fa-search"></i></div>
-                                    <input type="submit" class="search-submit" value="Search">
-                                    <div class="kingster-top-search-close"><i class="icon_close"></i></div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="kingster-mobile-menu"><a class="kingster-mm-menu-button kingster-mobile-menu-button kingster-mobile-button-hamburger" href="#kingster-mobile-menu"><span></span></a>
-                        <div class="kingster-mm-menu-wrap kingster-navigation-font" id="kingster-mobile-menu" data-slide="right">
-                            <ul id="menu-main-navigation" class="m-menu">
-                                <li class="menu-item menu-item-home current-menu-item menu-item-has-children"><a href="{{ url('/') }}">Home</a></li>
-                                <li class="menu-item menu-item-has-children"><a href="/">Pages</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="about-us.html">About KU</a></li>
-                                        <li class="menu-item menu-item-has-children"><a href="blog-full-right-sidebar-with-frame.html">Blog</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item menu-item-has-children"><a href="blog-full-right-sidebar-with-frame.html">Blog Full</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="blog-full-right-sidebar-with-frame.html">Blog Full Right Sidebar With Frame</a></li>
-                                                        <li class="menu-item"><a href="blog-full-left-sidebar-with-frame.html">Blog Full Left Sidebar With Frame</a></li>
-                                                        <li class="menu-item"><a href="blog-full-both-sidebar-with-frame.html">Blog Full Both Sidebar With Frame</a></li>
-                                                        <li class="menu-item"><a href="blog-full-right-sidebar.html">Blog Full Right Sidebar</a></li>
-                                                        <li class="menu-item"><a href="blog-full-left-sidebar.html">Blog Full Left Sidebar</a></li>
-                                                        <li class="menu-item"><a href="blog-full-both-sidebar.html">Blog Full Both Sidebar</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item menu-item-has-children"><a href="blog-grid-3-columns-no-space.html">Blog Grid</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="blog-grid-2-columns.html">Blog Grid 2 Columns</a></li>
-                                                        <li class="menu-item"><a href="blog-grid-3-columns.html">Blog Grid 3 Columns</a></li>
-                                                        <li class="menu-item"><a href="blog-grid-4-columns.html">Blog Grid 4 Columns</a></li>
-                                                        <li class="menu-item"><a href="blog-grid-2-columns-no-space.html">Blog Grid 2 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="blog-grid-3-columns-no-space.html">Blog Grid 3 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="blog-grid-4-columns-no-space.html">Blog Grid 4 Columns No Space</a></li>
-                                                    </ul>
-                                                </li>
 
-                                                <li class="menu-item"><a href="standard-post-type.html">Single Post</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item menu-item-has-children"><a href="#">Contact</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item"><a href="contact.html">Contact</a></li>
-                                                <li class="menu-item"><a href="contact-2.html">Contact 2</a></li>
-                                                <li class="menu-item"><a href="contact-3.html">Contact 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item menu-item-has-children"><a href="portfolio-3-columns.html">Portfolio</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item menu-item-has-children"><a>Portfolio Grid</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="portfolio-2-columns.html">Portfolio 2 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-3-columns.html">Portfolio 3 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-4-columns.html">Portfolio 4 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-5-columns.html">Portfolio 5 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-2-columns-with-frame.html">Portfolio 2 Columns With Frame</a></li>
-                                                        <li class="menu-item"><a href="portfolio-3-columns-with-frame.html">Portfolio 3 Columns With Frame</a></li>
-                                                        <li class="menu-item"><a href="portfolio-4-columns-with-frame.html">Portfolio 4 Columns With Frame</a></li>
-                                                        <li class="menu-item"><a href="portfolio-2-columns-no-space.html">Portfolio 2 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="portfolio-3-columns-no-space.html">Portfolio 3 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="portfolio-4-columns-no-space.html">Portfolio 4 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="portfolio-5-columns-no-space.html">Portfolio 5 Columns No Space</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item menu-item-has-children"><a>Portfolio Masonry</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="portfolio-masonry-4-columns.html">Masonry 4 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-masonry-3-columns.html">Masonry 3 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-masonry-2-columns.html">Masonry 2 Columns</a></li>
-                                                        <li class="menu-item"><a href="portfolio-masonry-4-columns-no-space.html">Masonry 4 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="portfolio-masonry-3-columns-no-space.html">Masonry 3 Columns No Space</a></li>
-                                                        <li class="menu-item"><a href="portfolio-masonry-2-columns-no-space.html">Masonry 2 Columns No Space</a></li>
-                                                    </ul>
-                                                </li>
+<body>
+    {{-- <div class="se-pre-con"></div> --}}
+    <header id="home">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default active-border navbar-fixed navbar-transparent white bootsnav">
 
-                                                <li class="menu-item menu-item-has-children"><a class="sf-with-ul-pre" href="singleportfolio.html">Single Portfolio</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item"><a href="gallery.html">Gallery</a></li>
-                                        <li class="menu-item"><a href="price-table.html">Price Table</a></li>
-                                        <li class="menu-item"><a href="maintenance.html">Maintenance</a></li>
-                                        <li class="menu-item"><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li class="menu-item"><a href="404.blade.php">404 Page</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a href="bachelor-of-science-in-business-administration.html">Academics</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item menu-item-has-children"><a>Undergraduate</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item"><a href="bachelor-of-science-in-business-administration.html">Business Administration</a></li>
-                                                <li class="menu-item"><a href="school-of-law.html">School Of Law</a></li>
-                                                <li class="menu-item"><a href="engineering.html">Engineering</a></li>
-                                                <li class="menu-item"><a href="medicine.html">Medicine</a></li>
-                                                <li class="menu-item"><a href="art-science.html">Art &#038; Science</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item menu-item-has-children"><a href="#">Graduate Program</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item"><a href="hospitality-management.html">Hospitality Management</a></li>
-                                                <li class="menu-item"><a href="physics.html">Physics</a></li>
-                                                <li class="menu-item"><a href="#">Chemistry</a></li>
-                                                <li class="menu-item"><a href="#">Music</a></li>
-                                                <li class="menu-item"><a href="#">Computer Science</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item menu-item-has-children"><a href="#">Resources</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item"><a href="bachelor-of-science-in-business-administration.html">Department Page</a></li>
-                                                <li class="menu-item"><a href="finance.html">Major Page</a></li>
-                                                <li class="menu-item"><a href="finance-faculty.html">Faculty Page</a></li>
-                                                <li class="menu-item"><a href="john-hagensy-phd.html">Single Instructor</a></li>
-                                                <li class="menu-item"><a href="introduction-to-financial-accounting.html">Single Course</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item"><a href="/">Logo</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a href="apply-to-kingster.html">Admissions</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="apply-to-kingster.html">Apply To Kingster</a></li>
-                                        <li class="menu-item"><a href="campus-tour.html">Campus Tour</a></li>
-                                        <li class="menu-item"><a href="scholarships.html">Scholarships</a></li>
-                                        <li class="menu-item"><a href="athletics.html">Athletics</a></li>
-                                        <li class="menu-item"><a href="give-to-kingster.html">Give To Kingster</a></li>
-                                        <li class="menu-item"><a href="alumni.html">Alumni</a></li>
-                                        <li class="menu-item"><a href="event-calendar.html">Event Calendar</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children"><a href="#">Courses</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item"><a href="course-list-1.html">Course List 1</a></li>
-                                        <li class="menu-item"><a href="course-list-2.html">Course List 2</a></li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item"><a href="athletics.html">Athletics</a></li>
-                                <li class="menu-item"><a href="university-life.html">University Life</a></li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="container">
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav button theme">
+                    <ul>
+                        <li>
+                            <a href="{{ url('/login') }}">
+                                @auth Dashboard @else Login @endauth</a>
+                        </li>
+                    </ul>
                 </div>
+                <!-- End Atribute Navigation -->
+
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="{{ @$sitesetting->logo }}" class="logo logo-display" alt="Logo">
+                        <img src="{{ @$sitesetting->logo }}" class="logo logo-scrolled" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
+                        <li class="dropdown dropdown-right">
+                            <a href="{{ url('/') }}" class="dropdown-toggle smooth-menu" data-toggle="dropdown" >Home</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#features">Features</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#overview">Overview</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#pricing">Pricing</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#team">Team</a>
+                        </li>
+                        <li>
+                            <a class="smooth-menu" href="#contact">contact</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
             </div>
-        </div>
-    </div>
-    <div class="kingster-body-outer-wrapper ">
-        <div class="kingster-body-wrapper clearfix  kingster-with-frame">
-            <div class="kingster-top-bar">
-                <div class="kingster-top-bar-background"></div>
-                <div class="kingster-top-bar-container kingster-container ">
-                    <div class="kingster-top-bar-container-inner clearfix">
-                        <div class="kingster-top-bar-left kingster-item-pdlr"><i class="fa fa-envelope-open-o" id="i_fd84_0"></i> <a href="mailto:{{ @$sitesetting->email[0] }}"> {{ @$sitesetting->email[0] }} </a><i class="fa fa-phone" id="i_fd84_1"></i> <a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></div>
-                        <div class="kingster-top-bar-right kingster-item-pdlr">
-                            <ul id="kingster-top-bar-menu" class="sf-menu kingster-top-bar-menu kingster-top-bar-right-menu">
-                                <li class="menu-item kingster-normal-menu"><a href="#">About</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Academics</a></li>
-                                <li class="menu-item kingster-normal-menu"><a href="#">Contact</a></li>
-                            </ul>
-                            <div class="kingster-top-bar-right-social"></div><a class="kingster-top-bar-right-button" href="{{ url('/login') }}">Login</a></div>
-                    </div>
-                </div>
-            </div>
-            <header class="kingster-header-wrap kingster-header-style-plain  kingster-style-menu-right kingster-sticky-navigation kingster-style-fixed" data-navigation-offset="75px">
-                <div class="kingster-header-background"></div>
-                <div class="kingster-header-container  kingster-container">
-                    <div class="kingster-header-container-inner clearfix">
-                        <div class="kingster-logo  kingster-item-pdlr">
-                            <div class="kingster-logo-inner">
-                                <a class="" href="{{ url('/') }}"><img style="height: 50px !important;" src="{{ @$sitesetting->logo }}" alt="{{ @$sitesetting->name }}" /></a>
-                            </div>
-                        </div>
-                        <div class="kingster-navigation kingster-item-pdlr clearfix ">
-                            <div class="kingster-main-menu" id="kingster-main-menu">
-                                <ul id="menu-main-navigation-1" class="sf-menu">
-                                    <li class="menu-item menu-item-home current-menu-item menu-item-has-children kingster-normal-menu"><a href="{{ url('/') }}" class="sf-with-ul-pre">Home</a></li>
-                                    <li class="menu-item menu-item-has-children kingster-normal-menu"><a href="#" class="sf-with-ul-pre">Pages</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item" data-size="60"><a href="about-us.html">About KU</a></li>
-                                            <li class="menu-item menu-item-has-children" data-size="60"><a href="blog-full-right-sidebar-with-frame.html" class="sf-with-ul-pre">Blog</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item menu-item-has-children"><a href="blog-full-right-sidebar-with-frame.html" class="sf-with-ul-pre">Blog Full</a>
-                                                        <ul class="sub-menu">
-                                                            <li class="menu-item"><a href="blog-full-right-sidebar-with-frame.html">Blog Full Right Sidebar With Frame</a></li>
-                                                            <li class="menu-item"><a href="blog-full-left-sidebar-with-frame.html">Blog Full Left Sidebar With Frame</a></li>
-                                                            <li class="menu-item"><a href="blog-full-both-sidebar-with-frame.html">Blog Full Both Sidebar With Frame</a></li>
-                                                            <li class="menu-item"><a href="blog-full-right-sidebar.html">Blog Full Right Sidebar</a></li>
-                                                            <li class="menu-item"><a href="blog-full-left-sidebar.html">Blog Full Left Sidebar</a></li>
-                                                            <li class="menu-item"><a href="blog-full-both-sidebar.html">Blog Full Both Sidebar</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item menu-item-has-children"><a href="blog-grid-3-columns-no-space.html" class="sf-with-ul-pre">Blog Grid</a>
-                                                        <ul class="sub-menu">
-                                                            <li class="menu-item"><a href="blog-grid-2-columns.html">Blog Grid 2 Columns</a></li>
-                                                            <li class="menu-item"><a href="blog-grid-3-columns.html">Blog Grid 3 Columns</a></li>
-                                                            <li class="menu-item"><a href="blog-grid-4-columns.html">Blog Grid 4 Columns</a></li>
-                                                            <li class="menu-item"><a href="blog-grid-2-columns-no-space.html">Blog Grid 2 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="blog-grid-3-columns-no-space.html">Blog Grid 3 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="blog-grid-4-columns-no-space.html">Blog Grid 4 Columns No Space</a></li>
-                                                        </ul>
-                                                    </li>
 
-                                                    <li class="menu-item"><a href="standard-post-type.html">Single Post</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item menu-item-has-children" data-size="60"><a href="#" class="sf-with-ul-pre">Contact</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item"><a href="contact.html">Contact</a></li>
-                                                    <li class="menu-item"><a href="contact-2.html">Contact 2</a></li>
-                                                    <li class="menu-item"><a href="contact-3.html">Contact 3</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item menu-item-has-children" data-size="60"><a href="portfolio-3-columns.html" class="sf-with-ul-pre">Portfolio</a>
-                                                <ul class="sub-menu">
-                                                    <li class="menu-item menu-item-has-children"><a class="sf-with-ul-pre">Portfolio Grid</a>
-                                                        <ul class="sub-menu">
-                                                            <li class="menu-item"><a href="portfolio-2-columns.html">Portfolio 2 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-3-columns.html">Portfolio 3 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-4-columns.html">Portfolio 4 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-5-columns.html">Portfolio 5 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-2-columns-with-frame.html">Portfolio 2 Columns With Frame</a></li>
-                                                            <li class="menu-item"><a href="portfolio-3-columns-with-frame.html">Portfolio 3 Columns With Frame</a></li>
-                                                            <li class="menu-item"><a href="portfolio-4-columns-with-frame.html">Portfolio 4 Columns With Frame</a></li>
-                                                            <li class="menu-item"><a href="portfolio-2-columns-no-space.html">Portfolio 2 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="portfolio-3-columns-no-space.html">Portfolio 3 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="portfolio-4-columns-no-space.html">Portfolio 4 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="portfolio-5-columns-no-space.html">Portfolio 5 Columns No Space</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="menu-item menu-item-has-children"><a class="sf-with-ul-pre">Portfolio Masonry</a>
-                                                        <ul class="sub-menu">
-                                                            <li class="menu-item"><a href="portfolio-masonry-4-columns.html">Masonry 4 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-masonry-3-columns.html">Masonry 3 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-masonry-2-columns.html">Masonry 2 Columns</a></li>
-                                                            <li class="menu-item"><a href="portfolio-masonry-4-columns-no-space.html">Masonry 4 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="portfolio-masonry-3-columns-no-space.html">Masonry 3 Columns No Space</a></li>
-                                                            <li class="menu-item"><a href="portfolio-masonry-2-columns-no-space.html">Masonry 2 Columns No Space</a></li>
-                                                        </ul>
-                                                    </li>
+        </nav>
+        <!-- End Navigation -->
 
-                                                 <li class="menu-item menu-item-has-children"><a class="sf-with-ul-pre" href="singleportfolio.html">Single Portfolio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item" data-size="60"><a href="gallery.html">Gallery</a></li>
-                                            <li class="menu-item" data-size="60"><a href="price-table.html">Price Table</a></li>
-                                            <li class="menu-item" data-size="60"><a href="maintenance.html">Maintenance</a></li>
-                                            <li class="menu-item" data-size="60"><a href="coming-soon.html">Coming Soon</a></li>
-                                            <li class="menu-item" data-size="60"><a href="404.html">404 Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item menu-item-has-children kingster-mega-menu"><a href="bachelor-of-science-in-business-administration.html" class="sf-with-ul-pre">Academics</a>
-                                        <div class="sf-mega sf-mega-full megaimg">
-                                            <ul class="sub-menu">
-                                                <li class="menu-item menu-item-has-children" data-size="15"><a class="sf-with-ul-pre">Undergraduate</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="bachelor-of-science-in-business-administration.html">Business Administration</a></li>
-                                                        <li class="menu-item"><a href="school-of-law.html">School Of Law</a></li>
-                                                        <li class="menu-item"><a href="engineering.html">Engineering</a></li>
-                                                        <li class="menu-item"><a href="medicine.html">Medicine</a></li>
-                                                        <li class="menu-item"><a href="art-science.html">Art &#038; Science</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item menu-item-has-children" data-size="15"><a href="#" class="sf-with-ul-pre">Graduate Program</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="hospitality-management.html">Hospitality Management</a></li>
-                                                        <li class="menu-item"><a href="physics.html">Physics</a></li>
-                                                        <li class="menu-item"><a href="#">Chemistry</a></li>
-                                                        <li class="menu-item"><a href="#">Music</a></li>
-                                                        <li class="menu-item"><a href="#">Computer Science</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item menu-item-has-children" data-size="15"><a href="#" class="sf-with-ul-pre">Resources</a>
-                                                    <ul class="sub-menu">
-                                                        <li class="menu-item"><a href="bachelor-of-science-in-business-administration.html">Department Page</a></li>
-                                                        <li class="menu-item"><a href="finance.html">Major Page</a></li>
-                                                        <li class="menu-item"><a href="finance-faculty.html">Faculty Page</a></li>
-                                                        <li class="menu-item"><a href="john-hagensy-phd.html">Single Instructor</a></li>
-                                                        <li class="menu-item"><a href="introduction-to-financial-accounting.html">Single Course</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item" data-size="15">
-                                                    <div class="kingster-mega-menu-section-content"><img src="upload/mega-menu-logo.png" id="img_fd84_0" alt="" /> <span id="span_fd84_0">Academic offerings include 95 majors, 86 minors, and more than 100 in-major specializations</span></div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="kingster-navigation-slide-bar" id="kingster-navigation-slide-bar"></div>
-                            </div>
-                            <div class="kingster-main-menu-right-wrap clearfix ">
-                                <div class="kingster-main-menu-search" id="kingster-top-search"><i class="icon_search"></i></div>
-                                <div class="kingster-top-search-wrap">
-                                    <div class="kingster-top-search-close"></div>
-                                    <div class="kingster-top-search-row">
-                                        <div class="kingster-top-search-cell">
-                                            <form role="search" method="get" class="search-form" action="#">
-                                                <input type="text" class="search-field kingster-title-font" placeholder="Search..." value="" name="s">
-                                                <div class="kingster-top-search-submit"><i class="fa fa-search"></i></div>
-                                                <input type="submit" class="search-submit" value="Search">
-                                                <div class="kingster-top-search-close"><i class="icon_close"></i></div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+    </header>
+    <!-- End Header -->
     {{-- {{ page content starts from here  }} --}}
     @yield('content')
     {{-- {{ page content ends here  }} --}}
     <!-- .end home-contact-section -->
     <!-- footer -->
-            <footer>
-                <div class="kingster-footer-wrapper ">
-                    <div class="kingster-footer-container kingster-container clearfix">
-                        <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
-                            <div id="text-2" class="widget widget_text kingster-widget">
-                                <div class="textwidget">
-                                    <p><img src="{{ @$sitesetting->favicon }}" alt="" />
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_10"></span>
-                                        <br /> {{ @$sitesetting->address[0] }}
-                                        <br /> {{ @$sitesetting->address[1] }}</p>
-                                    <p><span id="span_1dd7_11"><a href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] }}">{{ @$sitesetting->phone[0]['phone_number'] }}</a></span>
-                                        <br /> <span class="gdlr-core-space-shortcode" id="span_1dd7_12"></span>
-                                        <br /> <a id="a_1dd7_8" href="mailto:{{ @$sitesetting->email[0] }}">{{ @$sitesetting->email[0] }}</a></p>
-                                    <div class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-left-align">
-                                        <div class="gdlr-core-divider-line gdlr-core-skin-divider" id="div_1dd7_111"></div>
-                                    </div>
-                                </div>
-                            </div>
+    
+    <!-- Start Footer 
+    ============================================= -->
+    <footer class="default-padding-top bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="f-items">
+                    <div class="col-md-4 col-sm-6 equal-height item">
+                        <div class="f-item about">
+                            <img src="assets/img/logo.png" alt="Logo">
+                            <p>
+                                Celebrated conviction stimulated principles day. Sure fail or in said west. Right my front it wound cause fully am sorry if. She jointure goodness interest debating did outweigh.
+                            </p>
+                            <h5>Follow Us</h5>
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
-                            <div id="gdlr-core-custom-menu-widget-2" class="widget widget_gdlr-core-custom-menu-widget kingster-widget">
-                                <h3 class="kingster-widget-title">Our Campus</h3><span class="clear"></span>
-                                <div class="menu-our-campus-container">
-                                    <ul id="menu-our-campus" class="gdlr-core-custom-menu-widget gdlr-core-menu-style-plain">
-                                        <li class="menu-item"><a href="#">Acedemic</a></li>
-                                        <li class="menu-item"><a href="#">Planning &#038; Administration</a></li>
-                                        <li class="menu-item"><a href="#">Campus Safety</a></li>
-                                        <li class="menu-item"><a href="#">Office of the Chancellor</a></li>
-                                        <li class="menu-item"><a href="#">Facility Services</a></li>
-                                        <li class="menu-item"><a href="#">Human Resources</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 equal-height item">
+                        <div class="f-item link">
+                            <h4>Company</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">About us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Compnay History</a>
+                                </li>
+                                <li>
+                                    <a href="#">Features</a>
+                                </li>
+                                <li>
+                                    <a href="#">Blog Page</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
-                            <div id="gdlr-core-custom-menu-widget-3" class="widget widget_gdlr-core-custom-menu-widget kingster-widget">
-                                <h3 class="kingster-widget-title">Campus Life</h3><span class="clear"></span>
-                                <div class="menu-campus-life-container">
-                                    <ul id="menu-campus-life" class="gdlr-core-custom-menu-widget gdlr-core-menu-style-plain">
-                                        <li class="menu-item"><a href="#">Accessibility</a></li>
-                                        <li class="menu-item"><a href="#">Financial Aid</a></li>
-                                        <li class="menu-item"><a href="#">Food Services</a></li>
-                                        <li class="menu-item"><a href="#">Housing</a></li>
-                                        <li class="menu-item"><a href="#">Information Technologies</a></li>
-                                        <li class="menu-item"><a href="#">Student Life</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 equal-height item">
+                        <div class="f-item link">
+                            <h4>Resources</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Career</a>
+                                </li>
+                                <li>
+                                    <a href="#">Leadership</a>
+                                </li>
+                                <li>
+                                    <a href="#">Strategy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">History</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="kingster-footer-column kingster-item-pdlr kingster-column-15">
-                            <div id="gdlr-core-custom-menu-widget-4" class="widget widget_gdlr-core-custom-menu-widget kingster-widget">
-                                <h3 class="kingster-widget-title">Academics</h3><span class="clear"></span>
-                                <div class="menu-academics-container">
-                                    <ul id="menu-academics" class="gdlr-core-custom-menu-widget gdlr-core-menu-style-plain">
-                                        <li class="menu-item"><a href="#">Canvas</a></li>
-                                        <li class="menu-item"><a href="#">Catalyst</a></li>
-                                        <li class="menu-item"><a href="#">Library</a></li>
-                                        <li class="menu-item"><a href="#">Time Schedule</a></li>
-                                        <li class="menu-item"><a href="#">Apply For Admissions</a></li>
-                                        <li class="menu-item"><a href="#">Pay My Tuition</a></li>
-                                    </ul>
-                                </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 equal-height item">
+                        <div class="f-item twitter-widget">
+                            <h4>Contact Info</h4>
+                            <p>
+                                 Possible offering at contempt mr distance stronger an. Attachment excellence announcing
+                            </p>
+                            <div class="address">
+                                <ul>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-home"></i> 
+                                        </div>
+                                        <div class="info">
+                                            <h5>Website:</h5>
+                                            <span>www.validtheme.com</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-envelope"></i> 
+                                        </div>
+                                        <div class="info">
+                                            <h5>Email:</h5>
+                                            <span>support@validtheme.com</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <i class="fas fa-phone"></i> 
+                                        </div>
+                                        <div class="info">
+                                            <h5>Phone:</h5>
+                                            <span>+44-20-7328-4499</span>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="kingster-copyright-wrapper">
-                    <div class="kingster-copyright-container kingster-container clearfix">
-                        <div class="kingster-copyright-left kingster-item-pdlr">Copyright All Right Reserved 2021, <a href="{{ url('/') }}">Vedyalay.com</a></div>
-                        <div class="kingster-copyright-right kingster-item-pdlr">
-                            <div class="gdlr-core-social-network-item gdlr-core-item-pdb  gdlr-core-none-align" id="div_1dd7_112">
-                                <a href="{{ @$sitesetting->facebook }}" target="_blank" class="gdlr-core-social-network-icon" title="facebook">
-                                    <i class="fa fa-facebook" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->instagram }}" target="_blank" class="gdlr-core-social-network-icon" title="instagram">
-                                    <i class="fa fa-instagram" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->linkedin }}" target="_blank" class="gdlr-core-social-network-icon" title="linkedin">
-                                    <i class="fa fa-linkedin" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->skype }}" target="_blank" class="gdlr-core-social-network-icon" title="skype">
-                                    <i class="fa fa-skype" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->twitter }}" target="_blank" class="gdlr-core-social-network-icon" title="twitter">
-                                    <i class="fa fa-twitter" ></i>
-                                </a>
-                                <a href="{{ @$sitesetting->youtube }}" target="_blank" class="gdlr-core-social-network-icon" title="youtube">
-                                    <i class="fa fa-youtube" ></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            </div>
         </div>
-    </div>
+        <!-- Start Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="#">Vedalay</a></p>
+                        </div>
+                        <div class="col-md-6 text-right link">
+                            <ul>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Privacy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Support</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Bottom -->
+    </footer>
+    <!-- End Footer -->
 
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/equal-height.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.appear.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/count-to.js') }}"></script>
+    <script src="{{ asset('assets/js/bootsnav.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
-	<script type='text/javascript' src="{{ asset('assets/js/jquery/jquery.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/js/jquery/jquery-migrate.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.parallax.min.js') }}"></script>  
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.actions.min.js') }}"></script> 
-    <script type="text/javascript" src="{{ asset('assets/plugins/revslider/public/assets/js/extensions/revolution.extension.video.min.js') }}"></script>
-
-    <script type="text/javascript">
-        /*<![CDATA[*/
-        function setREVStartSize(e) {
-            try {
-                e.c = jQuery(e.c);
-                var i = jQuery(window).width(),
-                    t = 9999,
-                    r = 0,
-                    n = 0,
-                    l = 0,
-                    f = 0,
-                    s = 0,
-                    h = 0;
-                if (e.responsiveLevels && (jQuery.each(e.responsiveLevels, function(e, f) {
-                        f > i && (t = r = f, l = e), i > f && f > r && (r = f, n = e)
-                    }), t > r && (l = n)), f = e.gridheight[l] || e.gridheight[0] || e.gridheight, s = e.gridwidth[l] || e.gridwidth[0] || e.gridwidth, h = i / s, h = h > 1 ? 1 : h, f = Math.round(h * f), "fullscreen" == e.sliderLayout) {
-                    var u = (e.c.width(), jQuery(window).height());
-                    if (void 0 != e.fullScreenOffsetContainer) {
-                        var c = e.fullScreenOffsetContainer.split(",");
-                        if (c) jQuery.each(c, function(e, i) {
-                            u = jQuery(i).length > 0 ? u - jQuery(i).outerHeight(!0) : u
-                        }), e.fullScreenOffset.split("%").length > 1 && void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 ? u -= jQuery(window).height() * parseInt(e.fullScreenOffset, 0) / 100 : void 0 != e.fullScreenOffset && e.fullScreenOffset.length > 0 && (u -= parseInt(e.fullScreenOffset, 0))
-                    }
-                    f = u
-                } else void 0 != e.minHeight && f < e.minHeight && (f = e.minHeight);
-                e.c.closest(".rev_slider_wrapper").css({
-                    height: f
-                })
-            } catch (d) {
-                console.log("Failure at Presize of Slider:" + d)
-            }
-        }; /*]]>*/
-    </script>
-    <script>
-        (function(body) {
-            'use strict';
-            body.className = body.className.replace(/\btribe-no-js\b/, 'tribe-js');
-        })(document.body);
-    </script>
-    <script>
-        var tribe_l10n_datatables = {
-            "aria": {
-                "sort_ascending": ": activate to sort column ascending",
-                "sort_descending": ": activate to sort column descending"
-            },
-            "length_menu": "Show _MENU_ entries",
-            "empty_table": "No data available in table",
-            "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-            "info_empty": "Showing 0 to 0 of 0 entries",
-            "info_filtered": "(filtered from _MAX_ total entries)",
-            "zero_records": "No matching records found",
-            "search": "Search:",
-            "all_selected_text": "All items on this page were selected. ",
-            "select_all_link": "Select all pages",
-            "clear_selection": "Clear Selection.",
-            "pagination": {
-                "all": "All",
-                "next": "Next",
-                "previous": "Previous"
-            },
-            "select": {
-                "rows": {
-                    "0": "",
-                    "_": ": Selected %d rows",
-                    "1": ": Selected 1 row"
-                }
-            },
-            "datepicker": {
-                "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-                "dayNamesMin": ["S", "M", "T", "W", "T", "F", "S"],
-                "monthNames": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                "monthNamesShort": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-                "monthNamesMin": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                "nextText": "Next",
-                "prevText": "Prev",
-                "currentText": "Today",
-                "closeText": "Done",
-                "today": "Today",
-                "clear": "Clear"
-            }
-        };
-        var tribe_system_info = {
-            "sysinfo_optin_nonce": "a32c675aaa",
-            "clipboard_btn_text": "Copy to clipboard",
-            "clipboard_copied_text": "System info copied",
-            "clipboard_fail_text": "Press \"Cmd + C\" to copy"
-        };
-    </script>
-
-    <script type="text/javascript">
-        function revslider_showDoubleJqueryError(sliderID) {
-            var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
-            errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
-            errorMessage += "<br><br> To fix it you can:<br>&nbsp;&nbsp;&nbsp; 1. In the Slider Settings -> Troubleshooting set option:  <strong><b>Put JS Includes To Body</b></strong> option to true.";
-            errorMessage += "<br>&nbsp;&nbsp;&nbsp; 2. Find the double jquery.js include and remove it.";
-            errorMessage = "<span style='font-size:16px;color:#BC0C06;'>" + errorMessage + "</span>";
-            jQuery(sliderID).show().html(errorMessage);
-        }
-    </script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/plugins/combine/script.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/plugins/goodlayers-core/include/js/page-builder.js') }}"></script>
-
-    <script type='text/javascript' src="{{ asset('assets/js/jquery/ui/effect.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('assets/js/plugins.min.js') }}"></script>
-	<script>
-	    var htmlDiv = document.getElementById("rs-plugin-settings-inline-css");
-	    var htmlDivCss = "";
-	    if (htmlDiv) {
-	        htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
-	    } else {
-	        var htmlDiv = document.createElement("div");
-	        htmlDiv.innerHTML = "<style>" + htmlDivCss + "</style>";
-	        document.getElementsByTagName("head")[0].appendChild(htmlDiv.childNodes[0]);
-	    }
-	</script>
-	<script type="text/javascript">
-	    /*<![CDATA[*/
-	    if (setREVStartSize !== undefined) setREVStartSize({
-	        c: '#rev_slider_1_1',
-	        gridwidth: [1380],
-	        gridheight: [713],
-	        sliderLayout: 'auto'
-	    });
-	    var revapi1, tpj;
-	    (function() {
-	        if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener("DOMContentLoaded", onLoad);
-	        else onLoad();
-
-	        function onLoad() {
-	            if (tpj === undefined) {
-	                tpj = jQuery;
-	                if ("off" == "on") tpj.noConflict();
-	            }
-	            if (tpj("#rev_slider_1_1").revolution == undefined) {
-	                revslider_showDoubleJqueryError("#rev_slider_1_1");
-	            } else {
-	                revapi1 = tpj("#rev_slider_1_1").show().revolution({
-	                    sliderType: "standard",
-	                    jsFileLocation: "//demo.goodlayers.com/kingster/wp-content/plugins/revslider/public/assets/js/",
-	                    sliderLayout: "auto",
-	                    dottedOverlay: "none",
-	                    delay: 9000,
-	                    navigation: {
-	                        keyboardNavigation: "off",
-	                        keyboard_direction: "horizontal",
-	                        mouseScrollNavigation: "off",
-	                        mouseScrollReverse: "default",
-	                        onHoverStop: "off",
-	                        touch: {
-	                            touchenabled: "on",
-	                            touchOnDesktop: "off",
-	                            swipe_threshold: 75,
-	                            swipe_min_touches: 1,
-	                            swipe_direction: "horizontal",
-	                            drag_block_vertical: false
-	                        },
-	                        arrows: {
-	                            style: "uranus",
-	                            enable: true,
-	                            hide_onmobile: true,
-	                            hide_under: 1500,
-	                            hide_onleave: true,
-	                            hide_delay: 200,
-	                            hide_delay_mobile: 1200,
-	                            tmp: '',
-	                            left: {
-	                                h_align: "left",
-	                                v_align: "center",
-	                                h_offset: 20,
-	                                v_offset: 0
-	                            },
-	                            right: {
-	                                h_align: "right",
-	                                v_align: "center",
-	                                h_offset: 20,
-	                                v_offset: 0
-	                            }
-	                        },
-	                        bullets: {
-	                            enable: true,
-	                            hide_onmobile: false,
-	                            hide_over: 1499,
-	                            style: "uranus",
-	                            hide_onleave: true,
-	                            hide_delay: 200,
-	                            hide_delay_mobile: 1200,
-	                            direction: "horizontal",
-	                            h_align: "center",
-	                            v_align: "bottom",
-	                            h_offset: 0,
-	                            v_offset: 30,
-	                            space: 7,
-	                            tmp: '<span class="tp-bullet-inner"></span>'
-	                        }
-	                    },
-	                    visibilityLevels: [1240, 1024, 778, 480],
-	                    gridwidth: 1380,
-	                    gridheight: 713,
-	                    lazyType: "none",
-	                    shadow: 0,
-	                    spinner: "off",
-	                    stopLoop: "off",
-	                    stopAfterLoops: -1,
-	                    stopAtSlide: -1,
-	                    shuffle: "off",
-	                    autoHeight: "off",
-	                    disableProgressBar: "on",
-	                    hideThumbsOnMobile: "off",
-	                    hideSliderAtLimit: 0,
-	                    hideCaptionAtLimit: 0,
-	                    hideAllCaptionAtLilmit: 0,
-	                    debugMode: false,
-	                    fallbacks: {
-	                        simplifyAll: "off",
-	                        nextSlideOnWindowFocus: "off",
-	                        disableFocusListener: false,
-	                    }
-	                });
-	            };
-	        };
-	    }()); /*]]>*/
-	</script>
 </body>
 </html>
