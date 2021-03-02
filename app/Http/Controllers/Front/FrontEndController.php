@@ -85,6 +85,8 @@ class FrontEndController extends Controller
     public function blogdetail($slug)
     {
         $blog = Blog::where('slug', $slug)->first();
+        $blog->view_count ++;
+        $blog->save();
         $recentblog = Blog::where('slug', $slug)->orderBy('id', 'DESC')->limit(3)->get();
         $data = [
             'blog' => $blog,

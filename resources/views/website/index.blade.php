@@ -511,158 +511,60 @@
                 </div>
                 <div class="row">
                     <div class="team-items">
+
                         <div class="col-md-3 single-item">
                             <div class="item">
                                 <div class="thumb">
-                                    <img src="assets/img/team/7.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <h4>I love my Studio</h4>
-                                        <p>
-                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
-                                            in
-                                            went Of no introduced
-                                        </p>
-                                        <div class="social">
-                                            <ul>
-                                                <li class="twitter">
-                                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                                </li>
-                                                <li class="pinterest">
-                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                </li>
-                                                <li class="instagram">
-                                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                                </li>
-                                                <li class="vimeo">
-                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <img src="{{ asset('assets/img/team/1.jpeg') }}" alt="Team Image">
                                 </div>
                                 <div class="info">
                                     <span class="message">
-                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                        <a href="mailto:jaykarvashu@gmail.com"><i class="fas fa-envelope-open"></i></a>
                                     </span>
-                                    <h4>Ahmed Kamal</h4>
-                                    <span>Chairman of Softing</span>
+                                    <h4>Vashu Karn</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 single-item">
                             <div class="item">
                                 <div class="thumb">
-                                    <img src="assets/img/team/9.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <h4>Connecting People</h4>
-                                        <p>
-                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
-                                            in
-                                            went Of no introduced
-                                        </p>
-                                        <div class="social">
-                                            <ul>
-                                                <li class="twitter">
-                                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                                </li>
-                                                <li class="pinterest">
-                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                </li>
-                                                <li class="instagram">
-                                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                                </li>
-                                                <li class="vimeo">
-                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <img src="{{ asset('assets/img/team/2.jpeg') }}" alt="Team Image">
                                 </div>
                                 <div class="info">
                                     <span class="message">
-                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                        <a href="mailto:soni.shabsoni@gmail.com"><i class="fas fa-envelope-open"></i></a>
                                     </span>
-                                    <h4>Drunal Park</h4>
-                                    <span>Manager of Softing</span>
+                                    <h4>Mragendra Soni</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 single-item">
                             <div class="item">
                                 <div class="thumb">
-                                    <img src="assets/img/team/8.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <h4>Network Builder</h4>
-                                        <p>
-                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
-                                            in
-                                            went Of no introduced
-                                        </p>
-                                        <div class="social">
-                                            <ul>
-                                                <li class="twitter">
-                                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                                </li>
-                                                <li class="pinterest">
-                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                </li>
-                                                <li class="instagram">
-                                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                                </li>
-                                                <li class="vimeo">
-                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <img src="{{ asset('assets/img/team/3.jpeg') }}" alt="Team Image">
                                 </div>
                                 <div class="info">
                                     <span class="message">
                                         <a href="#"><i class="fas fa-envelope-open"></i></a>
                                     </span>
-                                    <h4>Munia Ankor</h4>
-                                    <span>Founder of Softing</span>
+                                    <h4>Jatin Singh</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3 single-item">
                             <div class="item">
                                 <div class="thumb">
-                                    <img src="assets/img/team/8.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <h4>Network Builder</h4>
-                                        <p>
-                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
-                                            in
-                                            went Of no introduced
-                                        </p>
-                                        <div class="social">
-                                            <ul>
-                                                <li class="twitter">
-                                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                                </li>
-                                                <li class="pinterest">
-                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                                                </li>
-                                                <li class="instagram">
-                                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                                </li>
-                                                <li class="vimeo">
-                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <img src="{{ asset('assets/img/team/4.jpeg') }}" alt="Team Image">
                                 </div>
                                 <div class="info">
                                     <span class="message">
                                         <a href="#"><i class="fas fa-envelope-open"></i></a>
                                     </span>
-                                    <h4>Munia Ankor</h4>
-                                    <span>Founder of Softing</span>
+                                    <h4>Nikhil Singh</h4>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
