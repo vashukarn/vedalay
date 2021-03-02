@@ -97,7 +97,7 @@
                         <div class="f-item about">
                             <img src="assets/img/logo.png" alt="Logo">
                             <p>
-                                This is a fully operational ERP websites that conatin multi functionality modules of differnt depaertments i.e Hostel, Attendance, Result management etc.
+                                This is a fully operational ERP websites that conatin multi functionality modules of differnt departments i.e Hostel, Attendance, Result management etc.
                             </p>
                             <h5>Follow Us</h5>
                             <ul>
