@@ -94,6 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
     Route::get('attendanceList/{id}', [AttendanceController::class, 'attendanceList'])->name('attendanceList');
     Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
+    // Route::resource('contact', ContactController::class);
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
 

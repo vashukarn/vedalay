@@ -308,24 +308,27 @@
 
                 $("#message").slideUp(750, function() {
                     $('#message').hide();
-
-                    $('#submit')
-                        .after('<img src="assets/img/ajax-loader.gif" class="loader" />')
-                        .attr('disabled', 'disabled');
-
                     $.post(action, {
-                            name: $('#name').val(),
-                            email: $('#email').val(),
-                            phone: $('#phone').val(),
-                            comments: $('#comments').val()
-                        },
-                        function(data) {
-                            document.getElementById('message').innerHTML = data;
-                            $('#message').slideDown('slow');
-                            $('.contact-form img.loader').fadeOut('slow', function() {
-                                $(this).remove()
-                            });
-                            $('#submit').removeAttr('disabled');
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        phone: $('#phone').val(),
+                        comments: $('#comments').val()
+                    },
+                    function(data) {
+                        $('#message').show();
+                        if(data.name){
+                                console.log(data.name);
+                                document.getElementById('message').innerHTML = 'Form has been submitted successfully by '+data.name ;
+                            }
+                            else{
+                                document.getElementById('message').innerHTML = 'Error Occurred while submitting form '+data ;
+                            }
+                            // $('#message').slideDown('slow');
+                            // $('.contact-form img.loader').fadeOut('slow', function() {
+                            //     $(this).remove()
+                            // });
+                            // $('#submit').removeAttr('disabled');
                         }
                     );
                 });

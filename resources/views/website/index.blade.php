@@ -6,10 +6,7 @@
     @include('website.shared.meta')
 @endsection
 @section('content')
-
-
-    <!-- Start Banner 
-                        ============================================= -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="banner-area auto-height text-center text-normal text-light shadow dark-hard bg-fixed"
         style="background-image: url('{{ @$page->landing_image ? $page->landing_image : asset('assets/img/main-back.jpg') }}');">
         <div class="container">
@@ -712,7 +709,7 @@
         <!-- End Testimonials -->
     @endif
 
-    @isset($faqs)
+    @if(count($faqs) > 0)
         <div class="faq-area default-padding">
             <div class="container">
                 <div class="row">
@@ -771,7 +768,7 @@
             </div>
         </div>
 
-    @endisset
+    @endif
 
     @if (count($blogs) > 0)
         <div id="blog" class="blog-area bg-gray default-padding">
@@ -791,13 +788,13 @@
                             @foreach ($blogs as $item)
                                 <div class="item">
                                     <div class="thumb">
-                                        <a href="{{ $item->image }}">
+                                        <a href="/blog/{{ $item->slug }}">
                                             <img src="{{ $item->image }}" alt="{{ $item->title }}">
                                         </a>
                                     </div>
                                     <div class="info">
                                         <h4>
-                                            <a href="{{ $item->image }}">{{ $item->title }}</a>
+                                            <a href="/blog/{{ $item->slug }}">{{ $item->title }}</a>
                                         </h4>
                                         <div class="meta">
                                             <ul>
@@ -811,7 +808,7 @@
                                         </div>
                                         <p>{!! $item->short_description !!}</p>
                                         <div class="read-more">
-                                            <a href="{{ $item->image }}" class="more-btn">Read More <i
+                                            <a href="/blog/{{ $item->slug }}" class="more-btn">Read More <i
                                                     class="fas fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
@@ -854,8 +851,7 @@
             <div class="row">
                 <div class="col-md-8 contact-form">
                     <h2>{{ @$page->contact_form_title ? $page->contact_form_title : "Let's talk about your questions" }}</h2>
-                    <form action="https://webhunt.store/themeforest/dostart/assets/mail/contact.php" method="POST"
-                        class="contact-form">
+                    <form action="{{ url('/contact-form') }}" method="POST" class="contact-form">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="form-group">
@@ -880,9 +876,9 @@
                         </div>
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="form-group comments">
+                                <div class="form-group message">
                                     <textarea class="form-control" id="comments" name="comments"
-                                        placeholder="Tell Us About Project *"></textarea>
+                                        placeholder="Tell Us About Faced Issue *"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -894,7 +890,7 @@
                             </div>
                         </div>
                         <!-- Alert Message -->
-                        <div class="col-md-12 alert-notification">
+                        <div class="mt-4 col-md-12 alert-notification">
                             <div id="message" class="alert-msg"></div>
                         </div>
                     </form>
@@ -905,7 +901,7 @@
                             <li>
                                 <h4>Office Location</h4>
                                 <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
-                                <span>{{ @$sitesetting->address[0] ?? 'Agra' }}<br>{{ @$sitesetting->address[1] ?? 'India' }}</span>
+                                <span>{{ @$sitesetting->address[0] ?? 'Agra, India' }}<br>{{ @$sitesetting->address[1] }}</span>
                             </li>
                             <li>
                                 <h4>Phone</h4>

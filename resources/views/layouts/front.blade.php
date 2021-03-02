@@ -63,22 +63,22 @@
                             <a href="{{ url('/') }}" class="smooth-menu">Home</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#about">About</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#about">About</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#features">Features</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#features">Features</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#overview">Overview</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#overview">Overview</a>
                         </li>
                         {{-- <li>
-                            <a class="smooth-menu" href="#pricing">Pricing</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#pricing">Pricing</a>
                         </li> --}}
                         <li>
-                            <a class="smooth-menu" href="#team">Team</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#team">Team</a>
                         </li>
                         <li>
-                            <a class="smooth-menu" href="#contact">contact</a>
+                            <a class="smooth-menu" href="{{ request()->is('/') ? '' : url('/') }}#contact">contact</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -169,7 +169,7 @@
                             <ul>
                                 @foreach ($blogs as $item)
                                     <li>
-                                        <a href="{{ $item->slug }}">{{ $item->title }}</a>
+                                        <a href="/blog/{{ $item->slug }}">{{ $item->title }}</a>
                                     </li>
                                 @endforeach
                             </ul>
