@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="info">
                                             <h5>Website:</h5>
-                                            <span>www.validtheme.com</span>
+                                            <span>www.vedalay.com</span>
                                         </div>
                                     </li>
                                     <li>
@@ -185,7 +185,7 @@
                                         </div>
                                         <div class="info">
                                             <h5>Email:</h5>
-                                            <span>support@validtheme.com</span>
+                                            <span>{{ @$sitesetting->email }}</span>
                                         </div>
                                     </li>
                                     <li>
@@ -194,7 +194,7 @@
                                         </div>
                                         <div class="info">
                                             <h5>Phone:</h5>
-                                            <span>+44-20-7328-4499</span>
+                                            <span>{{ @$sitesetting->phone }}</span>
                                         </div>
                                     </li>
                                 </ul>
