@@ -19,6 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('message')->nullable();
+            $table->enum('view_status',['1','0'])->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

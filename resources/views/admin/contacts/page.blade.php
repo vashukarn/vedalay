@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="card-body card-format">
-                    <table class="table table-striped table-hover"> {{-- table-bordered--}}
+                    <table class="table table-striped table-hover">
                         <tbody>
                             <tr>
                                 <th>Full Name</th>
@@ -36,10 +36,6 @@
                             <tr>
                                 <th>Email</th>
                                 <td>{{$contact_info->email}}</td>
-                            </tr>
-                            <tr>
-                                <th>Subject</th>
-                                <td>{{$contact_info->subject}}</td>
                             </tr>
                             <tr>
                                 <th>Message</th>

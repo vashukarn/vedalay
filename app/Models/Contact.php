@@ -14,6 +14,7 @@ class Contact extends Model
         'email',
         'phone',
         'message',
+        'view_status',
     ];
     protected $dates = ['deleted_at'];
 }
