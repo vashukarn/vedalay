@@ -15,25 +15,21 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable(true);
-            $table->date('date')->nullable(true);
-            $table->string('slug')->nullable(true);
-            $table->text('excerpt')->nullable(true);
-            $table->text('description')->nullable(true);
-            $table->string('external_url')->nullable(true);
-            $table->string('featured_img')->nullable(true);
-            $table->string('parallex_img')->nullable(true);
-            $table->string('code')->nullable(true);
-
-            $table->enum('publish_status', ['0','1'])->default(1);
-            $table->enum('delete_status', ['0','1'])->default(0);
-            $table->enum('featured_news',['0','1'])->default(0);
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('short_description')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('external_url')->nullable();
+            $table->string('image')->nullable();
             $table->bigInteger('view_count')->default(0);
-
-            $table->text('meta_title')->nullable(true);
-            $table->text('meta_keyword')->nullable(true);
-            $table->text('meta_description')->nullable(true);
-
+            $table->text('meta_title')->nullable();
+            $table->text('meta_keyword')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->enum('publish_status', ['0','1'])->default(1);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
             $table->softDeletes();
 

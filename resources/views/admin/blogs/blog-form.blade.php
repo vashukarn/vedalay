@@ -4,36 +4,6 @@
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
 <script src="{{ asset('/custom/blog.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('#featured_img').change(function() {
-            // alert('hello');
-            var input = this;
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#featured_image_view').attr('src', e.target.result).fadeIn(1000);
-                    $('#featured_image_view').removeClass('d-none');
-                    // $('#img_edit').addClass('d-none');
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        })
-
-        $('#parallex_img').change(function() {
-            // alert('hello');
-            var input = this;
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#parallex_image_view').attr('src', e.target.result).fadeIn(1000);
-                    $('#parallex_image_view').removeClass('d-none');
-                    // $('#img_edit').addClass('d-none');
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        })
-        $(".select2").select2();
-    })
 </script>
 @include('admin.section.ckeditor')
 
@@ -148,19 +118,6 @@
                         </div>
                         
 
-                        <div class="form-group row {{ $errors->has('category_id') ? 'has-error' : '' }}">
-                            {{ Form::label('category_id', 'Categories :*', ['class' => 'col-sm-3']) }}
-                            <div class="col-sm-9">
-                                {{ Form::select('category_id[]',
-                                @$categories,
-                                @$selectedcategories,
-                                ['id' => 'category_id', 'required' => false, 'class' => 'form-control select2', 'multiple' => true, 'style' => 'width:80%']) }}
-                                @error('category_id')
-                                <span class="help-block error">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
                         <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
                             {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
                             <div class="col-sm-9">
@@ -171,43 +128,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row {{ $errors->has('featured_img') ? 'has-error' : '' }}">
-                            {{ Form::label('featured_img', 'Featured Image:*', ['class' => 'col-sm-3']) }}
-                            <div class="col-sm-9">
-                                {{ Form::file('featured_img',  ['id' => 'featured_img',   'class' => '', 'style' => 'width:80%', 'accept' => 'image/*']) }}
-                                @error('icon')
-                                <span class="help-block error">{{ $message }}</span>
-                                @enderror
-                                <div class="col-sm-4">
-                                    <img id="featured_image_view" src="#" alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                    {{--dd($documents_detail)--}}
-                                    @if(isset($blog_info->featured_img))
-                                    @if(file_exists(public_path().'/uploads/blogs/'.@$blog_info->featured_img))
-                                    <img src="{{asset('/uploads/blogs/'.@$blog_info->featured_img)}}" alt="{{$blog_info->featured_img}}" class="img img-fluid img-thumbnail" style="height:80px" id=" ">
-                                    @endif
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row {{ $errors->has('parallex_img') ? 'has-error' : '' }}">
-                            {{ Form::label('parallex_img', 'Parallex Image:*', ['class' => 'col-sm-3']) }}
-                            <div class="col-sm-9">
-                                {{ Form::file('parallex_img',  ['id' => 'parallex_img',   'class' => '', 'style' => 'width:80%', 'accept' => 'image/*']) }}
-                                @error('icon')
-                                <span class="help-block error">{{ $message }}</span>
-                                @enderror
-                                <div class="col-sm-4">
-                                    <img id="parallex_image_view" src="#" alt="image" class="d-none img-fluid img-thumbnail" style="height: 80px" />
-                                    {{--dd($documents_detail)--}}
-                                    @if(isset($blog_info->parallex_img))
-                                    @if(file_exists(public_path().'/uploads/blogs/'.@$blog_info->parallex_img))
-                                    <img src="{{asset('/uploads/blogs/'.@$blog_info->parallex_img)}}" alt="{{$blog_info->parallex_img}}" class="img img-fluid img-thumbnail" style="height:80px" id=" ">
-                                    @endif
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

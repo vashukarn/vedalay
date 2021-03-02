@@ -9,27 +9,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $guarded = [];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'date'
+    protected $fillable = [
+        'title',
+        'slug',
+        'short_description',
+        'description',
+        'external_url',
+        'image',
+        'view_count',
+        'meta_title',
+        'meta_keyword',
+        'meta_description',
+        'publish_status',
+        'created_by',
+        'updated_by',
+        'created_by',
+        'updated_by',
     ];
-
-    public function categories()
+    protected $dates = ['deleted_at'];
+    public function creator()
     {
-        return $this->belongsToMany(Category::class)->withTimestamps();
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
-
-    public function tags()
+    public function updater()
     {
-        return $this->belongsToMany(Tag::class)->withTimestamps();
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
-
-    public function scopeStatus($query)
+    public function get_user()
     {
-        return $query->where('publish_status', '1');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 }
