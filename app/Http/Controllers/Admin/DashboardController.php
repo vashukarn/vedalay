@@ -64,20 +64,22 @@ class DashboardController extends Controller
             $student = Student::where('user_id', $id)->first();
             $tempoo = Attendance::where('holiday', '0')->where('level_id', $student->level_id)->get();
             $tempooo = Fee::where('rollback', '0')->where('student_id', $id)->get();
-            // dd($tempooo);
+
             foreach ($tempooo as $key => $value) {
                 $due_fee += $value->fees['total_amount'];
             }
-            foreach ($tempoo as $key => $value) {
-                foreach ($value->students as $key => $item) {
-                    if($key == $id){
-                        $total_attendance++;
-                        if($item == '1')
-                        $student_attendance++;
+            if(count($tempoo) > 0){
+                foreach ($tempoo as $key => $value) {
+                    foreach ($value->students as $key => $item) {
+                        if($key == $id){
+                            $total_attendance++;
+                            if($item == '1')
+                            $student_attendance++;
+                        }
                     }
                 }
+                $attendance_percentage = ($student_attendance*100)/$total_attendance;
             }
-            $attendance_percentage = ($student_attendance*100)/$total_attendance;
         }
         if($type == 'admin' || $type == 'superadmin'){
             $usertotal = User::selectRaw('count(*) as total')

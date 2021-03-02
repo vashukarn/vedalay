@@ -1,6 +1,27 @@
 @extends('layouts.auth')
 @section('title',  'User Login')
 @section('content')
+@push('scripts')
+<script>
+    function loginadmin() {
+        $('#email').val('admin@vedalay.com');
+        $('#password').val('admin123');
+    }
+    function loginteacher() {
+        $('#email').val('teacher@vedalay.com');
+        $('#password').val('teacher123');
+    }
+    function loginstaff() {
+        $('#email').val('staff@vedalay.com');
+        $('#password').val('staff123');
+    }
+    function loginstudent() {
+        $('#email').val('student@vedalay.com');
+        $('#password').val('student123');
+    }
+</script>
+
+@endpush
     <div class="contents">
         <form id="login-form" action="{{ route('login') }}" method="post">
             @csrf
@@ -16,8 +37,8 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <input class="form-control  @error('email') is-invalid @enderror" type="text" name="email"
-                        placeholder="Email or Mobile" value="{{ old('email') }}" autofocus autocomplete="off">
+                    <input id="email" class="form-control  @error('email') is-invalid @enderror" type="text" name="email"
+                        placeholder="Email" value="{{ old('email') }}" autofocus autocomplete="off">
                 </div>
                 @error('email')
                     <span class="error" for="email">{{ $message }}</span>
@@ -31,7 +52,7 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    <input class="form-control @error('password') is-invalid @enderror" type="password" name="password"
+                    <input id="password" class="form-control @error('password') is-invalid @enderror" type="password" name="password"
                         placeholder="Password" value="{{ old('password') }}" autocomplete="off">
                 </div>
                 @error('password')
@@ -50,6 +71,12 @@
                 @endif
             </div>
 
+            <div class="form-group text-center">
+                <button type="button" onclick="loginadmin();" class="btn btn-outline-danger">Admin</button>
+                <button type="button" onclick="loginteacher();" class="btn btn-outline-success">Teacher</button>
+                <button type="button" onclick="loginstaff();" class="btn btn-outline-info">Staff</button>
+                <button type="button" onclick="loginstudent();" class="btn btn-outline-secondary">Student</button>
+            </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block btn-flat" type="submit"> <i class="fa fa-sign-in-alt"></i> Login</button>
             </div>
