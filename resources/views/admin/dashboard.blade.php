@@ -194,28 +194,27 @@
                  
             </div>
 
-            <!-- Start Chart content -->
-            <div class="card">
-            <div class="row"  style="margin-bottom: 50px;">
-                <div class="col-md-6">
-                    <div class="card-header" style="background-color: #374f65;">
-                        <h3 class="card-title" style="color: azure;">Viewers</h3>
+            {{-- <div class="card">
+                <div class="row"  style="margin-bottom: 50px;">
+                    <div class="col-md-6">
+                        <div class="card-header" style="background-color: #374f65;">
+                            <h3 class="card-title" style="color: azure;">Viewers</h3>
+                        </div>
+                        <div class="card-body card-format">
+                            <canvas id="all-riding-request" height="280" width="600"></canvas>
+                        </div>
                     </div>
-                    <div class="card-body card-format">
-                        {{-- <canvas id="all-riding-request" height="280" width="600"></canvas> --}}
-                    </div>
-                </div>
 
-                <div class="col-md-6">
-                    <div class="card-header" style="background-color: #374f65;">
-                        <h3 class="card-title" style="color: azure;">Total News</h3>
-                    </div>
-                    <div class="card-body card-format">
-                        {{-- <canvas id="hourly-complete-riding" height="280" width="600"></canvas> --}}
+                    <div class="col-md-6">
+                        <div class="card-header" style="background-color: #374f65;">
+                            <h3 class="card-title" style="color: azure;">Total News</h3>
+                        </div>
+                        <div class="card-body card-format">
+                            <canvas id="hourly-complete-riding" height="280" width="600"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

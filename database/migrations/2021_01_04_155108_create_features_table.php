@@ -18,16 +18,10 @@ class CreateFeaturesTable extends Migration
             $table->string('title')->nullable();
             $table->string('short_title')->nullable();
             $table->string('publish_status')->nullable();
-            $table->integer('position')->nullable();
-            $table->text('short_description')->nullable();
-            $table->longText('full_description')->nullable();
             $table->string('icon')->nullable();
-            $table->string('parallax_image')->nullable();
-            $table->string('feature_image')->nullable();
-            $table->string('slug')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
             $table->softDeletes();

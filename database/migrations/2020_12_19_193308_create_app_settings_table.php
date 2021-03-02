@@ -29,6 +29,7 @@ class CreateAppSettingsTable extends Migration
             $table->string('is_meta')->nullable();
             $table->longText('meta')->nullable();
             $table->string('logo')->nullable();
+            $table->string('logo_light')->nullable();
             $table->string('favicon')->nullable();
             $table->string('og_image')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

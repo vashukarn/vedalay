@@ -1,27 +1,15 @@
 @extends('layouts.admin')
-@section('title', 'Fee Payment List')
+@section('title', 'Newsletter List')
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Fee Payment List</h3>
+                    <h3 class="card-title">Newsletter List</h3>
                     <div class="card-tools">
-                        <a href="{{ route('feepayment.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('newsletter.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
-                    </div>
-                </div>
-                <div class="card-header">
-                    <div class="row">
-                        <div class="float-right col-lg-2">
-                            <div class="card-tools">
-                                @can('feepayment-create')
-                                <a href="{{ route('feepayment.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Pay Fee</a>
-                                @endcan
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
@@ -29,23 +17,25 @@
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Title</th>
-                                <th>Fee Paid</th>
-                                <th>Payment Method</th>
-                                <th>Last Changed By</th>
-                                <th>Last Changed At</th>
+                                <th>Email</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key=>$value)
                             <tr>
                             <td>{{ $key+1}}.</td>
-                            <td>{{ @$value->student->name }}</td>
-                            <td>Rs. {{ @$value->total_amount }}</td>
-                            <td>{{ @$value->payment_method }}</td>
-                            <td>{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }}</td>
-                            <td>{{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}</td>
-                            </tr>
+                            <td>{{ @$value->email }}</td>
+                            <td>
+                                <div class="btn-group">
+                                  @can('newsletter-delete')
+                                  {{Form::open(['method' => 'DELETE','route' => ['newsletter.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this newsletter?")']) }}
+                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete newsletter '])}}
+                                  {{ Form::close() }}
+                                  @endcan
+                              </div>
+                              </td>
+                        </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -8,13 +8,11 @@
     <meta name="author" content="Vashu Karn">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Dostart - Startup Landing Page">
-
     <!-- ========== Page Title ========== -->
     <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{{ @$sitesetting->favicon }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png')}}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -51,14 +49,14 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-display" alt="Vedalay">
-                        <img src="{{ @$sitesetting->logo }}" class="logo logo-scrolled" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo-light.png')}}" class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png')}}" class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="#" data-out="#">
                         <li class="dropdown dropdown-right">
-                            <a href="{{ url('/') }}" class="dropdown-toggle smooth-menu" data-toggle="dropdown" >Home</a>
+                            <a href="{{ url('/') }}" class="smooth-menu">Home</a>
                         </li>
                         <li>
                             <a class="smooth-menu" href="#about">About</a>
@@ -69,9 +67,9 @@
                         <li>
                             <a class="smooth-menu" href="#overview">Overview</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a class="smooth-menu" href="#pricing">Pricing</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a class="smooth-menu" href="#team">Team</a>
                         </li>
@@ -210,7 +208,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="#">Vedalay</a></p>
+                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedalay.com">Vedalay</a></p>
                         </div>
                         <div class="col-md-6 text-right link">
                             <ul>

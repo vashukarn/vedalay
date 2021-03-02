@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Front\FrontEndController;
-use Illuminate\Support\Facades\App;
+use App\Http\Controllers\NewsLetterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontEndController::class, 'home'])->name('index');
+Route::resource('newsletter', NewsLetterController::class);
 Route::get('/404', [FrontEndController::class, 'four']);
 Route::get('/about', [FrontEndController::class, 'about']);
 Route::get('/mail', [FrontEndController::class, 'mail']);

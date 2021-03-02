@@ -8,7 +8,6 @@
                 border-color: #138192;
                 color: #fff;
             }
-
         </style>
     @endpush
     @push('scripts')
@@ -21,6 +20,7 @@
             $('#lfm').filemanager('image');
             $('#lfm1').filemanager('image');
             $('#lfm2').filemanager('image');
+            $('#lfm3').filemanager('image');
         </script>
     @endpush
 @section('content')
@@ -46,11 +46,6 @@
                         <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
                             href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile"
                             aria-selected="false">URLs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill"
-                            href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages"
-                            aria-selected="false">Web</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-three-meta-tab" data-toggle="pill"
@@ -178,6 +173,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group row {{ $errors->has('logo_light') ? 'has-error' : '' }}">
+                            {{ Form::label('logo_light', 'Institution Light Logo:*', ['class' => 'col-sm-3']) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <a id="lfm1" data-input="logo_light" data-preview="holder1" class="btn btn-primary text-white">
+                                        <i class="fa fa-picture-o"></i> Choose
+                                      </a>
+                                    </span>
+                                    <input id="logo_light" class="form-control" type="text" name="logo_light">
+                                </div>
+                                <div id="holder1" style="
+                                    border: 1px solid #ddd;
+                                    border-radius: 4px;
+                                    padding: 5px;
+                                    width: 150px;
+                                    margin-top:15px;">
+                                </div>
+                                @if (isset($site_detail->logo_light))
+                                Old Light Logo: &nbsp; <img src="{{ @$site_detail->logo_light }}" alt="Couldn't load logo_light" 
+                                class="img img-thumbail mt-2" style="width: 100px">
+                                @endif
+                                @error('logo_light')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label class="col-md-4">Favicon / OG Image</label>
@@ -199,13 +222,13 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm1" data-input="favicon" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm2" data-input="favicon" data-preview="holder2" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
                                     <input id="favicon" class="form-control" type="text" name="favicon">
                                 </div>
-                                <div id="holder" style="
+                                <div id="holder2" style="
                                     border: 1px solid #ddd;
                                     border-radius: 4px;
                                     padding: 5px;
@@ -227,13 +250,13 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm2" data-input="og_image" data-preview="holder" class="btn btn-primary text-white">
+                                      <a id="lfm3" data-input="og_image" data-preview="holder3" class="btn btn-primary text-white">
                                         <i class="fa fa-picture-o"></i> Choose
                                       </a>
                                     </span>
                                     <input id="og_image" class="form-control" type="text" name="og_image">
                                 </div>
-                                <div id="holder" style="
+                                <div id="holder3" style="
                                     border: 1px solid #ddd;
                                     border-radius: 4px;
                                     padding: 5px;
@@ -320,24 +343,6 @@
 
                     </div>
 
-                    <div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel"
-                        aria-labelledby="custom-tabs-three-messages-tab">
-
-
-                        <div class="page-description-div">
-                            <div class="form-group row">
-                                {{ Form::label('front_feature_description', 'Front Feature Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::text('front_feature_description', @$site_detail->front_feature_description, ['class' => 'form-control', 'id' => 'front_feature_description', 'placeholder' => 'Front Feature Description', 'required' => true]) }}
-                                    @error('front_feature_description')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
- 
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="custom-tabs-three-meta" role="tabpanel"
                         aria-labelledby="custom-tabs-three-meta-tab">
 

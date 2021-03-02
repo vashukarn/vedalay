@@ -51,9 +51,8 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Title</th>
-                                <th>Icon</th>
                                 <th>Short Title</th>
-                                <th>Short Description</th>
+                                <th>Icon</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
                             </tr>
@@ -63,22 +62,14 @@
                                 <tr>
                                     <td>{{ $key + 1 }}.</td>
                                     <td>{{ $value->title }}</td>
-                                    <td>
-                                        <img src="{{ asset('uploads' . featureimagepath . 'thumbnail__' . @$value->icon) }}"
-                                            alt="{{ @$value->title }}" class="img img-thumbail" style="width:60px">
-                                    </td>
                                     <td>{{ $value->short_title }}</td>
-                                    <td>
-                                        {!! @$value->short_description !!}
-                                    </td>
-
+                                    <td><img src="{{ $value->icon }}" alt="{{ $value->title }}" class="img img-thumbail" style="width:60px"></td>
                                     <td>
                                         <span
                                             class="badge badge-{{ $value->publish_status == '1' ? 'success' : 'danger' }}">
                                             {{ $value->publish_status == '1' ? 'Active' : 'Inactive' }}
                                         </span>
                                     </td>
-
                                     <td>
                                         <div class="btn-group">
                                             @can('rider-edit')

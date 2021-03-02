@@ -6,17 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Feature extends Model
+class NewsLetter extends Model
 {
     use HasFactory, SoftDeletes;
-
     protected $fillable = [
-        'title',
-        'short_title',
-        'publish_status',
-        'icon',
-        'created_by',
-        'updated_by',
+        'email',
     ];
     protected $dates = ['deleted_at'];
 }

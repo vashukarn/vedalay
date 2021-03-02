@@ -44,6 +44,7 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
             'publish_status' => 'required|numeric|in:1,0'
@@ -52,12 +53,10 @@ class SliderController extends Controller
             'title' => htmlentities($request->title),
             'sub_title' => htmlentities($request->sub_title),
             'description' => htmlentities($request->description),
-            'slider_type' => $request->slider_type,
             'image' => $request->image ?? null,
-            'external_url' => $request->external_url,
-            'position' => $request->position,
-            'publish_status' => $request->publish_status,
-            'status' => $request->status,
+            'external_url' => htmlentities($request->external_url),
+            'publish_status' => htmlentities($request->publish_status),
+            'status' => htmlentities($request->status),
             'created_by' => Auth::user()->id,
         ];
         try {
@@ -88,33 +87,20 @@ class SliderController extends Controller
             abort(404);
         }
         $this->validate($request, [
-            'en_title' => 'required|string|min:3|max:190',
-            'np_title' => 'required|string|min:3|max:190',
+            'title' => 'required|string|min:3|max:190',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
-            'title' => [
-                'en' => htmlentities($request->en_title),
-                'np' => htmlentities($request->np_title),
-            ],
-            'sub_title' => [
-                'en' => htmlentities($request->en_sub_title),
-                'np' => htmlentities($request->np_sub_title),
-            ],
-            'description' => [
-                'en' => $request->en_description,
-                'np' => $request->np_description,
-            ],
-
-            'slider_type' => $request->slider_type,
-            'external_url' => $request->external_url,
-            'position' => $request->position,
-            'publish_status' => $request->publish_status,
+            'title' => htmlentities($request->title),
+            'sub_title' => htmlentities($request->sub_title),
+            'description' => htmlentities($request->description),
+            'external_url' => htmlentities($request->external_url),
+            'publish_status' => htmlentities($request->publish_status),
+            'status' => htmlentities($request->status),
             'updated_by' => Auth::user()->id,
         ];
         if ($request->image) {
-            $image = explode("/",$request->image);
-            $data['image'] = end($image);
+            $data['image'] = $request->image;
         }
         try {
             $slider_info->fill($data)->save();
