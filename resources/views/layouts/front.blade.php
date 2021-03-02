@@ -97,7 +97,7 @@
                         <div class="f-item about">
                             <img src="assets/img/logo.png" alt="Logo">
                             <p>
-                                Celebrated conviction stimulated principles day. Sure fail or in said west. Right my front it wound cause fully am sorry if. She jointure goodness interest debating did outweigh.
+                                This is a fully operational ERP websites that conatin multi functionality modules of differnt depaertments i.e Hostel, Attendance, Result management etc.
                             </p>
                             <h5>Follow Us</h5>
                             <ul>
@@ -164,7 +164,7 @@
                         <div class="f-item twitter-widget">
                             <h4>Contact Info</h4>
                             <p>
-                                 Possible offering at contempt mr distance stronger an. Attachment excellence announcing
+                                For more information please visit our official <a href="#">website</a> and do follow all our social media account.
                             </p>
                             <div class="address">
                                 <ul>
