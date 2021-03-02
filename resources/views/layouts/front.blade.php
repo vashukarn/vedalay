@@ -9,10 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ========== Page Title ========== -->
-    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
+    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')
+    </title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png') }}"
+        type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -49,8 +51,10 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo-light.png')}}" class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
-                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png')}}" class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo-light.png') }}"
+                            class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
+                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}"
+                            class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -86,7 +90,7 @@
     </header>
     @yield('content')
     <!-- footer -->
-    
+
     <!-- Start Footer 
     ============================================= -->
     <footer class="default-padding-top bg-light">
@@ -95,28 +99,47 @@
                 <div class="f-items">
                     <div class="col-md-4 col-sm-6 equal-height item">
                         <div class="f-item about">
-                            <img src="assets/img/logo.png" alt="Logo">
+                            <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}" style="height: 100px !important;"
+                                alt="Company Logo">
                             <p>
-                                This is a fully operational ERP websites that conatin multi functionality modules of differnt departments i.e Hostel, Attendance, Result management etc.
+                                {{ @$page->footer_company_subtitle ? $page->footer_company_subtitle : 'This is a fully operational ERP websites that conatin multi functionality modules of differnt departments i.e Hostel, Attendance, Result management etc.' }}
                             </p>
                             <h5>Follow Us</h5>
                             <ul>
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-dribbble"></i></a>
-                                </li>
+                                @if (@$sitesetting->facebook)
+                                    <li class="facebook">
+                                        <a href="{{ $sitesetting->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                @endif
+                                @if (@$sitesetting->linkedin)
+                                    <li class="twitter">
+                                        <a href="{{ @$sitesetting->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                                    </li>
+                                @endif
+                                @if (@$sitesetting->youtube)
+                                    <li class="pinterest">
+                                        <a href="{{ @$sitesetting->youtube }}"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                @endif
+                                @if (@$sitesetting->instagram)
+                                    <li class="instagram">
+                                        <a href="{{ @$sitesetting->instagram }}"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                @endif
+                                @if (@$sitesetting->twitter)
+                                    <li class="twitter">
+                                        <a href="{{ @$sitesetting->twitter }}"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                @endif
+                                @if (@$sitesetting->skype)
+                                    <li class="facebook">
+                                        <a href="{{ @$sitesetting->skype }}"><i class="fab fa-skype"></i></a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2 col-sm-6 equal-height item">
+                    {{-- <div class="col-md-2 col-sm-6 equal-height item">
                         <div class="f-item link">
                             <h4>Company</h4>
                             <ul>
@@ -137,62 +160,63 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-2 col-sm-6 equal-height item">
+                    </div> --}}
+                    @if(count($blogs) > 0)
+                    {{-- col-md-2 col-sm-6 equal-height item --}}
+                    <div class="col-md-4 col-sm-6 equal-height item">
                         <div class="f-item link">
-                            <h4>Resources</h4>
+                            <h4>Blogs</h4>
                             <ul>
-                                <li>
-                                    <a href="#">Career</a>
-                                </li>
-                                <li>
-                                    <a href="#">Leadership</a>
-                                </li>
-                                <li>
-                                    <a href="#">Strategy</a>
-                                </li>
-                                <li>
-                                    <a href="#">Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">History</a>
-                                </li>
+                                @foreach ($blogs as $item)
+                                    <li>
+                                        <a href="{{ $item->slug }}">{{ $item->title }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
+                    @endif
                     <div class="col-md-4 col-sm-6 equal-height item">
                         <div class="f-item twitter-widget">
                             <h4>Contact Info</h4>
                             <p>
-                                For more information please visit our official <a href="#">website</a> and do follow all our social media account.
+                                {{ @$page->footer_contact_subtitle ? $page->footer_contact_subtitle : 'For more information please contact us and do follow all our social media account.' }}
                             </p>
                             <div class="address">
                                 <ul>
                                     <li>
                                         <div class="icon">
-                                            <i class="fas fa-home"></i> 
+                                            <i class="fas fa-home"></i>
                                         </div>
                                         <div class="info">
                                             <h5>Website:</h5>
-                                            <span>www.vedalay.com</span>
+                                            <a href="http://vedalay.com/">
+                                                <span>vedalay.com</span>
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <i class="fas fa-envelope"></i> 
+                                            <i class="fas fa-envelope"></i>
                                         </div>
                                         <div class="info">
                                             <h5>Email:</h5>
-                                            <span>{{ @$sitesetting->email }}</span>
+                                            <a
+                                                href="mailto:{{ @$sitesetting->email[0] ?? 'jaykarvashu@gmail.com' }}"><span>{{ @$sitesetting->email[0] ?? 'jaykarvashu@gmail.com' }}</span></a><br>
+                                            <a
+                                                href="mailto:{{ @$sitesetting->email[1] }}"><span>{{ @$sitesetting->email[1] }}</span></a>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="icon">
-                                            <i class="fas fa-phone"></i> 
+                                            <i class="fas fa-phone"></i>
                                         </div>
                                         <div class="info">
                                             <h5>Phone:</h5>
-                                            <span>{{ @$sitesetting->phone }}</span>
+                                            <a
+                                                href="tel:{{ @$sitesetting->phone[0]['phone_number'] ?? '8630544683' }}"><span>{{ @$sitesetting->phone[0]['phone_number'] ?? '8630544683' }}</span></a><br>
+                                            <a
+                                                href="tel:{{ @$sitesetting->phone[1]['phone_number'] ?? '7070675425' }}"><span>{{ @$sitesetting->phone[1]['phone_number'] ?? '7070675425' }}</span></a>
                                         </div>
                                     </li>
                                 </ul>
@@ -210,7 +234,7 @@
                         <div class="col-md-6">
                             <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedalay.com">Vedalay</a></p>
                         </div>
-                        <div class="col-md-6 text-right link">
+                        {{-- <div class="col-md-6 text-right link">
                             <ul>
                                 <li>
                                     <a href="#">Terms</a>
@@ -222,7 +246,7 @@
                                     <a href="#">Support</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -247,4 +271,5 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
+
 </html>

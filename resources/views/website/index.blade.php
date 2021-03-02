@@ -9,7 +9,7 @@
 
 
     <!-- Start Banner 
-        ============================================= -->
+                        ============================================= -->
     <div class="banner-area auto-height text-center text-normal text-light shadow dark-hard bg-fixed"
         style="background-image: url('{{ @$page->landing_image ? $page->landing_image : asset('assets/img/main-back.jpg') }}');">
         <div class="container">
@@ -55,7 +55,7 @@
     <!-- End Banner -->
 
     <!-- Start Companies Area 
-        ============================================= -->
+                        ============================================= -->
     @if (isset($page->customers_logo1) || isset($page->customers_logo2) || isset($page->customers_logo3))
         <div class="companies-area default-padding">
             <div class="container">
@@ -86,7 +86,7 @@
     <!-- End Companies Area -->
 
     <!-- Start About 
-        ============================================= -->
+                        ============================================= -->
     <div id="about" class="about-area bg-gray default-padding">
         <div class="container">
             <div class="row">
@@ -134,7 +134,7 @@
     <!-- End About -->
 
     <!-- Start Features 
-        ============================================= -->
+                        ============================================= -->
     <div id="features" class="features-area cell-items default-padding">
         <div class="container">
             <div class="row">
@@ -232,7 +232,7 @@
     <!-- End Features -->
 
     <!-- Start Fun Factor 
-        ============================================= -->
+                        ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url('{{ @$page->newsletter_image ? $page->newsletter_image : asset('assets/img/banner/7.jpg') }}');">
         <div class="container">
@@ -241,12 +241,12 @@
                     <div class="row">
                         @if (isset($page->newsletter_counters))
                             @foreach ($page->newsletter_counters as $item)
-                            <div class="col-md-4 col-sm-4 item">
-                                <div class="fun-fact">
-                                    <div class="timer" data-to="{{ $item['number'] }}" data-speed="5000"></div>
-                                    <span class="medium">{{ $item['title'] }}</span>
+                                <div class="col-md-4 col-sm-4 item">
+                                    <div class="fun-fact">
+                                        <div class="timer" data-to="{{ $item['number'] }}" data-speed="5000"></div>
+                                        <span class="medium">{{ $item['title'] }}</span>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                         @else
                         @endif
@@ -255,13 +255,13 @@
                 <div class="col-md-4 subscribe">
                     <h3>{{ @$page->newsletter_title ? $page->newsletter_title : 'Stay Updated with Us' }}</h3>
                     <p>{{ @$page->newsletter_subtitle }}</p>
-                    {{Form::open(['method' => 'POST','route' => ['newsletter.store']]) }}
-                        <div class="input-group stylish-input-group">
-                            <input type="email" placeholder="Enter your E-mail here" class="form-control" name="email">
-                            <span class="input-group-addon">
-                                {{Form::button('<i class="fas fa-paper-plane"></i>',['class'=>'btn btn-success btn-sm btn-flat','type'=>'submit','title'=>'Submit Newsletter'])}}
-                            </span>
-                        </div>
+                    {{ Form::open(['method' => 'POST', 'route' => ['newsletter.store']]) }}
+                    <div class="input-group stylish-input-group">
+                        <input type="email" placeholder="Enter your E-mail here" class="form-control" name="email">
+                        <span class="input-group-addon">
+                            {{ Form::button('<i class="fas fa-paper-plane"></i>', ['class' => 'btn btn-success btn-sm btn-flat', 'type' => 'submit', 'title' => 'Submit Newsletter']) }}
+                        </span>
+                    </div>
                     {{ Form::close() }}
                 </div>
             </div>
@@ -270,72 +270,73 @@
     <!-- End Fun Factor -->
 
     <!-- Start Overview 
-        ============================================= -->
-        @if(isset($page))
-    <div id="overview" class="work-list-area default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2><span>{{ @$page->work_title ? $page->work_title : 'How We Work' }}</span></h2>
-                        <h4>{{ @$page->work_subtitle ? $page->work_subtitle : 'Checkout Our Amazing Working Process' }}</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 overview-items">
-                    <!-- Tab Nav -->
-                    <div class="tab-navigation text-center">
-                        <ul class="nav nav-pills">
-                            @foreach ($page->work_detail as $key => $item)
-                                <li class=" {{ $key == 1 ? 'active' : '' }}">
-                                    <a data-toggle="tab" href="#tab{{ $key }}" aria-expanded="true">
-                                        {{ $item['title'] }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <!-- End Tab Nav -->
-                    <!-- Start Tab Content -->
-                    <div class="row">
-                        <div class="tab-content">
-
-                            <!-- Start Single Item -->
-                            
-                            @foreach ($page->work_detail as $key => $item)
-                            <div id="tab{{ $key }}" class="tab-pane fade active in">
-                                <div class="col-md-6 thumb">
-                                    <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
-                                </div>
-                                <div class="col-md-6 info">
-                                    <h3>{{ $item['subtitle'] }}</h3>
-                                    <p>{{ $item['description'] }}</p>
-                                    <ul>
-                                        @foreach ($item['bullet'] as $single)
-                                            <li>
-                                                <h4>{{ $single['title'] }}</h4>
-                                                {{ $single['subtitle'] }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                            @endforeach
-                            <!-- End Single Item -->
-
+                        ============================================= -->
+    @if (isset($page))
+        <div id="overview" class="work-list-area default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2><span>{{ @$page->work_title ? $page->work_title : 'How We Work' }}</span></h2>
+                            <h4>{{ @$page->work_subtitle ? $page->work_subtitle : 'Checkout Our Amazing Working Process' }}
+                            </h4>
                         </div>
                     </div>
-                    <!-- End Tab Content -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12 overview-items">
+                        <!-- Tab Nav -->
+                        <div class="tab-navigation text-center">
+                            <ul class="nav nav-pills">
+                                @foreach ($page->work_detail as $key => $item)
+                                    <li class=" {{ $key == 1 ? 'active' : '' }}">
+                                        <a data-toggle="tab" href="#tab{{ $key }}" aria-expanded="true">
+                                            {{ $item['title'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- End Tab Nav -->
+                        <!-- Start Tab Content -->
+                        <div class="row">
+                            <div class="tab-content">
+
+                                <!-- Start Single Item -->
+
+                                @foreach ($page->work_detail as $key => $item)
+                                    <div id="tab{{ $key }}" class="tab-pane fade active in">
+                                        <div class="col-md-6 thumb">
+                                            <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
+                                        </div>
+                                        <div class="col-md-6 info">
+                                            <h3>{{ $item['subtitle'] }}</h3>
+                                            <p>{{ $item['description'] }}</p>
+                                            <ul>
+                                                @foreach ($item['bullet'] as $single)
+                                                    <li>
+                                                        <h4>{{ $single['title'] }}</h4>
+                                                        {{ $single['subtitle'] }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <!-- End Single Item -->
+
+                            </div>
+                        </div>
+                        <!-- End Tab Content -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
     <!-- End Overview -->
 
     <!-- Start Pricing Area
-        ============================================= -->
+                        ============================================= -->
     {{-- <div id="pricing" class="pricing-area bg-gray default-padding-top">
         <div class="container">
             <div class="row">
@@ -424,269 +425,394 @@
     <!-- End Pricing Area -->
 
     @if (count($team) > 0)
-        
-    <div id="team" class="team-area default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
-                        <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}</h4>
+
+        <div id="team" class="team-area default-padding bottom-less">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
+                            <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}
+                            </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="team-items">
-                    @foreach ($team as $item)
+                <div class="row">
+                    <div class="team-items">
+                        @foreach ($team as $item)
 
-                    <div class="col-md-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="{{ $item->image }}" alt="{{ $item->name }} Image">
-                                <div class="overlay">
-                                    <h4>{{ $item->title }}</h4>
-                                    <p>{{ $item->description }}</p>
-                                    <div class="social">
-                                        <ul>
-                                            @isset($item->website_link)
-                                            <li>
-                                                <a href="{{ $item->website_link }}"><i class="fab fa-superpowers"></i></a>
-                                            </li>
-                                            @endisset
-                                            @isset($item->github_link)
-                                            <li>
-                                                <a href="{{ $item->github_link }}"><i class="fab fa-github"></i></a>
-                                            </li>
-                                            @endisset
-                                            @isset($item->facebook_link)
-                                            <li>
-                                                <a href="{{ $item->facebook_link }}"><i class="fab fa-facebook"></i></a>
-                                            </li>
-                                            @endisset
-                                            @isset($item->instagram_link)
-                                            <li>
-                                                <a href="{{ $item->instagram_link }}"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            @endisset
-                                            @isset($item->linkedin_link)
-                                            <li>
-                                                <a href="{{ $item->linkedin_link }}"><i class="fab fa-linkedin"></i></a>
-                                            </li>
-                                            @endisset
-                                        </ul>
+                            <div class="col-md-3 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <img src="{{ $item->image }}" alt="{{ $item->name }} Image">
+                                        <div class="overlay">
+                                            <h4>{{ $item->title }}</h4>
+                                            <p>{{ $item->description }}</p>
+                                            <div class="social">
+                                                <ul>
+                                                    @isset($item->website_link)
+                                                        <li>
+                                                            <a href="{{ $item->website_link }}"><i
+                                                                    class="fab fa-superpowers"></i></a>
+                                                        </li>
+                                                    @endisset
+                                                    @isset($item->github_link)
+                                                        <li>
+                                                            <a href="{{ $item->github_link }}"><i
+                                                                    class="fab fa-github"></i></a>
+                                                        </li>
+                                                    @endisset
+                                                    @isset($item->facebook_link)
+                                                        <li>
+                                                            <a href="{{ $item->facebook_link }}"><i
+                                                                    class="fab fa-facebook"></i></a>
+                                                        </li>
+                                                    @endisset
+                                                    @isset($item->instagram_link)
+                                                        <li>
+                                                            <a href="{{ $item->instagram_link }}"><i
+                                                                    class="fab fa-instagram"></i></a>
+                                                        </li>
+                                                    @endisset
+                                                    @isset($item->linkedin_link)
+                                                        <li>
+                                                            <a href="{{ $item->linkedin_link }}"><i
+                                                                    class="fab fa-linkedin"></i></a>
+                                                        </li>
+                                                    @endisset
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info">
+                                        <span class="message">
+                                            <a href="mailto:{{ $item->email }}"><i class="fas fa-envelope-open"></i></a>
+                                        </span>
+                                        <h4>{{ $item->name }}</h4>
+                                        <span>{{ $item->designation }}</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="mailto:{{ $item->email }}"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>{{ $item->name }}</h4>
-                                <span>{{ $item->designation }}</span>
-                            </div>
-                        </div>
-                    </div>
-                        
-                    @endforeach
 
+                        @endforeach
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     @else
-    <div id="team" class="team-area default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
-                        <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}</h4>
+        <div id="team" class="team-area default-padding bottom-less">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2><span>{{ @$page->team_title ? $page->team_title : 'Our Team' }}</span></h2>
+                            <h4>{{ @$page->team_subtitle ? $page->team_subtitle : 'Meet our innovative team members' }}
+                            </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="team-items">
-                    <div class="col-md-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/team/7.jpg" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>I love my Studio</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
+                <div class="row">
+                    <div class="team-items">
+                        <div class="col-md-3 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="assets/img/team/7.jpg" alt="Thumb">
+                                    <div class="overlay">
+                                        <h4>I love my Studio</h4>
+                                        <p>
+                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
+                                            in
+                                            went Of no introduced
+                                        </p>
+                                        <div class="social">
+                                            <ul>
+                                                <li class="twitter">
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="pinterest">
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                </li>
+                                                <li class="instagram">
+                                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li class="vimeo">
+                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Ahmed Kamal</h4>
-                                <span>Chairman of Softing</span>
+                                <div class="info">
+                                    <span class="message">
+                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                    </span>
+                                    <h4>Ahmed Kamal</h4>
+                                    <span>Chairman of Softing</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/team/9.jpg" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Connecting People</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
+                        <div class="col-md-3 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="assets/img/team/9.jpg" alt="Thumb">
+                                    <div class="overlay">
+                                        <h4>Connecting People</h4>
+                                        <p>
+                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
+                                            in
+                                            went Of no introduced
+                                        </p>
+                                        <div class="social">
+                                            <ul>
+                                                <li class="twitter">
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="pinterest">
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                </li>
+                                                <li class="instagram">
+                                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li class="vimeo">
+                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Drunal Park</h4>
-                                <span>Manager of Softing</span>
+                                <div class="info">
+                                    <span class="message">
+                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                    </span>
+                                    <h4>Drunal Park</h4>
+                                    <span>Manager of Softing</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/team/8.jpg" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Network Builder</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
+                        <div class="col-md-3 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="assets/img/team/8.jpg" alt="Thumb">
+                                    <div class="overlay">
+                                        <h4>Network Builder</h4>
+                                        <p>
+                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
+                                            in
+                                            went Of no introduced
+                                        </p>
+                                        <div class="social">
+                                            <ul>
+                                                <li class="twitter">
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="pinterest">
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                </li>
+                                                <li class="instagram">
+                                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li class="vimeo">
+                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Munia Ankor</h4>
-                                <span>Founder of Softing</span>
+                                <div class="info">
+                                    <span class="message">
+                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                    </span>
+                                    <h4>Munia Ankor</h4>
+                                    <span>Founder of Softing</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/team/8.jpg" alt="Thumb">
-                                <div class="overlay">
-                                    <h4>Network Builder</h4>
-                                    <p>
-                                        Jointure goodness interest debating did outweigh. Is time from them full my gone in
-                                        went Of no introduced
-                                    </p>
-                                    <div class="social">
-                                        <ul>
-                                            <li class="twitter">
-                                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                            </li>
-                                            <li class="pinterest">
-                                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                            </li>
-                                            <li class="vimeo">
-                                                <a href="#"><i class="fab fa-vimeo-v"></i></a>
-                                            </li>
-                                        </ul>
+                        <div class="col-md-3 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <img src="assets/img/team/8.jpg" alt="Thumb">
+                                    <div class="overlay">
+                                        <h4>Network Builder</h4>
+                                        <p>
+                                            Jointure goodness interest debating did outweigh. Is time from them full my gone
+                                            in
+                                            went Of no introduced
+                                        </p>
+                                        <div class="social">
+                                            <ul>
+                                                <li class="twitter">
+                                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                                </li>
+                                                <li class="pinterest">
+                                                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                                                </li>
+                                                <li class="instagram">
+                                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                                </li>
+                                                <li class="vimeo">
+                                                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <span class="message">
-                                    <a href="#"><i class="fas fa-envelope-open"></i></a>
-                                </span>
-                                <h4>Munia Ankor</h4>
-                                <span>Founder of Softing</span>
+                                <div class="info">
+                                    <span class="message">
+                                        <a href="#"><i class="fas fa-envelope-open"></i></a>
+                                    </span>
+                                    <h4>Munia Ankor</h4>
+                                    <span>Founder of Softing</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endif
     <!-- End Team -->
 
-    @if(count($testimonials) > 0)
-    <div class="testimonials-area bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2>{{ @$page->review_title ? $page->review_title : 'Customer Review' }}</span></h2>
-                        <h4>{{ @$page->review_subtitle ? $page->review_subtitle : 'What people say about us' }}</h4>
+    @if (count($testimonials) > 0)
+        <div class="testimonials-area bg-gray default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2>{{ @$page->review_title ? $page->review_title : 'Customer Review' }}</span></h2>
+                            <h4>{{ @$page->review_subtitle ? $page->review_subtitle : 'What people say about us' }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="row">
+                            <div class="testimonial-items owl-carousel owl-theme">
+                                <!-- Single Item -->
+                                @foreach ($testimonials as $item)
+                                    <div class="testimonial-item">
+                                        <div class="thumb col-md-4">
+                                            <img src="{{ $item->image }}" alt="Thumb">
+                                        </div>
+                                        <div class="info col-md-8">
+                                            <div class="content">
+                                                <p>{{ $item->description }}</p>
+                                                <h4>{{ $item->name }}</h4>
+                                                <span>{{ $item->designation }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="row">
-                        <div class="testimonial-items owl-carousel owl-theme">
-                            <!-- Single Item -->
-                            @foreach ($testimonials as $item)
-                                <div class="testimonial-item">
-                                    <div class="thumb col-md-4">
-                                        <img src="{{ $item->image }}" alt="Thumb">
+        </div>
+        <!-- End Testimonials -->
+    @endif
+
+    @isset($faqs)
+        <div class="faq-area default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2><span>{{ @$page->faq_title ? $page->faq_title : 'FAQs' }}</span></h2>
+                            <h4>{{ @$page->faq_subtitle ? $page->faq_subtitle : 'General questions in your mind' }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- Star Video Faq -->
+                    <div class="col-md-6 video-faq">
+                        <div class="video">
+                            <img src="{{ @$page->faq_image ? $page->faq_image : asset('assets/img/about/1.jpg') }}"
+                                alt="Thumb">
+                            @isset($page->faq_link)
+                                <a class="popup-youtube light video-play-button" href="{{ @$page->faq_link }}">
+                                    <i class="fa fa-play"></i>
+                                </a>
+                                <h4>Answer with video</h4>
+                            @endisset
+                        </div>
+                    </div>
+                    <!-- End Video Faq -->
+
+                    <!-- Star Accordion Items -->
+                    <div class="col-md-6 faq-items">
+                        <div class="acd-items acd-arrow">
+                            <div class="panel-group symb" id="accordion">
+
+                                @foreach ($faqs as $key => $item)
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordion"
+                                                    href="#ac{{ $key }}">
+                                                    <span>{{ $key + 1 }}</span> {{ $item->title }}
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="ac{{ $key }}"
+                                            class="panel-collapse collapse {{ $key == 0 ? 'in' : '' }}">
+                                            <div class="panel-body">
+                                                <p>{{ $item->description }}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="info col-md-8">
-                                        <div class="content">
-                                            <p>{{ $item->description }}</p>
-                                            <h4>{{ $item->name }}</h4>
-                                            <span>{{ $item->designation }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- End Accordion -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endisset
+
+    @if (count($blogs) > 0)
+        <div id="blog" class="blog-area bg-gray default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="site-heading text-center">
+                            <h2><span>{{ @$page->blog_title ? $page->blog_title : 'Latest Blog' }}</span></h2>
+                            <h4>{{ @$page->blog_subtitle ? $page->blog_subtitle : 'Have a look at our latest blogs' }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="blog-items blog-carousel owl-carousel owl-theme">
+                            @foreach ($blogs as $item)
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="{{ $item->image }}">
+                                            <img src="{{ $item->image }}" alt="{{ $item->title }}">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <h4>
+                                            <a href="{{ $item->image }}">{{ $item->title }}</a>
+                                        </h4>
+                                        <div class="meta">
+                                            <ul>
+                                                <li><i class="fas fa-feather-alt"></i>{{ $item->creator->name }}</a></li>
+                                                <br>
+                                                <li><i
+                                                        class="fas fa-calendar-alt "></i>{{ @$item->updated_at ? ReadableDate(@$item->updated_at, 'all') : ReadableDate(@$item->created_at, 'all') }}
+                                                </li>
+                                                <li><i class="fas fa-eye"></i>{{ $item->view_count }}</a></li>
+                                            </ul>
+                                        </div>
+                                        <p>{!! $item->short_description !!}</p>
+                                        <div class="read-more">
+                                            <a href="{{ $item->image }}" class="more-btn">Read More <i
+                                                    class="fas fa-angle-double-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -696,235 +822,17 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Testimonials -->
+
     @endif
 
-    @isset($faqs)
-    <div class="faq-area default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2><span>{{ @$page->faq_title ? $page->faq_title : 'FAQs' }}</span></h2>
-                        <h4>{{ @$page->faq_subtitle ? $page->faq_subtitle : 'General questions in your mind' }}</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Star Video Faq -->
-                <div class="col-md-6 video-faq">
-                    <div class="video">
-                        <img src="{{ @$page->faq_image ? $page->faq_image : asset('assets/img/about/1.jpg') }}" alt="Thumb">
-                        @isset($page->faq_link)
-                            <a class="popup-youtube light video-play-button" href="{{ @$page->faq_link }}">
-                                <i class="fa fa-play"></i>
-                            </a>
-                            <h4>Answer with video</h4>
-                        @endisset
-                    </div>
-                </div>
-                <!-- End Video Faq -->
-
-                <!-- Star Accordion Items -->
-                <div class="col-md-6 faq-items">
-                    <div class="acd-items acd-arrow">
-                        <div class="panel-group symb" id="accordion">
-
-                            @foreach ($faqs as $key => $item)
-                                
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#ac{{ $key }}">
-                                            <span>{{ $key+1 }}</span> {{ $item->title }}
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="ac{{ $key }}" class="panel-collapse collapse {{ $key == 0 ? 'in' : '' }}">
-                                    <div class="panel-body">
-                                        <p>{{ $item->description }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <!-- End Accordion -->
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    @endisset
-
-    <!-- Start Blog  
-        ============================================= -->
-    <div id="blog" class="blog-area bg-gray default-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="site-heading text-center">
-                        <h2><span>{{ @$page->blog_title ? $page->blog_title : 'Latest Blog' }}</span></h2>
-                        <h4>{{ @$page->blog_subtitle ? $page->blog_subtitle : 'Have a look at our latest blogs' }}</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="blog-items blog-carousel owl-carousel owl-theme">
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="assets/img/blog/1.jpg" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">startup</a>
-                                    <a href="#">business</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="single.html">Become latter but nor abroad wisdom waited</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="single.html" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="assets/img/blog/2.jpg" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">asset</a>
-                                    <a href="#">earning</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="single.html">attended desirous raptures declared assistance</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="single.html" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="assets/img/blog/3.jpg" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">success</a>
-                                    <a href="#">product</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="single.html">Justice improve age article between projection </a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="single.html" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                        <!--  Single Item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="single.html">
-                                    <img src="assets/img/blog/4.jpg" alt="Thumb">
-                                </a>
-                                <div class="tags">
-                                    <a href="#">startup</a>
-                                    <a href="#">business</a>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <h4>
-                                    <a href="single.html">Prosperous continuing entreat unreserved</a>
-                                </h4>
-                                <div class="meta">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-user"></i> User</a></li>
-                                        <li><i class="fas fa-calendar-alt "></i> 12 Nov, 2019</li>
-                                        <li><a href="#"><i class="fas fa-comments"></i> 23</a></li>
-                                    </ul>
-                                </div>
-                                <p>
-                                    Friendship sufficient assistance can prosperous met. As game he show it park do. Was has
-                                    unknown few certain
-                                </p>
-                                <div class="read-more">
-                                    <a href="single.html" class="more-btn">Read More <i
-                                            class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  End Single Item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Blog -->
-
-    <!-- Start Signup 
-        ============================================= -->
     <div class="signup-area bg-fixed shadow dark text-light default-padding text-center"
-        style="background-image: url(assets/img/banner/4.jpg);">
+        style="background-image: url('{{ @$page->parallax_image ? $page->parallax_image : asset('assets/img/banner/4.jpg') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h3>Try Launch Today!</h3>
-                    <p>
-                        Dried quick round it or order. Add past see west felt did any. plate you share. My resolve arrived
-                        is we chamber be removal.
-                    </p>
-                    <a href="#" class="btn circle btn-light effect btn-md">Signup for free</a>
+                    <h3>{{ @$page->parallax_title ? $page->parallax_title : 'Try Today!' }}</h3>
+                    <p>{{ @$page->parallax_subtitle ?? '' }}</p>
+                    <a href="{{ url('/login') }}" class="btn circle btn-light effect btn-md">Demo</a>
                 </div>
             </div>
         </div>
@@ -932,20 +840,20 @@
     <!-- End Signup -->
 
     <!-- Start Contact Area  
-        ============================================= -->
+                        ============================================= -->
     <div id="contact" class="contact-us-area default-padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="site-heading text-center">
-                        <h2>Contact <span>Us</span></h2>
-                        <h4>Do you Have Any Questions?</h4>
+                        <h2><span>{{ @$page->contact_title ? $page->contact_title : 'Contact Us' }}</span></h2>
+                        <h4>{{ @$page->contact_subtitle ? $page->contact_subtitle : 'Any Questions?' }}</h4>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-8 contact-form">
-                    <h2>Let's lalk about your idea</h2>
+                    <h2>{{ @$page->contact_form_title ? $page->contact_form_title : "Let's talk about your questions" }}</h2>
                     <form action="https://webhunt.store/themeforest/dostart/assets/mail/contact.php" method="POST"
                         class="contact-form">
                         <div class="col-md-12">
@@ -997,33 +905,57 @@
                             <li>
                                 <h4>Office Location</h4>
                                 <div class="icon"><i class="fas fa-map-marked-alt"></i></div>
-                                <span>22 Baker Street,<br> London, United Kingdom,<br> W1U 3BW</span>
+                                <span>{{ @$sitesetting->address[0] ?? 'Agra' }}<br>{{ @$sitesetting->address[1] ?? 'India' }}</span>
                             </li>
                             <li>
                                 <h4>Phone</h4>
                                 <div class="icon"><i class="fas fa-phone"></i></div>
-                                <span>+44-20-7328-4499 <br>+99-34-8878-9989</span>
+                                <span><a
+                                        href="tel:+91{{ @$sitesetting->phone[0]['phone_number'] ?? '8630544683' }}">{{ @$sitesetting->phone[0]['phone_number'] ?? '8630544683' }}</a><br>
+                                    <a
+                                        href="tel:+91{{ @$sitesetting->phone[1]['phone_number'] ?? '7070675425' }}">{{ @$sitesetting->phone[1]['phone_number'] ?? '7070675425' }}</a></span>
                             </li>
                             <li>
                                 <h4>Email</h4>
                                 <div class="icon"><i class="fas fa-envelope-open"></i> </div>
-                                <span>info@yourdomain.com<br>admin@yourdomain.com</span>
+                                <span><a
+                                        href="mailto:{{ @$sitesetting->email[0] ?? 'jaykarvashu@gmail.com' }}">{{ @$sitesetting->email[0] ?? 'jaykarvashu@gmail.com' }}</a>
+                                    <br><a
+                                        href="mailto:{{ @$sitesetting->email[1] }}">{{ @$sitesetting->email[1] }}</a></span>
                             </li>
                         </ul>
                         <h4>Social Address</h4>
                         <ul class="social">
-                            <li class="facebook">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li class="twitter">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="pinterest">
-                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                            </li>
-                            <li class="instagram">
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </li>
+                            @if (@$sitesetting->facebook)
+                                <li class="facebook">
+                                    <a href="{{ $sitesetting->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                            @endif
+                            @if (@$sitesetting->linkedin)
+                                <li class="twitter">
+                                    <a href="{{ @$sitesetting->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                                </li>
+                            @endif
+                            @if (@$sitesetting->youtube)
+                                <li class="pinterest">
+                                    <a href="{{ @$sitesetting->youtube }}"><i class="fab fa-youtube"></i></a>
+                                </li>
+                            @endif
+                            @if (@$sitesetting->instagram)
+                                <li class="instagram">
+                                    <a href="{{ @$sitesetting->instagram }}"><i class="fab fa-instagram"></i></a>
+                                </li>
+                            @endif
+                            @if (@$sitesetting->twitter)
+                                <li class="twitter">
+                                    <a href="{{ @$sitesetting->twitter }}"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            @endif
+                            @if (@$sitesetting->skype)
+                                <li class="facebook">
+                                    <a href="{{ @$sitesetting->skype }}"><i class="fab fa-skype"></i></a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -1033,21 +965,17 @@
     <!-- End Contact -->
 
     <!-- Start Google Maps 
-        ============================================= -->
+                        ============================================= -->
     <div class="maps-area">
         <div class="container-full">
             <div class="row">
                 <div class="google-maps">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14767.262289338461!2d70.79414485000001!3d22.284975!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1424308883981"></iframe>
+                    <iframe src="{{ @$page->map_link ? $page->map_link : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d113579.78745688336!2d77.90997258886208!3d27.176157105990693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39740d857c2f41d9%3A0x784aef38a9523b42!2sAgra%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1614676392697!5m2!1sen!2sin' }}"
+                         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Google Maps -->
-
-
 @endsection
 @push('scripts')
-    {{-- scripts here --}}
 @endpush

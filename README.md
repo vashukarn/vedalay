@@ -1,6 +1,6 @@
-## About GURU
+## About Vedalay
 
-GURU web app. Design & Developed by Vashu Karn
+Vedalay web app. Design & Developed by Vashu Karn
 
 ## License
 

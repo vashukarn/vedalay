@@ -35,7 +35,7 @@
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Slider Name:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('title', @$slider_info->title['en'], ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Slider Name', 'required' => true, 'style' => 'width:80%']) }}
+                                    {{ Form::text('title', @$slider_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Slider Name', 'style' => 'width:80%']) }}
                                     @error('title')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -45,7 +45,7 @@
                             <div class="form-group row {{ $errors->has('sub_title') ? 'has-error' : '' }}">
                                 {{ Form::label('sub_title', 'Slider Sub Title:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('sub_title', @$slider_info->sub_title['en'], ['class' => 'form-control', 'id' => 'sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
+                                    {{ Form::text('sub_title', @$slider_info->sub_title, ['class' => 'form-control', 'id' => 'sub_title', 'placeholder' => 'Slider Sub Title', 'style' => 'width:80%']) }}
                                     @error('sub_title')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -55,7 +55,7 @@
                             <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
                                 {{ Form::label('description', 'Slider Description:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('description', @$slider_info->description['en'], ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
+                                    {{ Form::textarea('description', @$slider_info->description, ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'style' => 'width:80%']) }}
                                     @error('description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -65,7 +65,7 @@
                             <div class="form-group row {{ $errors->has('slider_type') ? 'has-error' : '' }}">
                                 {{ Form::label('slider_type', 'Slider Type :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('slider_type', SLIDER_TYPE,  @$slider_info->slider_type, ['id' => 'slider_type', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
+                                    {{ Form::select('slider_type', SLIDER_TYPE,  @$slider_info->slider_type, ['id' => 'slider_type', 'class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('slider_type')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -83,7 +83,7 @@
                             <div class="form-group row {{ $errors->has('position') ? 'has-error' : '' }}">
                                 {{ Form::label('position', 'Slider Position :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('position', @$slider_info->position, ['class' => 'form-control', 'id' => 'position', 'placeholder' => 'Slider Position', 'required' => true, 'style' => 'width:80%']) }}
+                                    {{ Form::number('position', @$slider_info->position, ['class' => 'form-control', 'id' => 'position', 'placeholder' => 'Slider Position', 'style' => 'width:80%']) }}
                                     @error('description')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -92,7 +92,7 @@
                             <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
                                 {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$slider_info->publish_status, ['id' => 'publish_status', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
+                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$slider_info->publish_status, ['id' => 'publish_status', 'class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('publish_status')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

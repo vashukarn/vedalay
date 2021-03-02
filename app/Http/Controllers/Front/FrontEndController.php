@@ -41,7 +41,8 @@ class FrontEndController extends Controller
         $team = Team::where('publish_status', '1')->get();
         $testimonials = Testimonial::where('publish_status', '1')->orderBy('position', 'DESC')->get();
         $faqs = Faq::where('publish_status', '1')->orderBy('position', 'DESC')->get();
-        // dd($pagedata->work_detail);
+        $blogs = Blog::where('publish_status', '1')->orderBy('id', 'DESC')->limit(3)->get();
+        $sitesetting = AppSetting::orderBy('created_at', 'desc')->first();
         $data = [
             'sliders' => $sliders,
             'page' => $pagedata,
@@ -49,6 +50,8 @@ class FrontEndController extends Controller
             'team' => $team,
             'testimonials' => $testimonials,
             'faqs' => $faqs,
+            'blogs' => $blogs,
+            'sitesetting' => $sitesetting,
         ];
         return view('website.index')->with($data);
     }

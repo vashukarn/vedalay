@@ -14,19 +14,19 @@ class BlogController extends Controller
 {
     public function __construct(Blog $blog)
     {
-        $this->middleware(['permission:blog-list|blog-create|blog-edit|blog-delete'], ['only' => ['index','store']]);
-        $this->middleware(['permission:blog-create'], ['only' => ['create','store']]);
-        $this->middleware(['permission:blog-edit'], ['only' => ['edit','update']]);
+        $this->middleware(['permission:blog-list|blog-create|blog-edit|blog-delete'], ['only' => ['index', 'store']]);
+        $this->middleware(['permission:blog-create'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:blog-edit'], ['only' => ['edit', 'update']]);
         $this->middleware(['permission:blog-delete'], ['only' => ['destroy']]);
         $this->blog = $blog;
     }
 
     protected function getQuery($request)
     {
-        $query = $this->blog->orderBy('id','DESC');
+        $query = $this->blog->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title',$keyword);
+            $query = $query->where('title', $keyword);
         }
         return $query->paginate(20);
     }
@@ -39,15 +39,20 @@ class BlogController extends Controller
     public function create(Request $request)
     {
         $blog_info = null;
-        $title = 'Add Blog Type';
-        return view('admin/blogs/blog-form', compact('blog_info', 'title', 'tags'));
+        $title = 'Add Blog';
+        $data = [
+            'blog_info' => $blog_info,
+            'title' => $title,
+        ];
+        return view('admin/blogs/blog-form')->with($data);
     }
 
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'short_description' => 'required',
+            'description' => 'required',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
@@ -56,32 +61,15 @@ class BlogController extends Controller
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
-            'excerpt' => $request->excerpt,
+            'short_description' => $request->short_description,
             'description' => $request->description,
+            'image' => $request->image ?? null,
             'external_url' => $request->external_url,
-            'publish_status' => $request->publish_status
+            'publish_status' => $request->publish_status,
+            'created_by' => Auth::user()->id,
         ];
-        $data['created_by'] = Auth::user()->id;
-        if ($request->featured_img) {
-            $image_name = uploadFile($request->featured_img, 'uploads/blogs/', false, time());
-            // dd($icon);
-            if ($image_name) {
-                $data['featured_img'] = $image_name;
-            }
-        }
-        if ($request->parallex_img) {
-            $image_name = uploadFile($request->parallex_img, 'uploads/blogs/', false, time());
-            // dd($icon);
-            if ($image_name) {
-                $data['parallex_img'] = $image_name;
-            }
-        }
         try {
             $this->blog->fill($data)->save();
-
-            $this->blog->tags()->attach(request('tag_id'));
-            $this->blog->categories()->attach(request('category_id'));
-
             $request->session()->flash('success', 'Blog created successfully.');
             return redirect()->route('blog.index');
         } catch (\Exception $error) {
@@ -96,60 +84,43 @@ class BlogController extends Controller
         if (!$blog_info) {
             abort(404);
         }
-        $title = 'Update Blog Type';
-        $selectedtags = $blog_info->tags->pluck('id');
-        $tags = Tag::status()->pluck('title','id');
-        $selectedcategories = $blog_info->categories->pluck('id');
-        // dd($selectedtags);
-        $categories = Category::status()->pluck('title','id');
-        return view('admin/blogs/blog-form', compact('blog_info', 'title', 'tags', 'categories', 'selectedtags', 'selectedcategories'));
+        $title = 'Update Blog';
+        $data = [
+            'blog_info' => $blog_info,
+            'title' => $title,
+        ];
+        return view('admin/blogs/blog-form')->with($data);
     }
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $blog_info = $this->blog->find($id);
         if (!$blog_info) {
             abort(404);
         }
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
+            'short_description' => 'required',
+            'description' => 'required',
             'publish_status' => 'required|numeric|in:1,0'
         ]);
         $data = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'excerpt' => $request->excerpt,
-            'description' => $request->description,
             'meta_title' => $request->meta_title,
             'meta_keyword' => $request->meta_keyword,
             'meta_description' => $request->meta_description,
+            'short_description' => $request->short_description,
+            'description' => $request->description,
             'external_url' => $request->external_url,
-            'publish_status' => $request->publish_status
+            'publish_status' => $request->publish_status,
+            'updated_by' => Auth::user()->id,
         ];
-        $data['updated_by'] = Auth::user()->id;
-        if ($request->featured_img) {
-            $image_name = uploadFile($request->featured_img, 'uploads/blogs/', false, time());
-            // dd($icon);
-            if ($image_name) {
-                $data['featured_img'] = $image_name;
-                deleteFile(@$blog_info->featured_img, 'uploads/blogs', true);
-            }
+        if ($request->image) {
+            $data['image'] = $request->image;
         }
-
-        if ($request->parallex_img) {
-            $image_name = uploadFile($request->parallex_img, 'uploads/blogs/', false, time());
-            // dd($icon);
-            if ($image_name) {
-                $data['parallex_img'] = $image_name;
-                deleteFile(@$blog_info->parallex_img, 'uploads/blogs', true);
-            }
-        }
-
         try {
             $blog_info->fill($data)->save();
-            $blog_info->tags()->sync(request('tag_id'));
-            $blog_info->categories()->sync(request('category_id'));
             $request->session()->flash('success', 'Blog updated successfully.');
             return redirect()->route('blog.index');
         } catch (\Exception $error) {
@@ -165,8 +136,9 @@ class BlogController extends Controller
             abort(404);
         }
         try {
+            $blog_info->updated_by = Auth::user()->id;
+            $blog_info->save();
             $blog_info->delete();
-            $data['updated_by'] = Auth::user()->id;
             $request->session()->flash('success', 'Blog deleted successfully.');
             return redirect()->route('blog.index');
         } catch (\Exception $error) {
