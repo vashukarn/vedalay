@@ -55,11 +55,6 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>27,'name'=> 'faq-edit'],
                 ['id'=>28,'name'=> 'faq-delete'],
 
-                ['id'=>29,'name'=> 'tag-list'],
-                ['id'=>30,'name'=> 'tag-create'],
-                ['id'=>31,'name'=> 'tag-edit'],
-                ['id'=>32,'name'=> 'tag-delete'],
-
                 ['id'=>33,'name'=> 'blog-list'],
                 ['id'=>34,'name'=> 'blog-create'],
                 ['id'=>35,'name'=> 'blog-edit'],
@@ -179,6 +174,9 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>126,'name'=> 'team-create'],
                 ['id'=>127,'name'=> 'team-edit'],
                 ['id'=>128,'name'=> 'team-delete'],
+
+
+                // 29-32
            ];
            foreach ($permissions as $permission) {
             $menu = new Permission();

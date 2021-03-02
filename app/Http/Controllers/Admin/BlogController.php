@@ -40,8 +40,6 @@ class BlogController extends Controller
     {
         $blog_info = null;
         $title = 'Add Blog Type';
-        $tags = Tag::status()->pluck('title','id');
-        // $categories = Category::status()->pluck('title','id');
         return view('admin/blogs/blog-form', compact('blog_info', 'title', 'tags'));
     }
 
