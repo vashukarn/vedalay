@@ -33,46 +33,40 @@ $(function() {
     $("form[name='appsetting_form']").validate({
         // Specify validation rules
         rules: {
-           
-            email: {
+            emailone: {
                 email: true,
             },
-            phone: {
+            emailtwo: {
+                email: true,
+            },
+            phoneone: {
                 digits: true,
                 minlength: 10,
                 maxlength: 10,
             },
-          
-           
-
+            phonetwo: {
+                digits: true,
+                minlength: 10,
+                maxlength: 10,
+            },
         },
         // Specify validation error messages
         messages: {
-            name: "Please enter company name",
-            address: "Please enter address",
-            email: {
-                required: "Please enter email address",
-                email: "Value entered should be email",
+            emailone: {
+                email: "Value entered should be an email",
             },
-            phone: {
-                required: "Phone number is required",
+            emailtwo: {
+                email: "Value entered should be an email",
+            },
+            phoneone: {
                 digits: "Phone number should be digits only",
                 minlength: "Phone number should be of 10 digits",
                 maxlength: "Phone number should be of 10 digits only",
             },
-            commission: {
-                required: "Commission is required",
-                digits: "Commission should be in numbers only",
-            },
-            vat: {
-                number: "The value should be numeric",
-            },
-            front_feature_description: "Please enter front feature description",
-            front_counter_description: "Please enter front counter description",
-            front_testimonial_description: "Please enter front testimonial description",
-            otp_expire: {
-                required: "OTP expire time is required",
-                digits: "Please enter the value in minutes",
+            phonetwo: {
+                digits: "Phone number should be digits only",
+                minlength: "Phone number should be of 10 digits",
+                maxlength: "Phone number should be of 10 digits only",
             },
 
         },

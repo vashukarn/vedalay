@@ -34,10 +34,6 @@ class AppSettingController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        $this->validate($request, [
-            'name' => 'required|string|min:3|max:190',
-        ]);
         $data = [
             'name' => $request->name,
             'address' => $request->address,
@@ -69,7 +65,6 @@ class AppSettingController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
         $appSetting = $this->appSetting->find($id);
         if (!$appSetting) {
             abort(404);

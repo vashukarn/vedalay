@@ -62,7 +62,7 @@
                         <div class="form-group row">
                             {{ Form::label('name', 'Institution Name*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('name', @$site_detail->name, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'University/College/School Name', 'required' => true]) }}
+                                {{ Form::text('name', @$site_detail->name, ['class' => 'form-control', 'id' => 'name', 'placeholder' => 'University/College/School Name']) }}
                                 @error('name')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -72,7 +72,7 @@
                         <div class="form-group row">
                             {{ Form::label('address[0]', 'Primary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('address[0]', @$site_detail->address[0], ['class' => 'form-control', 'id' => 'address[0]', 'placeholder' => 'Primary Address', 'required' => true]) }}
+                                {{ Form::text('address[0]', @$site_detail->address[0], ['class' => 'form-control', 'id' => 'address[0]', 'placeholder' => 'Primary Address']) }}
                                 @error('address[0]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -82,7 +82,7 @@
                         <div class="form-group row">
                             {{ Form::label('address[1]', 'Secondary Address*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('address[1]', @$site_detail->address[1], ['class' => 'form-control', 'id' => 'address[1]', 'placeholder' => 'Secondary Address', 'required' => true]) }}
+                                {{ Form::text('address[1]', @$site_detail->address[1], ['class' => 'form-control', 'id' => 'address[1]', 'placeholder' => 'Secondary Address']) }}
                                 @error('address[1]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -92,7 +92,7 @@
                         <div class="form-group row">
                             {{ Form::label('email[0]', 'Contact Email*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('email[0]', @$site_detail->email[0], ['class' => 'form-control', 'id' => 'email[0]', 'placeholder' => 'Contact Email', 'required' => true]) }}
+                                {{ Form::text('email[0]', @$site_detail->email[0], ['class' => 'form-control', 'id' => 'emailone', 'placeholder' => 'Contact Email']) }}
                                 @error('email[0]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -102,7 +102,7 @@
                         <div class="form-group row">
                             {{ Form::label('email[1]', 'Email for Admissions*', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::text('email[1]', @$site_detail->email[1], ['class' => 'form-control', 'id' => 'email[1]', 'placeholder' => 'Email for Admissions', 'required' => true]) }}
+                                {{ Form::text('email[1]', @$site_detail->email[1], ['class' => 'form-control', 'id' => 'emailtwo', 'placeholder' => 'Email for Admissions']) }}
                                 @error('email[1]')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -114,14 +114,14 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        {{ Form::number('contact_no[0][phone_number]', @$site_detail->phone[0]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Primary Phone Number ', 'required' => true]) }}
-                                        @error('phone')
+                                        {{ Form::number('contact_no[0][phone_number]', @$site_detail->phone[0]['phone_number'], ['class' => 'form-control', 'id' => 'phoneone', 'placeholder' => 'Primary Phone Number ']) }}
+                                        @error('contact_no[0][phone_number]')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
 
                                     </div>
                                     <div class="col-lg-6">
-                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->phone[0]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
+                                        {!! Form::text('contact_no[0][contact_city]', @$site_detail->phone[0]['contact_city'], ['class' => 'form-control', 'id' => 'phonetwo', 'placeholder' => 'Contact City Name ']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         {{ Form::number('contact_no[1][phone_number]', @$site_detail->phone[1]['phone_number'], ['class' => 'form-control', 'maxlength' => 10, 'id' => 'phone', 'placeholder' => 'Alternative Phone Number']) }}
-                                        @error('phone')
+                                        @error('contact_no[1][phone_number]')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -283,7 +283,7 @@
                         <div class="form-group row">
                             {{ Form::label('facebook', 'Official Facebook', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('facebook', @$site_detail->facebook, ['class' => 'form-control', 'id' => 'facebook', 'placeholder' => 'Official Facebook Page URL', 'required' => true]) }}
+                                {{ Form::url('facebook', @$site_detail->facebook, ['class' => 'form-control', 'id' => 'facebook', 'placeholder' => 'Official Facebook Page URL']) }}
                                 @error('facebook')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -293,7 +293,7 @@
                         <div class="form-group row">
                             {{ Form::label('instagram', 'Official Instagram', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('instagram', @$site_detail->instagram, ['class' => 'form-control', 'id' => 'instagram', 'placeholder' => 'Official Instagram Page URL', 'required' => true]) }}
+                                {{ Form::url('instagram', @$site_detail->instagram, ['class' => 'form-control', 'id' => 'instagram', 'placeholder' => 'Official Instagram Page URL']) }}
                                 @error('instagram')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -303,7 +303,7 @@
                         <div class="form-group row">
                             {{ Form::label('youtube', 'Official Youtube', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('youtube', @$site_detail->youtube, ['class' => 'form-control', 'id' => 'youtube', 'placeholder' => 'Official Youtube Channel URL', 'required' => true]) }}
+                                {{ Form::url('youtube', @$site_detail->youtube, ['class' => 'form-control', 'id' => 'youtube', 'placeholder' => 'Official Youtube Channel URL']) }}
                                 @error('youtube')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -313,7 +313,7 @@
                         <div class="form-group row">
                             {{ Form::label('linkedin', 'Official Linkedin', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('linkedin', @$site_detail->linkedin, ['class' => 'form-control', 'id' => 'linkedin', 'placeholder' => 'Official LinkedIn Profile URL', 'required' => true]) }}
+                                {{ Form::url('linkedin', @$site_detail->linkedin, ['class' => 'form-control', 'id' => 'linkedin', 'placeholder' => 'Official LinkedIn Profile URL']) }}
                                 @error('linkedin')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -323,7 +323,7 @@
                         <div class="form-group row">
                             {{ Form::label('skype', 'Official Skype', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('skype', @$site_detail->skype, ['class' => 'form-control', 'id' => 'skype', 'placeholder' => 'Official Skype URL', 'required' => true]) }}
+                                {{ Form::url('skype', @$site_detail->skype, ['class' => 'form-control', 'id' => 'skype', 'placeholder' => 'Official Skype URL']) }}
                                 @error('skype')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
@@ -333,7 +333,7 @@
                         <div class="form-group row">
                             {{ Form::label('twitter', 'Official Twitter', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
-                                {{ Form::url('twitter', @$site_detail->twitter, ['class' => 'form-control', 'id' => 'twitter', 'placeholder' => 'Official Twitter URL', 'required' => true]) }}
+                                {{ Form::url('twitter', @$site_detail->twitter, ['class' => 'form-control', 'id' => 'twitter', 'placeholder' => 'Official Twitter URL']) }}
                                 @error('twitter')
                                     <span class="help-block error">{{ $message }}</span>
                                 @enderror
