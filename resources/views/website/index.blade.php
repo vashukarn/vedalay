@@ -90,7 +90,7 @@
                 <div class="col-md-5 promo-video">
                     <a class="popup-youtube light video-play-button"
                         href="{{ @$page->whyus_link ? $page->whyus_link : '#' }}">
-                        <img src="{{ @$page->whyus_image ? $page->whyus_image : asset('assets/img/work/4.png') }}"
+                        <img src="{{ @$page->whyus_image ? $page->whyus_image : asset('assets/img/nodata/4.png') }}"
                             alt="{{ @$page->whyus_title ? $page->whyus_title : 'Vedalay about us image' }}">
                         <i class="fa fa-play"></i>
                     </a>
@@ -218,7 +218,7 @@
                     </div>
                     <div class="col-md-5">
                         <div class="thumb">
-                            <img src="{{ @$page->features_image ? $page->features_image : asset('assets/img/illustrations/2.svg') }}"
+                            <img src="{{ @$page->features_image ? $page->features_image : asset('assets/img/nodata/2.svg') }}"
                                 alt="{{ @$page->whyus_title }} Image">
                         </div>
                     </div>
@@ -231,7 +231,7 @@
     <!-- Start Fun Factor 
                         ============================================= -->
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
-        style="background-image: url('{{ @$page->newsletter_image ? $page->newsletter_image : asset('assets/img/banner/7.jpg') }}');">
+        style="background-image: url('{{ @$page->newsletter_image ? $page->newsletter_image : asset('assets/img/nodata/7.jpg') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 fun-fact-items">
@@ -725,7 +725,7 @@
     @endif
 
     <div class="signup-area bg-fixed shadow dark text-light default-padding text-center"
-        style="background-image: url('{{ @$page->parallax_image ? $page->parallax_image : asset('assets/img/banner/4.jpg') }}');">
+        style="background-image: url('{{ @$page->parallax_image ? $page->parallax_image : asset('assets/img/nodata/4.jpg') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
