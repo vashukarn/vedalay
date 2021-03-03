@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e14f3f5130909bd5bd58f0367516c43",
+    "content-hash": "d5b40b9f2896f03de9e45f83f3c692ad",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1808,6 +1808,94 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "mafftor/laravel-file-manager",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mafftor/laravel-file-manager.git",
+                "reference": "8d8bfdd73991f5d8925196d1246b1305ae0510b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mafftor/laravel-file-manager/zipball/8d8bfdd73991f5d8925196d1246b1305ae0510b9",
+                "reference": "8d8bfdd73991f5d8925196d1246b1305ae0510b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-exif": "*",
+                "ext-fileinfo": "*",
+                "illuminate/config": "^5.5|^6|^7|^8",
+                "illuminate/container": "^5.5|^6|^7|^8",
+                "illuminate/filesystem": "^5.5|^6|^7|^8",
+                "illuminate/http": "^5.5|^6|^7|^8",
+                "illuminate/support": "^5.5|^6|^7|^8",
+                "intervention/image": "2.*",
+                "php": ">=7",
+                "tinify/tinify": "^1.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.9",
+                "phpunit/phpunit": "^6.2",
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mafftor\\LaravelFileManager\\LaravelFileManagerServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mafftor\\LaravelFileManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yevhenii Miniailenko",
+                    "email": "mafftor@gmail.com"
+                },
+                {
+                    "name": "Trevor Sawler",
+                    "email": "trevor.sawler@gmail.com"
+                },
+                {
+                    "name": "UniSharp Ltd.",
+                    "email": "opensource@unisharp.com"
+                }
+            ],
+            "description": "The file manager intended for using Laravel with CKEditor / TinyMCE / Colorbox",
+            "keywords": [
+                "CKEditor",
+                "file",
+                "file-manager",
+                "filemanager",
+                "files-manager",
+                "filesmanager",
+                "image",
+                "laravel",
+                "mafftor",
+                "manager",
+                "tinymce",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/mafftor/laravel-file-manager/issues",
+                "source": "https://github.com/mafftor/laravel-file-manager/tree/v2.0.8"
+            },
+            "time": "2020-12-23T11:35:33+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5281,6 +5369,67 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.3"
             },
             "time": "2020-07-13T06:12:54+00:00"
+        },
+        {
+            "name": "tinify/tinify",
+            "version": "1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tinify/tinify-php.git",
+                "reference": "b15d1f31d94d9b06e60251543cc918f426f0d55b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tinify/tinify-php/zipball/b15d1f31d94d9b06e60251543cc918f426f0d55b",
+                "reference": "b15d1f31d94d9b06e60251543cc918f426f0d55b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "lib-curl": ">=7.20.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "symfony/yaml": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/Tinify.php",
+                    "lib/Tinify/Exception.php"
+                ],
+                "psr-4": {
+                    "Tinify\\": "lib/Tinify/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rolf Timmermans",
+                    "email": "rolftimmermans@voormedia.com"
+                }
+            ],
+            "description": "PHP client for the Tinify API. Tinify compresses your images intelligently. Read more at https://tinify.com.",
+            "homepage": "https://tinify.com/developers",
+            "keywords": [
+                "api",
+                "compress",
+                "images",
+                "tinify",
+                "tinyjpg",
+                "tinypng"
+            ],
+            "support": {
+                "email": "support@tinify.com",
+                "issues": "https://github.com/tinify/tinify-php/issues",
+                "source": "https://github.com/tinify/tinify-php/tree/master"
+            },
+            "time": "2017-07-19T12:26:04+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
