@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Mafftor\LaravelFileManager\LaravelFilemanagerServiceProvider::class,
+        // Mafftor\LaravelFileManager\LaravelFilemanagerServiceProvider::class,
         /*
          * Application Service Providers...
          */

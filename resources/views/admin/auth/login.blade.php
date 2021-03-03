@@ -4,19 +4,19 @@
 @push('scripts')
 <script>
     function loginadmin() {
-        $('#email').val('admin@vedalay.com');
+        $('#email').val('admin@vedyalay.com');
         $('#password').val('admin123');
     }
     function loginteacher() {
-        $('#email').val('teacher@vedalay.com');
+        $('#email').val('teacher@vedyalay.com');
         $('#password').val('teacher123');
     }
     function loginstaff() {
-        $('#email').val('staff@vedalay.com');
+        $('#email').val('staff@vedyalay.com');
         $('#password').val('staff123');
     }
     function loginstudent() {
-        $('#email').val('student@vedalay.com');
+        $('#email').val('student@vedyalay.com');
         $('#password').val('student123');
     }
 </script>

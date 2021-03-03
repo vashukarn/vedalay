@@ -16,8 +16,8 @@ class CreateAdminUserSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'Vedalay Super Admin',
-            'email' => 'superadmin@vedalay.com',
+            'name' => 'Vedyalay Super Admin',
+            'email' => 'superadmin@vedyalay.com',
             'password' => Hash::make('#machinelearning5'),
             'type' => 'superadmin',
         ]);
@@ -28,8 +28,8 @@ class CreateAdminUserSeeder extends Seeder
         $user->assignRole([$role->id]);
 
         $adminuser = User::create([
-            'name' => 'Vedalay Admin',
-            'email' => 'admin@vedalay.com',
+            'name' => 'Vedyalay Admin',
+            'email' => 'admin@vedyalay.com',
             'password' => Hash::make('admin123'),
             'type' => 'admin',
         ]);
@@ -37,8 +37,8 @@ class CreateAdminUserSeeder extends Seeder
         $adminuser->assignRole([$roleadmin->id]);
 
         $teacheruser = User::create([
-            'name' => 'Vedalay Teacher',
-            'email' => 'teacher@vedalay.com',
+            'name' => 'Vedyalay Teacher',
+            'email' => 'teacher@vedyalay.com',
             'password' => Hash::make('teacher123'),
             'type' => 'teacher',
         ]);
@@ -62,8 +62,8 @@ class CreateAdminUserSeeder extends Seeder
         $teacheruser->assignRole([$roleteacher->id]);
 
         $staffuser = User::create([
-            'name' => 'Vedalay Staff',
-            'email' => 'staff@vedalay.com',
+            'name' => 'Vedyalay Staff',
+            'email' => 'staff@vedyalay.com',
             'password' => Hash::make('staff123'),
             'type' => 'staff',
         ]);
@@ -84,8 +84,8 @@ class CreateAdminUserSeeder extends Seeder
         $staffuser->assignRole([$rolestaff->id]);
 
         $studentuser = User::create([
-            'name' => 'Vedalay Student',
-            'email' => 'student@vedalay.com',
+            'name' => 'Vedyalay Student',
+            'email' => 'student@vedyalay.com',
             'password' => Hash::make('student123'),
             'type' => 'student',
         ]);
