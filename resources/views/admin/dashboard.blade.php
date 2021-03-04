@@ -89,8 +89,8 @@
                         <div class="icon">
                             <i class="fas fa-book"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-3">
@@ -102,8 +102,8 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 @endhasanyrole
@@ -117,8 +117,8 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 @endhasanyrole
@@ -132,8 +132,8 @@
                         <div class="icon">
                             <i class="fas fa-calendar"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-3">
@@ -145,8 +145,8 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-3">
@@ -158,8 +158,8 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 @endhasanyrole
@@ -167,14 +167,14 @@
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-info">
                         <div class="inner" style="color:#fff;">
-                            <h3>{{ @$attendance_percentage }} %</h3>
+                            <h3>{{ @$attendance_percentage ? @$attendance_percentage.'%' : 'No Data' }}</h3>
                             <p>Attendance</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-calendar"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-3">
@@ -186,8 +186,8 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
-                        <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 @endhasanyrole

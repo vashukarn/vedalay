@@ -8,7 +8,7 @@
   <div class="lockscreen-name text-md">{{ auth()->user()->name }}</div>
   <div class="lockscreen-item">
       <div class="lockscreen-image">
-          <img src="{{ asset('img/logo.png') }}" alt="{{ auth()->user()->name }}">
+          <img src="{{ asset('assets/img/favicon.png') }}" alt="{{ auth()->user()->name }}">
       </div>
       <form class="lockscreen-credentials" action="{{ url('user/confirm-password') }}" method="post">
           @csrf

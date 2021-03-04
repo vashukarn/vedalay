@@ -61,7 +61,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo-light.png') }}"
+                        <img src="{{ $sitesetting ? $sitesetting->logo_light : asset('assets/img/logo-light.png') }}"
                             class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
                         <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}"
                             class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">

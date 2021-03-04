@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admission;
 use App\Models\Level;
 use App\Models\Session;
 use App\Models\Student;
@@ -60,6 +61,7 @@ class StudentController extends Controller
         $data = [
             'title' => $title,
             'student_info' => $student_info,
+            'admission_info' => null,
             'session' => $session,
             'levels' => $levels,
         ];
@@ -79,6 +81,13 @@ class StudentController extends Controller
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
             'confirm_password' => 'required',
+            'last_schoolname' => 'required_if:admission,==,on',
+            'last_level' => 'required_if:admission,==,on',
+            'last_marks' => 'required_if:admission,==,on',
+            'last_marksheet' => 'required_if:admission,==,on',
+            'transfer_certificate' => 'required_if:admission,==,on',
+            'migration_certificate' => 'required_if:admission,==,on',
+            'character_certificate' => 'required_if:admission,==,on',
         ]);
         DB::beginTransaction();
         try {
@@ -112,8 +121,22 @@ class StudentController extends Controller
                 'guardian_phone' => htmlentities($request->guardian_phone),
                 'current_address' => htmlentities($request->current_address),
                 'permanent_address' => htmlentities($request->permanent_address),
-                'created_by' => Auth::user()->id,
             ]);
+            if($request->admission == 'on'){
+                Admission::create([
+                    'last_marksheet' => htmlentities($request->last_marksheet),
+                    'last_schoolname' => htmlentities($request->last_schoolname),
+                    'last_level' => htmlentities($request->last_level),
+                    'last_marks' => htmlentities($request->last_marks),
+                    'transfer_certificate' => htmlentities($request->transfer_certificate),
+                    'character_certificate' => htmlentities($request->character_certificate),
+                    'migration_certificate' => htmlentities($request->migration_certificate),
+                    'last_state' => htmlentities($request->last_state),
+                    'last_city' => htmlentities($request->last_city),
+                    'user_id' => $user->id,
+                    'student_id' => $student->id,
+                ]);
+            }
             DB::commit();
             $user->assignRole('Student');
             $request->session()->flash('success', 'Student added successfully.');
@@ -149,10 +172,13 @@ class StudentController extends Controller
                 $levels[$value->id] = $value->standard;
             }
         }
+        $admission_info = Admission::where('student_id', $id)->first();
+        // dd($admission_info);
         $title = 'Edit User';
         $data = [
             'title' => $title,
             'student_info' => $student_info,
+            'admission_info' => $admission_info ?? false,
             'session' => $session,
             'levels' => $levels,
         ];
@@ -167,13 +193,22 @@ class StudentController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|string|min:3|max:190',
+            'email' => 'required|unique:users|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required|string',
             'level' => 'required',
             'session' => 'required',
+            'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|max:190',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
+            'confirm_password' => 'required',
+            'last_schoolname' => 'required_if:admission,==,on',
+            'last_level' => 'required_if:admission,==,on',
+            'last_marks' => 'required_if:admission,==,on',
+            'last_marksheet' => 'required_if:admission,==,on',
+            'transfer_certificate' => 'required_if:admission,==,on',
+            'migration_certificate' => 'required_if:admission,==,on',
+            'character_certificate' => 'required_if:admission,==,on',
         ]);
         DB::beginTransaction();
         try {

@@ -30,7 +30,7 @@
         var students = $('#student');
         $.ajax({
             type: 'POST',
-            url: "/admin/getStudents",
+            url: "/user/getStudents",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'id': id,
@@ -246,7 +246,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             
                             <div class="form-group row {{ $errors->has('total_amount') ? 'has-error' : '' }}">
                                 {{ Form::label('total_amount', 'Total Amount :', ['class' => 'col-sm-3']) }}

@@ -12,15 +12,10 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('session')->nullable();
-            $table->integer('cgpa')->nullable();
-            $table->foreign('session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->unsignedBigInteger('level_id')->nullable();
-            $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
             $table->longText('documents')->nullable();
-            $table->string('due_fee')->default(0);
             $table->string('caste_category')->nullable();
             $table->enum('disability',['0','1'])->default('0');
             $table->enum('regpriv',['REGULAR','PRIVATE'])->default('REGULAR');
@@ -40,6 +35,9 @@ class CreateStudentsTable extends Migration
             $table->string('motherincome')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();

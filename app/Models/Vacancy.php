@@ -19,9 +19,6 @@ class Vacancy extends Model
         'updated_by',
     ];
     protected $dates = ['deleted_at'];
-    protected $casts  = [
-        'fees' => 'json',
-    ];
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');

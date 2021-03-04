@@ -11,30 +11,28 @@ class Student extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'user_id',
-        'phone',
-        'current_address',
-        'permanent_address',
-        'image',
-        'due_fee',
         'session',
+        'level_id',
         'dob',
         'blood_group',
+        'documents',
         'caste_category',
         'disability',
+        'regpriv',
         'aadhar_number',
         'guardian_name',
         'guardian_phone',
+        'phone',
+        'permanent_address',
+        'current_address',
         'gender',
+        'image',
+        'fathername',
         'fatheroccupation',
         'fatherincome',
-        'documents',
+        'mothername',
         'motheroccupation',
         'motherincome',
-        'transfer_certificate',
-        'level_id',
-        'fathername',
-        'mothername',
-        'cgpa',
         'created_by',
         'updated_by',
     ];
@@ -46,5 +44,13 @@ class Student extends Model
     public function get_level()
     {
         return $this->hasOne('App\Models\Level', 'id', 'level_id');
+    }
+    public function creator()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+    public function updater()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 }

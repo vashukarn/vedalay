@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendFeeAdditionJob;
 use App\Mail\FeeAdditionMail;
 use App\Models\Fee;
 use App\Models\Level;
@@ -126,8 +127,7 @@ class FeeController extends Controller
                     'unique' => $timestamp,
                     'level_id' => htmlentities($request->level),
                 ]);
-                $student = User::find($value);
-                Mail::to($student->email)->send(new FeeAdditionMail($value));
+                dispatch(new SendFeeAdditionJob($value));
             }
             DB::commit();
             $request->session()->flash('success', 'Fee added successfully.');
