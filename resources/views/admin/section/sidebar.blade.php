@@ -50,8 +50,8 @@
                 <li class="nav-header">USER MANAGEMENT</li>
                 @endcanany
                 @canany(['student-list', 'student-create','student-edit','student-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/student*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/student*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('admin/student*') || request()->is('admin/admission*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/student*') || request()->is('admin/admission*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Student Management
@@ -73,6 +73,13 @@
                                 class="nav-link {{ request()->is('admin/student') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Students List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admission') }}"
+                                class="nav-link {{ request()->is('admin/admission') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Admission List</p>
                             </a>
                         </li>
                     </ul>

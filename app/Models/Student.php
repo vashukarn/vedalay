@@ -45,6 +45,10 @@ class Student extends Model
     {
         return $this->hasOne('App\Models\Level', 'id', 'level_id');
     }
+    public function get_session()
+    {
+        return $this->hasOne('App\Models\Session', 'id', 'session');
+    }
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');

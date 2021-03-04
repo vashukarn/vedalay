@@ -77,6 +77,20 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-secondary">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$admissions }}</h3>
+                            <p>Admissions</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <a href="{{ route('admission') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
                 @endhasanyrole
                 
                 @hasanyrole('Teacher')

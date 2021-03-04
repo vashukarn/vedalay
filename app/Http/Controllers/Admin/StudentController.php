@@ -25,20 +25,71 @@ class StudentController extends Controller
     }
     protected function getStudent($request)
     {
-        $query = $this->student->orderBy('id', 'DESC');
+        $query = $this->student->orderBy('session', 'ASC')->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('user_id', $keyword);
+        }
+        if ($request->level) {
+            $level = $request->level;
+            $query = $query->where('level_id', $level);
+        }
+        if ($request->session) {
+            $session = $request->session;
+            $query = $query->where('session', $session);
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
+        $temp = $this->student->get();
+        $filter = [];
+        foreach ($temp as $key => $value) {
+            $filter[$value->user_id] = $value->get_user->name . ' - ' . $value->phone;
+        }
         $data = $this->getStudent($request);
+        $classes = Level::all();
+        foreach ($classes as $value) {
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
+                $levels[$value->id] = $value->standard;
+            }
+        }
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $session[$value->id] = $value->start_year . ' - ' . $value->end_year;
+        }
         $data = [
             'data' => $data,
+            'filter' => $filter,
+            'levels' => $levels,
+            'session' => $session,
         ];
         return view('admin/student/list')->with($data);
+    }
+    protected function getAdmission($request)
+    {
+        $query = Admission::orderBy('id', 'DESC');
+        if ($request->keyword) {
+            $keyword = $request->keyword;
+            $query = $query->where('user_id', $keyword);
+        }
+        return $query->paginate(20);
+    }
+    public function admission(Request $request)
+    {
+        $temp = Admission::get();
+        $filter = [];
+        foreach ($temp as $key => $value) {
+            $filter[$value->user_id] = $value->get_user->name . ' - ' . $value->get_student->phone;
+        }
+        $data = $this->getAdmission($request);
+        $data = [
+            'data' => $data,
+            'filter' => $filter,
+        ];
+        return view('admin/student/admissionlist')->with($data);
     }
 
     public function create()
@@ -46,14 +97,13 @@ class StudentController extends Controller
         $student_info = null;
         $temp = Session::all();
         foreach ($temp as $value) {
-            $session[$value->id] = $value->start_year.' - ' .$value->end_year;
+            $session[$value->id] = $value->start_year . ' - ' . $value->end_year;
         }
         $classes = Level::all();
         foreach ($classes as $value) {
-            if(isset($value->section)){
-                $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
-            }
-            else{
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
                 $levels[$value->id] = $value->standard;
             }
         }
@@ -122,7 +172,7 @@ class StudentController extends Controller
                 'current_address' => htmlentities($request->current_address),
                 'permanent_address' => htmlentities($request->permanent_address),
             ]);
-            if($request->admission == 'on'){
+            if ($request->admission == 'on') {
                 Admission::create([
                     'last_marksheet' => htmlentities($request->last_marksheet),
                     'last_schoolname' => htmlentities($request->last_schoolname),
@@ -148,9 +198,32 @@ class StudentController extends Controller
         }
     }
 
+    public function admissionshow($id)
+    {
+        $student_info = Admission::find($id);
+        if (!$student_info) {
+            abort(404);
+        }
+        $title = 'Admission Student Detail';
+        // dd($student_info->get_student->phone);
+        $data = [
+            'title' => $title,
+            'student_info' => $student_info,
+        ];
+        return view('admin/student/admissionshow')->with($data);
+    }
     public function show($id)
     {
-        //
+        $student_info = $this->student->find($id);
+        if (!$student_info) {
+            abort(404);
+        }
+        $title = 'Student Detail';
+        $data = [
+            'title' => $title,
+            'student_info' => $student_info,
+        ];
+        return view('admin/student/show')->with($data);
     }
 
     public function edit($id)
@@ -162,23 +235,19 @@ class StudentController extends Controller
         $classes = Level::all();
         $temp = Session::all();
         foreach ($temp as $value) {
-            $session[$value->id] = $value->start_year.' - ' .$value->end_year;
+            $session[$value->id] = $value->start_year . ' - ' . $value->end_year;
         }
         foreach ($classes as $value) {
-            if(isset($value->section)){
-                $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
-            }
-            else{
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
                 $levels[$value->id] = $value->standard;
             }
         }
-        $admission_info = Admission::where('student_id', $id)->first();
-        // dd($admission_info);
         $title = 'Edit User';
         $data = [
             'title' => $title,
             'student_info' => $student_info,
-            'admission_info' => $admission_info ?? false,
             'session' => $session,
             'levels' => $levels,
         ];
@@ -202,13 +271,6 @@ class StudentController extends Controller
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
             'confirm_password' => 'required',
-            'last_schoolname' => 'required_if:admission,==,on',
-            'last_level' => 'required_if:admission,==,on',
-            'last_marks' => 'required_if:admission,==,on',
-            'last_marksheet' => 'required_if:admission,==,on',
-            'transfer_certificate' => 'required_if:admission,==,on',
-            'migration_certificate' => 'required_if:admission,==,on',
-            'character_certificate' => 'required_if:admission,==,on',
         ]);
         DB::beginTransaction();
         try {
@@ -217,7 +279,7 @@ class StudentController extends Controller
             $user->email = htmlentities($request->email);
             $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
-            $status = $user->save();
+            $user->save();
             $student = Student::find($student_info->id);
             $student->phone = htmlentities($request->phone);
             $student->level_id = htmlentities($request->level);
@@ -239,10 +301,10 @@ class StudentController extends Controller
             $student->current_address = htmlentities($request->current_address);
             $student->permanent_address = htmlentities($request->permanent_address);
             $student->updated_by = Auth::user()->id;
-            if(isset($request->image)){
-                $student['image'] = htmlentities($request->image);
+            if (isset($request->image)) {
+                $student->image = htmlentities($request->image);
             }
-            $status = $student->save();
+            $student->save();
             DB::commit();
             $request->session()->flash('success', 'Student updated successfully.');
             return redirect()->route('student.index');
@@ -251,7 +313,6 @@ class StudentController extends Controller
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
-
     }
 
     public function destroy(Request $request, $id)

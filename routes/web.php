@@ -83,6 +83,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('roles', RoleController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
+    Route::get('admission', [StudentController::class, 'admission'])->name('admission');
+    Route::get('admissionshow/{id}', [StudentController::class, 'admissionshow'])->name('admissionshow');
     Route::post('addExam', [ExamController::class, 'addExam'])->name('addExam');
     Route::post('addResult', [ResultController::class, 'addResult'])->name('addResult');
     Route::get('publishExam/{id}', [ExamController::class, 'publishExam'])->name('publishExam');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admission;
 use App\Models\AdvanceSalary;
 use App\Models\Attendance;
 use App\Models\Fee;
@@ -89,6 +90,7 @@ class DashboardController extends Controller
             ->selectRaw("count(case when type = 'teacher' then 1 end) as teachercount")
             ->selectRaw("count(case when type = 'staff' then 1 end) as staffcount")
             ->first();
+            $admissions = Admission::count();
         }
         
         $data = [
@@ -101,6 +103,7 @@ class DashboardController extends Controller
             'extraclass' => $extraclass ?? null,
             'attendance_percentage' => $attendance_percentage ?? null,
             'due_fee' => $due_fee ?? null,
+            'admissions' => $admissions ?? null,
         ];
 
         return view('admin.dashboard')->with($data);

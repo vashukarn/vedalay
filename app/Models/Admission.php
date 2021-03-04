@@ -27,4 +27,8 @@ class Admission extends Model
     {
         return $this->hasOne('App\Models\Student', 'id', 'student_id');
     }
+    public function get_user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }

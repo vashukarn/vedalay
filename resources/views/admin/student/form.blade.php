@@ -16,6 +16,15 @@
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
         <script src="{{ asset('/custom/student.js') }}"></script>
         <script>
+            $('#lfm').filemanager('image');
+            $('#lfm1').filemanager('image');
+            $('#lfm2').filemanager('image');
+            $('#lfm3').filemanager('image');
+            $('#lfm4').filemanager('image');
+
+            
+            @if (!isset($student_info))
+
             $(document).ready(function() {
                 if ($('#admission').prop('checked')) {
                     $('#admissiondiv').show();
@@ -23,11 +32,6 @@
                     $('#admissiondiv').hide();
                 }
             });
-            $('#lfm').filemanager('image');
-            $('#lfm1').filemanager('image');
-            $('#lfm2').filemanager('image');
-            $('#lfm3').filemanager('image');
-            $('#lfm4').filemanager('image');
 
             $("#fatherguardian").change(function() {
                 if ($('#fatherguardian').prop('checked')) {
@@ -54,6 +58,8 @@
                     $('#admissiondiv').hide();
                 }
             });
+
+            @endif
 
         </script>
     @endpush
@@ -113,7 +119,7 @@
                             <div class="form-group row {{ $errors->has('dob') ? 'has-error' : '' }}">
                                 {{ Form::label('dob', 'Date of Birth:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::date('dob', @$student_info->dob, ['class' => 'form-control', 'id' => 'dob', 'placeholder' => 'dob', 'style' => 'width:80%']) }}
+                                    {{ Form::date('dob', @$student_info->dob, ['class' => 'form-control', 'id' => 'dob', 'placeholder' => 'Date of Birth', 'style' => 'width:80%']) }}
                                     @error('dob')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -292,7 +298,7 @@
                             <div class="form-group row {{ $errors->has('aadhar_number') ? 'has-error' : '' }}">
                                 {{ Form::label('aadhar_number', 'Aadhar Number :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('aadhar_number', @$student_info->aadhar_number, ['class' => 'form-control', 'id' => 'aadhar_number', 'placeholder' => 'Permanent Address', 'style' => 'width:80%']) }}
+                                    {{ Form::text('aadhar_number', @$student_info->aadhar_number, ['class' => 'form-control', 'id' => 'aadhar_number', 'placeholder' => 'Aadhar Number', 'style' => 'width:80%']) }}
                                     @error('aadhar_number')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -350,7 +356,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('regpriv') ? 'has-error' : '' }}">
-                                {{ Form::label('regpriv', 'Publish Status :*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('regpriv', 'Regular/Private :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
                                     {{ Form::select('regpriv', ['REGULAR' => 'REGULAR', 'PRIVATE' => 'PRIVATE'], @$student_info->regpriv, ['id' => 'regpriv', 'class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('regpriv')
@@ -359,7 +365,7 @@
                                 </div>
                             </div>
 
-                            @if ($admission_info != false)
+                            @if (!isset($student_info))
 
                             <div class="form-group row {{ $errors->has('admission') ? 'has-error' : '' }}">
                                 {{ Form::label('admission', 'New Admission? :*', ['class' => 'col-sm-3']) }}

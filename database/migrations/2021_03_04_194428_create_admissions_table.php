@@ -21,7 +21,7 @@ class CreateAdmissionsTable extends Migration
             $table->string('last_marksheet')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('student_id')->nullable();
-            $table->foreign('student_id')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('student_id')->references('id')->on('students')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
             $table->softDeletes();
