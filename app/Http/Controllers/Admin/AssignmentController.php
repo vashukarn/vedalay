@@ -22,14 +22,6 @@ class AssignmentController extends Controller
     }
     public function createAssignment($id)
     {
-        $subject = Subject::find($id);
-        $title = 'Add Assignment';
-        $data = [
-            'title' => $title,
-            'subject_info' => $subject,
-            'assignment_info' => null,
-        ];
-        return view('admin/assignment/form')->with($data);
     }
     
     protected function getAssignment($request)
@@ -43,7 +35,7 @@ class AssignmentController extends Controller
         if(Auth::user()->roles->pluck('name')[0] == 'Student'){
             $level = Student::where('user_id', Auth::user()->id)->pluck('level_id')->first();
             $subject = Subject::where('level_id', $level)->pluck('id');
-            $query = $query->whereIn('subject_id', $subject);
+            $query = $query->where('deadline','>=',date('Y-m-d'))->whereIn('subject_id', $subject);
         }
         return $query->paginate(20);
     }
@@ -87,7 +79,14 @@ class AssignmentController extends Controller
 
     public function show($id)
     {
-        //
+        $subject = Subject::find($id);
+        $title = 'Add Assignment';
+        $data = [
+            'title' => $title,
+            'subject_info' => $subject,
+            'assignment_info' => null,
+        ];
+        return view('admin/assignment/form')->with($data);
     }
 
     public function update(Request $request, $id)

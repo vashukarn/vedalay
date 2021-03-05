@@ -126,6 +126,7 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'job_role' => 'required|string|min:3|max:190',
             'required_no' => 'nullable|numeric',

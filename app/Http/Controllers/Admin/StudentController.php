@@ -262,15 +262,13 @@ class StudentController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|unique:users|string|min:3|max:190',
+            'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required|string',
             'level' => 'required',
             'session' => 'required',
-            'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|max:190',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
-            'confirm_password' => 'required',
         ]);
         DB::beginTransaction();
         try {

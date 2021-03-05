@@ -87,8 +87,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('assignment', AssignmentController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
-    Route::get('createAssignment/{id}', [AssignmentController::class, 'createAssignment'])->name('createAssignment');
-    Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('admission', [StudentController::class, 'admission'])->name('admission');
     Route::get('admissionshow/{id}', [StudentController::class, 'admissionshow'])->name('admissionshow');
@@ -107,7 +105,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::post('feeadvance/{id}', [AdvanceFeeController::class, 'pay'])->name('feeadvance.pay');
     Route::get('profiledetail', [UserController::class, 'profiledetail'])->name('profiledetail')->middleware('password.confirm');
     Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');
-    Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');

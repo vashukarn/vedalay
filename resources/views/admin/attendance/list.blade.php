@@ -31,20 +31,24 @@
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$subject[$value->subject_id] }}</td>
                             <td>
+                                @isset($value->students)
                                 @foreach ($value->students as $key => $item)
                                     @if($item == '1')
                                     - {{ $students[$key] }}
                                     @endif
                                 @endforeach
+                                @endisset
                             </td>
                             <td>
+                                @isset($value->students)
                                 @foreach ($value->students as $key => $item)
                                     @if($item == '0')
                                     - {{ @$students[$key] }}
                                     @endif
                                 @endforeach
+                                @endisset
                             </td>
-                            <td>{{ count(@$value->students) }}</td>
+                            <td>{{ @count($value->students) }}</td>
                             <td>{{ @$value->creator->name }}</td>
                             <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             </tr>

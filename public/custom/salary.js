@@ -5,42 +5,41 @@ $(function() {
                 monthly_salary: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 tada: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 extra_class_salary: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 incentive: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 transport_charges: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
                 },
                 leave_charges: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 bonus: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                 advance_salary: {
                     digits: true,
                     maxlength: 8,
-                    min:1,
+                    min:0,
                 },
                
                 

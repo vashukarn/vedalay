@@ -103,6 +103,9 @@
                     <label for="id of input"></label>
                     <div class="row">
                         <div class="col-sm-10 offset-lg-1">
+
+                            {{ Form::hidden('subject_id', @$subject_info->id) }}
+                            {{ Form::hidden('level_id', @$subject_info->level_id) }}
                             
                             <div class="form-group row">
                                 {{ Form::label('date', 'Date', ['class' => 'col-sm-2']) }}
@@ -144,11 +147,11 @@
                                     <label class="mt-2 col-sm-2">{{ $item->get_user->name }}</label>
                                     <div class="mt-2 btn-group btn-group-toggle col-sm-4" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" id="{{ $item->user_id }}_attendance" autocomplete="off" value="1"
+                                            <input name="attendance[{{ $item->user_id }}]" type="radio" id="{{ $item->user_id }}_attendance" autocomplete="off" value="1"
                                                 {{ @$attendance_info->attendance == 1 ? 'checked' : '' }}> Present
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" id="{{ $item->user_id }}_attendance" autocomplete="off" value="0"
+                                            <input name="attendance[{{ $item->user_id }}]" type="radio" id="{{ $item->user_id }}_attendance" autocomplete="off" value="0"
                                                 {{ @$attendance_info->attendance == 0 ? 'checked' : '' }}> Absent
                                         </label>
                                     </div>
@@ -161,8 +164,8 @@
                     <div class="form-group row">
                         {{ Form::label('', '', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
-                            {{ Form::button("<i class='fa fa-plus'></i> Submit", ['class' => 'btn btn-success btn-flat', 'id'=>'submit']) }}
-                            {{ Form::button("<i class='fas fa-ban'></i> Cancel Class", ['data-toggle'=>"modal",'data-target'=>"#holidayModal",'class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
+                            {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
+                            {{ Form::button("<i class='fas fa-sync-alt'></i> Reset", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
                         </div>
                     </div>
                     {{ Form::close() }}

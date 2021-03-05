@@ -1,136 +1,138 @@
 @extends('layouts.admin')
 @section('title', $title)
-@push('styles')
-    <style>
-        .btn-default.active,
-        .btn-default.active:hover {
-            background-color: #17a2b8;
-            border-color: #138192;
-            color: #fff;
-        }
-    </style>
-@endpush
-@push('scripts')
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
-<script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-{{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
-    <script>
-    $(document).ready(function() {
-        $('#session_id').select2({
-            placeholder: "Please Select Session",
-        });
-        $('#level_id').select2({
-            placeholder: "Please Select Level",
-        });
-    });
-    var subjects = null;
-    var diff_value = 1;
-    var shift_counter = 0;
-    var thead_counter = 0;
-    $('#level_id').change(function () {
-        var level = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: "/admin/getSubjects",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'level': level,
-            },
-            success: function (data) {
-                if(data.length < 1){
-                    alert("No Subjects found on this level");
-                }
-                else{
-                    subjects = data;
-                }
+    @push('styles')
+        <style>
+            .btn-default.active,
+            .btn-default.active:hover {
+                background-color: #17a2b8;
+                border-color: #138192;
+                color: #fff;
             }
-        });
-    });
-    $('#shiftbtn').click(function () {
-        if(!$('#start_time').val()){
-            alert("Please Enter Start Time Properly");
-        }
-        else if(!$('#end_time').val()){
-            alert("Please Enter End Time Properly");
-        }
-        else {
-            shift_counter++;
-            $('#table_row').append('<tr>');
-                $('#table_row').append('<td><input id="shift_'+shift_counter+'" type="text" class="form-control" value="'+$('#start_time').val()+' - '+$('#end_time').val()+'" readonly></td>');
-                for (let index = 0; index < thead_counter; index++) {
-                    $('#table_row').append('<td><select class="form-control" id="subject_'+diff_value+'">');
+
+        </style>
+    @endpush
+    @push('scripts')
+        <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+        <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('#session_id').select2({
+                    placeholder: "Please Select Session",
+                });
+                $('#level_id').select2({
+                    placeholder: "Please Select Level",
+                });
+            });
+            var subjects = null;
+            var diff_value = 1;
+            var shift_counter = 0;
+            var thead_counter = 0;
+            $('#level_id').change(function() {
+                var level = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('getSubjects') }}",
+                    data: {
+                        '_token': $('meta[name="csrf-token"]').attr('content'),
+                        'level': level,
+                    },
+                    success: function(data) {
+                        if (data.length < 1) {
+                            alert("No Subjects found on this level");
+                        } else {
+                            subjects = data;
+                        }
+                    }
+                });
+            });
+            $('#shiftbtn').click(function() {
+                if (!$('#start_time').val()) {
+                    alert("Please Enter Start Time Properly");
+                } else if (!$('#end_time').val()) {
+                    alert("Please Enter End Time Properly");
+                } else {
+                    shift_counter++;
+                    $('#table_row').append('<tr>');
+                    $('#table_row').append('<td><input id="shift_' + shift_counter +
+                        '" type="text" class="form-control" value="' + $('#start_time').val() + ' - ' + $(
+                            '#end_time').val() + '" readonly></td>');
+                    for (let index = 0; index < thead_counter; index++) {
+                        $('#table_row').append('<td><select class="form-control" id="subject_' + diff_value + '">');
                         const subjectArray = [];
                         Object.keys(subjects).forEach(key => subjectArray.push({
                             id: key,
                             name: subjects[key]
                         }));
-                        $('#subject_'+diff_value).append('<option value="">Select Subject</option>');
+                        $('#subject_' + diff_value).append('<option value="">Select Subject</option>');
                         for (let index = 0; index < subjectArray.length; index++) {
-                            $('#subject_'+diff_value).append('<option value='+subjectArray[index]['id']+'>'+subjectArray[index]['name']+'</option>');
+                            $('#subject_' + diff_value).append('<option value=' + subjectArray[index]['id'] + '>' +
+                                subjectArray[index]['name'] + '</option>');
                         }
                         diff_value++;
-                    $('#table_row').append('</select></td>');
+                        $('#table_row').append('</select></td>');
 
-                }
-            $('#table_row').append('</tr>');
-        }
-    });
-    $('#datebtn').click(function () {
-        if(!$('#exam_date').val()){
-            alert("Please Enter Date");
-        }
-        else {
-            document.getElementById("table_head").innerHTML += '<th><input id="'+thead_counter+'" type="text" class="form-control" value="'+ $('#exam_date').val() +'" readonly></th>';
-            thead_counter++;
-        }
-    });
-    var request_count = 0;
-    $('#exam_form').on('submit', function(e) {
-        e.preventDefault();
-        var temp = 1;
-        var senddata = $('#exam_form').serializeArray();
-        for (let index = 0; index < thead_counter; index++) {
-            for (let inde = 1; inde <= shift_counter; inde++) {
-                var shiftsubject = {
-                    date : $('#'+index).val(),
-                    shift : $('#shift_'+inde).val(),
-                    subject : $('#subject_'+temp).val() ? $('#subject_'+temp).val() : null,
-                };
-                temp++;
-                request_count++;
-                senddata.push({name: 'routine_'+request_count, value: shiftsubject});
-            }
-        }
-        $.ajax({
-            type: 'POST',
-            url: "/admin/addExam",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'data': senddata,
-                'request_count': request_count,
-            },
-            success: function (data) {
-                if(data.length < 1){
-                    alert("No Data Found");
-                }
-                else{
-                    if(!data.title){
-                        alert("Error has been occurred");
                     }
-                    else{
-                        alert("Exam Added Successfully");
-                        window.location = "{{ route('exam.index') }}";
+                    $('#table_row').append('</tr>');
+                }
+            });
+            $('#datebtn').click(function() {
+                if (!$('#exam_date').val()) {
+                    alert("Please Enter Date");
+                } else {
+                    document.getElementById("table_head").innerHTML += '<th><input name="exam_routine['+$('#exam_date').val()+']" id="' + thead_counter +
+                        '" type="text" class="form-control" value="' + $('#exam_date').val() + '" readonly></th>';
+                    thead_counter++;
+                }
+            });
+            var request_count = 0;
+            $('#exam_form').on('submit', function(e) {
+                // e.preventDefault();
+                var temp = 1;
+                var senddata = $('#exam_form').serializeArray();
+                for (let index = 0; index < thead_counter; index++) {
+                    for (let inde = 1; inde <= shift_counter; inde++) {
+                        var shiftsubject = {
+                            date: $('#' + index).val(),
+                            shift: $('#shift_' + inde).val(),
+                            subject: $('#subject_' + temp).val() ? $('#subject_' + temp).val() : null,
+                        };
+                        temp++;
+                        request_count++;
+                        senddata.push({
+                            name: 'routine_' + request_count,
+                            value: shiftsubject
+                        });
                     }
                 }
-            }
-        });
-        request_count = 0;
-    });
-    </script>
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('addExam') }}",
+                    data: {
+                        '_token': $('meta[name="csrf-token"]').attr('content'),
+                        'data': senddata,
+                        'request_count': request_count,
+                    },
+                    success: function(data) {
+                        if (data.length < 1) {
+                            alert("No Data Found");
+                        } else {
+                            if (!data.title) {
+                                alert("Error has been occurred");
+                            } else {
+                                alert("Exam Added Successfully");
+                                window.location = "{{ route('exam.index') }}";
+                            }
+                        }
+                    }
+                });
+                request_count = 0;
+            });
 
-@endpush
+        </script>
+
+    @endpush
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -157,18 +159,8 @@
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Title :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('title', @$exam_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Title','style' => 'width:80%']) }}
+                                    {{ Form::text('title', @$exam_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Title', 'style' => 'width:80%']) }}
                                     @error('title')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('month') ? 'has-error' : '' }}">
-                                {{ Form::label('month', 'Month :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::selectMonth('month', @$month, ['id' => 'month', 'required' => true, 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
-                                    @error('month')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -197,12 +189,12 @@
                             <div class="form-group row {{ $errors->has('exam_date') ? 'has-error' : '' }}">
                                 {{ Form::label('exam_date', 'Date of Exam :', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-4">
-                                    {{ Form::date('exam_date', @$exam_info->exam_date, ['class' => 'form-control', 'id' => 'exam_date','style' => 'width:80%']) }}
+                                    {{ Form::date('exam_date', @$exam_info->exam_date, ['class' => 'form-control', 'id' => 'exam_date', 'style' => 'width:80%']) }}
                                     @error('exam_date')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Date", ['id' => 'datebtn','class' => 'btn btn-primary btn-flat']) }}
+                                {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Date", ['id' => 'datebtn', 'class' => 'btn btn-primary btn-flat']) }}
                             </div>
 
                             <div class="form-group row {{ $errors->has('start_time') ? 'has-error' : '' }}">
@@ -220,8 +212,8 @@
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Shift", ['id' => 'shiftbtn','class' => 'btn btn-primary btn-flat']) }}
-                            </div>                            
+                                {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Shift", ['id' => 'shiftbtn', 'class' => 'btn btn-primary btn-flat']) }}
+                            </div>
                             <div style="overflow-x: scroll" class="card-body card-format">
                                 <table class="table table-striped table-hover">
                                     <thead>

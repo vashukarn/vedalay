@@ -22,57 +22,6 @@ class AttendanceController extends Controller
         $this->middleware(['permission:attendance-delete'], ['only' => ['destroy']]);
         $this->attendance = $attendance;
     }
-    public function takeAttendance($id)
-    {
-        $subject = Subject::find($id);
-        $students = Student::where('level_id', $subject->level_id)->get();
-        $title = 'Mark Attendance';
-        $data = [
-            'title' => $title,
-            'student_info' => $students,
-            'subject_info' => $subject,
-            'attendance_info' => null,
-        ];
-        return view('admin/attendance/form')->with($data);
-    }
-    public function updateAttendance(Request $request)
-    {
-        try {
-            $students = [];
-            foreach ($request->attendance as $key => $value) {
-                if(isset($value)){
-                    $students[$key] = $value;
-                }
-            }
-            $find = Attendance::where('subject_id', $request->subject)->whereBetween('created_at', [date('Y-m-d 00:00:00'),date('Y-m-d 23:59:59')])->first();
-            $attendance = null;
-            if(isset($find)){
-                $find->level_id = htmlentities($request->level);
-                $find->students = $students;
-                $find->holiday = htmlentities($request->holiday);
-                $find->holiday_reason = htmlentities($request->holiday_reason);
-                $find->updated_by = Auth::user()->id;
-                $find->save();
-                $attendance = "Attendance Updated Successfully";
-            }
-            else{
-                DB::beginTransaction();
-                $attendance = Attendance::create([
-                    'subject_id' => htmlentities($request->subject),
-                    'level_id' => htmlentities($request->level),
-                    'students' => $students ?? null,
-                    'holiday_reason' => htmlentities($request->holiday_reason ?? null),
-                    'holiday' => htmlentities($request->holiday) == 1 ? '1' : '0',
-                    'created_by' => Auth::user()->id,
-                ]);
-                DB::commit();
-            }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $attendance = $e->message;
-        }
-        return response()->json($attendance);
-    }
     protected function getAttendance($request)
     {
         $query = $this->attendance->orderBy('id', 'DESC');
@@ -104,33 +53,54 @@ class AttendanceController extends Controller
         return view('admin/attendance/list')->with($data);
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'subject_id' => 'required|numeric',
+            'level_id' => 'required|numeric',
+            'attendance' => 'required',
+        ]);
+        DB::beginTransaction();
+        try {
+            $find = Attendance::where('subject_id', $request->subject_id)->whereBetween('created_at', [date('Y-m-d 00:00:00'),date('Y-m-d 23:59:59')])->first();
+            if(isset($find)){
+                $find->students = $request->attendance;
+                $find->updated_by = Auth::user()->id;
+                $find->save();
+                DB::commit();
+                $request->session()->flash('success', 'Attendance updated SuccessFully.');
+                return redirect()->route('attendance.index');
+            }
+            else{
+            Attendance::create([
+                'subject_id' => htmlentities($request->subject_id),
+                'level_id' => htmlentities($request->level_id),
+                'students' => $request->attendance,
+                'created_by' => Auth::user()->id,
+            ]);
+            DB::commit();
+            $request->session()->flash('success', 'Attendance marked SuccessFully.');
+            return redirect()->route('attendance.index');
+        }
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function show($id)
     {
-        //
+        $subject = Subject::find($id);
+        $students = Student::where('level_id', $subject->level_id)->get();
+        $title = 'Mark Attendance';
+        $data = [
+            'title' => $title,
+            'student_info' => $students,
+            'subject_info' => $subject,
+            'attendance_info' => null,
+        ];
+        return view('admin/attendance/form')->with($data);
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

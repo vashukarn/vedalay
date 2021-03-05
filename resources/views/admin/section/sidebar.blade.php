@@ -361,7 +361,7 @@
                             @hasanyrole('Teacher')
                             @foreach ($subjects as $key => $item)
                                 <li class="nav-item">
-                                    <a href="{{ route('takeAttendance', $key) }}"
+                                    <a href="{{ route('attendance.show', $key) }}"
                                         class="nav-link {{ request()->is('user/takeAttendance/' . $key) ? 'active' : '' }}">
                                         <i class="fas fa-archive nav-icon"></i>
                                         <p>{{ $item }}</p>
@@ -397,7 +397,7 @@
                             @hasanyrole('Teacher')
                             @foreach ($subjects as $key => $item)
                                 <li class="nav-item">
-                                    <a href="{{ route('createAssignment', $key) }}"
+                                    <a href="{{ route('assignment.show', $key) }}"
                                         class="nav-link {{ request()->is('user/assignment/' . $key) ? 'active' : '' }}">
                                         <i class="fas fa-book-open nav-icon"></i>
                                         <p>{{ $item }}</p>

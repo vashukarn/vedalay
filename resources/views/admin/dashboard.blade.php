@@ -174,7 +174,7 @@
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-warning">
                         <div class="inner" style="color:#fff;">
-                            <h3>{{ @$assignment ?? 'No Data' }}</h3>
+                            <h3>{{ @$assignment }}</h3>
                             <p>Assignment</p>
                         </div>
                         <div class="icon">
