@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\LogActivity;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
@@ -27,17 +26,31 @@ class TeacherController extends Controller
         $query = $this->teacher->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('user_id', $keyword);
+        }
+        if ($request->filtersubject) {
+            $filtersubject = $request->filtersubject;
+            $query = $query->whereRaw('json_contains(subject, \'["'.$filtersubject.'"]\')');
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
-        $subjects = Subject::pluck('title', 'id');
+        $temp = $this->teacher->get();
+        $filter = [];
+        foreach ($temp as $key => $value) {
+            $filter[$value->user_id] = $value->get_user->name . ' - ' . $value->phone;
+        }
+        $subjects = Subject::all();
+        foreach ($subjects as $key => $value) {
+            $filtersubjects[$value->id] = $value->title . ' - ' . $value->get_level->standard.' '.$value->get_level->section;
+        }
         $data = $this->getTeacher($request);
         $data = [
             'data' => $data,
-            'subjects' => $subjects,
+            'subjects' => $subjects->pluck('title', 'id'),
+            'filter' => $filter,
+            'filtersubjects' => $filtersubjects,
         ];
         return view('admin/teacher/list')->with($data);
     }
@@ -97,6 +110,7 @@ class TeacherController extends Controller
                 'publish_status' => htmlentities($request->publish_status),
                 'image' => htmlentities($request->image) ?? null,
                 'phone' => htmlentities($request->phone),
+                'joining_date' => htmlentities($request->joining_date),
                 'short_name' => htmlentities($request->short_name),
                 'salary' => htmlentities($request->salary),
                 'subject' => $request->subject,
@@ -120,7 +134,18 @@ class TeacherController extends Controller
 
     public function show($id)
     {
-        //
+        $teacher_info = $this->teacher->find($id);
+        if (!$teacher_info) {
+            abort(404);
+        }
+        $title = 'Teacher Detail';
+        $subjects = Subject::pluck('title', 'id');
+        $data = [
+            'title' => $title,
+            'teacher_info' => $teacher_info,
+            'subjects' => $subjects,
+        ];
+        return view('admin/teacher/show')->with($data);
     }
 
     public function edit($id)
@@ -166,20 +191,20 @@ class TeacherController extends Controller
             $user->email =htmlentities($request->email);
             $user->publish_status =htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
-            $status = $user->save();
-            $teacher = teacher::find($teacher_info->id);
+            $user->save();
+            $teacher = Teacher::find($teacher_info->id);
             $teacher->phone =htmlentities($request->phone);
             $teacher->salary =htmlentities($request->salary);
             $teacher->dob =htmlentities($request->dob);
-            $teacher->aadhar_number =htmlentities($request->aadhar_number);
             $teacher->gender =htmlentities($request->gender);
+            $teacher->aadhar_number =htmlentities($request->aadhar_number);
             $teacher->current_address =htmlentities($request->current_address);
             $teacher->permanent_address =htmlentities($request->permanent_address);
             $teacher->updated_by = Auth::user()->id;
             if(isset($request->image)){
                 $teacher['image'] =htmlentities($request->image);
             }
-            $status = $teacher->save();
+            $teacher->save();
             DB::commit();
             $request->session()->flash('success', 'Teacher updated successfully.');
             return redirect()->route('teacher.index');
@@ -207,7 +232,7 @@ class TeacherController extends Controller
             $teacher_info->save();
             $teacher_info->delete();
             $user->delete();
-            $request->session()->flash('success', 'teacher removed successfully.');
+            $request->session()->flash('success', 'Teacher removed successfully.');
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
