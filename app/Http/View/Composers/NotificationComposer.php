@@ -12,7 +12,7 @@ class NotificationComposer
         $noticeboard =  NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->get();
 
         foreach ($noticeboard as $key => $value) {
-            $notification[] = $value->title;
+            $notification[route('noticeboard.show', @$value->id)] = $value->title;
         }
         $view->with([
             'notification' => $notification,

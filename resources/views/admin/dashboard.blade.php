@@ -99,6 +99,22 @@
                 </div>
                 @endcan
                 
+                @can('notice-list')
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-danger">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$notices }}</h3>
+                            <p>Visible Notices</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-clipboard"></i>
+                        </div>
+                        {{-- <a href="{{ route('admission') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                @endcan
+                
                 @hasanyrole('Teacher')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-primary">

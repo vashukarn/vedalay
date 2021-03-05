@@ -7,6 +7,7 @@ use App\Models\Admission;
 use App\Models\AdvanceSalary;
 use App\Models\Attendance;
 use App\Models\Fee;
+use App\Models\NoticeBoard;
 use App\Models\Salary;
 use App\Models\Student;
 use App\Models\Subject;
@@ -104,6 +105,7 @@ class DashboardController extends Controller
             'attendance_percentage' => $attendance_percentage ?? null,
             'due_fee' => $due_fee ?? null,
             'admissions' => $admissions ?? null,
+            'notices' => NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->count(),
         ];
 
         return view('admin.dashboard')->with($data);
