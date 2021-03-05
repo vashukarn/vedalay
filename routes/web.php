@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\NoticeboardController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SalaryController;
@@ -81,8 +82,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('attendance', AttendanceController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('noticeboard', NoticeboardController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
+    Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('admission', [StudentController::class, 'admission'])->name('admission');
     Route::get('admissionshow/{id}', [StudentController::class, 'admissionshow'])->name('admissionshow');
     Route::post('addExam', [ExamController::class, 'addExam'])->name('addExam');

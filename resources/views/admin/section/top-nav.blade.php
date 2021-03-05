@@ -19,19 +19,18 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-danger navbar-badge"><span class="update_notification">6</span></span>
+                        <span class="badge badge-danger navbar-badge"><span class="update_notification">{{ @$notificaitoncount }}</span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header"> <span class="update_notification">5</span> Notifications</span>
+                        <span class="dropdown-header"> <span class="update_notification">{{ @$notificaitoncount }}</span> Notifications</span>
                         <div class="dropdown-divider"></div>
-                        <a href="#">
-                        <div class="m-3">
-                           
-                        </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href=" " class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
+                        @foreach ($notification as $key => $item)
+                            <a href="{{ $key }}">
+                            <div class="m-3">
+                                <i class='fa fa-paper-plane'></i> &nbsp; {{ $item }}
+                            </div>
+                            </a>
+                        @endforeach
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/') }}" target="_banner" role="button">

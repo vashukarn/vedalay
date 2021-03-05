@@ -1,15 +1,22 @@
 <?php
 namespace App\Http\View\Composers;
+
+use App\Models\NoticeBoard;
 use App\Models\Notification;
 use Illuminate\View\View;
 class NotificationComposer
 {
     public function compose(View $view)
     {
-        // $notification =  Notification::select('id', 'type', 'title')->where('user_type', 'admin')
-        // ->where('seen_status', '0')->latest()->take(5)->get();
-        // $view->with([
-        //     'notification' => $notification,
-        // ]);
+        $notification = [];
+        $noticeboard =  NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->get();
+
+        foreach ($noticeboard as $key => $value) {
+            $notification[] = $value->title;
+        }
+        $view->with([
+            'notification' => $notification,
+            'notificaitoncount' => count($notification),
+        ]);
     }
 }

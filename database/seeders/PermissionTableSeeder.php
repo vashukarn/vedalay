@@ -55,10 +55,10 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>27,'name'=> 'faq-edit'],
                 ['id'=>28,'name'=> 'faq-delete'],
 
-                ['id'=>29,'name'=> 'admission-list'],
-                ['id'=>30,'name'=> 'admission-create'],
-                ['id'=>31,'name'=> 'admission-edit'],
-                ['id'=>32,'name'=> 'admission-delete'],
+                ['id'=>29,'name'=> 'noticeboard-list'],
+                ['id'=>30,'name'=> 'noticeboard-create'],
+                ['id'=>31,'name'=> 'noticeboard-edit'],
+                ['id'=>32,'name'=> 'noticeboard-delete'],
 
                 ['id'=>33,'name'=> 'blog-list'],
                 ['id'=>34,'name'=> 'blog-create'],

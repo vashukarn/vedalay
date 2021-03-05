@@ -313,6 +313,36 @@
                 </li>
                 @endcanany
 
+                @canany(['noticeboard-list', 'noticeboard-create','noticeboard-edit','noticeboard-delete'])
+                <li class="nav-item has-treeview {{ request()->is('user/noticeboard*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/noticeboard*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-clipboard"></i>
+                        <p>
+                            Notice Board Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('noticeboard-create')
+                            <li class="nav-item">
+                                <a href="{{ route('noticeboard.create') }}"
+                                    class="nav-link  {{ request()->is('user/noticeboard/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Notice Board</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('noticeboard.index') }}"
+                                class="nav-link {{ request()->is('user/noticeboard') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Notice Board List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
+
                 @canany(['attendancemanagement-list',
                 'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete','attendance-list',
                 'attendance-create','attendance-edit','attendance-delete'])

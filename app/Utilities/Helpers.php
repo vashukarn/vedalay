@@ -1,36 +1,4 @@
 <?php
-//get unocde number
-define('website_content_item', [
-    [
-        'value' => "news",
-        'title' => "News",
-    ],
-    [
-        'value' => "blogs", 
-        'title' => "Blogs"
-    ], 
-    [
-        'value' => "slider", 
-        'title' => "Slider"
-    ],
-    [
-        'value' => "information", 
-        'title' => "Information"
-    ],
-    [
-        'value' => "features", 
-        'title' => "Features" 
-    ],
-    [
-        'value' => "faq" ,
-        'title' => "Faqs"
-    ],
-    [
-        'value' => "testimonial", 
-        'title' => "Testimonial"
-    ]
-]);
-
 function getUnicodeNumber($input)
 {
     $standard_numsets = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

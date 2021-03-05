@@ -35,7 +35,9 @@
                         <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                @endhasanyrole
                 
+                @can('teacher-list')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-navy">
                         <div class="inner" style="color:#fff;">
@@ -49,7 +51,9 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                @endcan
                 
+                @can('staff-list')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-warning">
                         <div class="inner" style="color:#fff;">
@@ -63,7 +67,9 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                @endcan
                 
+                @can('student-list')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-primary">
                         <div class="inner" style="color:#fff;">
@@ -91,7 +97,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                @endhasanyrole
+                @endcan
                 
                 @hasanyrole('Teacher')
                 <div class="col-lg-3 col-md-6 mb-3">
