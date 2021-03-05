@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admission;
 use App\Models\AdvanceSalary;
+use App\Models\Assignment;
 use App\Models\Attendance;
 use App\Models\Fee;
 use App\Models\NoticeBoard;
@@ -24,12 +25,11 @@ class DashboardController extends Controller
     }
 
     public function index(){
-        $daycount = 0;
         $id = Auth::user()->id;
         $type = Auth::user()->type;
         if($type == 'teacher'){
             $teacher = Teacher::where('user_id', $id)->first();
-            $subjectcount = Subject::where('id',$teacher->subject)->count();
+            $subjectcount = Subject::whereIn('id',$teacher->subject)->count();
             $advancesalary = AdvanceSalary::where('user_id',$id)->sum('amount');
             $tempo = Salary::where('user_id',$id)->get();
             $paidsalary = 0;
@@ -38,11 +38,6 @@ class DashboardController extends Controller
                 $paidsalary += $value->salary['total_amount'];
                 $extraclass += $value->salary['extra_class_salary'];
             }
-            $now = Carbon::now();
-            $lastdate = Carbon::parse($now)->endOfMonth();
-            $daycount = ($lastdate->diff($now)->days < 1)
-                ? 'Today'
-                : $lastdate->diffForHumans($now);
         }
         if($type == 'staff'){
             $advancesalary = AdvanceSalary::where('user_id',$id)->sum('amount');
@@ -53,17 +48,19 @@ class DashboardController extends Controller
                 $paidsalary += $value->salary['total_amount'];
                 $incentives += $value->salary['incentive'];
             }
-            $now = Carbon::now();
-            $lastdate = Carbon::parse($now)->endOfMonth();
-            $daycount = ($lastdate->diff($now)->days < 1)
-                ? 'Today'
-                : $lastdate->diffForHumans($now);
         }
         if($type == 'student'){
             $total_attendance = 0;
             $student_attendance = 0;
             $due_fee = 0;
+            $assignment = 0;
             $student = Student::where('user_id', $id)->first();
+            $trunt = Assignment::where('deadline','>=',date('Y-m-d'))->get();
+            foreach ($trunt as $key => $value) {
+                if($value->get_subject->get_level->id == $student->level_id){
+                    $assignment++;
+                }
+            }
             $tempoo = Attendance::where('holiday', '0')->where('level_id', $student->level_id)->get();
             $tempooo = Fee::where('rollback', '0')->where('student_id', $id)->get();
 
@@ -93,15 +90,14 @@ class DashboardController extends Controller
             ->first();
             $admissions = Admission::count();
         }
-        
         $data = [
             'usertotal' => $usertotal ?? null,
             'subjectcount' => $subjectcount ?? null,
-            'daycount' => str_split($daycount)[0] ?? null,
             'advancesalary' => $advancesalary ?? null,
             'paidsalary' => $paidsalary ?? null,
             'incentives' => $incentives ?? null,
             'extraclass' => $extraclass ?? null,
+            'assignment' => $assignment ?? null,
             'attendance_percentage' => $attendance_percentage ?? null,
             'due_fee' => $due_fee ?? null,
             'admissions' => $admissions ?? null,

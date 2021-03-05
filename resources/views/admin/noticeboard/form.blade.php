@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('description') ? 'has-error' : '' }}">
-                                {{ Form::label('description', 'Job Description:*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('description', 'Notice Description:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
                                     {{ Form::textarea('description', @$noticeboard_info->description, ['class' => 'form-control ckeditor', 'id' => 'my-editor', 'required' => true, 'style' => 'width:80%']) }}
                                     @error('description')

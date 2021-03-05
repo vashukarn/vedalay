@@ -26,7 +26,7 @@
         @endforeach
         $.ajax({
             type: 'POST',
-            url: "/admin/updateAttendance",
+            url: "{{ route('updateAttendance') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
@@ -61,7 +61,7 @@
         @endforeach
         $.ajax({
             type: 'POST',
-            url: "/admin/updateAttendance",
+            url: "{{ route('updateAttendance') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},

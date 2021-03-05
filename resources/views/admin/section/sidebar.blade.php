@@ -50,8 +50,10 @@
                 <li class="nav-header">USER MANAGEMENT</li>
                 @endcanany
                 @canany(['student-list', 'student-create','student-edit','student-delete'])
-                <li class="nav-item has-treeview {{ request()->is('user/student*') || request()->is('user/admission*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('user/student*') || request()->is('user/admission*') ? 'active' : '' }}">
+                <li
+                    class="nav-item has-treeview {{ request()->is('user/student*') || request()->is('user/admission*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('user/student*') || request()->is('user/admission*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Student Management
@@ -343,11 +345,11 @@
                 </li>
                 @endcanany
 
-                @canany(['attendancemanagement-list',
-                'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete','attendance-list',
-                'attendance-create','attendance-edit','attendance-delete'])
-                <li class="nav-item has-treeview {{ request()->is('user/attendance*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('user/attendance*') ? 'active' : '' }}">
+                @canany(['attendance-list','attendance-create','attendance-edit','attendance-delete'])
+                <li
+                    class="nav-item has-treeview {{ request()->is('user/attendance*') || request()->is('user/takeAttendance*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('user/attendance*') || request()->is('user/takeAttendance*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Attendance Management
@@ -355,8 +357,19 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        @canany(['attendancemanagement-list',
-                        'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete'])
+                        @if (isset($subjects))
+                            @hasanyrole('Teacher')
+                            @foreach ($subjects as $key => $item)
+                                <li class="nav-item">
+                                    <a href="{{ route('takeAttendance', $key) }}"
+                                        class="nav-link {{ request()->is('user/takeAttendance/' . $key) ? 'active' : '' }}">
+                                        <i class="fas fa-archive nav-icon"></i>
+                                        <p>{{ $item }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                            @endhasanyrole
+                        @endif
                         <li class="nav-item">
                             <a href="{{ route('attendance.index') }}"
                                 class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
@@ -364,48 +377,46 @@
                                 <p>Attendance List</p>
                             </a>
                         </li>
-                        @endcanany
-                        {{-- @can('staffattendance-create')
-                            <li class="nav-item">
-                                <a href="{{ route('staffattendance.create') }}"
-                                    class="nav-link  {{ request()->is('user/staffattendance/create') ? 'active' : '' }}">
-                                    <i class="fas fa-plus-circle nav-icon"></i>
-                                    <p>Mark Employee Attendance</p>
-                                </a>
-                            </li>
-                        @endcan
-                        @canany(['staffattendance-list', 'staffattendance-create','staffattendance-edit','staffattendance-delete'])
-                        <li class="nav-item">
-                            <a href="{{ route('staffattendance.index') }}"
-                                class="nav-link {{ request()->is('user/staffattendance') ? 'active' : '' }}">
-                                <i class="fas fa-list nav-icon"></i>
-                                <p>Employee Attendance List</p>
-                            </a>
-                        </li>
-                        @endcanany --}}
-                        @canany(['attendance-list', 'attendance-create','attendance-edit','attendance-delete'])
-                        @if (isset($subjects))
-                            @foreach ($subjects as $key => $item)
-                                <li class="nav-item">
-                                    <a href="{{ route('takeAttendance', $key) }}"
-                                        class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
-                                        <i class="fas fa-list nav-icon"></i>
-                                        <p>{{ $item }}</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('attendanceList', $key) }}"
-                                        class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
-                                        <i class="fas fa-archive nav-icon"></i>
-                                        <p>{{ $item }} View</p>
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endif
-                        @endcanany
                     </ul>
                 </li>
                 @endcanany
+
+                @canany(['assignment-list','assignment-create','assignment-edit','assignment-delete'])
+                <li
+                    class="nav-item has-treeview {{ request()->is('user/assignment*') || request()->is('user/takeassignment*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ request()->is('user/assignment*') || request()->is('user/takeassignment*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Assignment Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @if (isset($subjects))
+                            @hasanyrole('Teacher')
+                            @foreach ($subjects as $key => $item)
+                                <li class="nav-item">
+                                    <a href="{{ route('createAssignment', $key) }}"
+                                        class="nav-link {{ request()->is('user/assignment/' . $key) ? 'active' : '' }}">
+                                        <i class="fas fa-book-open nav-icon"></i>
+                                        <p>{{ $item }}</p>
+                                    </a>
+                                </li>
+                            @endforeach
+                            @endhasanyrole
+                        @endif
+                        <li class="nav-item">
+                            <a href="{{ route('assignment.index') }}"
+                                class="nav-link {{ request()->is('user/assignment') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Assignment List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
+
 
                 @canany(['exam-list', 'exam-create','exam-edit','exam-delete'])
                 <li class="nav-item has-treeview {{ request()->is('user/exam*') ? 'menu-open' : '' }}">

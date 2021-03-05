@@ -57,7 +57,7 @@ class CreateAdminUserSeeder extends Seeder
             'created_by' => 2,
         ]);
         $roleteacher = Role::create(['name' => 'Teacher']);
-        $teacherpermissions = ['73', '74', '75', '76'];
+        $teacherpermissions = ['73', '74', '75', '76', '77', '78', '79', '80'];
         $roleteacher->syncPermissions($teacherpermissions);
         $teacheruser->assignRole([$roleteacher->id]);
 
@@ -114,7 +114,7 @@ class CreateAdminUserSeeder extends Seeder
             'created_by' => 2,
         ]);
         $rolestudent = Role::create(['name' => 'Student']);
-        $studentpermissions = ['97'];
+        $studentpermissions = ['77','97'];
         $rolestudent->syncPermissions($studentpermissions);
         $studentuser->assignRole([$rolestudent->id]);
         // Role::create(['name' => 'Student']);

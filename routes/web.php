@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdmissionController;
 use App\Http\Controllers\Admin\AdvanceFeeController;
 use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
+use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -83,8 +84,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('noticeboard', NoticeboardController::class);
+    Route::resource('assignment', AssignmentController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
+    Route::get('createAssignment/{id}', [AssignmentController::class, 'createAssignment'])->name('createAssignment');
+    Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('admission', [StudentController::class, 'admission'])->name('admission');
     Route::get('admissionshow/{id}', [StudentController::class, 'admissionshow'])->name('admissionshow');
@@ -104,7 +108,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::get('profiledetail', [UserController::class, 'profiledetail'])->name('profiledetail')->middleware('password.confirm');
     Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');
     Route::get('takeAttendance/{id}', [AttendanceController::class, 'takeAttendance'])->name('takeAttendance');
-    Route::get('attendanceList/{id}', [AttendanceController::class, 'attendanceList'])->name('attendanceList');
     Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
     Route::get('contact/view/{contact}', [ContactController::class, 'view'])->name('contact.show');
     Route::post('logout', [UserController::class, 'logout'])->name('user.logout');
@@ -117,7 +120,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::post('update',  [MenuController::class, 'updateMenuOrder'])->name('update.menu');
     Route::get('additional-menu/{id}', [MenuController::class, 'additional_menu'])->name('menu.additonal');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::post('updateAttendance', [AttendanceController::class, 'updateAttendance'])->name('updateAttendance');
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
 
 });

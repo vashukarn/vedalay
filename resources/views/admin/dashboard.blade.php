@@ -99,22 +99,6 @@
                 </div>
                 @endcan
                 
-                @can('notice-list')
-                <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-danger">
-                        <div class="inner" style="color:#fff;">
-                            <h3>{{ @$notices }}</h3>
-                            <p>Visible Notices</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-clipboard"></i>
-                        </div>
-                        {{-- <a href="{{ route('admission') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                    </div>
-                </div>
-                @endcan
-                
                 @hasanyrole('Teacher')
                 <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-primary">
@@ -160,19 +144,6 @@
                 @endhasanyrole
                 @hasanyrole('Teacher|Staff')
                 <div class="col-lg-3 col-md-6 mb-3">
-                    <div class="small-box bg-info">
-                        <div class="inner" style="color:#fff;">
-                            <h3>{{ @$daycount }}</h3>
-                            <p>Days for Month End</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                        {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-success">
                         <div class="inner" style="color:#fff;">
                             <h3>Rs. {{ @$paidsalary }}</h3>
@@ -201,6 +172,19 @@
                 @endhasanyrole
                 @hasanyrole('Student')
                 <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-warning">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$assignment ?? 'No Data' }}</h3>
+                            <p>Assignment</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <a href="{{ route('assignment.index') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
                     <div class="small-box bg-info">
                         <div class="inner" style="color:#fff;">
                             <h3>{{ @$attendance_percentage ? @$attendance_percentage.'%' : 'No Data' }}</h3>
@@ -227,6 +211,20 @@
                     </div>
                 </div>
                 @endhasanyrole
+                
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-danger">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$notices }}</h3>
+                            <p>Visible Notices</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-clipboard"></i>
+                        </div>
+                        {{-- <a href="{{ route('admission') }}" class="small-box-footer" color="#fff">More info <i
+                                class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
                  
             </div>
 
