@@ -25,15 +25,21 @@ class StaffController extends Controller
         $query = $this->staff->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('user_id', $keyword);
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
+        $temp = $this->staff->get();
+        $filter = [];
+        foreach ($temp as $key => $value) {
+            $filter[$value->user_id] = $value->get_user->name . ' - ' . $value->phone;
+        }
         $data = $this->getStaff($request);
         $data = [
             'data' => $data,
+            'filter' => $filter,
         ];
         return view('admin/staff/list')->with($data);
     }
@@ -74,10 +80,11 @@ class StaffController extends Controller
             ]);
             Staff::create([
                 'user_id' => $user->id,
-                'image' => htmlentities($request->image ?? null),
+                'image' => htmlentities($request->image),
                 'phone' => htmlentities($request->phone),
                 'dob' => htmlentities($request->dob),
                 'position' => htmlentities($request->position),
+                'joining_date' => htmlentities($request->joining_date),
                 'salary' => htmlentities($request->salary),
                 'aadhar_number' => htmlentities($request->aadhar_number),
                 'gender' => htmlentities($request->gender),
@@ -98,7 +105,16 @@ class StaffController extends Controller
 
     public function show($id)
     {
-        //
+        $staff_info = $this->staff->find($id);
+        if (!$staff_info) {
+            abort(404);
+        }
+        $title = 'Staff Detail';
+        $data = [
+            'title' => $title,
+            'staff_info' => $staff_info,
+        ];
+        return view('admin/staff/show')->with($data);
     }
 
     public function edit($id)

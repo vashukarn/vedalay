@@ -1,5 +1,15 @@
 @extends('layouts.admin')
 @section('title', 'Staff List')
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#keyword').select2({
+                placeholder: "Search Name or Phone",
+            });
+        });
+
+    </script>
+@endpush
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
@@ -17,9 +27,8 @@
                         <div class="p-1 col-lg-10">
                             <form action="" class="">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4">
-                                        {!! Form::select('keyword', [], @request()->keyword, ['class' => 'form-control select2', 'placeholder' =>
-                                        'Search Name or Phone']) !!}
+                                    <div class="col-sm-4">
+                                        {!! Form::select('keyword', $filter, @request()->keyword, ['id' => 'keyword', 'class' => 'form-control select2', 'placeholder' => '']) !!}
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                         <button class="btn btn-primary btn-flat"><i class="fa fa fa-search"></i>
@@ -73,6 +82,10 @@
 
                             <td>
                                 <div class="btn-group">
+                                    @can('staff-list')
+                                        <a href="{{ route('staff.show', @$value->id) }}" title="View Staff Details"
+                                            class="btn btn-secondary btn-sm btn-flat"><i class="fas fa-eye"></i></a>
+                                    @endcan
                                   @can('staff-edit')
                                   <a href="{{route('staff.edit',@$value->id)}}" title="Edit staff" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
                                   @endcan

@@ -19,76 +19,65 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td>{{ @$teacher_info->get_user->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Short Name</td>
-                                <td>{{ @$teacher_info->short_name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Subjects</td>
-                                <td>
-                                    @foreach ($teacher_info->subject as $item)
-                                        {{ @$subjects[$item] }}
-                                        @if (!$loop->last)
-                                            ,
-                                        @endif
-                                    @endforeach
-                                </td>
+                                <td>{{ @$staff_info->get_user->name }}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td>{{ @$teacher_info->get_user->email }}</td>
+                                <td>{{ @$staff_info->get_user->email }}</td>
                             </tr>
                             <tr>
                                 <td>Phone</td>
-                                <td>{{ @$teacher_info->phone }}</td>
+                                <td>{{ @$staff_info->phone }}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td>{{ @$staff_info->phone }}</td>
                             </tr>
                             <tr>
                                 <td>Publish Status</td>
                                 <td>
-                                    <span class="badge @if ($teacher_info->get_user->publish_status ==
-                                    '1') badge-success @elseif($teacher_info->get_user->publish_status
+                                    <span class="badge @if ($staff_info->get_user->publish_status ==
+                                    '1') badge-success @elseif($staff_info->get_user->publish_status
                                     == '2') badge-danger @else badge-warning @endif">
-                                        @if ($teacher_info->get_user->publish_status == '1')
-                                    Active @elseif($teacher_info->get_user->publish_status == '2') Banned @else
+                                        @if ($staff_info->get_user->publish_status == '1')
+                                    Active @elseif($staff_info->get_user->publish_status == '2') Banned @else
                                         Inactive @endif
                                 </span>
                             </td>
                         </tr>
                         <tr>
                             <td>Last Changed By</td>
-                            <td>{{ @$teacher_info->updated_by ? @$teacher_info->updater->name : @$teacher_info->creator->name }}
+                            <td>{{ @$staff_info->updated_by ? @$staff_info->updater->name : @$staff_info->creator->name }}
                             </td>
                         </tr>
                         <tr>
                             <td>Last Changed At</td>
-                            <td>{{ @$teacher_info->get_user->updated_at ? ReadableDate(@$teacher_info->get_user->updated_at, 'all') : ReadableDate(@$teacher_info->get_user->created_at, 'all') }}
+                            <td>{{ @$staff_info->get_user->updated_at ? ReadableDate(@$staff_info->get_user->updated_at, 'all') : ReadableDate(@$staff_info->get_user->created_at, 'all') }}
                             </td>
                         </tr>
                         <tr>
                             <td>Joining Date</td>
-                            <td>{{ ReadableDate(@$teacher_info->joining_date, 'all') }}</td>
+                            <td>{{ ReadableDate(@$staff_info->joining_date, 'all') }}</td>
                         </tr>
                         <tr>
                             <td>Salary</td>
-                            <td>{{ @$teacher_info->salary }}</td>
+                            <td>{{ @$staff_info->salary ? 'Rs. '.@$staff_info->salary : '' }}</td>
                         </tr>
                         <tr>
                             <td>Aadhar Number</td>
-                            <td>{{ @$teacher_info->aadhar_number }}</td>
+                            <td>{{ @$staff_info->aadhar_number }}</td>
                         </tr>
                         <tr>
                             <td>Current Address</td>
-                            <td>{{ @$teacher_info->current_address }}</td>
+                            <td>{{ @$staff_info->current_address }}</td>
                         </tr>
                         <tr>
                             <td>Permanent Address</td>
-                            <td>{{ @$teacher_info->permanent_address }}</td>
+                            <td>{{ @$staff_info->permanent_address }}</td>
                         </tr>
                         <tr>
                             <td>Image</td>
-                            <td><img src="{{ @$teacher_info->image }}" height="200px" alt="Image Not Found"></td>
+                            <td><img src="{{ @$staff_info->image }}" height="200px" alt="Image Not Found"></td>
                         </tr>
                     </tbody>
                 </table>

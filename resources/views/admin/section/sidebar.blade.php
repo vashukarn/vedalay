@@ -35,7 +35,7 @@
                 @role('Student')
                 <li class="nav-item">
                     <a href="{{ route('result.index') }}"
-                        class="nav-link {{ request()->is('admin/result') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/result') ? 'active' : '' }}">
                         <i class="fas fa-list nav-icon"></i>
                         <p>Results</p>
                     </a>
@@ -50,8 +50,8 @@
                 <li class="nav-header">USER MANAGEMENT</li>
                 @endcanany
                 @canany(['student-list', 'student-create','student-edit','student-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/student*') || request()->is('admin/admission*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/student*') || request()->is('admin/admission*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/student*') || request()->is('user/admission*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/student*') || request()->is('user/admission*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Student Management
@@ -62,7 +62,7 @@
                         @can('student-create')
                             <li class="nav-item">
                                 <a href="{{ route('student.create') }}"
-                                    class="nav-link  {{ request()->is('admin/student/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/student/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add New Student</p>
                                 </a>
@@ -70,14 +70,14 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('student.index') }}"
-                                class="nav-link {{ request()->is('admin/student') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/student') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Students List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admission') }}"
-                                class="nav-link {{ request()->is('admin/admission') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/admission') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Admission List</p>
                             </a>
@@ -87,8 +87,8 @@
                 @endcanany
 
                 @canany(['teacher-list', 'teacher-create','teacher-edit','teacher-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/teacher*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/teacher*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/teacher*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/teacher*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>
                             Teacher Management
@@ -99,7 +99,7 @@
                         @can('teacher-create')
                             <li class="nav-item">
                                 <a href="{{ route('teacher.create') }}"
-                                    class="nav-link  {{ request()->is('admin/teacher/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/teacher/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add New Teacher</p>
                                 </a>
@@ -107,7 +107,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('teacher.index') }}"
-                                class="nav-link {{ request()->is('admin/teacher') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/teacher') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Teachers List</p>
                             </a>
@@ -117,8 +117,8 @@
                 @endcanany
 
                 @canany(['staff-list', 'staff-create','staff-edit','staff-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/staff*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/staff*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/staff*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/staff*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-id-card"></i>
                         <p>
                             Staff Management
@@ -129,7 +129,7 @@
                         @can('staff-create')
                             <li class="nav-item">
                                 <a href="{{ route('staff.create') }}"
-                                    class="nav-link  {{ request()->is('admin/staff/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/staff/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add New Staff</p>
                                 </a>
@@ -137,7 +137,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('staff.index') }}"
-                                class="nav-link {{ request()->is('admin/staff') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/staff') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Staff List</p>
                             </a>
@@ -147,8 +147,8 @@
                 @endcanany
 
                 @canany(['vacancy-list', 'vacancy-create','vacancy-edit','vacancy-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/vacancy*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/vacancy*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/vacancy*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/vacancy*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-id-badge"></i>
                         <p>
                             Vacancy Management
@@ -159,7 +159,7 @@
                         @can('vacancy-create')
                             <li class="nav-item">
                                 <a href="{{ route('vacancy.create') }}"
-                                    class="nav-link  {{ request()->is('admin/vacancy/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/vacancy/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add New Vacancy</p>
                                 </a>
@@ -167,7 +167,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('vacancy.index') }}"
-                                class="nav-link {{ request()->is('admin/vacancy') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/vacancy') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Vacancy List</p>
                             </a>
@@ -189,8 +189,8 @@
                 <li class="nav-header">ACADEMICS MANAGEMENT</li>
                 @endcanany
                 @canany(['subject-list', 'subject-create','subject-edit','subject-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/subject*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/subject*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/subject*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/subject*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>
                             Subject Management
@@ -201,7 +201,7 @@
                         @can('subject-create')
                             <li class="nav-item">
                                 <a href="{{ route('subject.create') }}"
-                                    class="nav-link  {{ request()->is('admin/subject/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/subject/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add New Subject</p>
                                 </a>
@@ -209,7 +209,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('subject.index') }}"
-                                class="nav-link {{ request()->is('admin/subject') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/subject') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Subject List</p>
                             </a>
@@ -219,8 +219,8 @@
                 @endcanany
 
                 @canany(['fee-list', 'fee-create','fee-edit','fee-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/fee*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/fee*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/fee*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/fee*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p>
                             Fee Management
@@ -231,7 +231,7 @@
                         @can('fee-create')
                             <li class="nav-item">
                                 <a href="{{ route('fee.create') }}"
-                                    class="nav-link  {{ request()->is('admin/fee/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/fee/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add Fee</p>
                                 </a>
@@ -239,7 +239,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('fee.index') }}"
-                                class="nav-link {{ request()->is('admin/fee') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/fee') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Fee Addition List</p>
                             </a>
@@ -247,7 +247,7 @@
                         @can('feepayment-create')
                             <li class="nav-item">
                                 <a href="{{ route('feepayment.create') }}"
-                                    class="nav-link  {{ request()->is('admin/feepayment/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/feepayment/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Pay Fee</p>
                                 </a>
@@ -255,7 +255,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('feepayment.index') }}"
-                                class="nav-link {{ request()->is('admin/feepayment') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/feepayment') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Fee Payments</p>
                             </a>
@@ -263,7 +263,7 @@
                         @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
                         <li class="nav-item">
                             <a href="{{ route('feeadvance.index') }}"
-                                class="nav-link {{ request()->is('admin/feeadvance') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/feeadvance') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Advance Fee</p>
                             </a>
@@ -274,8 +274,8 @@
                 @endcanany
 
                 @canany(['salary-list', 'salary-create','salary-edit','salary-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/salary*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/salary*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/salary*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/salary*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
                             Salary Management
@@ -286,7 +286,7 @@
                         @can('salary-create')
                             <li class="nav-item">
                                 <a href="{{ route('salary.create') }}"
-                                    class="nav-link  {{ request()->is('admin/salary/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/salary/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add Salary</p>
                                 </a>
@@ -294,7 +294,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('salary.index') }}"
-                                class="nav-link {{ request()->is('admin/salary') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/salary') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Salary Addition List</p>
                             </a>
@@ -303,7 +303,7 @@
                         'advancesalary-create','advancesalary-edit','advancesalary-delete'])
                         <li class="nav-item">
                             <a href="{{ route('advancesalary.index') }}"
-                                class="nav-link {{ request()->is('admin/advancesalary') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/advancesalary') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Advance Salary List</p>
                             </a>
@@ -316,8 +316,8 @@
                 @canany(['attendancemanagement-list',
                 'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete','attendance-list',
                 'attendance-create','attendance-edit','attendance-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/attendance*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/attendance*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/attendance*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/attendance*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Attendance Management
@@ -329,7 +329,7 @@
                         'attendancemanagement-create','attendancemanagement-edit','attendancemanagement-delete'])
                         <li class="nav-item">
                             <a href="{{ route('attendance.index') }}"
-                                class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Attendance List</p>
                             </a>
@@ -338,7 +338,7 @@
                         {{-- @can('staffattendance-create')
                             <li class="nav-item">
                                 <a href="{{ route('staffattendance.create') }}"
-                                    class="nav-link  {{ request()->is('admin/staffattendance/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/staffattendance/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Mark Employee Attendance</p>
                                 </a>
@@ -347,7 +347,7 @@
                         @canany(['staffattendance-list', 'staffattendance-create','staffattendance-edit','staffattendance-delete'])
                         <li class="nav-item">
                             <a href="{{ route('staffattendance.index') }}"
-                                class="nav-link {{ request()->is('admin/staffattendance') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/staffattendance') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Employee Attendance List</p>
                             </a>
@@ -358,14 +358,14 @@
                             @foreach ($subjects as $key => $item)
                                 <li class="nav-item">
                                     <a href="{{ route('takeAttendance', $key) }}"
-                                        class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
+                                        class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>{{ $item }}</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('attendanceList', $key) }}"
-                                        class="nav-link {{ request()->is('admin/attendance') ? 'active' : '' }}">
+                                        class="nav-link {{ request()->is('user/attendance') ? 'active' : '' }}">
                                         <i class="fas fa-archive nav-icon"></i>
                                         <p>{{ $item }} View</p>
                                     </a>
@@ -378,8 +378,8 @@
                 @endcanany
 
                 @canany(['exam-list', 'exam-create','exam-edit','exam-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/exam*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/exam*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/exam*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/exam*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-diagnoses"></i>
                         <p>
                             Exam Management
@@ -390,7 +390,7 @@
                         @can('exam-create')
                             <li class="nav-item">
                                 <a href="{{ route('exam.create') }}"
-                                    class="nav-link  {{ request()->is('admin/exam/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/exam/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add Exam</p>
                                 </a>
@@ -398,7 +398,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('exam.index') }}"
-                                class="nav-link {{ request()->is('admin/exam') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/exam') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Exam List</p>
                             </a>
@@ -408,8 +408,8 @@
                 @endcanany
 
                 @canany(['result-list', 'result-create','result-edit','result-delete'])
-                <li class="nav-item has-treeview {{ request()->is('admin/result*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/result*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/result*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/result*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-poll-h"></i>
                         <p>
                             Result Management
@@ -420,7 +420,7 @@
                         @can('result-create')
                             <li class="nav-item">
                                 <a href="{{ route('result.create') }}"
-                                    class="nav-link  {{ request()->is('admin/result/create') ? 'active' : '' }}">
+                                    class="nav-link  {{ request()->is('user/result/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
                                     <p>Add Result</p>
                                 </a>
@@ -428,7 +428,7 @@
                         @endcan
                         <li class="nav-item">
                             <a href="{{ route('result.index') }}"
-                                class="nav-link {{ request()->is('admin/result') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/result') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Results List</p>
                             </a>
@@ -440,7 +440,7 @@
                 @canany(['session-list', 'session-create','session-edit','session-delete'])
                 <li class="nav-item">
                     <a href="{{ route('session.index') }}"
-                        class="nav-link {{ request()->is('admin/session') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/session') ? 'active' : '' }}">
                         <i class="fas fa-calendar-alt nav-icon"></i>
                         <p>Session Management</p>
                     </a>
@@ -449,7 +449,7 @@
                 @canany(['level-list', 'level-create','level-edit','level-delete'])
                 <li class="nav-item">
                     <a href="{{ route('level.index') }}"
-                        class="nav-link {{ request()->is('admin/level') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/level') ? 'active' : '' }}">
                         <i class="fas fa-list nav-icon"></i>
                         <p>Level/Class Management</p>
                     </a>
@@ -460,63 +460,63 @@
                 <li class="nav-header">WEB CONTENT</li>
                 <li class="nav-item">
                     <a href="{{ route('homepage.index') }}"
-                        class="nav-link {{ request()->is('admin/homepage*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/homepage*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Homepage Data</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}"
-                        class="nav-link {{ request()->is('admin/slider*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/slider*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-sliders-h"></i>
                         <p>Slider</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('information.index') }}"
-                        class="nav-link {{ request()->is('admin/information*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/information*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>Information</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('feature.index') }}"
-                        class="nav-link {{ request()->is('admin/feature*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/feature*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-star"></i>
                         <p>Features</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}"
-                        class="nav-link {{ request()->is('admin/testimonial*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/testimonial*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Testimonials</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('faq.index') }}"
-                        class="nav-link {{ request()->is('admin/faq*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/faq*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-comments"></i>
                         <p>Faq</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('blog.index') }}"
-                        class="nav-link {{ request()->is('admin/blog*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/blog*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-clone"></i>
                         <p>Blogs</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('team.index') }}"
-                        class="nav-link {{ request()->is('admin/team*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/team*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-users-cog"></i>
                         <p>Team</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('contact.index') }}"
-                        class="nav-link {{ request()->is('admin/contact*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/contact*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa fa-user-circle"></i>
                         <p>Contact Form</p>
                     </a>
@@ -531,9 +531,9 @@
 
                 <li class="nav-header">APP SETTINGS</li>
                 <li
-                    class="nav-item has-treeview {{ request()->is('admin/users*') || request()->is('admin/roles*') || request()->is('admin/user-log') ? 'menu-open' : '' }}">
+                    class="nav-item has-treeview {{ request()->is('user/users*') || request()->is('user/roles*') || request()->is('user/user-log') ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('admin/users*') || request()->is('admin/roles*') || request()->is('admin/user-log') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/users*') || request()->is('user/roles*') || request()->is('user/user-log') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users Management
@@ -543,36 +543,36 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('users.create') }}"
-                                class="nav-link  {{ request()->is('admin/users/create') ? 'active' : '' }}">
+                                class="nav-link  {{ request()->is('user/users/create') ? 'active' : '' }}">
                                 <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Add New User</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('users.index') }}"
-                                class="nav-link {{ request()->is('admin/users') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/users') ? 'active' : '' }}">
                                 <i class="fas fa-users nav-icon"></i>
                                 <p>Users List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('roles.index') }}"
-                                class="nav-link {{ request()->is('admin/roles*') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/roles*') ? 'active' : '' }}">
                                 <i class="fas fa-user-shield nav-icon"></i>
                                 <p>Roles & Permission</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('user-log.index') }}"
-                                class="nav-link {{ request()->is('admin/user-log') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/user-log') ? 'active' : '' }}">
                                 <i class="fas fa-history nav-icon"></i>
                                 <p>User Activity Log</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview {{ request()->is('admin/menu*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('admin/menu*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/menu*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/menu*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-bars"></i>
                         <p>
                             Menu Management
@@ -582,14 +582,14 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('menu.create') }}"
-                                class="nav-link {{ request()->is('admin/menu/create') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/menu/create') ? 'active' : '' }}">
                                 <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Add New Menu</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('menu.index') }}"
-                                class="nav-link {{ request()->is('admin/menu*') && !request()->is('admin/menu/create') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/menu*') && !request()->is('user/menu/create') ? 'active' : '' }}">
                                 <i class="fas fa-bars nav-icon"></i>
                                 <p>Menu List</p>
                             </a>
@@ -597,9 +597,9 @@
                     </ul>
                 </li>
                 <li
-                    class="nav-item has-treeview {{ request()->is('admin/setting*') || request()->is('admin/cities') || request()->is('admin/vehicletype') || request()->is('admin/ridingcost') ? 'menu-open' : '' }}">
+                    class="nav-item has-treeview {{ request()->is('user/setting*') || request()->is('user/cities') || request()->is('user/vehicletype') || request()->is('user/ridingcost') ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('admin/setting*') || request()->is('admin/cities') || request()->is('admin/vehicletype') || request()->is('admin/ridingcost') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/setting*') || request()->is('user/cities') || request()->is('user/vehicletype') || request()->is('user/ridingcost') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             General Setting
@@ -609,7 +609,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('setting.index') }}"
-                                class="nav-link {{ request()->is('admin/setting') ? 'active' : '' }}">
+                                class="nav-link {{ request()->is('user/setting') ? 'active' : '' }}">
                                 <i class="fas fa-tasks nav-icon"></i>
                                 <p>App Setting</p>
                             </a>
