@@ -32,7 +32,14 @@ class ExamController extends Controller
     }
     protected function getSubjects(Request $request)
     {
-        $subjects = Subject::where('publish_status', '1')->where('level_id', $request->level)->pluck('title', 'id');
+        $subjects = [];
+        $temp = Subject::where('publish_status', '1')->where('level_id', $request->level)->get();
+        foreach ($temp as $key => $value) {
+            $subjects[] = [
+                'id' => $value->id,
+                'title' => $value->title,
+            ];
+        }
         return response()->json($subjects);
     }
     public function index(Request $request)
@@ -71,33 +78,6 @@ class ExamController extends Controller
         ];
         return view('admin/exam/form')->with($data);
     }
-    public function addExam(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $routine = [];
-            for ($i=1; $i <= $request->request_count; $i++) { 
-                if($request->data[$i + 7]['value']['subject']){
-                    $routine[$request->data[$i + 7]['value']['subject']] = [
-                        'date' => $request->data[$i + 7]['value']['date'],
-                        'shift' => $request->data[$i + 7]['value']['shift'],
-                    ];
-                }
-            }
-            $exam = Exam::create([
-                'title' => $request->data[1]['value'],
-                'session_id' => $request->data[3]['value'],
-                'level_id' => $request->data[4]['value'],
-                'exam_routine' => $routine,
-                'created_by' => Auth::user()->id,
-            ]);
-            DB::commit();
-            return response()->json($exam);
-        } catch (\Exception $error) {
-            DB::rollBack();
-            return response()->json($error->getMessage());
-        }
-    }
 
     public function publishExam($id)
     {
@@ -126,25 +106,24 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request, [
-            'job_role' => 'required|string|min:3|max:190',
-            'required_no' => 'nullable|numeric',
-            'salary' => 'nullable|numeric',
-            'publish_status' => 'required|in:1,0',
+            'title' => 'required|string|min:3|max:190',
+            'session_id' => 'required|numeric',
+            'level_id' => 'required|numeric',
+            'exam_routine' => 'required',
         ]);
         DB::beginTransaction();
         try {
-            exam::create([
-                'job_role' => htmlentities($request->job_role),
-                'publish_status' => htmlentities($request->publish_status),
-                'description' => htmlentities($request->description),
-                'salary' => htmlentities($request->salary ?? null),
-                'required_no' => htmlentities($request->required_no ?? 1),
+            Exam::create([
+                'title' => htmlentities($request->title),
+                'session_id' => htmlentities($request->session_id),
+                'level_id' => htmlentities($request->level_id),
+                'exam_routine' => $request->exam_routine,
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
-            $request->session()->flash('success', 'exam added successfully.');
+            $request->session()->flash('success', 'Exam added successfully.');
             return redirect()->route('exam.index');
         } catch (\Exception $error) {
             DB::rollBack();

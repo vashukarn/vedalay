@@ -44,17 +44,10 @@
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            @foreach ($value->exam_routine as $item)
-                                                <th>{{ $item['date'] }}</th>
-                                            @endforeach
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            @foreach ($value->exam_routine as $key => $item)
-                                                <td>{{ $subjects[$key] }}</td>
-                                                {{-- <td>{{ $item['shift'] }}</td> --}}
-                                            @endforeach
                                         </tr>
                                     </tbody>
                                 </table>

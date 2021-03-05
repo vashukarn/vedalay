@@ -1,21 +1,14 @@
 @extends('layouts.admin')
 @section('title', $title)
-    @push('styles')
-        <style>
-            .btn-default.active,
-            .btn-default.active:hover {
-                background-color: #17a2b8;
-                border-color: #138192;
-                color: #fff;
-            }
-
-        </style>
-    @endpush
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-        {{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
         <script>
+            var datecounter = 0;
+            var dates = [];
+            var subjects = null;
+            var subjectselect = '';
+            var diffcounter = 0;
             $(document).ready(function() {
                 $('#session_id').select2({
                     placeholder: "Please Select Session",
@@ -24,11 +17,10 @@
                     placeholder: "Please Select Level",
                 });
             });
-            var subjects = null;
-            var diff_value = 1;
-            var shift_counter = 0;
-            var thead_counter = 0;
             $('#level_id').change(function() {
+                $('#table_row').empty();
+                $('#table_head').empty();
+                $('#table_head').append('<th>Date</th>');
                 var level = $(this).val();
                 $.ajax({
                     type: 'POST',
@@ -42,7 +34,16 @@
                             alert("No Subjects found on this level");
                         } else {
                             subjects = data;
-                            console.log(subjects);
+                            datecounter = 0;
+                            dates = [];
+                            subjects = null;
+                            subjectselect = '';
+                            diffcounter = 0;
+                            for (let index = 0; index < data.length; index++) {
+                                subjectselect += '<option value="' + data[index]['id'] + '">' + data[index][
+                                    'title'
+                                ] + '</option>';
+                            }
                         }
                     }
                 });
@@ -53,85 +54,30 @@
                 } else if (!$('#end_time').val()) {
                     alert("Please Enter End Time Properly");
                 } else {
-                    // shift_counter++;
                     $('#table_row').append('<tr>');
-                    $('#table_row').append('<td><input name="exam_routine[' + datecounter +
-                        '][shift]" type="text" class="form-control" value="' + $('#start_time').val() + ' - ' + $(
-                            '#end_time').val() + '" readonly></td>');
+                    $('#table_row').append('<td><input type="text" class="form-control" value="' + $('#start_time')
+                    .val() + ' - ' + $('#end_time').val() + '" readonly></td>');
                     dates.forEach(element => {
-                        console.log(element);
-                        $('#' + element).append('<td><select class="form-control" id="subject_' + diff_value +
-                            '">');
-
-                        $('#' + element).append('</select></td>');
+                        $('#table_row').append('<td><select name="exam_routine[' + $('#' + element).val() +
+                            '][' + $('#start_time').val() + ' - ' + $('#end_time').val() +
+                            '][subject]" class="form-control" id="diff_' + diffcounter + '">');
+                        $('#diff_' + diffcounter).append('<option value="">Select Subject</option>');
+                        $('#diff_' + diffcounter).append(subjectselect);
+                        diffcounter++;
+                        $('#table_row').append('</select></td>');
                     });
                     $('#table_row').append('</tr>');
-                    // for (let index = 0; index < datecounter; index++) {
-                    //     $('#table_row').append('<td><select class="form-control" id="subject_'+diff_value+'">');
-                    //         subjects.forEach(element => {
-                    //             $('#table_row').append('<option value="">Select Subject</option>');
-                    //         });
-                    //     $('#table_row').append('</select></td>');
-                    // }
                 }
             });
-            var datecounter = 0;
-            var dates = [];
             $('#datebtn').click(function() {
                 if (!$('#exam_date').val()) {
                     alert("Please Enter Date");
                 } else {
                     document.getElementById("table_head").innerHTML += '<th><input id="date_' + datecounter +
-                        '" name="exam_routine[' + datecounter + '][date]" type="text" class="form-control" value="' + $(
-                            '#exam_date').val() + '" readonly></th>';
+                        '" type="text" class="form-control" value="' + $('#exam_date').val() + '" readonly></th>';
                     dates.push('date_' + datecounter);
                     datecounter++;
-                    console.log(dates);
                 }
-            });
-
-            var request_count = 0;
-            $('#exam_form').on('submit', function(e) {
-                // e.preventDefault();
-                var temp = 1;
-                var senddata = $('#exam_form').serializeArray();
-                for (let index = 0; index < thead_counter; index++) {
-                    for (let inde = 1; inde <= shift_counter; inde++) {
-                        var shiftsubject = {
-                            date: $('#' + index).val(),
-                            shift: $('#shift_' + inde).val(),
-                            subject: $('#subject_' + temp).val() ? $('#subject_' + temp).val() : null,
-                        };
-                        temp++;
-                        request_count++;
-                        senddata.push({
-                            name: 'routine_' + request_count,
-                            value: shiftsubject
-                        });
-                    }
-                }
-                $.ajax({
-                    type: 'POST',
-                    url: "/admin/addExam",
-                    data: {
-                        '_token': $('meta[name="csrf-token"]').attr('content'),
-                        'data': senddata,
-                        'request_count': request_count,
-                    },
-                    success: function(data) {
-                        if (data.length < 1) {
-                            alert("No Data Found");
-                        } else {
-                            if (!data.title) {
-                                alert("Error has been occurred");
-                            } else {
-                                alert("Exam Added Successfully");
-                                window.location = "{{ route('exam.index') }}";
-                            }
-                        }
-                    }
-                });
-                request_count = 0;
             });
 
         </script>
