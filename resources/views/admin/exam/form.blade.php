@@ -14,6 +14,7 @@
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
+        {{-- <script src="{{ asset('/custom/slider.js') }}"></script> --}}
         <script>
             $(document).ready(function() {
                 $('#session_id').select2({
@@ -41,6 +42,7 @@
                             alert("No Subjects found on this level");
                         } else {
                             subjects = data;
+                            console.log(subjects);
                         }
                     }
                 });
@@ -51,39 +53,43 @@
                 } else if (!$('#end_time').val()) {
                     alert("Please Enter End Time Properly");
                 } else {
-                    shift_counter++;
+                    // shift_counter++;
                     $('#table_row').append('<tr>');
-                    $('#table_row').append('<td><input id="shift_' + shift_counter +
-                        '" type="text" class="form-control" value="' + $('#start_time').val() + ' - ' + $(
+                    $('#table_row').append('<td><input name="exam_routine[' + datecounter +
+                        '][shift]" type="text" class="form-control" value="' + $('#start_time').val() + ' - ' + $(
                             '#end_time').val() + '" readonly></td>');
-                    for (let index = 0; index < thead_counter; index++) {
-                        $('#table_row').append('<td><select class="form-control" id="subject_' + diff_value + '">');
-                        const subjectArray = [];
-                        Object.keys(subjects).forEach(key => subjectArray.push({
-                            id: key,
-                            name: subjects[key]
-                        }));
-                        $('#subject_' + diff_value).append('<option value="">Select Subject</option>');
-                        for (let index = 0; index < subjectArray.length; index++) {
-                            $('#subject_' + diff_value).append('<option value=' + subjectArray[index]['id'] + '>' +
-                                subjectArray[index]['name'] + '</option>');
-                        }
-                        diff_value++;
-                        $('#table_row').append('</select></td>');
+                    dates.forEach(element => {
+                        console.log(element);
+                        $('#' + element).append('<td><select class="form-control" id="subject_' + diff_value +
+                            '">');
 
-                    }
+                        $('#' + element).append('</select></td>');
+                    });
                     $('#table_row').append('</tr>');
+                    // for (let index = 0; index < datecounter; index++) {
+                    //     $('#table_row').append('<td><select class="form-control" id="subject_'+diff_value+'">');
+                    //         subjects.forEach(element => {
+                    //             $('#table_row').append('<option value="">Select Subject</option>');
+                    //         });
+                    //     $('#table_row').append('</select></td>');
+                    // }
                 }
             });
+            var datecounter = 0;
+            var dates = [];
             $('#datebtn').click(function() {
                 if (!$('#exam_date').val()) {
                     alert("Please Enter Date");
                 } else {
-                    document.getElementById("table_head").innerHTML += '<th><input name="exam_routine['+$('#exam_date').val()+']" id="' + thead_counter +
-                        '" type="text" class="form-control" value="' + $('#exam_date').val() + '" readonly></th>';
-                    thead_counter++;
+                    document.getElementById("table_head").innerHTML += '<th><input id="date_' + datecounter +
+                        '" name="exam_routine[' + datecounter + '][date]" type="text" class="form-control" value="' + $(
+                            '#exam_date').val() + '" readonly></th>';
+                    dates.push('date_' + datecounter);
+                    datecounter++;
+                    console.log(dates);
                 }
             });
+
             var request_count = 0;
             $('#exam_form').on('submit', function(e) {
                 // e.preventDefault();
@@ -106,7 +112,7 @@
                 }
                 $.ajax({
                     type: 'POST',
-                    url: "{{ route('addExam') }}",
+                    url: "/admin/addExam",
                     data: {
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                         'data': senddata,

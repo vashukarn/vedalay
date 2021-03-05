@@ -26,7 +26,7 @@
         @endforeach
         $.ajax({
             type: 'POST',
-            url: "{{ route('updateAttendance') }}",
+            url: "{{ route('attendance.store') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'subject' : {{ $subject_info->id }},
@@ -49,41 +49,6 @@
             }
         });
     });
-    function submitAttendance() {
-        var attendance = [];
-        @foreach ($student_info as $item)
-        if ($("#{{ $item->user_id }}_attendance").is(":checked")){
-            var temp = 1;
-        }else{
-            var temp = 0;
-        }
-        attendance['{{ $item->user_id }}'] = temp;
-        @endforeach
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('updateAttendance') }}",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'subject' : {{ $subject_info->id }},
-                'level' : {{ $subject_info->level_id }},
-                'holiday_reason' : $('#holiday_reason').val(),
-                'holiday' : '0',
-                'attendance' : attendance,
-            },
-            success: function (data) {
-                if(data == "Attendance Updated Successfully"){
-                    alert(data);
-                }
-                else if(data.id){
-                    alert("Attendance Marked");
-                }
-                else{
-                    alert("Error Occurred :"+data);
-                }
-                console.log(data);
-            }
-        });
-    }
 </script>
 @endpush
 @section('content')
