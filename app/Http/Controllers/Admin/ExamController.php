@@ -151,9 +151,19 @@ class ExamController extends Controller
             abort(404);
         }
         $subjects = Subject::pluck('title', 'id');
+        $classes = Level::all();
+        foreach ($classes as $value) {
+            if(isset($value->section)){
+                $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
+            }
+            else{
+                $levels[$value->id] = $value->standard;
+            }
+        }
         $data = [
             'exam_info' => $exam_info,
             'subjects' => $subjects,
+            'levels' => $levels,
         ];
         return view('admin/exam/show')->with($data);
     }

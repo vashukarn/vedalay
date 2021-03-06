@@ -9,6 +9,11 @@
                     <h3 class="card-title">{{ @$exam_info->title }}</h3>
                 </div>
                 <div class="card-body card-format">
+                    <div class="col-12 text-center m-4">
+                        <b>
+                            {{ @$exam_info->title }} for {{ @$levels[$exam_info->level_id] }} Schedule has been
+                            published.</b>
+                    </div>
                     <div class="col-12 m-4">
                         @isset($exam_info->exam_routine)
                             @foreach ($exam_info->exam_routine as $key => $item)

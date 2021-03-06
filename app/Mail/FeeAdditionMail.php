@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Fee;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -25,9 +26,11 @@ class FeeAdditionMail extends Mailable
          'stationery_fee', 'sports_fee', 'club_fee', 'hostel_fee', 'laundry_fee',
          'education_tax', 'eca_fee', 'late_fine', 'extra_fee', 'total_amount')->first();
         $student = User::find($this->id);
+        $subjects = Subject::pluck('title', 'id');
         $data = [
             'name' => $student->name,
             'fee_info' => $fee,
+            'subjects' => $subjects,
         ];
         return $this->from('noreply@vedyalay.com')->subject('Fee Addition Notification')->view('mail.feeadd')->with($data);
     }
