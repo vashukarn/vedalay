@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendExamPublishJob;
 use App\Models\Exam;
 use App\Models\Level;
 use App\Models\Session;
@@ -88,21 +89,29 @@ class ExamController extends Controller
         }
         DB::beginTransaction();
         try {
-            if(!$exam_info->publish_status){
+            if($exam_info->publish_status){
                 $exam_info->publish_status = '0';
             }
-            $exam_info->updated_by = Auth::user()->id;
-            $level = $exam_info->level_id;
-            $exam_info->save();
-            $students = Student::where('level_id', $level)->get();
-            foreach ($students as $key => $value) {
-                dd($value);
+            else{
+                $exam_info->publish_status = '1';
             }
+            $exam_info->updated_by = Auth::user()->id;
+            $exam_info->save();
             DB::commit();
+            // $students = Student::where('level_id', $exam_info->level_id)->get();
+            // foreach ($students as $key => $value) {
+            //     $details['id'] = $value->user_id;
+            //     $details['title'] = $exam_info->title;
+            //     $details['level_id'] = $exam_info->level_id;
+            //     $details['session_id'] = $exam_info->session_id;
+            //     $details['exam_routine'] = $exam_info->exam_routine;
+            //     dispatch(new SendExamPublishJob($details));
+            // }
             return redirect()->back();
 
         } catch (\Exception $error) {
             DB::rollBack();
+                dd($error);
             return redirect()->back();
         }
     }
@@ -137,7 +146,16 @@ class ExamController extends Controller
 
     public function show($id)
     {
-        //
+        $exam_info = $this->exam->find($id);
+        if (!$exam_info) {
+            abort(404);
+        }
+        $subjects = Subject::pluck('title', 'id');
+        $data = [
+            'exam_info' => $exam_info,
+            'subjects' => $subjects,
+        ];
+        return view('admin/exam/show')->with($data);
     }
 
     public function edit($id)

@@ -12,20 +12,19 @@ class ExamMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct($id)
+    public function __construct($details)
     {
-        $this->id = $id;
+        $this->details = $details;
     }
 
     public function build()
     {
-        $exam = Exam::where('student_id', $this->id)->orderBy('id', 'desc')->select('title',
-         'tuition_fee', 'exam_fee', 'transport_fee',
-         'stationery_fee', 'sports_fee', 'club_fee', 'hostel_fee', 'laundry_fee',
-         'education_tax', 'eca_fee', 'late_fine', 'extra_fee', 'total_amount')->first();
         $data = [
-            // 'name' => $student->name,
+            'title' => $this->details['title'],
+            'level' => $this->details['level_id'],
+            'exam_routine' => $this->details['exam_routine'],
         ];
-        return $this->from('noreply@vedyalay.com')->subject('Exam Routine Published')->view('mail.feeadd')->with($data);
+        // dd($data);
+        return $this->from('noreply@vedyalay.com')->subject('Exam Routine Published')->view('mail.exampublish')->with($data);
     }
 }

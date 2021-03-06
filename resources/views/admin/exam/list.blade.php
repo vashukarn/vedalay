@@ -62,16 +62,19 @@
                                         {{ ReadableDate(@$value->created_at, 'all') }}<br>
                                         {{ @$value->updater->name ? 'Updated By - ' . @$value->updater->name : '' }}</td>
                                     <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
-                                        @if($value->publish_status == 0)
                                         <div class="btn-group float-right">
-                                            @can('staff-edit')
+                                            @can('exam-list')
+                                                <a href="{{ route('exam.show', @$value->id) }}"
+                                                    title="View Exam Details" class="btn btn-secondary btn-sm btn-flat"><i
+                                                        class="fas fa-list"></i></a>
+                                            @endcan
+                                            @can('exam-edit')
                                                 <a href="{{ route('publishExam', @$value->id) }}"
                                                     title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}"
                                                     class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i
                                                         class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
                                             @endcan
                                         </div>
-                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

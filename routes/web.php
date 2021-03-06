@@ -45,6 +45,9 @@ Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('cke
 Route::get('two-factor-recovery', [UserController::class, 'recovery'])->middleware('guest');
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], function () {
 
+    // Route::get('email', function(){
+    //     dispatch(new SendFeeAdditionJob('5'));
+    //     });
     // Route::get('email-test', function(){
     //     dispatch(new SendFeeAdditionJob('5'));
     //     dd('done');
