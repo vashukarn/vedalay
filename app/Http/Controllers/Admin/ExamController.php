@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\Level;
 use App\Models\Session;
+use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,14 +88,16 @@ class ExamController extends Controller
         }
         DB::beginTransaction();
         try {
-            if($exam_info->publish_status){
+            if(!$exam_info->publish_status){
                 $exam_info->publish_status = '0';
             }
-            else{
-                $exam_info->publish_status = '1';
-            }
             $exam_info->updated_by = Auth::user()->id;
+            $level = $exam_info->level_id;
             $exam_info->save();
+            $students = Student::where('level_id', $level)->get();
+            foreach ($students as $key => $value) {
+                dd($value);
+            }
             DB::commit();
             return redirect()->back();
 

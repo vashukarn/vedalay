@@ -62,6 +62,7 @@
                                         {{ ReadableDate(@$value->created_at, 'all') }}<br>
                                         {{ @$value->updater->name ? 'Updated By - ' . @$value->updater->name : '' }}</td>
                                     <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
+                                        @if($value->publish_status == 0)
                                         <div class="btn-group float-right">
                                             @can('staff-edit')
                                                 <a href="{{ route('publishExam', @$value->id) }}"
@@ -70,6 +71,7 @@
                                                         class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
                                             @endcan
                                         </div>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

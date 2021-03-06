@@ -25,7 +25,7 @@ class StudentController extends Controller
     }
     protected function getStudent($request)
     {
-        $query = $this->student->orderBy('session', 'ASC')->orderBy('id', 'DESC');
+        $query = $this->student->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
             $query = $query->where('user_id', $keyword);

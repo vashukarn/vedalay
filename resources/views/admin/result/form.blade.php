@@ -81,7 +81,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "/admin/addResult",
+            url: "{{ route('addResult') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'data': senddata,
@@ -116,7 +116,7 @@
         subjects.empty();
         $.ajax({
             type: 'POST',
-            url: "/admin/getResultData",
+            url: "{{ route('getResultData') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'level': level,
