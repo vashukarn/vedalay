@@ -37,7 +37,7 @@
         var users = $('#user');
         $.ajax({
             type: 'POST',
-            url: "/admin/getSalary",
+            url: "{{ route('getSalary') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'type': type,

@@ -50,11 +50,11 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($value->exam_routine as $key => $item)
-                                            {{ dd($item) }}
+                                            {{-- {{ dd($item) }} --}}
                                                 <tr>
-                                                    <td>{{ $item }}</td>
                                                     @foreach ($item as $keya => $ek)
-                                                    <td>{{ $key }} - {{ $ek }}</td>
+                                                    {{-- {{ dd($ek) }} --}}
+                                                    <td>{{ $keya }} - {{ $ek['subject'] }}</td>
                                                         
                                                     @endforeach    
                                                 </tr>
