@@ -41,16 +41,27 @@
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->title }} <br> Class : {{ @$value->get_level['standard'] }}{{ @$value->get_level['section'] ? ' - '.@$value->get_level['section'] : '' }} <br>{{ @$value->get_session['title'] }}</td>
                             <td>
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                @isset($value->exam_routine)
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            @foreach ($value->exam_routine as $key => $item)
+                                                <tr>{{ $key }}</tr>
+                                            @endforeach
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($value->exam_routine as $key => $item)
+                                            {{ dd($item) }}
+                                                <tr>
+                                                    <td>{{ $item }}</td>
+                                                    @foreach ($item as $keya => $ek)
+                                                    <td>{{ $key }} - {{ $ek }}</td>
+                                                        
+                                                    @endforeach    
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                @endisset
                             </td>
                             <td>{{ @$value->creator->name }} <br> {{ ReadableDate(@$value->created_at, 'all') }}<br> {{ @$value->updater->name ? "Updated By - ".@$value->updater->name : "" }}</td>
                             <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}

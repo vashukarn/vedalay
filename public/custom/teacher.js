@@ -14,11 +14,11 @@ $(function() {
             },
             password: {
                 required: true,
-                minlength: 5
+                minlength: 8,
             },
             password_confirm: {
                 required: true,
-                minlength: 5,
+                minlength: 8,
                 equalTo: "#confirm_password"
             },
             aadhar_number: {
@@ -58,7 +58,7 @@ $(function() {
             },
             password: {
                 required: "This field is required" ,
-                minlength: "Minimum 6 digit required ",
+                minlength: "Minimum 8 digit required ",
             },  
             password_confirm: {
                 required: "This Field s required",
@@ -67,7 +67,7 @@ $(function() {
             aadhar_number: {
                 required: "Aadhar number is required",
                 digits: "Minimum 12 digit's required",
-                minlength: "Aadhar number sholud be 12 digit",
+                minlength: "Aadhar number should be 12 digit",
                 maxlength: "Aadhar number should be 12 digit only",
             },
             current_address: {
