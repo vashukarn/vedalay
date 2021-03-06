@@ -17,8 +17,8 @@
                         <div class="float-right col-lg-2">
                             <div class="card-tools">
                                 @can('exam-create')
-                                <a href="{{ route('exam.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Add Exam</a>
+                                    <a href="{{ route('exam.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
+                                        <i class="fa fa-plus"></i> Add Exam</a>
                                 @endcan
                             </div>
                         </div>
@@ -36,42 +36,53 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $key=>$value)
-                            <tr>
-                            <td>{{ $key+1}}.</td>
-                            <td>{{ @$value->title }} <br> Class : {{ @$value->get_level['standard'] }}{{ @$value->get_level['section'] ? ' - '.@$value->get_level['section'] : '' }} <br>{{ @$value->get_session['title'] }}</td>
-                            <td>
-                                @isset($value->exam_routine)
-                                    <table class="table table-striped table-hover">
-                                        <thead>
-                                            @foreach ($value->exam_routine as $key => $item)
-                                                <tr>{{ $key }}</tr>
-                                            @endforeach
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($value->exam_routine as $key => $item)
-                                            {{-- {{ dd($item) }} --}}
-                                                <tr>
-                                                    @foreach ($item as $keya => $ek)
-                                                    {{-- {{ dd($ek) }} --}}
-                                                    <td>{{ $keya }} - {{ $ek['subject'] }}</td>
-                                                        
-                                                    @endforeach    
+                            @foreach ($data as $key => $value)
+                                <tr>
+                                    <td>{{ $key + 1 }}.</td>
+                                    <td>{{ @$value->title }} <br> Class :
+                                        {{ @$value->get_level['standard'] }}{{ @$value->get_level['section'] ? ' - ' . @$value->get_level['section'] : '' }}
+                                        <br>{{ @$value->get_session['title'] }}</td>
+                                    <td>
+                                        @isset($value->exam_routine)
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Timings</th>
+                                                    @foreach ($value->exam_routine as $key => $item)
+                                                        <th>{{ $key }}</th>
+                                                        {{-- <tr></tr> --}}
+                                                    @endforeach
                                                 </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                @endisset
-                            </td>
-                            <td>{{ @$value->creator->name }} <br> {{ ReadableDate(@$value->created_at, 'all') }}<br> {{ @$value->updater->name ? "Updated By - ".@$value->updater->name : "" }}</td>
-                            <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
-                                <div class="btn-group float-right">
-                                  @can('staff-edit')
-                                  <a href="{{route('publishExam',@$value->id)}}" title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}" class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
-                                  @endcan
-                              </div>
-                            </td>
-                            </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($value->exam_routine as $key => $item)
+                                                        {{-- {{ dd($item) }} --}}
+                                                        <tr>
+                                                            @foreach ($item as $keya => $ek)
+                                                                {{-- {{ dd($ek) }} --}}
+                                                                <td>{{ $keya }} - {{ $ek['subject'] }}</td>
+
+                                                            @endforeach
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endisset
+                                    </td>
+                                    <td>{{ @$value->creator->name }} <br>
+                                        {{ ReadableDate(@$value->created_at, 'all') }}<br>
+                                        {{ @$value->updater->name ? 'Updated By - ' . @$value->updater->name : '' }}</td>
+                                    <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
+                                        <div class="btn-group float-right">
+                                            @can('staff-edit')
+                                                <a href="{{ route('publishExam', @$value->id) }}"
+                                                    title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}"
+                                                    class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i
+                                                        class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -79,12 +90,15 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="text-sm">
-                                  Showing <strong>{{ $data->firstItem() }}</strong>  to <strong>{{ $data->lastItem() }} </strong>  of <strong> {{$data->total()}}</strong> entries
-                                  <span> | Takes <b>{{ round((microtime(true) - LARAVEL_START),2) }}</b> seconds to render</span>
+                                    Showing <strong>{{ $data->firstItem() }}</strong> to
+                                    <strong>{{ $data->lastItem() }} </strong> of <strong> {{ $data->total() }}</strong>
+                                    entries
+                                    <span> | Takes <b>{{ round(microtime(true) - LARAVEL_START, 2) }}</b> seconds to
+                                        render</span>
                                 </p>
                             </div>
                             <div class="col-md-8">
-                                <span class="pagination-sm m-0 float-right">{{$data->links()}}</span>
+                                <span class="pagination-sm m-0 float-right">{{ $data->links() }}</span>
                             </div>
                         </div>
                     </div>
