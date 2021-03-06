@@ -31,17 +31,6 @@
                     </a>
                 </li>
 
-
-                @role('Student')
-                <li class="nav-item">
-                    <a href="{{ route('result.index') }}"
-                        class="nav-link {{ request()->is('user/result') ? 'active' : '' }}">
-                        <i class="fas fa-list nav-icon"></i>
-                        <p>Results</p>
-                    </a>
-                </li>
-                @endrole
-
                 @canany([
                 'student-list', 'student-create','student-edit','student-delete',
                 'teacher-list', 'teacher-create','teacher-edit','teacher-delete',

@@ -106,7 +106,7 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->exam_routine);
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
             'session_id' => 'required|numeric',

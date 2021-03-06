@@ -44,6 +44,7 @@
                                     'title'
                                 ] + '</option>';
                             }
+                            console.log(subjectselect)
                         }
                     }
                 });
@@ -99,10 +100,10 @@
                 @include('admin.shared.error-messages')
                 <div class="card-body">
                     @if (isset($exam_info))
-                        {{ Form::open(['url' => route('exam.update', $exam_info->id), 'files' => true, 'class' => 'form', 'name' => 'exam_form']) }}
+                        {{ Form::open(['url' => route('exam.update', $exam_info->id), 'files' => true, 'class' => 'form', 'name' => 'exam_form', 'enctype' =>"multipart/form-data"]) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'id' => 'exam_form', 'name' => 'exam_form']) }}
+                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'id' => 'exam_form', 'name' => 'exam_form', 'enctype' =>"multipart/form-data"]) }}
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
