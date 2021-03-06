@@ -1,15 +1,5 @@
 @extends('layouts.admin')
 @section('title', $title)
-@push('styles')
-    <style>
-        .btn-default.active,
-        .btn-default.active:hover {
-            background-color: #17a2b8;
-            border-color: #138192;
-            color: #fff;
-        }
-    </style>
-@endpush
 @push('scripts')
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
