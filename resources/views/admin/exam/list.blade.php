@@ -44,26 +44,18 @@
                                         <br>{{ @$value->get_session['title'] }}</td>
                                     <td>
                                         @isset($value->exam_routine)
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Timings</th>
-                                                    @foreach ($value->exam_routine as $key => $item)
-                                                        <th>{{ $key }}</th>
+                                            @foreach ($value->exam_routine as $key => $item)
+                                            <div>
+                                                <b> Date : {{ @$key }} <br></b>
+                                                    @foreach ($item as $keya => $ek)
+                                                    @isset($subjects[$ek['subject']])
+                                                    - &nbsp; Shift : {{ @$keya }}
+                                                    &nbsp; Subject : {{ @$subjects[$ek['subject']] }} <br>
+                                                        
+                                                        @endisset
                                                     @endforeach
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach ($value->exam_routine as $key => $item)
-                                                        <tr>
-                                                            @foreach ($item as $keya => $ek)
-                                                                <td>{{ $keya }}</td>
-                                                                <td>{{ $subjects[$ek['subject']] }}</td>
-                                                            @endforeach
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
+                                            </div>
+                                            @endforeach
                                         @endisset
                                     </td>
                                     <td>{{ @$value->creator->name }} <br>
