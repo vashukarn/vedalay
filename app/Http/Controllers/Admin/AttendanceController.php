@@ -68,7 +68,7 @@ class AttendanceController extends Controller
                 $find->updated_by = Auth::user()->id;
                 $find->save();
                 DB::commit();
-                $request->session()->flash('success', 'Attendance updated SuccessFully.');
+                $request->session()->flash('success', 'Attendance updated successfully.');
                 return redirect()->route('attendance.index');
             }
             else{
@@ -79,7 +79,7 @@ class AttendanceController extends Controller
                 'created_by' => Auth::user()->id,
             ]);
             DB::commit();
-            $request->session()->flash('success', 'Attendance marked SuccessFully.');
+            $request->session()->flash('success', 'Attendance marked successfully.');
             return redirect()->route('attendance.index');
         }
         } catch (\Exception $error) {

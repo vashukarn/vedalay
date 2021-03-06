@@ -171,9 +171,7 @@
                 'subject-list', 'subject-create','subject-edit','subject-delete',
                 'fee-list', 'fee-create','fee-edit','fee-delete',
                 'salary-list', 'salary-create','salary-edit','salary-delete',
-                'attendacemanagement-list',
-                'attendacemanagement-create','attendacemanagement-edit','attendacemanagement-delete',
-                'attendace-list', 'attendace-create','attendace-edit','attendace-delete',
+                'attendance-list', 'attendance-create','attendance-edit','attendance-delete',
                 'exam-list', 'exam-create','exam-edit','exam-delete',
                 'result-list', 'result-create','exam-edit','exam-delete',
                 ])
@@ -336,9 +334,9 @@
 
                 @canany(['attendance-list','attendance-create','attendance-edit','attendance-delete'])
                 <li
-                    class="nav-item has-treeview {{ request()->is('user/attendance*') || request()->is('user/takeAttendance*') ? 'menu-open' : '' }}">
+                    class="nav-item has-treeview {{ request()->is('user/attendance*') ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('user/attendance*') || request()->is('user/takeAttendance*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/attendance*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
                             Attendance Management
@@ -351,7 +349,7 @@
                             @foreach ($subjects as $key => $item)
                                 <li class="nav-item">
                                     <a href="{{ route('attendance.show', $key) }}"
-                                        class="nav-link {{ request()->is('user/takeAttendance/' . $key) ? 'active' : '' }}">
+                                        class="nav-link {{ request()->is('user/attendance/' . $key) ? 'active' : '' }}">
                                         <i class="fas fa-archive nav-icon"></i>
                                         <p>{{ $item }}</p>
                                     </a>

@@ -24,7 +24,7 @@
         students.empty();
         $.ajax({
             type: 'POST',
-            url: "/admin/getStudents",
+            url: "{{ route('getStudents') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'id': id,
@@ -53,7 +53,7 @@
         var id = $(this).val();
         $.ajax({
             type: 'POST',
-            url: "/admin/getFeeDetails",
+            url: "{{ route('getFeeDetails') }}",
             data: {
                 '_token': $('meta[name="csrf-token"]').attr('content'),
                 'id': id,

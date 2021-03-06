@@ -7,6 +7,7 @@ use App\Models\Admission;
 use App\Models\AdvanceSalary;
 use App\Models\Assignment;
 use App\Models\Attendance;
+use App\Models\Exam;
 use App\Models\Fee;
 use App\Models\NoticeBoard;
 use App\Models\Salary;
@@ -61,10 +62,25 @@ class DashboardController extends Controller
                     $assignment++;
                 }
             }
-            $tempooo = Fee::where('rollback', '0')->where('student_id', $id)->get();
+            $attendtemp = Attendance::where('holiday', '0')->where('level_id', $student->level_id)->get();
+            $feetemp = Fee::where('rollback', '0')->where('student_id', $id)->get();
 
-            foreach ($tempooo as $item) {
+            foreach ($feetemp as $item) {
                 $due_fee += $item->fees['total_amount'];
+            }
+            if(count($attendtemp) > 0){
+                foreach ($attendtemp as $temp) {
+                    if(count($temp->students) > 0){
+                        foreach ($temp->students as $key => $item) {
+                            if($key == $id){
+                                $total_attendance++;
+                                if($item == '1')
+                                $student_attendance++;
+                            }
+                        }
+                    }
+                }
+                $attendance_percentage = ($student_attendance*100)/$total_attendance;
             }
         }
         if($type == 'admin' || $type == 'superadmin'){
