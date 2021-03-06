@@ -50,18 +50,15 @@
                                                         <th>Timings</th>
                                                     @foreach ($value->exam_routine as $key => $item)
                                                         <th>{{ $key }}</th>
-                                                        {{-- <tr></tr> --}}
                                                     @endforeach
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($value->exam_routine as $key => $item)
-                                                        {{-- {{ dd($item) }} --}}
                                                         <tr>
                                                             @foreach ($item as $keya => $ek)
-                                                                {{-- {{ dd($ek) }} --}}
-                                                                <td>{{ $keya }} - {{ $ek['subject'] }}</td>
-
+                                                                <td>{{ $keya }}</td>
+                                                                <td>{{ $subjects[$ek['subject']] }}</td>
                                                             @endforeach
                                                         </tr>
                                                     @endforeach
