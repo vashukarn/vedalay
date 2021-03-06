@@ -22,6 +22,7 @@ class CreateResultsTable extends Migration
             $table->integer('marks_obtained')->nullable();
             $table->string('grade')->nullable();
             $table->integer('sgpa')->nullable();
+            $table->enum('gper',['Grade','Percentage'])->default('Percentage');
             $table->enum('status',['PASS','FAIL','WITHHELD'])->default('WITHHELD');
             $table->string('withheld_reason')->nullable();
             $table->enum('publish_status',['1','0'])->default(0);

@@ -100,6 +100,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::get('jobapplicant/{fee}', [VacancyController::class, 'jobapplicant'])->name('jobapplicant');
     Route::post('rollbackTransaction/{fee}', [FeeController::class, 'rollbackTransaction'])->name('rollbackTransaction');
     Route::post('rollbackSalary/{salary}', [SalaryController::class, 'rollbackSalary'])->name('rollbackSalary');
+    Route::post('getSubjectExam', [ResultController::class, 'getSubjectExam'])->name('getSubjectExam');
     Route::post('getResultData', [ResultController::class, 'getResultData'])->name('getResultData');
     Route::post('getStudents', [FeeController::class, 'getStudents'])->name('getStudents');
     Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');

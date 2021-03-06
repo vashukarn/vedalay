@@ -12,6 +12,7 @@ class Result extends Model
     protected $fillable = [
         'marks',
         'backlogs',
+        'gper',
         'total_marks',
         'percentage',
         'marks_obtained',

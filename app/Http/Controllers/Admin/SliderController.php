@@ -44,7 +44,6 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
             'publish_status' => 'required|numeric|in:1,0'

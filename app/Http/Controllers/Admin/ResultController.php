@@ -24,10 +24,9 @@ class ResultController extends Controller
     }
     protected function getresult($request)
     {
-        if(Auth::user()->type == 'student'){
+        if (Auth::user()->type == 'student') {
             $query = $this->result->orderBy('id', 'DESC')->where('student_id', Auth::user()->id)->where('publish_status', '1');
-        }
-        else{
+        } else {
             $query = $this->result->orderBy('id', 'DESC');
         }
         if ($request->keyword) {
@@ -51,7 +50,7 @@ class ResultController extends Controller
                     'grade' => $item['value']['grade']
                 ];
             }
-            if(isset($request->data[12]['value'])){
+            if (isset($request->data[12]['value'])) {
                 foreach ($request->data[12]['value'] as $item) {
                     $backsubjects[$item['id']] = $item['name'];
                 }
@@ -70,7 +69,7 @@ class ResultController extends Controller
                 'status' => htmlentities($request->data[9]['value']),
                 'created_by' => Auth::user()->id,
             ];
-            if($request->data[10]['value']){
+            if ($request->data[10]['value']) {
                 $temp['withheld_reason'] = $request->data[10]['value'];
             }
             $result = Result::create($temp);
@@ -81,39 +80,49 @@ class ResultController extends Controller
             return response()->json($error->getMessage());
         }
     }
+    protected function getSubjectExam(Request $request)
+    {
+        $examtemp = Exam::where('level_id', $request->level)->get();
+        $sublist = Subject::where('level_id', $request->level)->pluck('title', 'id');
+        $subject = [];
+        foreach ($examtemp as $value) {
+            foreach ($value->exam_routine as $key => $item) {
+                foreach ($item as $keya => $valuea) {
+                    if (isset($valuea['subject'])) {
+                        $subject[] = [
+                            'id' => $valuea['subject'],
+                            'value' => @$sublist[$valuea['subject']],
+                        ];
+                    }
+                }
+            }
+        }
+        $data = [
+            'subjects' => $subject,
+        ];
+        return response()->json($data);
+    }
     protected function getResultData(Request $request)
     {
-        $tempo = Exam::where('level_id', $request->level)->get();
-        $temp = Student::where('level_id', $request->level)->get();
-        $tempoo = Subject::where('level_id', $request->level)->get();
+        $examtemp = Exam::where('level_id', $request->level)->get();
+        $studtemp = Student::where('level_id', $request->level)->get();
         $student = [];
         $exam = [];
-        foreach ($tempo as $value) {
+        foreach ($examtemp as $value) {
             $exam[] = [
                 'id' => $value->id,
                 'value' => $value->title
             ];
         }
-        $student = [];
-        foreach ($temp as $value) {
+        foreach ($studtemp as $value) {
             $student[] = [
                 'id' => $value->user_id,
-                'value' => $value->get_user->name.' - '.$value->phone
-            ];
-        }
-        $subject = [];
-        foreach ($tempoo as $value) {
-            $subject[] = [
-                'id' => $value->id,
-                'name' => $value->title,
-                'type' => $value->type,
-                'value' => $value->value,
+                'value' => $value->get_user->name . ' - ' . $value->phone
             ];
         }
         $data = [
             'exams' => $exam,
             'students' => $student,
-            'subjects' => $subject,
         ];
         return response()->json($data);
     }
@@ -125,17 +134,15 @@ class ResultController extends Controller
         }
         DB::beginTransaction();
         try {
-            if($result_info->publish_status){
+            if ($result_info->publish_status) {
                 $result_info->publish_status = '0';
-            }
-            else{
+            } else {
                 $result_info->publish_status = '1';
             }
             $result_info->updated_by = Auth::user()->id;
             $result_info->save();
             DB::commit();
             return redirect()->back();
-
         } catch (\Exception $error) {
             DB::rollBack();
             return redirect()->back();
@@ -156,10 +163,9 @@ class ResultController extends Controller
         $title = 'Add Result';
         $classes = Level::all();
         foreach ($classes as $value) {
-            if(isset($value->section)){
-                $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
-            }
-            else{
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
                 $levels[$value->id] = $value->standard;
             }
         }
@@ -249,7 +255,6 @@ class ResultController extends Controller
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
-
     }
 
     public function destroy(Request $request, $id)
