@@ -127,9 +127,9 @@ class FeeController extends Controller
                     'unique' => $timestamp,
                     'level_id' => htmlentities($request->level),
                 ]);
+                DB::commit();
                 dispatch(new SendFeeAdditionJob($value));
             }
-            DB::commit();
             $request->session()->flash('success', 'Fee added successfully.');
             return redirect()->route('fee.index');
         } catch (\Exception $error) {
