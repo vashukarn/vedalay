@@ -106,8 +106,10 @@ class ResultController extends Controller
     public function index(Request $request)
     {
         $data = $this->getresult($request);
+        $subjects = Subject::pluck('title', 'id');
         $data = [
             'data' => $data,
+            'subjects' => $subjects,
         ];
         return view('admin/result/list')->with($data);
     }
@@ -138,14 +140,13 @@ class ResultController extends Controller
         $this->validate($request, [
             'gper' => 'required|in:Percentage,Grade',
             'level_id' => 'required|numeric',
-            'grade' => 'required',
             'exam_id' => 'required|numeric',
             'student_id' => 'required|numeric',
-            'sgpa' => 'required|numeric|max:10',
+            'sgpa' => 'nullable|numeric|max:10',
             'marks' => 'required',
-            'total_marks' => 'required|numeric',
-            'marks_obtained' => 'required|numeric',
-            'percentage' => 'required|numeric|max:100',
+            'total_marks' => 'nullable|numeric',
+            'marks_obtained' => 'nullable|numeric',
+            'percentage' => 'nullable|numeric|max:100',
             'status' => 'required|in:FAIL,PASS,WITHHELD',
         ]);
         DB::beginTransaction();
@@ -155,14 +156,13 @@ class ResultController extends Controller
                 'backlogs' => $request->backlogs,
                 'gper' => $request->gper,
                 'total_marks' => $request->total_marks,
+                'exam_id' => $request->exam_id,
                 'percentage' => $request->percentage,
                 'marks_obtained' => $request->marks_obtained,
                 'grade' => $request->grade,
                 'withheld_reason' => $request->withheld_reason,
                 'sgpa' => $request->sgpa,
-                'cgpa' => $request->cgpa,
                 'status' => $request->status,
-                'publish_status' => $request->publish_status,
                 'student_id' => $request->student_id,
                 'level_id' => $request->level_id,
                 'created_by' => Auth::user()->id,
@@ -192,7 +192,7 @@ class ResultController extends Controller
         DB::beginTransaction();
         try {
             $result_info->delete();
-            $request->session()->flash('success', 'result removed successfully.');
+            $request->session()->flash('success', 'Result removed successfully.');
             DB::commit();
         } catch (\Exception $error) {
             DB::rollBack();
