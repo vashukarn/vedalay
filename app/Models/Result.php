@@ -19,7 +19,6 @@ class Result extends Model
         'grade',
         'withheld_reason',
         'sgpa',
-        'cgpa',
         'status',
         'publish_status',
         'student_id',

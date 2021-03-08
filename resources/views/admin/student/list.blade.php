@@ -5,12 +5,15 @@
             $(document).ready(function() {
                 $('#keyword').select2({
                     placeholder: "Search Name or Phone",
+                    allowClear: true
                 });
                 $('#level').select2({
                     placeholder: "Search by Level/Class",
+                    allowClear: true
                 });
                 $('#session').select2({
                     placeholder: "Search by Session",
+                    allowClear: true
                 });
             });
 

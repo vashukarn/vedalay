@@ -12,9 +12,11 @@
             $(document).ready(function() {
                 $('#session_id').select2({
                     placeholder: "Please Select Session",
+                    allowClear: true
                 });
                 $('#level_id').select2({
                     placeholder: "Please Select Level",
+                    allowClear: true
                 });
             });
             $('#level_id').change(function() {

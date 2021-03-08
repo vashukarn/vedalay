@@ -500,7 +500,7 @@
                         <p>Slider</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('information.index') }}"
                         class="nav-link {{ request()->is('user/information*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
@@ -513,7 +513,7 @@
                         <i class="nav-icon fas fa-star"></i>
                         <p>Features</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}"
                         class="nav-link {{ request()->is('user/testimonial*') ? 'active' : '' }}">

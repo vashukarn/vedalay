@@ -20,6 +20,7 @@
             $(document).ready(function() {
                 $('#roles').select2({
                     placeholder: "User Role",
+                    allowClear: true
                 });
             });
         </script>

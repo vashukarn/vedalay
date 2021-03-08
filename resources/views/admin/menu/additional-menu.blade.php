@@ -11,6 +11,7 @@
             $(document).ready(function() {
                 $('#category').select2({
                     placeholder: "News Category",
+                    allowClear: true
                 });
             });
 

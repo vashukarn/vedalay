@@ -35,55 +35,10 @@ class ResultController extends Controller
         }
         return $query->paginate(20);
     }
-    public function addResult(Request $request)
-    {
-        DB::beginTransaction();
-        try {
-            $backsubjects = [];
-            $marks = [];
-            foreach ($request->data[11]['value'] as $item) {
-                $marks[$item['value']['subjectid']] = [
-                    'name' => $item['value']['subjectname'],
-                    'totalmarks' => $item['value']['totmarks'],
-                    'passmarks' => $item['value']['passmark'],
-                    'marksobtained' => $item['value']['marksobt'],
-                    'grade' => $item['value']['grade']
-                ];
-            }
-            if (isset($request->data[12]['value'])) {
-                foreach ($request->data[12]['value'] as $item) {
-                    $backsubjects[$item['id']] = $item['name'];
-                }
-            }
-            $temp = [
-                'marks' => $marks,
-                'backlogs' => $backsubjects,
-                'level_id' => htmlentities($request->data[1]['value']),
-                'exam_id' => htmlentities($request->data[2]['value']),
-                'student_id' => htmlentities($request->data[3]['value']),
-                'total_marks' => htmlentities($request->data[4]['value']),
-                'marks_obtained' => htmlentities($request->data[5]['value']),
-                'percentage' => htmlentities($request->data[6]['value']),
-                'sgpa' => round(htmlentities($request->data[7]['value']), 2),
-                'grade' => htmlentities($request->data[8]['value']),
-                'status' => htmlentities($request->data[9]['value']),
-                'created_by' => Auth::user()->id,
-            ];
-            if ($request->data[10]['value']) {
-                $temp['withheld_reason'] = $request->data[10]['value'];
-            }
-            $result = Result::create($temp);
-            DB::commit();
-            return response()->json($result);
-        } catch (\Exception $error) {
-            DB::rollBack();
-            return response()->json($error->getMessage());
-        }
-    }
     protected function getSubjectExam(Request $request)
     {
-        $examtemp = Exam::where('level_id', $request->level)->get();
-        $sublist = Subject::where('level_id', $request->level)->pluck('title', 'id');
+        $examtemp = Exam::where('level_id', $request->exam_id)->get();
+        $sublist = Subject::pluck('title', 'id');
         $subject = [];
         foreach ($examtemp as $value) {
             foreach ($value->exam_routine as $key => $item) {
@@ -179,25 +134,42 @@ class ResultController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $this->validate($request, [
-            'job_role' => 'required|string|min:3|max:190',
-            'required_no' => 'nullable|numeric',
-            'salary' => 'nullable|numeric',
-            'publish_status' => 'required|in:1,0',
+            'gper' => 'required|in:Percentage,Grade',
+            'level_id' => 'required|numeric',
+            'grade' => 'required',
+            'exam_id' => 'required|numeric',
+            'student_id' => 'required|numeric',
+            'sgpa' => 'required|numeric|max:10',
+            'marks' => 'required',
+            'total_marks' => 'required|numeric',
+            'marks_obtained' => 'required|numeric',
+            'percentage' => 'required|numeric|max:100',
+            'status' => 'required|in:FAIL,PASS,WITHHELD',
         ]);
         DB::beginTransaction();
         try {
-            result::create([
-                'job_role' => htmlentities($request->job_role),
-                'publish_status' => htmlentities($request->publish_status),
-                'description' => htmlentities($request->description),
-                'salary' => htmlentities($request->salary ?? null),
-                'required_no' => htmlentities($request->required_no ?? 1),
+            $data = [
+                'marks' => $request->marks,
+                'backlogs' => $request->backlogs,
+                'gper' => $request->gper,
+                'total_marks' => $request->total_marks,
+                'percentage' => $request->percentage,
+                'marks_obtained' => $request->marks_obtained,
+                'grade' => $request->grade,
+                'withheld_reason' => $request->withheld_reason,
+                'sgpa' => $request->sgpa,
+                'cgpa' => $request->cgpa,
+                'status' => $request->status,
+                'publish_status' => $request->publish_status,
+                'student_id' => $request->student_id,
+                'level_id' => $request->level_id,
                 'created_by' => Auth::user()->id,
-            ]);
+            ];
+            Result::create($data);
             DB::commit();
-            $request->session()->flash('success', 'result added successfully.');
+            $request->session()->flash('success', 'Result added successfully.');
             return redirect()->route('result.index');
         } catch (\Exception $error) {
             DB::rollBack();
@@ -209,52 +181,6 @@ class ResultController extends Controller
     public function show($id)
     {
         //
-    }
-
-    public function edit($id)
-    {
-        $result_info = $this->result->find($id);
-        if (!$result_info) {
-            abort(404);
-        }
-        $title = 'Edit result';
-        $data = [
-            'title' => $title,
-            'result_info' => $result_info,
-        ];
-        return view('admin/result/form')->with($data);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $result_info = $this->result->find($id);
-        if (!$result_info) {
-            abort(404);
-        }
-        $this->validate($request, [
-            'job_role' => 'required|string|min:3|max:190',
-            'required_no' => 'nullable|numeric',
-            'salary' => 'nullable|numeric',
-            'publish_status' => 'required|in:1,0',
-        ]);
-        DB::beginTransaction();
-        try {
-            $result = result::find($id);
-            $result->job_role = $request->job_role;
-            $result->description = $request->description;
-            $result->salary = $request->salary ?? null;
-            $result->required_no = $request->required_no ?? 1;
-            $result->publish_status = $request->publish_status;
-            $result->updated_by = Auth::user()->id;
-            $status = $result->save();
-            DB::commit();
-            $request->session()->flash('success', 'result updated successfully.');
-            return redirect()->route('result.index');
-        } catch (\Exception $error) {
-            DB::rollBack();
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->back();
-        }
     }
 
     public function destroy(Request $request, $id)
