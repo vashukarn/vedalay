@@ -34,8 +34,8 @@
                                 <th>Marks By Subject</th>
                                 <th>Percentage / Grade</th>
                                 @if (Auth::user()->type != 'student')
-                                <th>Last Changed</th>
-                                <th>Action</th>
+                                    <th>Last Changed</th>
+                                    <th>Action</th>
                                 @endif
                             </tr>
                         </thead>
@@ -49,12 +49,12 @@
                                 <td><span class="badge @if (@$value->status == 'PASS') badge-success @elseif(@$value->status == "FAIL")
                                         badge-danger @else badge-warning @endif">{{ @$value->status }}</span> <br> <small>
                                             {{ @$value->status == 'WITHHELD' ? @$value->withheld_reason : '' }}</small>
-                                            @if (@$value->status == "FAIL")
+                                        @if (@$value->status == 'FAIL')
                                             <small>Failed Subjects : </small> <br>
-                                                @foreach ($value->backlogs as $key => $item)
+                                            @foreach ($value->backlogs as $key => $item)
                                                 <small>{{ @$subjects[$item] }}</small> <br>
-                                                @endforeach
-                                            @endif
+                                            @endforeach
+                                        @endif
                                     </td>
                                     <td>
                                         @isset($value->marks)
@@ -62,65 +62,81 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Subjects</th>
-                                                        @foreach ($value->marks as $key => $item)
-                                                            <th>{{ @$subjects[$key] }}</th>
-                                                        @endforeach
+                                                        @if ($value->gper != 'Percentage')
+                                                            <th>Credits</th>
+                                                            <th>Grade Obtained</th>
+                                                        @else
+                                                            <th>Marks Obtained</th>
+                                                            <th>Pass Marks</th>
+                                                            <th>Total Marks</th>
+                                                        @endif
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        @if ($value->gper == 'Percentage')
-                                                            <td>Marks Obtained</td>
-                                                            @foreach ($value->marks as $key => $item)
-                                                                <td>{{ $item['obtained'] }}</td>
-                                                            @endforeach
-                                                        @else
-                                                            <td>Credits</td>
-                                                            @foreach ($value->marks as $key => $item)
-                                                                <td>{{ $item['credits'] }}</td>
-                                                            @endforeach
-                                                        @endif
-                                                    </tr>
-                                                    <tr>
-                                                        @if ($value->gper == 'Percentage')
-                                                            <td>Pass Marks</td>
-                                                            @foreach ($value->marks as $key => $item)
-                                                                <td>{{ $item['pass'] }}</td>
-                                                            @endforeach
-                                                        @else
-                                                            <td>Grade</td>
-                                                            @foreach ($value->marks as $key => $item)
-                                                                <td>{{ $item['grade'] }}</td>
-                                                            @endforeach
-                                                        @endif
-                                                    </tr>
-                                                    @if ($value->gper == 'Percentage')
+                                                    <?php
+                                                    $credits = 0;
+                                                    $marks = 0;
+                                                    $pass = 0;
+                                                    $total = 0;
+                                                    ?>
+                                                    @foreach ($value->marks as $key => $item)
                                                         <tr>
-                                                            <td>Full Marks</td>
-                                                            @foreach ($value->marks as $key => $item)
+                                                            <td>{{ @$subjects[$key] }}</td>
+                                                            @if ($value->gper == 'Percentage')
+                                                            <?php
+                                                            $marks += $item['obtained'];
+                                                            $pass += $item['pass'];
+                                                            $total += $item['full'];
+                                                            ?>
+                                                                <td>{{ $item['obtained'] }}</td>
+                                                                <td>{{ $item['pass'] }}</td>
                                                                 <td>{{ $item['full'] }}</td>
-                                                            @endforeach
+                                                            @else
+                                                            <?php
+                                                            $credits += $item['credits'];
+                                                            ?>
+                                                                <td>{{ $item['credits'] }}</td>
+                                                                <td>{{ $item['grade'] }}</td>
+                                                            @endif
                                                         </tr>
-                                                    @endif
+                                                    @endforeach
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        @if ($value->gper == 'Percentage')
+                                                            <td>{{ $marks }}</td>
+                                                            <td>{{ $pass }}</td>
+                                                            <td>{{ $total }}</td>
+                                                        @else
+                                                            <td>{{ $credits/3 }}</td>
+                                                            <td>{{ $value->grade }}</td>
+                                                        @endif
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         @else
                                             Error while fetching data
                                         @endisset
                                     </td>
-                                    <td>@if ($value->gper == 'Percentage') {{ @$value->percentage }} % @else {{ @$value->grade }} @endif</td>
-                                    @if (Auth::user()->type != 'student')
-                                    <td> Changed By :{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }} Changed At: {{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}</td>
-                                    <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
-                                        <div class="mt-2 btn-group float-right">
-                                            @can('staff-edit')
-                                                <a href="{{ route('publishResult', @$value->id) }}"
-                                                    title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}"
-                                                    class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i
-                                                        class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
-                                            @endcan
-                                        </div>
+                                    <td>
+                                        @if ($value->gper == 'Percentage')
+                                        {{ @$value->percentage }} % @else {{ @$value->grade }} @endif
                                     </td>
+                                    @if (Auth::user()->type != 'student')
+                                        <td> Changed By
+                                            :{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }}
+                                            Changed At:
+                                            {{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}
+                                        </td>
+                                        <td>{{ $value->publish_status == 0 ? 'Unpublished' : 'Published' }}
+                                            <div class="mt-2 btn-group float-right">
+                                                @can('staff-edit')
+                                                    <a href="{{ route('publishResult', @$value->id) }}"
+                                                        title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}"
+                                                        class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i
+                                                            class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
+                                                @endcan
+                                            </div>
+                                        </td>
                                     @endif
                                 </tr>
                             @endforeach
@@ -131,7 +147,8 @@
                             <div class="col-md-4">
                                 <p class="text-sm">
                                     Showing <strong>{{ $data->firstItem() }}</strong> to
-                                    <strong>{{ $data->lastItem() }} </strong> of <strong> {{ $data->total() }}</strong>
+                                    <strong>{{ $data->lastItem() }} </strong> of <strong>
+                                        {{ $data->total() }}</strong>
                                     entries
                                     <span> | Takes <b>{{ round(microtime(true) - LARAVEL_START, 2) }}</b> seconds to
                                         render</span>
