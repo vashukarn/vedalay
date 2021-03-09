@@ -3,7 +3,7 @@
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-        {{-- <script src="{{ asset('/custom/expense.js') }}"></script> --}}
+        {{-- <script src="{{ asset('/custom/inventoryitem.js') }}"></script> --}}
         <script>
             $('#lfm').filemanager('image');
         </script>
@@ -16,17 +16,17 @@
                 <div class="card-header">
                     <h3 class="card-title">{{ @$title }}</h3>
                     <div class="card-tools">
-                        <a href="{{ route('expense.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('inventoryitem.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
                 @include('admin.shared.error-messages')
                 <div class="card-body">
-                    @if (isset($expense_info))
-                        {{ Form::open(['url' => route('expense.update', $expense_info->id), 'files' => true, 'class' => 'form', 'name' => 'expense_form']) }}
+                    @if (isset($inventoryitem_info))
+                        {{ Form::open(['url' => route('inventoryitem.update', $inventoryitem_info->id), 'files' => true, 'class' => 'form', 'name' => 'inventoryitem_form']) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('expense.store'), 'files' => true, 'class' => 'form', 'name' => 'expense_form']) }}
+                        {{ Form::open(['url' => route('inventoryitem.store'), 'files' => true, 'class' => 'form', 'name' => 'inventoryitem_form']) }}
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
@@ -34,7 +34,7 @@
                             <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 {{ Form::label('title', 'Title:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('title', @$expense_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'Expense Title', 'style' => 'width:80%']) }}
+                                    {{ Form::text('title', @$inventoryitem_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'inventoryitem Title', 'style' => 'width:80%']) }}
                                     @error('title')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -44,7 +44,7 @@
                             <div class="form-group row {{ $errors->has('paid_to') ? 'has-error' : '' }}">
                                 {{ Form::label('paid_to', 'Paid To:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('paid_to', @$expense_info->paid_to, ['class' => 'form-control', 'id' => 'paid_to', 'placeholder' => 'To a company or any person', 'style' => 'width:80%']) }}
+                                    {{ Form::text('paid_to', @$inventoryitem_info->paid_to, ['class' => 'form-control', 'id' => 'paid_to', 'placeholder' => 'To a company or any person', 'style' => 'width:80%']) }}
                                     @error('paid_to')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -54,7 +54,7 @@
                             <div class="form-group row {{ $errors->has('amount') ? 'has-error' : '' }}">
                                 {{ Form::label('amount', 'Spent Amount:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('amount', @$expense_info->amount, ['class' => 'form-control', 'id' => 'amount', 'placeholder' => 'Expense Amount', 'style' => 'width:80%']) }}
+                                    {{ Form::number('amount', @$inventoryitem_info->amount, ['class' => 'form-control', 'id' => 'amount', 'placeholder' => 'inventoryitem Amount', 'style' => 'width:80%']) }}
                                     @error('amount')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'Expense Image:*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('image', 'inventoryitem Image:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">
@@ -74,15 +74,15 @@
                                         <input id="image" class="form-control" type="text" name="image">
                                     </div>
                                     <div id="holder" style="
-                                            border: 1px solid #ddd;
-                                            border-radius: 4px;
-                                            padding: 5px;
-                                            width: 150px;
-                                            margin-top:15px;">
+                                                border: 1px solid #ddd;
+                                                border-radius: 4px;
+                                                padding: 5px;
+                                                width: 150px;
+                                                margin-top:15px;">
                                     </div>
-                                    @if (isset($expense_info->image))
-                                        Old Image: &nbsp; <img src="{{ $expense_info->image }}" alt="Couldn't load image"
-                                            class="img img-thumbail mt-2" style="width: 100px">
+                                    @if (isset($inventoryitem_info->image))
+                                        Old Image: &nbsp; <img src="{{ $inventoryitem_info->image }}"
+                                            alt="Couldn't load image" class="img img-thumbail mt-2" style="width: 100px">
                                     @endif
                                     @error('image')
                                         <span class="help-block error">{{ $message }}</span>
@@ -93,7 +93,7 @@
                             <div class="form-group row {{ $errors->has('remarks') ? 'has-error' : '' }}">
                                 {{ Form::label('remarks', 'Remarks:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('remarks', @$expense_info->remarks, ['class' => 'form-control', 'style' => 'width:80%']) }}
+                                    {{ Form::textarea('remarks', @$inventoryitem_info->remarks, ['class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('remarks')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

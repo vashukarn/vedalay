@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdmissionController;
 use App\Http\Controllers\Admin\AdvanceFeeController;
 use App\Http\Controllers\Admin\AdvanceSalaryController;
 use App\Http\Controllers\Admin\AppSettingController;
@@ -20,6 +19,7 @@ use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\FeePaymentController;
 use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
+use App\Http\Controllers\Admin\InventoryItemController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NoticeboardController;
@@ -38,6 +38,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserLogController;
 use App\Http\Controllers\Admin\VacancyController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProfileController;
 use App\Jobs\SendFeeAdditionJob;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('exam', ExamController::class);
     Route::resource('result', ResultController::class);
     Route::resource('team', TeamController::class);
+    Route::resource('inventory', InventoryController::class);
+    Route::resource('inventoryitem', InventoryItemController::class);
     Route::resource('homepage', HomePageController::class);
     Route::resource('salary', SalaryController::class);
     Route::resource('advancesalary', AdvanceSalaryController::class);
