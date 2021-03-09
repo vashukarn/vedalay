@@ -493,6 +493,42 @@
                     </ul>
                 </li>
                 @endcanany
+                @canany(['inventory-list', 'inventory-create','inventory-edit','inventory-delete'])
+                <li class="nav-item has-treeview {{ request()->is('user/inventory*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/inventory*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            Inventory Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('inventory-create')
+                            <li class="nav-item">
+                                <a href="{{ route('inventory.create') }}"
+                                    class="nav-link  {{ request()->is('user/inventory/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Inventory</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('inventory.index') }}"
+                                class="nav-link {{ request()->is('user/inventory') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Inventory List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('inventoryitem.index') }}"
+                                class="nav-link {{ request()->is('user/inventorylist') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Inventory Item List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
 
                 @canany(['session-list', 'session-create','session-edit','session-delete'])
                 <li class="nav-item">
