@@ -464,6 +464,35 @@
                     </ul>
                 </li>
                 @endcanany
+                @canany(['expense-list', 'expense-create','expense-edit','expense-delete'])
+                <li class="nav-item has-treeview {{ request()->is('user/expense*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/expense*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-check"></i>
+                        <p>
+                            Expense Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('expense-create')
+                            <li class="nav-item">
+                                <a href="{{ route('expense.create') }}"
+                                    class="nav-link  {{ request()->is('user/expense/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add Expense</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('expense.index') }}"
+                                class="nav-link {{ request()->is('user/expense') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Expenses List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
 
                 @canany(['session-list', 'session-create','session-edit','session-delete'])
                 <li class="nav-item">

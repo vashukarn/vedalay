@@ -230,13 +230,14 @@
 
     <!-- Start Fun Factor 
                         ============================================= -->
+    @isset($page->newsletter_counters[1]['number'])
     <div class="fun-factor-area shadow dark bg-fixed text-light default-padding"
         style="background-image: url('{{ @$page->newsletter_image ? $page->newsletter_image : asset('assets/img/nodata/7.jpg') }}');">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 fun-fact-items">
                     <div class="row">
-                        @if (isset($page->newsletter_counters))
+                        @if (isset($page->newsletter_counters[1]['number']))
                             @foreach ($page->newsletter_counters as $item)
                                 <div class="col-md-4 col-sm-4 item">
                                     <div class="fun-fact">
@@ -264,6 +265,8 @@
             </div>
         </div>
     </div>
+        
+    @endisset
     <!-- End Fun Factor -->
 
     <!-- Start Overview 

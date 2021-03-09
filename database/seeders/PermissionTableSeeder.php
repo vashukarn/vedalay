@@ -35,10 +35,10 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>11,'name'=> 'slider-edit'],
                 ['id'=>12,'name'=> 'slider-delete'],
 
-                ['id'=>13,'name'=> 'information-list'],
-                ['id'=>14,'name'=> 'information-create'],
-                ['id'=>15,'name'=> 'information-edit'],
-                ['id'=>16,'name'=> 'information-delete'],
+                ['id'=>13,'name'=> 'expense-list'],
+                ['id'=>14,'name'=> 'expense-create'],
+                ['id'=>15,'name'=> 'expense-edit'],
+                ['id'=>16,'name'=> 'expense-delete'],
 
                 ['id'=>17,'name'=> 'feature-list'],
                 ['id'=>18,'name'=> 'feature-create'],
