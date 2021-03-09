@@ -917,7 +917,7 @@
     </div>
 
     <div class="card-footer">
-        {{ Form::button("<i class='fa fa-paper-plane'></i> Save Seting", ['class' => 'btn btn-success', 'type' => 'submit']) }}
+        {{ Form::button("<i class='fa fa-paper-plane'></i> Save Setting", ['class' => 'btn btn-success', 'type' => 'submit']) }}
     </div>
 
     {{ Form::close() }}
