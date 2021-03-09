@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\FeeController;
 use App\Http\Controllers\Admin\FeePaymentController;
 use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
+use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\InventoryItemController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
@@ -38,8 +39,6 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserLogController;
 use App\Http\Controllers\Admin\VacancyController;
-use App\Http\Controllers\InventoryController;
-use App\Http\Controllers\ProfileController;
 use App\Jobs\SendFeeAdditionJob;
 use Illuminate\Support\Facades\Route;
 

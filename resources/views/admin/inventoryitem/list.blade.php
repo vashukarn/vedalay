@@ -30,6 +30,7 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Title</th>
+                                <th>Quantity</th>
                                 <th>Image</th>
                                 <th>Last Changed By</th>
                                 <th>Last Changed At</th>
@@ -41,7 +42,8 @@
                             <tr>
                               <td>{{$key+1}}.</td>
                               <td>{{ @$value->title }}</td>
-                              <td>{{ @$value->title }}</td>
+                              <td>{{ @$value->count }}</td>
+                              <td><a href="{{ @$value->image }}"><img src="{{ @$value->image }}" height="100px" alt="Image Not Found"></a></td>
                               <td>{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }}</td>
                               <td>{{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}</td>
                               <td>

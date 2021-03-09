@@ -45,7 +45,7 @@ class InventoryItemController extends Controller
     {
         // dd($request->all());
         $this->validate($request, [
-            'title' => 'required|string|min:3|max:190',
+            'title' => 'required|string|max:190',
         ]);
         $data = [
             'title' => htmlentities($request->title),
@@ -80,15 +80,10 @@ class InventoryItemController extends Controller
             abort(404);
         }
         $this->validate($request, [
-            'title' => 'required|string|min:3|max:190',
-            'paid_to' => 'required',
-            'amount' => 'required|numeric',
+            'title' => 'required|string|max:190',
         ]);
         $data = [
             'title' => htmlentities($request->title),
-            'paid_to' => htmlentities($request->paid_to),
-            'amount' => htmlentities($request->amount),
-            'remarks' => htmlentities($request->remarks),
             'updated_by' => Auth::user()->id,
         ];
         if ($request->image) {
