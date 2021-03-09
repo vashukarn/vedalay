@@ -112,7 +112,7 @@
                             <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}" style="height: 100px !important;"
                                 alt="Company Logo">
                             <p>
-                                {{ @$page->footer_company_subtitle ? $page->footer_company_subtitle : 'This is a fully operational ERP websites that conatin multi functionality modules of differnt departments i.e Hostel, Attendance, Result management etc.' }}
+                                {{ @$page->footer_company_subtitle ? $page->footer_company_subtitle : 'This is a fully operational ERP websites that contain multi functionality modules of different departments i.e Hostel, Attendance, Result Management etc.' }}
                             </p>
                             <h5>Follow Us</h5>
                             <ul>
@@ -200,7 +200,7 @@
                                         </div>
                                         <div class="info">
                                             <h5>Website:</h5>
-                                            <a href="http://vedalay.com/">
+                                            <a href="http://vedyalay.com/">
                                                 <span>vedalay.com</span>
                                             </a>
                                         </div>
