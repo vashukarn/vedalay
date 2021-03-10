@@ -10,6 +10,7 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
+            $table->enum('act',['ADD','REMOVE'])->default('ADD');
             $table->string('quantity')->nullable();
             $table->string('price_per')->nullable();
             $table->string('total_price')->nullable();

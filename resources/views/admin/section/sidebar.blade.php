@@ -507,8 +507,8 @@
                             <li class="nav-item">
                                 <a href="{{ route('inventory.create') }}"
                                     class="nav-link  {{ request()->is('user/inventory/create') ? 'active' : '' }}">
-                                    <i class="fas fa-plus-circle nav-icon"></i>
-                                    <p>Add Inventory</p>
+                                    <i class="fas fa-edit nav-icon"></i>
+                                    <p>Add or Remove Stock</p>
                                 </a>
                             </li>
                         @endcan

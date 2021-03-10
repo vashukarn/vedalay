@@ -3,9 +3,18 @@
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-        {{-- <script src="{{ asset('/custom/inventoryitem.js') }}"></script> --}}
+        {{-- <script src="{{ asset('/custom/inventory.js') }}"></script> --}}
         <script>
             $('#lfm').filemanager('image');
+            $('#price_per').change(function() {
+                $('#total_price').val(Number($('#quantity').val())*Number($('#price_per').val()));
+            });
+            $(document).ready(function() {
+                $('#item_id').select2({
+                    placeholder: "Select Item",
+                    allowClear: true
+                });
+            });
         </script>
     @endpush
 @section('content')
@@ -16,85 +25,66 @@
                 <div class="card-header">
                     <h3 class="card-title">{{ @$title }}</h3>
                     <div class="card-tools">
-                        <a href="{{ route('inventoryitem.index') }}" type="button" class="btn btn-tool">
+                        <a href="{{ route('inventory.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
                 @include('admin.shared.error-messages')
                 <div class="card-body">
-                    @if (isset($inventoryitem_info))
-                        {{ Form::open(['url' => route('inventoryitem.update', $inventoryitem_info->id), 'files' => true, 'class' => 'form', 'name' => 'inventoryitem_form']) }}
+                    @if (isset($inventory_info))
+                        {{ Form::open(['url' => route('inventory.update', $inventory_info->id), 'files' => true, 'class' => 'form', 'name' => 'inventory_form']) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('inventoryitem.store'), 'files' => true, 'class' => 'form', 'name' => 'inventoryitem_form']) }}
+                        {{ Form::open(['url' => route('inventory.store'), 'files' => true, 'class' => 'form', 'name' => 'inventory_form']) }}
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
                         <div class="col-sm-10 offset-lg-1">
-                            <div class="form-group row {{ $errors->has('title') ? 'has-error' : '' }}">
-                                {{ Form::label('title', 'Title:*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('item_id') ? 'has-error' : '' }}">
+                                {{ Form::label('item_id', 'Item:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('title', @$inventoryitem_info->title, ['class' => 'form-control', 'id' => 'title', 'placeholder' => 'inventoryitem Title', 'style' => 'width:80%']) }}
-                                    @error('title')
+                                    {{ Form::select('item_id', $items, @$inventory_info->item_id, ['class' => 'form-control select2', 'id' => 'item_id', 'placeholder' => 'Select Item', 'style' => 'width:80%']) }}
+                                    @error('item_id')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('paid_to') ? 'has-error' : '' }}">
-                                {{ Form::label('paid_to', 'Paid To:*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('act') ? 'has-error' : '' }}">
+                                {{ Form::label('act', 'Add / Remove:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('paid_to', @$inventoryitem_info->paid_to, ['class' => 'form-control', 'id' => 'paid_to', 'placeholder' => 'To a company or any person', 'style' => 'width:80%']) }}
-                                    @error('paid_to')
+                                    {{ Form::select('act', ['ADD' => 'Add','REMOVE' => 'Remove' ], @$inventory_info->act, ['class' => 'form-control', 'id' => 'act', 'style' => 'width:80%']) }}
+                                    @error('act')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('amount') ? 'has-error' : '' }}">
-                                {{ Form::label('amount', 'Spent Amount:*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('quantity') ? 'has-error' : '' }}">
+                                {{ Form::label('quantity', 'Quantity:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::number('amount', @$inventoryitem_info->amount, ['class' => 'form-control', 'id' => 'amount', 'placeholder' => 'inventoryitem Amount', 'style' => 'width:80%']) }}
-                                    @error('amount')
+                                    {{ Form::number('quantity', @$inventory_info->quantity, ['class' => 'form-control', 'id' => 'quantity', 'placeholder' => 'Enter Quantity', 'style' => 'width:80%']) }}
+                                    @error('quantity')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('image') ? 'has-error' : '' }}">
-                                {{ Form::label('image', 'inventoryitem Image:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <a id="lfm" data-input="image" data-preview="holder"
-                                                class="btn btn-primary text-white">
-                                                <i class="fa fa-picture-o"></i> Choose
-                                            </a>
-                                        </span>
-                                        <input id="image" class="form-control" type="text" name="image">
-                                    </div>
-                                    <div id="holder" style="
-                                                border: 1px solid #ddd;
-                                                border-radius: 4px;
-                                                padding: 5px;
-                                                width: 150px;
-                                                margin-top:15px;">
-                                    </div>
-                                    @if (isset($inventoryitem_info->image))
-                                        Old Image: &nbsp; <img src="{{ $inventoryitem_info->image }}"
-                                            alt="Couldn't load image" class="img img-thumbail mt-2" style="width: 100px">
-                                    @endif
-                                    @error('image')
+                            <div class="form-group row {{ $errors->has('price_per') ? 'has-error' : '' }}">
+                                {{ Form::label('price_per', 'Price of Unit:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-9">
+                                    {{ Form::number('price_per', @$inventory_info->price_per, ['class' => 'form-control', 'id' => 'price_per', 'placeholder' => 'Enter Single Item Price', 'style' => 'width:80%']) }}
+                                    @error('price_per')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('remarks') ? 'has-error' : '' }}">
-                                {{ Form::label('remarks', 'Remarks:*', ['class' => 'col-sm-3']) }}
+                            <div class="form-group row {{ $errors->has('total_price') ? 'has-error' : '' }}">
+                                {{ Form::label('total_price', 'Total Price:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::textarea('remarks', @$inventoryitem_info->remarks, ['class' => 'form-control', 'style' => 'width:80%']) }}
-                                    @error('remarks')
+                                    {{ Form::number('total_price', @$inventory_info->total_price, ['class' => 'form-control', 'id' => 'total_price', 'placeholder' => 'Total Price', 'style' => 'width:80%']) }}
+                                    @error('total_price')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>

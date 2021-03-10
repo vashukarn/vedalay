@@ -12,12 +12,17 @@ class Inventory extends Model
     protected $fillable = [
         'quantity',
         'price_per',
+        'act',
         'total_price',
         'item_id',
         'created_by',
         'updated_by',
     ];
     protected $dates = ['deleted_at'];
+    public function item()
+    {
+        return $this->hasOne('App\Models\InventoryItem', 'id', 'item_id');
+    }
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
