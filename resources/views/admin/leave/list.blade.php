@@ -42,10 +42,11 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Leave Subject</th>
+                                <th>Requested By</th>
                                 <th>Request Time</th>
                                 <th>Status</th>
                                 <th>Image</th>
-                                <th>Status</th>
+                                <th>Type</th>
                                 @if(Auth::user()->type == 'superadmin' || Auth::user()->type == 'admin')
                                 <th style="text-align:center;" width="10%">Action</th>
                                 @endif
@@ -56,6 +57,11 @@
                                 <tr>
                                     <td>{{ $key + 1 }}.</td>
                                     <td>{{ @$value->title }}</td>
+                                <td><a href="@if(@$value->creator->type == 'student'){{ route('student.show', @$studentid[$value->creator->id]) }}
+                                    @elseif(@$value->creator->type == 'teacher'){{ route('teacher.show', @$teacherid[$value->creator->id]) }}
+                                    @elseif(@$value->creator->type == 'staff'){{ route('staff.show', @$staffid[$value->creator->id]) }}
+                                    @else#
+                                    @endif">{{ @$value->creator->name }}</a></td>
                                     <td>From : {{ ReadableDate(@$value->from_date, 'ymd') }}
                                         <br>To : {{ ReadableDate(@$value->to_date, 'ymd') }}
                                         <br>Interval : {{ @$value->days }}
@@ -96,11 +102,6 @@
                                                     {{ Form::close() }}
                                                 @endcan
                                             @endif
-                                            @can('leave-delete')
-                                                {{ Form::open(['method' => 'DELETE', 'route' => ['leave.destroy', $value->id], 'style' => 'display:inline', 'onsubmit' => 'return confirm("Are you sure you want to delete this leave?")']) }}
-                                                {{ Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm btn-flat', 'type' => 'submit', 'title' => 'Delete leave ']) }}
-                                                {{ Form::close() }}
-                                            @endcan
                                             @endif
                                         </div>
                                     </td>

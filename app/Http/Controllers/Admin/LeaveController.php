@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\Staff;
+use App\Models\Student;
+use App\Models\Teacher;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,12 +29,24 @@ class LeaveController extends Controller
             $keyword = $request->keyword;
             $query = $query->where('title', $keyword);
         }
+        if(Auth::user()->type == 'teacher' || Auth::user()->type == 'staff' || Auth::user()->type == 'student'){
+            $query = $query->where('created_by', Auth::user()->id);
+        }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
         $data = $this->getleave($request);
-        return view('admin/leave/list', compact('data'));
+        $studentid = Student::pluck('id', 'user_id');
+        $teacherid = Teacher::pluck('id', 'user_id');
+        $staffid = Staff::pluck('id', 'user_id');
+        $data = [
+            'data' => $data,
+            'studentid' => $studentid,
+            'teacherid' => $teacherid,
+            'staffid' => $staffid,
+        ];
+        return view('admin/leave/list')->with($data);
     }
 
     public function create(Request $request)
@@ -111,24 +126,6 @@ class LeaveController extends Controller
             }
             $leave_info->save();
             $request->session()->flash('success', 'Leave updated successfully.');
-            return redirect()->route('leave.index');
-        } catch (\Exception $error) {
-            $request->session()->flash('error', $error->getMessage());
-            return redirect()->back();
-        }
-    }
-
-    public function destroy(Request $request, $id)
-    {
-        $leave_info = $this->leave->find($id);
-        if (!$leave_info) {
-            abort(404);
-        }
-        try {
-            $leave_info->delete();
-            $data['updated_by'] = Auth::user()->id;
-            $request->session()->flash('success', 'leave deleted successfully.');
-            cache()->forget('app_leave');
             return redirect()->route('leave.index');
         } catch (\Exception $error) {
             $request->session()->flash('error', $error->getMessage());
