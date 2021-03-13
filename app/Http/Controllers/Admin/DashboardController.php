@@ -9,6 +9,7 @@ use App\Models\Assignment;
 use App\Models\Attendance;
 use App\Models\Exam;
 use App\Models\Fee;
+use App\Models\Leave;
 use App\Models\NoticeBoard;
 use App\Models\Salary;
 use App\Models\Student;
@@ -28,6 +29,7 @@ class DashboardController extends Controller
     public function index(){
         $id = Auth::user()->id;
         $type = Auth::user()->type;
+        $leaves = Leave::where('created_by', $id)->where('status', 'ACCEPTED')->count();
         if($type == 'teacher'){
             $teacher = Teacher::where('user_id', $id)->first();
             $subjectcount = Subject::whereIn('id',$teacher->subject)->count();
@@ -99,6 +101,7 @@ class DashboardController extends Controller
             'advancesalary' => $advancesalary ?? null,
             'paidsalary' => $paidsalary ?? null,
             'incentives' => $incentives ?? null,
+            'leaves' => $leaves ?? null,
             'extraclass' => $extraclass ?? null,
             'assignment' => $assignment ?? null,
             'attendance_percentage' => $attendance_percentage ?? null,

@@ -474,15 +474,17 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @hasanyrole('Admin|Teacher|Staff|Student')
                         @can('leave-create')
                             <li class="nav-item">
                                 <a href="{{ route('leave.create') }}"
                                     class="nav-link  {{ request()->is('user/leave/create') ? 'active' : '' }}">
                                     <i class="fas fa-plus-circle nav-icon"></i>
-                                    <p>Add leave</p>
+                                    <p>Request leave</p>
                                 </a>
                             </li>
                         @endcan
+                        @endhasanyrole
                         <li class="nav-item">
                             <a href="{{ route('leave.index') }}"
                                 class="nav-link {{ request()->is('user/leave') ? 'active' : '' }}">

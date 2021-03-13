@@ -25,8 +25,7 @@
                             <form action="" class="">
                                 <div class="row">
                                     <div class="p-1 col-lg-4 col-md-4 col-sm-4">
-                                        {!! Form::text('keyword', @request()->keyword, ['class' => 'form-control', 'placeholder' =>
-                                        'Search Title']) !!}
+                                        {!! Form::text('keyword', @request()->keyword, ['class' => 'form-control', 'placeholder' => 'Search Title']) !!}
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                         <button class="btn btn-primary btn-flat"><i class="fa fa fa-search"></i>
@@ -35,55 +34,78 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="p-1 col-lg-3">
-                            <div class="card-tools">
-                                @can('rider-create')
-                                <a href="{{ route('leave.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Add New leave</a>
-                                @endcan
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
-                    <table class="table table-striped table-hover"> {{-- table-bordered--}}
+                    <table class="table table-striped table-hover"> {{-- table-bordered --}}
                         <thead>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>leave</th>
-                                <th>Image</th>
+                                <th>Leave Subject</th>
+                                <th>Requested By</th>
+                                <th>Request Time</th>
                                 <th>Status</th>
+                                <th>Image</th>
+                                <th>Type</th>
+                                @if(Auth::user()->type == 'superadmin' || Auth::user()->type == 'admin')
                                 <th style="text-align:center;" width="10%">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $key=>$value)
-                            {{-- {{ dd($value->image) }} --}}
-                            <tr>
-                              <td>{{$key+1}}.</td>
-                              <td>{{ @$value->title }}</td>
-                              <td>
-                                <img src="{{ asset(@$value->image) }}" alt="{{ @$value->title}}" class="img img-thumbail" style="width:60px">    
-                            </td>
-
-                              <td>
-                                <span class="badge badge-{{ $value->publish_status=='1' ?'success':'danger' }}">
-                                {{ $value->publish_status=='1'?'Active':'Inactive' }}
-                                </span>
-                              </td>
-                              <td>
-                                <div class="btn-group">
-                                  @can('rider-edit')
-                                  <a href="{{route('leave.edit',$value->id)}}" title="Edit leave" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
-                                  @endcan
-                                  @can('rider-delete')
-                                  {{Form::open(['method' => 'DELETE','route' => ['leave.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this leave?")']) }}
-                                  {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete leave '])}}
-                                  {{ Form::close() }}
-                                  @endcan
-                              </div>
-                              </td>
-                            </tr>
+                            @foreach ($data as $key => $value)
+                                <tr>
+                                    <td>{{ $key + 1 }}.</td>
+                                    <td>{{ @$value->title }}</td>
+                                <td><a href="@if(@$value->creator->type == 'student'){{ route('student.show', @$studentid[$value->creator->id]) }}
+                                    @elseif(@$value->creator->type == 'teacher'){{ route('teacher.show', @$teacherid[$value->creator->id]) }}
+                                    @elseif(@$value->creator->type == 'staff'){{ route('staff.show', @$staffid[$value->creator->id]) }}
+                                    @else#
+                                    @endif">{{ @$value->creator->name }}</a></td>
+                                    <td>From : {{ ReadableDate(@$value->from_date, 'ymd') }}
+                                        <br>To : {{ ReadableDate(@$value->to_date, 'ymd') }}
+                                        <br>Interval : {{ @$value->days }}
+                                    </td>
+                                    <td>
+                                    <span class="badge @if ($value->status == 'PENDING') badge-warning @elseif($value->status=='ACCEPTED')
+                                        badge-success @elseif($value->status=='DECLINED') badge-danger @endif">
+                                            {{ $value->status }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @isset($value->image)
+                                            <a href="{{ asset(@$value->image) }}">
+                                                <img src="{{ asset(@$value->image) }}" alt="{{ @$value->title }}"
+                                                    class="img img-thumbail" style="width:60px">
+                                            </a>
+                                        @else
+                                            No Image Uploaded
+                                        @endisset
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-primary">
+                                            {{ $value->type }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            @if(Auth::user()->type == 'superadmin' || Auth::user()->type == 'admin')
+                                            @if ($value->status == 'PENDING')
+                                                @can('leave-edit')
+                                                    {{ Form::open(['method' => 'PUT', 'route' => ['leave.update', $value->id], 'style' => 'display:inline', 'onsubmit' => 'return confirm("Are you sure you want to approve this leave?")']) }}
+                                                    <input type="hidden" name="status" value="confirm">
+                                                    {{ Form::button('<i class="fas fa-check"></i>', ['class' => 'btn btn-success btn-sm btn-flat', 'type' => 'submit', 'title' => 'Approve Leave']) }}
+                                                    {{ Form::close() }}
+                                                    {{ Form::open(['method' => 'PUT', 'route' => ['leave.update', $value->id], 'style' => 'display:inline', 'onsubmit' => 'return confirm("Are you sure you want to decline this leave?")']) }}
+                                                    <input type="hidden" name="status" value="reject">
+                                                    {{ Form::button('<i class="fas fa-ban"></i>', ['class' => 'btn btn-warning btn-sm btn-flat', 'type' => 'submit', 'title' => 'Decline Leave']) }}
+                                                    {{ Form::close() }}
+                                                @endcan
+                                            @endif
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -91,12 +113,16 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <p class="text-sm">
-                                  Showing <strong>{{ $data->firstItem() }}</strong>  to <strong>{{ $data->lastItem() }} </strong>  of <strong> {{$data->total()}}</strong> entries
-                                  <span> | Takes <b>{{ round((microtime(true) - LARAVEL_START),2) }}</b> seconds to render</span>
+                                    Showing <strong>{{ $data->firstItem() }}</strong> to
+                                    <strong>{{ $data->lastItem() }} </strong> of <strong>
+                                        {{ $data->total() }}</strong>
+                                    entries
+                                    <span> | Takes <b>{{ round(microtime(true) - LARAVEL_START, 2) }}</b> seconds to
+                                        render</span>
                                 </p>
                             </div>
                             <div class="col-md-8">
-                                <span class="pagination-sm m-0 float-right">{{$data->links()}}</span>
+                                <span class="pagination-sm m-0 float-right">{{ $data->links() }}</span>
                             </div>
                         </div>
                     </div>

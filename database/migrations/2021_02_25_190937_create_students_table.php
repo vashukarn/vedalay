@@ -16,6 +16,7 @@ class CreateStudentsTable extends Migration
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
             $table->longText('documents')->nullable();
+            $table->string('medical_certificate')->nullable();
             $table->string('caste_category')->nullable();
             $table->enum('disability',['0','1'])->default('0');
             $table->enum('regpriv',['REGULAR','PRIVATE'])->default('REGULAR');

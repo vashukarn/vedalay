@@ -137,6 +137,19 @@
                         <div class="icon">
                             <i class="fas fa-rupee-sign"></i>
                         </div>
+                    </div>
+                </div>
+                @endhasanyrole
+                @hasanyrole('Teacher|Staff|Student|Admin')
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="small-box bg-navy">
+                        <div class="inner" style="color:#fff;">
+                            <h3>{{ @$leaves }}</h3>
+                            <p>Granted Leaves</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
                         {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
                                 class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
