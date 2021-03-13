@@ -14,6 +14,7 @@ class Student extends Model
         'session',
         'level_id',
         'dob',
+        'medical_certificate',
         'blood_group',
         'documents',
         'caste_category',

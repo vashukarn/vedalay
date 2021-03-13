@@ -37,7 +37,7 @@
                         </div>
                         <div class="p-1 col-lg-3">
                             <div class="card-tools">
-                                @can('rider-create')
+                                @can('leave-create')
                                 <a href="{{ route('faq.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
                                     <i class="fa fa-plus"></i> Add New FAQ</a>
                                 @endcan
@@ -72,10 +72,10 @@
 
                               <td>
                                 <div class="btn-group">
-                                  @can('rider-edit')
+                                  @can('leave-edit')
                                   <a href="{{route('faq.edit',$value->id)}}" title="Edit Faq" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
                                   @endcan
-                                  @can('rider-delete')
+                                  @can('leave-delete')
                                   {{Form::open(['method' => 'DELETE','route' => ['faq.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this Faq?")']) }}
                                   {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete Faq '])}}
                                   {{ Form::close() }}
