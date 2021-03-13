@@ -7,19 +7,10 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $permissions = [
-            /*  'role-list',
-               'role-create',
-               'role-edit',
-               'role-delete',
-                */
+            
                 ['id'=>1,'name'=> 'user-list'],
                 ['id'=>2,'name'=>  'user-create'],
                 ['id'=>3,'name'=> 'user-edit'],
@@ -70,10 +61,10 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>39,'name'=> 'contact-edit'],
                 ['id'=>40,'name'=> 'contact-delete'],
 
-                ['id'=>41,'name'=> 'profile-list'],
-                ['id'=>42,'name'=> 'profile-create'],
-                ['id'=>43,'name'=> 'profile-edit'],
-                ['id'=>44,'name'=> 'profile-delete'],
+                ['id'=>41,'name'=> 'leave-list'],
+                ['id'=>42,'name'=> 'leave-create'],
+                ['id'=>43,'name'=> 'leave-edit'],
+                ['id'=>44,'name'=> 'leave-delete'],
 
                 ['id'=>45,'name'=> 'student-list'],
                 ['id'=>46,'name'=> 'student-create'],
