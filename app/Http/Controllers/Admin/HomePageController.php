@@ -163,11 +163,11 @@ class HomePageController extends Controller
         if($request->newsletter_image){
             $data['newsletter_image'] = $request->newsletter_image;
         }
-        // foreach ($request->work_detail as $key => $value) {
-        //     if(isset($value['image'])){
-        //         $data['work_detail'][$key]['image'] = $value['image'];
-        //     }
-        // }
+         foreach($request->work_detail as $key => $value) {
+             if(isset($value['image'])){
+                 $data['work_detail'][$key]['image'] = $value['image'];
+             }
+         }
         try {
             $homepage->fill($data)->save();
             $request->session()->flash('success', 'Home Page Data updated successfully.');

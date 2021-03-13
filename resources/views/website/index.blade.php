@@ -291,7 +291,7 @@
                                 @foreach ($page->work_detail as $key => $item)
                                     <li class=" {{ $key == 1 ? 'active' : '' }}">
                                         <a data-toggle="tab" href="#tab{{ $key }}" aria-expanded="true">
-                                            {{ $item['title'] }}
+                                            {{ @$item['title'] }}
                                         </a>
                                     </li>
                                 @endforeach
@@ -307,18 +307,22 @@
                                 @foreach ($page->work_detail as $key => $item)
                                     <div id="tab{{ $key }}" class="tab-pane fade active in">
                                         <div class="col-md-6 thumb">
-                                            <img src="{{ $item['image'] }}" alt="{{ $item['title'] }}">
+                                            <img src="{{ @$item['image'] }}" alt="{{ @$item['title'] }}">
                                         </div>
                                         <div class="col-md-6 info">
-                                            <h3>{{ $item['subtitle'] }}</h3>
-                                            <p>{{ $item['description'] }}</p>
+                                            <h3>{{ @$item['subtitle'] }}</h3>
+                                            <p>{{ @$item['description'] }}</p>
                                             <ul>
+                                                @isset($item['bullet'])
+                                                    
+                                                
                                                 @foreach ($item['bullet'] as $single)
                                                     <li>
                                                         <h4>{{ $single['title'] }}</h4>
                                                         {{ $single['subtitle'] }}
                                                     </li>
                                                 @endforeach
+                                                @endisset
                                             </ul>
                                         </div>
                                     </div>
