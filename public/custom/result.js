@@ -7,7 +7,6 @@ $(function() {
                 total_marks :{
                     digits: true,
                     min: 0,
-                    
                 },
                 marks_obtained :{
                     digits: true,

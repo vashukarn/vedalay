@@ -6,7 +6,7 @@
         {{-- <script src="{{ asset('/custom/inventory.js') }}"></script> --}}
         <script>
             $('#lfm').filemanager('image');
-            $('#price_per').change(function() {
+            $('#price_per').change(function()
                 $('#total_price').val(Number($('#quantity').val())*Number($('#price_per').val()));
             });
             $(document).ready(function() {

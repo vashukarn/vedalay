@@ -464,6 +464,35 @@
                     </ul>
                 </li>
                 @endcanany
+                @canany(['leave-list', 'leave-create','leave-edit','leave-delete'])
+                <li class="nav-item has-treeview {{ request()->is('user/leave*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/leave*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-calendar-day"></i>
+                        <p>
+                            Leave Management
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('leave-create')
+                            <li class="nav-item">
+                                <a href="{{ route('leave.create') }}"
+                                    class="nav-link  {{ request()->is('user/leave/create') ? 'active' : '' }}">
+                                    <i class="fas fa-plus-circle nav-icon"></i>
+                                    <p>Add leave</p>
+                                </a>
+                            </li>
+                        @endcan
+                        <li class="nav-item">
+                            <a href="{{ route('leave.index') }}"
+                                class="nav-link {{ request()->is('user/leave') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Leave List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endcanany
                 @canany(['expense-list', 'expense-create','expense-edit','expense-delete'])
                 <li class="nav-item has-treeview {{ request()->is('user/expense*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('user/expense*') ? 'active' : '' }}">

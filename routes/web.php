@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\HomePageController;
 use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\Admin\InventoryItemController;
+use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NoticeboardController;
@@ -45,14 +46,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 Route::get('two-factor-recovery', [UserController::class, 'recovery'])->middleware('guest');
 Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], function () {
-
-    // Route::get('email', function(){
-    //     dispatch(new SendFeeAdditionJob('5'));
-    //     });
-    // Route::get('email-test', function(){
-    //     dispatch(new SendFeeAdditionJob('5'));
-    //     dd('done');
-    //     });
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('feeadvance', AdvanceFeeController::class);
@@ -87,6 +80,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('teacher', TeacherController::class);
     Route::resource('staff', StaffController::class);
     Route::resource('attendance', AttendanceController::class);
+    Route::resource('leave', LeaveController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('noticeboard', NoticeboardController::class);

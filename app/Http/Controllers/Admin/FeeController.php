@@ -128,7 +128,7 @@ class FeeController extends Controller
                     'level_id' => htmlentities($request->level),
                 ]);
                 DB::commit();
-                dispatch(new SendFeeAdditionJob($value));
+                // dispatch(new SendFeeAdditionJob($value));
             }
             $request->session()->flash('success', 'Fee added successfully.');
             return redirect()->route('fee.index');
