@@ -50,7 +50,6 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Title</th>
-                                <th>Image</th>
                                 <th>View Count</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
@@ -61,10 +60,6 @@
                                 <tr>
                                     <td>{{ $key + 1 }}.</td>
                                     <td>{{ $value->title }}</td>
-                                    <td>
-                                        <img src="{{ @$value->image }}" alt="{{ @$value->title }}"
-                                            class="img img-thumbail" style="width:60px">
-                                    </td>
                                     <td><span class="badge badge-primary">
                                             {{ $value->view_count }}
                                         </span></td>

@@ -7,6 +7,7 @@ use App\Jobs\SendFeeAdditionJob;
 use App\Mail\FeeAdditionMail;
 use App\Models\Fee;
 use App\Models\Level;
+use App\Models\Notification;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,6 +45,11 @@ class FeeController extends Controller
     }
     protected function getFee($request)
     {
+        if (Auth::user()->type == 'student') {
+            $query = $this->fee->orderBy('id', 'DESC')->where('student_id', Auth::user()->id)->where('rollback', '0');
+        } else {
+            $query = $this->fee->orderBy('id', 'DESC');
+        }
         $query = $this->fee->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
@@ -122,10 +128,16 @@ class FeeController extends Controller
                     'eca_fee' => htmlentities($request->eca_fee),
                     'late_fine' => htmlentities($request->late_fine),
                     'extra_fee' => htmlentities($request->extra_fee),
-                    'total_amount' => htmlentities($request->tuition_fee) + htmlentities($request->exam_fee) + htmlentities($request->transport_fee) + htmlentities($request->stationery_fee) + htmlentities($request->sports_fee) + htmlentities($request->club_fee) + htmlentities($request->hostel_fee) + htmlentities($request->laundry_fee) + htmlentities($request->education_tax) + htmlentities($request->eca_fee) + htmlentities($request->late_fine) + htmlentities($request->extra_fee),
+                    'total_amount' => htmlentities($request->tuition_fee ?? 0) + htmlentities($request->exam_fee ?? 0) + htmlentities($request->transport_fee ?? 0) + htmlentities($request->stationery_fee ?? 0) + htmlentities($request->sports_fee ?? 0) + htmlentities($request->club_fee ?? 0) + htmlentities($request->hostel_fee ?? 0) + htmlentities($request->laundry_fee ?? 0) + htmlentities($request->education_tax ?? 0) + htmlentities($request->eca_fee ?? 0) + htmlentities($request->late_fine ?? 0) + htmlentities($request->extra_fee ?? 0),
                     'student_id' => $value,
                     'unique' => $timestamp,
                     'level_id' => htmlentities($request->level),
+                ]);
+                Notification::create([
+                    'title' => 'Fee Added to Account',
+                    'link' => route('fee.index'),
+                    'user_id' => $value,
+                    'created_by' => Auth::user()->id,
                 ]);
                 DB::commit();
                 // dispatch(new SendFeeAdditionJob($value));

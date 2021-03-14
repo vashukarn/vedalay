@@ -88,6 +88,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('assignment', AssignmentController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
+    Route::get('clearNotification/{id}', [DashboardController::class, 'clearNotification'])->name('clearNotification');
     Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('admission', [StudentController::class, 'admission'])->name('admission');
     Route::get('admissionshow/{id}', [StudentController::class, 'admissionshow'])->name('admissionshow');

@@ -11,13 +11,16 @@ use App\Models\Exam;
 use App\Models\Fee;
 use App\Models\Leave;
 use App\Models\NoticeBoard;
+use App\Models\Notification;
 use App\Models\Salary;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -68,7 +71,7 @@ class DashboardController extends Controller
             $feetemp = Fee::where('rollback', '0')->where('student_id', $id)->get();
 
             foreach ($feetemp as $item) {
-                $due_fee += $item->fees['total_amount'];
+                $due_fee += $item->total_amount;
             }
             if(count($attendtemp) > 0){
                 foreach ($attendtemp as $temp) {
@@ -112,5 +115,21 @@ class DashboardController extends Controller
 
         return view('admin.dashboard')->with($data);
     }
+
+    public function clearNotification(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            Notification::where('user_id', $id)->delete();
+            DB::commit();
+            $request->session()->flash('success', 'Notification cleared successfully.');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $request->session()->flash('error', $e->getMessage());
+            return redirect()->back();
+        }
+    }
+
 
 }

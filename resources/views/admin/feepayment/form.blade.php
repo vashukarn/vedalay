@@ -45,6 +45,19 @@
         });
     });
 
+    var tuition = 0;
+    var exam = 0;
+    var transport = 0;
+    var stationery = 0;
+    var sports = 0;
+    var club = 0;
+    var hostel = 0;
+    var laundry = 0;
+    var education = 0;
+    var eca = 0;
+    var extra = 0;
+    var late = 0;
+    var total = 0;
     $('#student_id').change(function () {
         $('#feedetail').hide();
         $('#feepayment').hide();
@@ -66,19 +79,6 @@
                     $('#feedetail').show();
                     $('#feepayment').show();
                     tablebody.empty();
-                    var tuition = 0;
-                    var exam = 0;
-                    var transport = 0;
-                    var stationery = 0;
-                    var sports = 0;
-                    var club = 0;
-                    var hostel = 0;
-                    var laundry = 0;
-                    var education = 0;
-                    var eca = 0;
-                    var extra = 0;
-                    var late = 0;
-                    var total = 0;
                     for (var i = 0; i < data.length; i++) {
                         total += Number(data[i].total_amount);
                         late += Number(data[i].late_fine);
@@ -182,6 +182,22 @@
             Number($('#extra_fee').val());
         $("#total_amount").val(total);
     });
+    
+    $("#autofill").click(function() {
+        $('#tuition_fee').val(Number(tuition));
+        $('#exam_fee').val(Number(exam));
+        $('#transport_fee').val(Number(transport));
+        $('#stationery_fee').val(Number(stationery));
+        $('#sports_fee').val(Number(sports));
+        $('#club_fee').val(Number(club));
+        $('#hostel_fee').val(Number(hostel));
+        $('#laundry_fee').val(Number(laundry));
+        $('#education_tax').val(Number(education));
+        $('#eca_fee').val(Number(eca));
+        $('#late_fine').val(Number(extra));
+        $('#extra_fee').val(Number(late));
+        $("#total_amount").val(Number(total));
+    });
 
 </script>
 @endpush
@@ -266,6 +282,8 @@
 
                             
                             <div id="feepayment">
+                                
+                            {{ Form::button("<i class='fa fa-fill-drip'></i> Auto Fill", ['id' => 'autofill','class' => 'mt-4 btn btn-primary btn-flat']) }}
 
                                 <div class="form-group row mt-4">
                                     {{ Form::label('tuition_fee', 'Tuition Fee :', ['class' => 'col-sm-2']) }}

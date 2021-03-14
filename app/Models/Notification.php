@@ -4,30 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Notification extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $fillable = [
-        'user_id',
         'title',
-        'image',
-        'type',
-        "user_type",
-        'description',
-        'extra_data',
-        'slug',
-        'external_url',
-        'seen_status',
+        'link',
+        'user_id',
+        'created_by',
     ];
     protected $dates = ['deleted_at'];
-    protected $casts  = [
-        'extra_data' => 'json'
-    ];
-    public function get_user()
+    public function creator()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
     }
 }

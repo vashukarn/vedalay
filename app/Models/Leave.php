@@ -12,6 +12,7 @@ class Leave extends Model
     protected $fillable = [
         'title',
         'from_date',
+        'declined_reason',
         'to_date',
         'image',
         'type',
