@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendExamPublishJob;
 use App\Models\Exam;
 use App\Models\Level;
+use App\Models\Notification;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\Subject;
@@ -25,7 +26,12 @@ class ExamController extends Controller
     }
     protected function getexam($request)
     {
-        $query = $this->exam->orderBy('id', 'DESC');
+        if (Auth::user()->type == 'student') {
+            $studentlevel = Student::where('user_id', Auth::user()->id)->first();
+            $query = $this->exam->orderBy('id', 'DESC')->where('level_id', $studentlevel->level_id)->where('publish_status', '1');
+        } else {
+            $query = $this->exam->orderBy('id', 'DESC');
+        }
         if ($request->keyword) {
             $keyword = $request->keyword;
             $query = $query->where('title', $keyword);
@@ -94,19 +100,25 @@ class ExamController extends Controller
             }
             else{
                 $exam_info->publish_status = '1';
+                $students = Student::where('level_id', $exam_info->level_id)->get();
+                foreach ($students as $key => $value) {
+                    Notification::create([
+                        'title' => $exam_info->title.' Published',
+                        'link' => route('exam.show', @$exam_info->id),
+                        'user_id' => $value->user_id,
+                        'created_by' => Auth::user()->id,
+                    ]);
+                    // $details['id'] = $value->user_id;
+                    // $details['title'] = $exam_info->title;
+                    // $details['level_id'] = $exam_info->level_id;
+                    // $details['session_id'] = $exam_info->session_id;
+                    // $details['exam_routine'] = $exam_info->exam_routine;
+                    // dispatch(new SendExamPublishJob($details));
+                }
             }
             $exam_info->updated_by = Auth::user()->id;
             $exam_info->save();
             DB::commit();
-            // $students = Student::where('level_id', $exam_info->level_id)->get();
-            // foreach ($students as $key => $value) {
-            //     $details['id'] = $value->user_id;
-            //     $details['title'] = $exam_info->title;
-            //     $details['level_id'] = $exam_info->level_id;
-            //     $details['session_id'] = $exam_info->session_id;
-            //     $details['exam_routine'] = $exam_info->exam_routine;
-            //     dispatch(new SendExamPublishJob($details));
-            // }
             return redirect()->back();
 
         } catch (\Exception $error) {

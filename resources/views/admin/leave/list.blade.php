@@ -14,13 +14,7 @@
                 </div>
                 <div class="card-header">
                     <div class="row">
-                        <div class="p-1 col-lg-2">
-                            <div class="btn-group">
-                                <a href="{{ route('leave.index') }}" class="btn btn-primary btn-flat btn-sm">
-                                    <i class="fas fa-sync-alt fa-sm"></i> Refresh
-                                </a>
-                            </div>
-                        </div>
+                        @if(Auth::user()->type == 'superadmin' || Auth::user()->type == 'admin')
                         <div class="p-1 col-lg-7">
                             <form action="" class="">
                                 <div class="row">
@@ -34,6 +28,7 @@
                                 </div>
                             </form>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">

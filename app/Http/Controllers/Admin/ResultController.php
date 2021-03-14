@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
 use App\Models\Level;
+use App\Models\Notification;
 use App\Models\Result;
 use App\Models\Student;
 use App\Models\Subject;
@@ -93,6 +94,12 @@ class ResultController extends Controller
                 $result_info->publish_status = '0';
             } else {
                 $result_info->publish_status = '1';
+                Notification::create([
+                    'title' => 'Exam Result Published',
+                    'link' => route('result.index'),
+                    'user_id' => $result_info->student_id,
+                    'created_by' => Auth::user()->id,
+                ]);
             }
             $result_info->updated_by = Auth::user()->id;
             $result_info->save();

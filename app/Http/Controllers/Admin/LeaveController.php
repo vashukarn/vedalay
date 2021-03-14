@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leave;
+use App\Models\Notification;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -90,6 +91,12 @@ class LeaveController extends Controller
         ];
         try {
             $this->leave->fill($data)->save();
+            Notification::create([
+                'title' => $request->title.' Leave Request',
+                'link' => route('leave.index'),
+                'user_id' => '1',
+                'created_by' => Auth::user()->id,
+            ]);
             $request->session()->flash('success', 'Leave requested successfully.');
             return redirect()->route('leave.index');
         } catch (\Exception $error) {
@@ -121,8 +128,20 @@ class LeaveController extends Controller
         ]);
             if ($request->status == 'confirm') {
                 $leave_info->status = 'ACCEPTED';
+                Notification::create([
+                    'title' => 'Leave Request Accepted',
+                    'link' => route('leave.index'),
+                    'user_id' => $leave_info->created_by,
+                    'created_by' => Auth::user()->id,
+                ]);
             } else {
                 $leave_info->status = 'DECLINED';
+                Notification::create([
+                    'title' => 'Leave Request Declined',
+                    'link' => route('leave.index'),
+                    'user_id' => $leave_info->created_by,
+                    'created_by' => Auth::user()->id,
+                ]);
             }
             $leave_info->save();
             $request->session()->flash('success', 'Leave updated successfully.');

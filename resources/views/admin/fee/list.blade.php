@@ -44,12 +44,17 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Title</th>
+                                @role('Student')
+                                <th>Fee</th>
+                                <th>Total Amount</th>
+                                @else
                                 <th>Level</th>
                                 <th>Amount</th>
                                 <th>Added By</th>
                                 <th>Adding Date</th>
                                 <th>Status</th>
                                 <th style="text-align:center;" width="10%">Action</th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +62,24 @@
                             <tr>
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->title }}</td>
+                            @role('Student')
+                            <td>
+                                <strong> Fee Details:</strong> <br>
+                                Tuition Fee: {{ @$value->tuition_fee ?? 0 }} &emsp; &emsp;
+                                Exam Fee: {{ @$value->exam_fee ?? 0 }} &emsp; &emsp;
+                                Transport Fee: {{ @$value->transport_fee ?? 0 }} &emsp; &emsp;
+                                Stationery Fee: {{ @$value->stationery_fee ?? 0 }} <br>
+                                Sports Fee: {{ @$value->sports_fee ?? 0 }}  &emsp; &emsp;
+                                Club Fee: {{ @$value->club_fee ?? 0 }} &emsp; &emsp;
+                                Hostel Fee: {{ @$value->hostel_fee ?? 0 }} &emsp; &emsp;
+                                Laundry Fee: {{ @$value->laundry_fee ?? 0 }} <br>
+                                Education Tax: {{ @$value->education_tax ?? 0 }} &emsp; &emsp;
+                                ECA Fee: {{ @$value->eca_fee ?? 0 }} &emsp; &emsp;
+                                Late Fine: {{ @$value->late_fine ?? 0 }} &emsp; &emsp;
+                                Extra Fee: {{ @$value->extra_fee ?? 0 }}
+                            </td>
+                            <td>{{ @$value->total_amount }}</td>
+                            @else
                             <td>{{ $levels[@$value->level_id] }}</td>
                             <td>{{ @$value->total_amount }}</td>
                             <td>{{ @$value->creator->name }}</td>
@@ -81,6 +104,7 @@
                                   @endcan
                               </div>
                               </td>
+                            @endrole
                             </tr>
                             @endforeach
                         </tbody>

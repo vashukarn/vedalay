@@ -7,6 +7,7 @@ use App\Models\AdvanceFee;
 use App\Models\Fee;
 use App\Models\FeePayment;
 use App\Models\Level;
+use App\Models\Notification;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,11 @@ class FeePaymentController extends Controller
     }
     protected function getFeePayment($request)
     {
-        $query = $this->feepayment->orderBy('id', 'DESC');
+        if (Auth::user()->type == 'student') {
+            $query = $this->feepayment->orderBy('id', 'DESC')->where('student_id', Auth::user()->id);
+        } else {
+            $query = $this->feepayment->orderBy('id', 'DESC');
+        }
         return $query->paginate(20);
     }
     public function index(Request $request)
@@ -228,6 +233,12 @@ class FeePaymentController extends Controller
                     'level_id' => $request->level_id,
                 ]);
             }
+            Notification::create([
+                'title' => 'Fee Paid Successfully',
+                'link' => route('feepayment.index'),
+                'user_id' => $request->student_id,
+                'created_by' => Auth::user()->id,
+            ]);
             DB::commit();
             $request->session()->flash('success', 'Payment added successfully.');
             return redirect()->route('feepayment.index');

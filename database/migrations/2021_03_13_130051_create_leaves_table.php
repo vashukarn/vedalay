@@ -17,6 +17,7 @@ class CreateLeavesTable extends Migration
             $table->string('type')->nullable();
             $table->longText('description')->nullable();
             $table->integer('days')->nullable();
+            $table->text('declined_reason')->nullable();
             $table->enum('status',['PENDING','ACCEPTED','DECLINED'])->default('PENDING');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('verified_by')->nullable();
