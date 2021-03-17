@@ -249,7 +249,7 @@
                                 <p>Fee Payments</p>
                             </a>
                         </li>
-                        @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
+                        {{-- @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
                         <li class="nav-item">
                             <a href="{{ route('feeadvance.index') }}"
                                 class="nav-link {{ request()->is('user/feeadvance') ? 'active' : '' }}">
@@ -257,7 +257,7 @@
                                 <p>Advance Fee</p>
                             </a>
                         </li>
-                        @endcanany
+                        @endcanany --}}
                     </ul>
                 </li>
                 @endcanany
