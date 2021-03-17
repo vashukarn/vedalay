@@ -23,11 +23,6 @@ class UserController extends Controller
         $this->middleware(['role:Super Admin','permission:user-delete'], ['only' => ['destroy']]);
         $this->user=$user;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
@@ -35,23 +30,12 @@ class UserController extends Controller
         return view('admin.users.user-list')->with('data',$this->user);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::where('name','Super Admin')->orwhere('name','Admin')->pluck('name', 'name');
         return view('admin.users.user-form',compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules=$this->user->getRules();
@@ -72,23 +56,11 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $this->user=$this->user->find($id);
@@ -100,14 +72,6 @@ class UserController extends Controller
         $userRole = $this->user->roles->pluck('name','name')->all();
         return view('admin.users.user-form',compact('roles','userRole'))->with('user_detail',$this->user);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->user=$this->user->find($id);
@@ -135,12 +99,6 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $this->user=$this->user->find($id);
@@ -157,23 +115,10 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    /**
-     * update profile
-     *
-     * @return void
-     */
     public function profiledetail()
     {
         return view('admin.auth.profile');
     }
-
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @param [type] $id
-     * @return void
-     */
 
     public function updatePassword(Request $request, $id){
         $this->validate($request, [
@@ -205,12 +150,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     *  logout user
-     * @param Request $request
-     * @return void
-     */
-
     public function logout(Request $request)
     {
         Auth::logout();
@@ -218,12 +157,6 @@ class UserController extends Controller
         $request->session()->regenerate();
         return redirect('/login');
     }
-
-    /**
-     * 2FA Recovery function
-     *
-     * @return void
-     */
 
     public function recovery(){
         return view('admin.auth.two-factor-recovery');

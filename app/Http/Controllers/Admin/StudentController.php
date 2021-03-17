@@ -258,7 +258,7 @@ class StudentController extends Controller
                 $levels[$value->id] = $value->standard;
             }
         }
-        $title = 'Edit User';
+        $title = 'Edit Student';
         $data = [
             'title' => $title,
             'student_info' => $student_info,
