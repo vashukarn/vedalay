@@ -52,24 +52,28 @@
                 });
             });
             $('#shiftbtn').click(function() {
-                if (!$('#start_time').val()) {
-                    alert("Please Enter Start Time Properly");
-                } else if (!$('#end_time').val()) {
-                    alert("Please Enter End Time Properly");
+                if (!$('#exam_date').val()) {
+                    alert("Please Add Date First");
                 } else {
-                    $('#table_row').append('<tr>');
-                    $('#table_row').append('<td><input type="text" class="form-control" value="' + $('#start_time')
-                    .val() + ' - ' + $('#end_time').val() + '" readonly></td>');
-                    dates.forEach(element => {
-                        $('#table_row').append('<td><select name="exam_routine[' + $('#' + element).val() +
-                            '][' + $('#start_time').val() + ' - ' + $('#end_time').val() +
-                            '][subject]" class="form-control" id="diff_' + diffcounter + '">');
-                        $('#diff_' + diffcounter).append('<option value="">Select Subject</option>');
-                        $('#diff_' + diffcounter).append(subjectselect);
-                        diffcounter++;
-                        $('#table_row').append('</select></td>');
-                    });
-                    $('#table_row').append('</tr>');
+                    if (!$('#start_time').val()) {
+                        alert("Please Enter Start Time Properly");
+                    } else if (!$('#end_time').val()) {
+                        alert("Please Enter End Time Properly");
+                    } else {
+                        $('#table_row').append('<tr>');
+                        $('#table_row').append('<td><input type="text" class="form-control" value="' + $('#start_time')
+                            .val() + ' - ' + $('#end_time').val() + '" readonly></td>');
+                        dates.forEach(element => {
+                            $('#table_row').append('<td><select name="exam_routine[' + $('#' + element).val() +
+                                '][' + $('#start_time').val() + ' - ' + $('#end_time').val() +
+                                '][subject]" class="form-control" id="diff_' + diffcounter + '">');
+                            $('#diff_' + diffcounter).append('<option value="">Select Subject</option>');
+                            $('#diff_' + diffcounter).append(subjectselect);
+                            diffcounter++;
+                            $('#table_row').append('</select></td>');
+                        });
+                        $('#table_row').append('</tr>');
+                    }
                 }
             });
             $('#datebtn').click(function() {
@@ -102,10 +106,10 @@
                 @include('admin.shared.error-messages')
                 <div class="card-body">
                     @if (isset($exam_info))
-                        {{ Form::open(['url' => route('exam.update', $exam_info->id), 'files' => true, 'class' => 'form', 'name' => 'exam_form', 'enctype' =>"multipart/form-data"]) }}
+                        {{ Form::open(['url' => route('exam.update', $exam_info->id), 'files' => true, 'class' => 'form', 'name' => 'exam_form', 'enctype' => 'multipart/form-data']) }}
                         @method('put')
                     @else
-                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'id' => 'exam_form', 'name' => 'exam_form', 'enctype' =>"multipart/form-data"]) }}
+                        {{ Form::open(['url' => route('exam.store'), 'files' => true, 'class' => 'form', 'id' => 'exam_form', 'name' => 'exam_form', 'enctype' => 'multipart/form-data']) }}
                     @endif
                     <label for="id of input"></label>
                     <div class="row">
