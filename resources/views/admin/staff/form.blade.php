@@ -203,7 +203,7 @@
                             <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
                                 {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$staff_info->publish_status, ['id' => 'publish_status','class' => 'form-control', 'style' => 'width:80%']) }}
+                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$staff_info->get_user->publish_status, ['id' => 'publish_status','class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('publish_status')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
