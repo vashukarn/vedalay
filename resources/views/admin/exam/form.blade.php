@@ -190,7 +190,6 @@
                         {{ Form::label('', '', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
                             {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
-                            {{ Form::button("<i class='fas fa-sync-alt'></i> Reset", ['class' => 'btn btn-danger btn-flat', 'type' => 'reset']) }}
                         </div>
                     </div>
                     {{ Form::close() }}
