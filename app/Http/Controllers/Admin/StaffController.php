@@ -90,7 +90,6 @@ class StaffController extends Controller
                 'gender' => htmlentities($request->gender),
                 'current_address' => htmlentities($request->current_address),
                 'permanent_address' => htmlentities($request->permanent_address),
-                'created_by' => Auth::user()->id,
             ]);
             DB::commit();
             $user->assignRole('Staff');
@@ -163,7 +162,6 @@ class StaffController extends Controller
             $staff->gender = htmlentities($request->gender);
             $staff->current_address = htmlentities($request->current_address);
             $staff->permanent_address = htmlentities($request->permanent_address);
-            $staff->updated_by = Auth::user()->id;
             if(isset($request->image)){
                 $staff['image'] = htmlentities($request->image);
             }

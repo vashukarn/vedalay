@@ -21,8 +21,6 @@ class Staff extends Model
         'phone',
         'image',
         'salary',
-        'created_by',
-        'updated_by',
     ];
     protected $dates = ['deleted_at'];
     public function get_user()
