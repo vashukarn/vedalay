@@ -21,6 +21,8 @@
             $('#lfm2').filemanager('image');
             $('#lfm3').filemanager('image');
             $('#lfm4').filemanager('image');
+            $('#lfm5').filemanager('image');
+            $('#lfm6').filemanager('image');
 
             
             @if (!isset($student_info))
@@ -158,10 +160,10 @@
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                {{ Form::label('session', 'Session :*', ['class' => 'col-sm-3']) }}
+                                {{ Form::label('regpriv', 'Regular/Private :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-3">
-                                    {{ Form::select('session', @$session, @$student_info->session, ['class' => 'form-control', 'id' => 'session', 'style' => 'width:80%']) }}
-                                    @error('session')
+                                    {{ Form::select('regpriv', ['REGULAR' => 'REGULAR', 'PRIVATE' => 'PRIVATE'], @$student_info->regpriv, ['id' => 'regpriv', 'class' => 'form-control', 'style' => 'width:80%']) }}
+                                    @error('regpriv')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -298,7 +300,7 @@
                             <div class="form-group row {{ $errors->has('aadhar_number') ? 'has-error' : '' }}">
                                 {{ Form::label('aadhar_number', 'Aadhar Number :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('aadhar_number', @$student_info->aadhar_number, ['class' => 'form-control', 'id' => 'aadhar_number', 'placeholder' => 'Aadhar Number', 'style' => 'width:80%']) }}
+                                    {{ Form::number('aadhar_number', @$student_info->aadhar_number, ['class' => 'form-control', 'id' => 'aadhar_number', 'placeholder' => 'Aadhar Number', 'style' => 'width:80%']) }}
                                     @error('aadhar_number')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -350,16 +352,6 @@
                                             style="width: 100px">
                                     @endif
                                     @error('image')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row {{ $errors->has('regpriv') ? 'has-error' : '' }}">
-                                {{ Form::label('regpriv', 'Regular/Private :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::select('regpriv', ['REGULAR' => 'REGULAR', 'PRIVATE' => 'PRIVATE'], @$student_info->regpriv, ['id' => 'regpriv', 'class' => 'form-control', 'style' => 'width:80%']) }}
-                                    @error('regpriv')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -556,6 +548,70 @@
                                                 class="img img-thumbail mt-2" style="width: 100px">
                                         @endif
                                         @error('last_marksheet')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row {{ $errors->has('medical_certificate') ? 'has-error' : '' }}">
+                                    {{ Form::label('medical_certificate', 'Medical Certificate:*', ['class' => 'col-sm-3']) }}
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <a id="lfm5" data-input="medical_certificate" data-preview="holder5"
+                                                    class="btn btn-primary text-white">
+                                                    <i class="fa fa-picture-o"></i> Choose
+                                                </a>
+                                            </span>
+                                            <input id="medical_certificate" class="form-control" type="text"
+                                                name="medical_certificate">
+                                        </div>
+                                        <div id="holder5" style="
+                                                            border: 1px solid #ddd;
+                                                            border-radius: 4px;
+                                                            padding: 5px;
+                                                            width: 150px;
+                                                            margin-top:15px;">
+                                        </div>
+
+                                        @if (isset($admission_info->medical_certificate))
+                                            Uploaded Last Obtained Marksheet: &nbsp; <img
+                                                src="{{ @$admission_info->medical_certificate }}" alt="Image not Found"
+                                                class="img img-thumbail mt-2" style="width: 100px">
+                                        @endif
+                                        @error('medical_certificate')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row {{ $errors->has('undertaking') ? 'has-error' : '' }}">
+                                    {{ Form::label('undertaking', 'Undertaking:*', ['class' => 'col-sm-3']) }}
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <a id="lfm6" data-input="undertaking" data-preview="holder6"
+                                                    class="btn btn-primary text-white">
+                                                    <i class="fa fa-picture-o"></i> Choose
+                                                </a>
+                                            </span>
+                                            <input id="undertaking" class="form-control" type="text"
+                                                name="undertaking">
+                                        </div>
+                                        <div id="holder6" style="
+                                                            border: 1px solid #ddd;
+                                                            border-radius: 4px;
+                                                            padding: 5px;
+                                                            width: 150px;
+                                                            margin-top:15px;">
+                                        </div>
+
+                                        @if (isset($admission_info->undertaking))
+                                            Uploaded Last Obtained Marksheet: &nbsp; <img
+                                                src="{{ @$admission_info->undertaking }}" alt="Image not Found"
+                                                class="img img-thumbail mt-2" style="width: 100px">
+                                        @endif
+                                        @error('undertaking')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
                                     </div>

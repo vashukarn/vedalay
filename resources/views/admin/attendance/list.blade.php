@@ -1,5 +1,49 @@
 @extends('layouts.admin')
 @section('title','Attendance List')
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#subject').select2({
+                placeholder: "Search by Subject",
+                allowClear: true
+            });
+            $('#level').select2({
+                placeholder: "Search by Level/Class",
+                allowClear: true
+            });
+            $('#session').select2({
+                placeholder: "Search by Session",
+                allowClear: true
+            });
+        });
+        
+        $('#level').change(function() {
+                var level = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('getSubjects') }}",
+                    data: {
+                        '_token': $('meta[name="csrf-token"]').attr('content'),
+                        'level': level,
+                    },
+                    success: function(data) {
+                        if (data.length < 1) {
+                            alert("No Subjects found on this level");
+                        } else {
+                            subjects = data;
+                            for (let index = 0; index < data.length; index++) {
+                                subjectselect += '<option value="' + data[index]['id'] + '">' + data[index][
+                                    'title'
+                                ] + '</option>';
+                            }
+                            console.log(subjectselect)
+                        }
+                    }
+                });
+            });
+
+    </script>
+@endpush
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
@@ -10,6 +54,29 @@
                     <div class="card-tools">
                         <a href="{{ route('attendance.index') }}" type="button" class="btn btn-tool">
                             <i class="fa fa-list"></i></a>
+                    </div>
+                </div>
+                <div class="card-header">
+                    <div class="row">
+                        <div class="p-1 col-lg-10">
+                            <form action="" class="">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        {!! Form::select('session', $session, @request()->session, ['id' => 'session','class' => 'form-control select2', 'placeholder' => '']) !!}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {!! Form::select('level', $levels, @request()->level, ['id' => 'level','class' => 'form-control select2', 'placeholder' => '']) !!}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {!! Form::select('subject', $levels, @request()->subject, ['id' => 'subject','class' => 'form-control select2', 'placeholder' => '']) !!}
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-4">
+                                        <button class="btn btn-primary btn-flat"><i class="fa fa fa-search"></i>
+                                            Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">

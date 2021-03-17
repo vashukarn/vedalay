@@ -26,6 +26,15 @@ class User extends Authenticatable
     ];
     protected $dates  = ['deleted_at'];
 
+    public function creator()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'created_by');
+    }
+    public function updater()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'updated_by');
+    }
+    
     protected $hidden = [
         'password',
         'remember_token',

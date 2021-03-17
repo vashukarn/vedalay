@@ -124,6 +124,7 @@
                             if (data.length < 1) {
                                 alert("No subjects in this exam");
                             } else {
+                                console.log(subjects);
                                 subjects.empty();
                                 main_interation = data.subjects;
                                 for (var i = 0; i < data.subjects.length; i++) {

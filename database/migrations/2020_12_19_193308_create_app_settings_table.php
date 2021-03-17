@@ -32,8 +32,10 @@ class CreateAppSettingsTable extends Migration
             $table->string('logo_light')->nullable();
             $table->string('favicon')->nullable();
             $table->string('og_image')->nullable();
+            $table->unsignedBigInteger('present_session')->default(1);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('present_session')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('created_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('updated_by')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();

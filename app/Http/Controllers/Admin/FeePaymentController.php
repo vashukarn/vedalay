@@ -9,6 +9,7 @@ use App\Models\FeePayment;
 use App\Models\Level;
 use App\Models\Notification;
 use App\Models\Session;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -111,10 +112,12 @@ class FeePaymentController extends Controller
                     'hostel_fee' => $request->hostel_fee,
                     'laundry_fee' => $request->laundry_fee,
                     'education_tax' => $request->education_tax,
-                    'eca_fee' => $request->education_tax,
+                    'eca_fee' => $request->eca_fee,
                     'late_fine' => $request->late_fine,
                     'extra_fee' => $request->extra_fee,
-                    'total_amount' => $request->total_amount,
+                    'total_amount' => $request->tuition_fee + $request->exam_fee + $request->transport_fee + $request->stationery_fee + $request->sports_fee + 
+                    $request->club_fee + $request->hostel_fee + $request->laundry_fee + $request->education_tax + $request->eca_fee + $request->late_fine
+                    + $request->extra_fee,
                     'payment_method' => $request->payment_method,
                     'bank_ifsc' => $request->bank_ifsc,
                     'bank_accountno' => $request->bank_accountno,
@@ -139,7 +142,9 @@ class FeePaymentController extends Controller
             $eca_fee = $request->eca_fee;
             $late_fine = $request->late_fine;
             $extra_fee = $request->extra_fee;
-            $total_amount = $request->total_amount;
+            $total_amount = $request->tuition_fee + $request->exam_fee + $request->transport_fee + $request->stationery_fee + $request->sports_fee + 
+            $request->club_fee + $request->hostel_fee + $request->laundry_fee + $request->education_tax + $request->eca_fee + $request->late_fine
+            + $request->extra_fee;
 
             foreach ($fee as $key => $value) {
                 $single = Fee::find($value->id);
@@ -215,6 +220,12 @@ class FeePaymentController extends Controller
                     if($single->extra_fee < 0)
                     $single->extra_fee = 0;
                 }
+                if($single->total_amount > 0){
+                    $single->total_amount = $single->total_amount - $total_amount;
+                    $total_amount = abs($single->total_amount);
+                    if($single->total_amount < 0)
+                    $single->total_amount = 0;
+                }
 
                 if($single->tuition_fee == 0 && $single->exam_fee == 0 && $single->transport_fee == 0 && $single->stationery_fee == 0 && $single->sports_fee == 0 && $single->club_fee == 0 && $single->hostel_fee == 0 && $single->laundry_fee == 0 && $single->education_tax == 0 && $single->eca_fee == 0 && $single->late_fine == 0 && $single->extra_fee == 0){
                     $single->delete();
@@ -223,9 +234,10 @@ class FeePaymentController extends Controller
                     $single->save();
                 }
             }
-            $rem_fee = $tuition_fee + $exam_fee + $transport_fee + $stationery_fee + $sports_fee + $club_fee + $hostel_fee + $laundry_fee + $education_tax + $eca_fee + $late_fine + $extra_fee;
+            $rem_fee = $tuition_fee + $exam_fee + $transport_fee + $stationery_fee + $sports_fee + $club_fee + $hostel_fee + $laundry_fee
+             + $education_tax + $eca_fee + $late_fine + $extra_fee;
             if($rem_fee > 0){
-                AdvanceFee::create([
+            AdvanceFee::create([
                     'student_id' => $request->student_id,
                     'amount' => $rem_fee,
                     'session' => $request->session,
@@ -247,5 +259,20 @@ class FeePaymentController extends Controller
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
+    }
+    public function show($id)
+    {
+        $student_info = Student::pluck('id', 'user_id');
+        $feepayment_info = $this->feepayment->find($id);
+        if (!$feepayment_info) {
+            abort(404);
+        }
+        $title = 'Fee Payment Detail';
+        $data = [
+            'title' => $title,
+            'student_info' => $student_info,
+            'feepayment_info' => $feepayment_info,
+        ];
+        return view('admin/feepayment/show')->with($data);
     }
 }

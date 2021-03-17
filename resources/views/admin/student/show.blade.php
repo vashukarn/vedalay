@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>Last Changed By</td>
-                            <td>{{ @$student_info->updater->name ? @$student_info->updater->name : @$student_info->creator->name }}
+                            <td>{{ @$student_info->get_user->updater->name ? @$student_info->get_user->updater->name : @$student_info->get_user->creator->name }}
                             </td>
                         </tr>
                         <tr>

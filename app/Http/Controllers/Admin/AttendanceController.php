@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Level;
+use App\Models\Session;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -25,6 +27,19 @@ class AttendanceController extends Controller
     protected function getAttendance($request)
     {
         $query = $this->attendance->orderBy('id', 'DESC');
+        if ($request->keyword) {
+            $keyword = $request->keyword;
+            $query = $query->where('user_id', $keyword);
+        }
+        if ($request->level) {
+            $level = $request->level;
+            $query = $query->where('level_id', $level);
+        }
+        if ($request->session) {
+            $session = $request->session;
+            $query = $query->where('session', $session);
+        }
+        $query = $this->attendance->orderBy('id', 'DESC');
 
         if(Auth::user()->roles->pluck('name')[0] == 'Teacher'){
             $subjects = Teacher::where('user_id', Auth::user()->id)->pluck('subject')->first();
@@ -42,10 +57,25 @@ class AttendanceController extends Controller
     {
         $subject = Subject::pluck('title', 'id');
         $students = User::where('type', 'student')->pluck('name', 'id');
+        $data = $this->getAttendance($request);
+        $classes = Level::all();
+        foreach ($classes as $value) {
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
+                $levels[$value->id] = $value->standard;
+            }
+        }
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $session[$value->id] = $value->start_year . ' - ' . $value->end_year;
+        }
         $attendance_info = $this->getAttendance($request);
         $title = 'Attendance List';
         $data = [
             'title' => $title,
+            'levels' => $levels,
+            'session' => $session,
             'subject' => $subject,
             'data' => $attendance_info,
             'students' => $students,

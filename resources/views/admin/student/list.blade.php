@@ -42,9 +42,11 @@
                                     <div class="col-sm-3">
                                         {!! Form::select('level', $levels, @request()->level, ['id' => 'level','class' => 'form-control select2', 'placeholder' => '']) !!}
                                     </div>
+                                    @hasrole('Super Admin')
                                     <div class="col-sm-3">
                                         {!! Form::select('session', $session, @request()->session, ['id' => 'session','class' => 'form-control select2', 'placeholder' => '']) !!}
                                     </div>
+                                    @endhasrole
                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                         <button class="btn btn-primary btn-flat"><i class="fa fa fa-search"></i>
                                             Filter</button>
@@ -103,7 +105,7 @@
                                 <td>
                                     <div class="btn-group">
                                         @can('student-list')
-                                            <a href="{{ route('student.show', @$value->id) }}" title="View Student Details"
+                                            <a href="{{ route('student.show', @$value->get_user->id) }}" title="View Student Details"
                                                 class="btn btn-secondary btn-sm btn-flat"><i class="fas fa-eye"></i></a>
                                         @endcan
                                         @can('student-edit')

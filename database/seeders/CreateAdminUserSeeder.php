@@ -54,7 +54,6 @@ class CreateAdminUserSeeder extends Seeder
             'gender' => 'male',
             'current_address' => 'Mars',
             'permanent_address' => 'Jupiter',
-            'created_by' => 2,
         ]);
         $roleteacher = Role::create(['name' => 'Teacher']);
         $teacherpermissions = ['41', '42', '73', '74', '75', '76', '77', '78', '79', '80'];
@@ -78,7 +77,6 @@ class CreateAdminUserSeeder extends Seeder
             'gender' => 'female',
             'current_address' => 'Mars',
             'permanent_address' => 'Titan',
-            'created_by' => 2,
         ]);
         $rolestaff = Role::create(['name' => 'Staff']);
         $staffuser->assignRole([$rolestaff->id]);
@@ -111,7 +109,6 @@ class CreateAdminUserSeeder extends Seeder
             'guardian_phone' => '1234567891',
             'current_address' => 'Mars',
             'permanent_address' => 'Jupiter',
-            'created_by' => 2,
         ]);
         $rolestudent = Role::create(['name' => 'Student']);
         $studentpermissions = ['57', '113','41', '42', '77','97', '93'];

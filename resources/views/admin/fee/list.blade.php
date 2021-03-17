@@ -1,5 +1,43 @@
 @extends('layouts.admin')
 @section('title', 'Fee List')
+
+@push('scripts')
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var SITEURL = '{{ URL::to('') }}';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('body').on('click', '.buy_now', function(e) {
+        var totalAmount = $(this).attr("data-amount");
+        var product_id = $(this).attr("data-id");
+        var options = {
+            "key": "{{ env('RAZOR_KEY') }}",
+            "amount": (totalAmount * 100), // 2000 paise = INR 20
+            "name": "Tutsmake",
+            "description": "Payment",
+            "image": "{{ asset('assets/img/logo.png') }}",
+            "handler": function(response) {
+                window.location.href = SITEURL + '/' + 'paysuccess?payment_id=' + response
+                    .razorpay_payment_id + '&amp;product_id=' + product_id + '&amp;amount=' +
+                    totalAmount;
+            },
+            "prefill": {
+                "contact": '9988665544',
+                "email": 'tutsmake@gmail.com',
+            },
+            "theme": {
+                "color": "#528FF0"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+        e.preventDefault();
+    });
+</script>
+@endpush
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
@@ -53,8 +91,8 @@
                                 <th>Added By</th>
                                 <th>Adding Date</th>
                                 <th>Status</th>
-                                <th style="text-align:center;" width="10%">Action</th>
                                 @endrole
+                                <th style="text-align:center;" width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +117,14 @@
                                 Extra Fee: {{ @$value->extra_fee ?? 0 }}
                             </td>
                             <td>{{ @$value->total_amount }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    {{Form::open(['method' => 'POST','route' => ['rollbackTransaction'],'style'=>'display:inline']) }}
+                                    {{Form::button('<i class="fas fa-money-bill"></i> &nbsp; Pay Now', ['class'=>'btn btn-success btn-sm btn-flat','title'=>'Pay This Fee']) }}
+                                    {{-- , 'data-amount'=>"{{ @$value->total_amount }}",'data-id'=>"{{ @$value->level_id }}" --}}
+                                  {{ Form::close() }}
+                              </div>
+                              </td>
                             @else
                             <td>{{ $levels[@$value->level_id] }}</td>
                             <td>{{ @$value->total_amount }}</td>
