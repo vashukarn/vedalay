@@ -47,17 +47,17 @@
                             <td>{{ @$value->salary }}</td>
                             <td>
                                 <span class="badge badge-primary">
-                                    {{ @$value->creator->name }}
+                                    {{ @$value->get_user->creator->name }}
                                 </span>
                             </td>
                             <td>
                                 <span class="badge badge-primary">
-                                    {{ @$value->updator->name }}
+                                    {{ @$value->get_user->updator->name }}
                                 </span>
                             </td>
                             <td>
-                                <span class="badge @if(@$value->publish_status  == '1')badge-success @elseif(@$value->publish_status  == '2') badge-danger @else badge-warning @endif">
-                                    @if(@$value->publish_status  == '1') Active @elseif(@$value->publish_status  == '2') Banned @else Inactive @endif
+                                <span class="badge @if(@$value->get_user->get_user->publish_status  == '1')badge-success @elseif(@$value->get_user->publish_status  == '2') badge-danger @else badge-warning @endif">
+                                    @if(@$value->get_user->publish_status  == '1') Active @elseif(@$value->get_user->publish_status  == '2') Banned @else Inactive @endif
                                 </span>
                             </td>
                             <td>
