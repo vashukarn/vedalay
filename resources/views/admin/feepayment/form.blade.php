@@ -5,6 +5,7 @@
 {{-- <script src="{{ asset('/custom/feepayment.js') }}"></script> --}}
 <script>
     $(document).ready(function() {
+        $('#level_id').val('');
         $('#feedetail').hide();
         $('#feepayment').hide();
         $('#bank_details').hide();
@@ -168,7 +169,7 @@
     
     
     $("#calculate").click(function() {
-        var total = Number($('#tuition_fee').val()) +
+        var calculatetotal = Number($('#tuition_fee').val()) +
             Number($('#exam_fee').val()) +
             Number($('#transport_fee').val()) +
             Number($('#stationery_fee').val()) +
@@ -180,7 +181,14 @@
             Number($('#eca_fee').val()) +
             Number($('#late_fine').val()) +
             Number($('#extra_fee').val());
-        $("#total_amount").val(total);
+        $("#total_amount").val(calculatetotal);
+        $("#advancewarn").empty();
+        var advancefee = Number(calculatetotal)-Number(total);
+        console.log(calculatetotal);
+        console.log(total);
+        if(calculatetotal > total){
+            $("#advancewarn").append('You will be paying advance fee amount : '+ advancefee +'. It can be deducted on next fee payment.');
+        }
     });
     
     $("#autofill").click(function() {
@@ -194,8 +202,8 @@
         $('#laundry_fee').val(Number(laundry));
         $('#education_tax').val(Number(education));
         $('#eca_fee').val(Number(eca));
-        $('#late_fine').val(Number(extra));
-        $('#extra_fee').val(Number(late));
+        $('#late_fine').val(Number(late));
+        $('#extra_fee').val(Number(extra));
         $("#total_amount").val(Number(total));
     });
 
@@ -330,6 +338,7 @@
                                               <button class="btn btn-outline-secondary" id="calculate" type="button">Calculate</button>
                                             </div>
                                           </div>
+                                          <small class="text-danger" id="advancewarn"></small>
                                     </div>
                                 </div>
 

@@ -167,7 +167,7 @@
                             <div class="form-group row {{ $errors->has('subject') ? 'has-error' : '' }}">
                                 {{ Form::label('subject', 'Subjects:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('subject[]', @$subjects, @$subject, ['id' => 'subject', 'required' => true, 'class' => 'form-control select2', 'multiple', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('subject[]', @$subjects, @$teacher_info->subject, ['id' => 'subject', 'class' => 'form-control select2', 'multiple', 'style' => 'width:80%; border-color:none']) }}
                                     @error('subject')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -226,7 +226,7 @@
                             <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
                                 {{ Form::label('publish_status', 'Publish Status :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$teacher_info->publish_status, ['id' => 'publish_status','class' => 'form-control', 'style' => 'width:80%']) }}
+                                    {{ Form::select('publish_status', [1 => 'Yes', 0 => 'No'], @$teacher_info->get_user->publish_status, ['id' => 'publish_status','class' => 'form-control', 'style' => 'width:80%']) }}
                                     @error('publish_status')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

@@ -12,6 +12,7 @@ use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use SebastianBergmann\Environment\Console;
 
 class ResultController extends Controller
 {
@@ -38,18 +39,17 @@ class ResultController extends Controller
     }
     protected function getSubjectExam(Request $request)
     {
-        $examtemp = Exam::where('level_id', $request->exam_id)->get();
+        // $examtemp = Exam::where('level_id', $request->exam_id)->get();
+        $examtemp = Exam::find($request->exam_id);
         $sublist = Subject::pluck('title', 'id');
         $subject = [];
-        foreach ($examtemp as $value) {
-            foreach ($value->exam_routine as $key => $item) {
-                foreach ($item as $keya => $valuea) {
-                    if (isset($valuea['subject'])) {
-                        $subject[] = [
-                            'id' => $valuea['subject'],
-                            'value' => @$sublist[$valuea['subject']],
-                        ];
-                    }
+        foreach ($examtemp->exam_routine as $key => $item) {
+            foreach ($item as $keya => $valuea) {
+                if (isset($valuea['subject'])) {
+                    $subject[] = [
+                        'id' => $valuea['subject'],
+                        'value' => @$sublist[$valuea['subject']],
+                    ];
                 }
             }
         }

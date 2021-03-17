@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\AppSetting;
+
 function getUnicodeNumber($input)
 {
     $standard_numsets = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -113,6 +116,19 @@ function profileImage($image)
         $thumbnail = asset('/uploads/riders/' . @$image);
     }
     return $thumbnail;
+}
+
+// get Session anywhere
+function GETSESSION()
+{
+    $session = AppSetting::first();
+    if($session){
+        $session = $session->current_session;
+    }
+    else{
+        $session = 1;
+    }
+    return $session;
 }
 
 // string date to readable dates format

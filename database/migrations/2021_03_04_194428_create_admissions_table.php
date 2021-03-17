@@ -17,6 +17,8 @@ class CreateAdmissionsTable extends Migration
             $table->string('last_city')->nullable();
             $table->string('transfer_certificate')->nullable();
             $table->string('character_certificate')->nullable();
+            $table->string('medical_certificate')->nullable();
+            $table->string('undertaking')->nullable();
             $table->string('migration_certificate')->nullable();
             $table->string('last_marksheet')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();

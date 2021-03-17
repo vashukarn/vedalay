@@ -52,6 +52,11 @@
                             href="#custom-tabs-three-meta" role="tab" aria-controls="custom-tabs-three-messages"
                             aria-selected="false">Meta</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-mssetting-tab" data-toggle="pill"
+                            href="#custom-tabs-three-mssetting" role="tab" aria-controls="custom-tabs-three-mssetting"
+                            aria-selected="false">Management System Settings</a>
+                    </li>
                   
                 </ul>
             </div>
@@ -363,6 +368,56 @@
                                 </label>
                             </div>
                         </div>
+
+                        <div id="metatag-details">
+                            <div class="form-group row">
+                                {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
+                                <div class="col-sm-6">
+                                    {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
+                                    @error('meta[title]')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
+                                <div class="col-sm-6">
+                                    {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
+                                    @error('meta[key]')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
+                                <div class="col-sm-6">
+                                    {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
+                                    @error('meta[description]')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-mssetting" role="tabpanel"
+                        aria-labelledby="custom-tabs-three-mssetting-tab">
+
+
+                        <div class="page-description-div">
+
+                            <div class="form-group row">
+                                {{ Form::label('current_session', 'Current Selected Session: ', ['class' => 'col-sm-4 col-form-label']) }}
+                                <div class="col-sm-6">
+                                    {{ Form::select('current_session', $sessions, @$site_detail->current_session, ['class' => 'form-control', 'id' => '', 'placeholder' => 'Select Session', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
+                                    @error('current_session')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                         <div id="metatag-details">
                             <div class="form-group row">

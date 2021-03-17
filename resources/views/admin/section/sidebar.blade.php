@@ -249,7 +249,7 @@
                                 <p>Fee Payments</p>
                             </a>
                         </li>
-                        {{-- @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
+                        @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
                         <li class="nav-item">
                             <a href="{{ route('feeadvance.index') }}"
                                 class="nav-link {{ request()->is('user/feeadvance') ? 'active' : '' }}">
@@ -257,7 +257,7 @@
                                 <p>Advance Fee</p>
                             </a>
                         </li>
-                        @endcanany --}}
+                        @endcanany
                     </ul>
                 </li>
                 @endcanany
@@ -561,15 +561,6 @@
                 </li>
                 @endcanany
 
-                @canany(['session-list', 'session-create','session-edit','session-delete'])
-                <li class="nav-item">
-                    <a href="{{ route('session.index') }}"
-                        class="nav-link {{ request()->is('user/session') ? 'active' : '' }}">
-                        <i class="fas fa-calendar-alt nav-icon"></i>
-                        <p>Session Management</p>
-                    </a>
-                </li>
-                @endcanany
                 @canany(['level-list', 'level-create','level-edit','level-delete'])
                 <li class="nav-item">
                     <a href="{{ route('level.index') }}"
@@ -694,6 +685,13 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('session.index') }}"
+                        class="nav-link {{ request()->is('user/session') ? 'active' : '' }}">
+                        <i class="fas fa-calendar-alt nav-icon"></i>
+                        <p>Session Management</p>
+                    </a>
                 </li>
                 <li class="nav-item has-treeview {{ request()->is('user/menu*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('user/menu*') ? 'active' : '' }}">

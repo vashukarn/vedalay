@@ -122,11 +122,13 @@ class StudentController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|unique:users|string|min:3|max:190',
+            'email' => 'required|unique:users|email|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
-            'gender' => 'required|string',
-            'level' => 'required',
-            'session' => 'required',
+            'dob' => 'required|date',
+            'gender' => 'required|in:male,female,others',
+            'regpriv' => 'required|in:REGULAR,PRIVATE',
+            'guardianradio' => 'required|in:Father,Mother,Guardian',
+            'level' => 'required|numeric',
             'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|max:190',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
@@ -149,13 +151,23 @@ class StudentController extends Controller
                 'publish_status' => htmlentities($request->publish_status),
                 'created_by' => Auth::user()->id,
             ]);
+            if($request->guardianradio == 'Mother'){
+                $guardianname = htmlentities($request->mothername);
+            }
+            elseif($request->guardianradio == 'Father'){
+                $guardianname = htmlentities($request->fathername);
+            }
+            else{
+                $guardianname = htmlentities($request->guardian_name);
+            }
             $student = Student::create([
                 'user_id' => $user->id,
                 'image' => htmlentities($request->image) ?? null,
                 'phone' => htmlentities($request->phone),
                 'dob' => htmlentities($request->dob),
+                'regpriv' => htmlentities($request->regpriv),
                 'level_id' => htmlentities($request->level),
-                'session' => htmlentities($request->session),
+                'session' => GETSESSION(),
                 'aadhar_number' => htmlentities($request->aadhar_number),
                 'blood_group' => htmlentities($request->blood_group),
                 'gender' => htmlentities($request->gender),
@@ -167,7 +179,7 @@ class StudentController extends Controller
                 'mothername' => htmlentities($request->mothername),
                 'motheroccupation' => htmlentities($request->motheroccupation),
                 'motherincome' => htmlentities($request->motherincome),
-                'guardian_name' => htmlentities($request->guardian_name),
+                'guardian_name' => $guardianname,
                 'guardian_phone' => htmlentities($request->guardian_phone),
                 'current_address' => htmlentities($request->current_address),
                 'permanent_address' => htmlentities($request->permanent_address),
@@ -181,6 +193,8 @@ class StudentController extends Controller
                     'transfer_certificate' => htmlentities($request->transfer_certificate),
                     'character_certificate' => htmlentities($request->character_certificate),
                     'migration_certificate' => htmlentities($request->migration_certificate),
+                    'medical_certificate' => htmlentities($request->medical_certificate),
+                    'undertaking' => htmlentities($request->undertaking),
                     'last_state' => htmlentities($request->last_state),
                     'last_city' => htmlentities($request->last_city),
                     'user_id' => $user->id,
@@ -189,7 +203,7 @@ class StudentController extends Controller
             }
             DB::commit();
             $user->assignRole('Student');
-            $request->session()->flash('success', 'Student added successfully.');
+            $request->session()->flash('success', 'Student profile created successfully.');
             return redirect()->route('student.index');
         } catch (\Exception $error) {
             DB::rollBack();
@@ -205,7 +219,6 @@ class StudentController extends Controller
             abort(404);
         }
         $title = 'Admission Student Detail';
-        // dd($student_info->get_student->phone);
         $data = [
             'title' => $title,
             'student_info' => $student_info,
@@ -214,7 +227,8 @@ class StudentController extends Controller
     }
     public function show($id)
     {
-        $student_info = $this->student->find($id);
+        $user = User::find($id);
+        $student_info = $this->student->where('user_id', $user->id)->first();
         if (!$student_info) {
             abort(404);
         }
@@ -244,7 +258,7 @@ class StudentController extends Controller
                 $levels[$value->id] = $value->standard;
             }
         }
-        $title = 'Edit User';
+        $title = 'Edit Student';
         $data = [
             'title' => $title,
             'student_info' => $student_info,
@@ -266,10 +280,18 @@ class StudentController extends Controller
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required|string',
             'level' => 'required',
-            'session' => 'required',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
         ]);
+        if($request->guardianradio == 'Mother'){
+            $guardianname = htmlentities($request->mothername);
+        }
+        elseif($request->guardianradio == 'Father'){
+            $guardianname = htmlentities($request->fathername);
+        }
+        else{
+            $guardianname = htmlentities($request->guardian_name);
+        }
         DB::beginTransaction();
         try {
             $user = User::find($student_info->user_id);
@@ -294,7 +316,7 @@ class StudentController extends Controller
             $student->mothername = htmlentities($request->mothername);
             $student->motheroccupation = htmlentities($request->motheroccupation);
             $student->motherincome = htmlentities($request->motherincome);
-            $student->guardian_name = htmlentities($request->guardian_name);
+            $student->guardian_name = htmlentities($guardianname);
             $student->guardian_phone = htmlentities($request->guardian_phone);
             $student->current_address = htmlentities($request->current_address);
             $student->permanent_address = htmlentities($request->permanent_address);
@@ -304,7 +326,7 @@ class StudentController extends Controller
             }
             $student->save();
             DB::commit();
-            $request->session()->flash('success', 'Student updated successfully.');
+            $request->session()->flash('success', 'Student profile updated successfully.');
             return redirect()->route('student.index');
         } catch (\Exception $error) {
             DB::rollBack();

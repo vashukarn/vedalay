@@ -14,9 +14,7 @@ class Student extends Model
         'session',
         'level_id',
         'dob',
-        'medical_certificate',
         'blood_group',
-        'documents',
         'caste_category',
         'disability',
         'regpriv',
@@ -34,8 +32,6 @@ class Student extends Model
         'mothername',
         'motheroccupation',
         'motherincome',
-        'created_by',
-        'updated_by',
     ];
     protected $dates = ['deleted_at'];
     public function get_user()
@@ -49,13 +45,5 @@ class Student extends Model
     public function get_session()
     {
         return $this->hasOne('App\Models\Session', 'id', 'session');
-    }
-    public function creator()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'created_by');
-    }
-    public function updater()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'updated_by');
     }
 }

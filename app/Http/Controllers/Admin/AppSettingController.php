@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppSetting;
+use App\Models\Session;
 use App\Models\SmsSetting;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,15 @@ class AppSettingController extends Controller
         } else {
             $this->appSetting = [];
         }
-        return view('admin.setting.app-setting')->with('site_detail', $this->appSetting);
+        $temp = Session::all();
+        foreach ($temp as $value) {
+            $sessions[$value->id] = $value->start_year . ' - ' . $value->end_year;
+        }
+        $data = [
+            'site_detail' => $this->appSetting,
+            'sessions' => $sessions,
+        ];
+        return view('admin.setting.app-setting')->with($data);
     }
 
     public function create()
@@ -46,6 +55,7 @@ class AppSettingController extends Controller
             'is_favicon' => $request->is_favicon,
             'facebook' => $request->facebook,
             'instagram' => $request->instagram,
+            'current_session' => $request->current_session,
             'linkedin' => $request->linkedin,
             'skype' => $request->skype,
             'twitter' => $request->twitter,
@@ -76,6 +86,7 @@ class AppSettingController extends Controller
             'phone' => $request->contact_no,
             'is_favicon' => $request->is_favicon,
             'facebook' => $request->facebook,
+            'current_session' => $request->current_session,
             'instagram' => $request->instagram,
             'linkedin' => $request->linkedin,
             'skype' => $request->skype,

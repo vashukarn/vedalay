@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>Last Changed By</td>
-                            <td>{{ @$student_info->get_student->updated_by ? @$student_info->get_student->updater->name : @$student_info->get_student->creator->name }}
+                            <td>{{ @$student_info->get_user->updater->name ? @$student_info->get_user->updater->name : @$student_info->get_user->creator->name }}
                             </td>
                         </tr>
                         <tr>
@@ -174,6 +174,14 @@
                         <tr>
                             <td>Character Certificate</td>
                             <td><img src="{{ @$student_info->character_certificate }}" height="200px" alt="Image Not Found"></td>
+                        </tr>
+                        <tr>
+                            <td>Medical Certificate</td>
+                            <td><img src="{{ @$student_info->medical_certificate }}" height="200px" alt="Image Not Found"></td>
+                        </tr>
+                        <tr>
+                            <td>Undertaking</td>
+                            <td><img src="{{ @$student_info->undertaking }}" height="200px" alt="Image Not Found"></td>
                         </tr>
                     </tbody>
                 </table>

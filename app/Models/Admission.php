@@ -10,15 +10,17 @@ class Admission extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'last_marksheet',
         'last_schoolname',
         'last_level',
         'last_marks',
-        'transfer_certificate',
-        'character_certificate',
-        'migration_certificate',
         'last_state',
         'last_city',
+        'transfer_certificate',
+        'character_certificate',
+        'medical_certificate',
+        'undertaking',
+        'migration_certificate',
+        'last_marksheet',
         'user_id',
         'student_id',
     ];
