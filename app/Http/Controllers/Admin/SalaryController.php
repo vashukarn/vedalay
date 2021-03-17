@@ -23,25 +23,23 @@ class SalaryController extends Controller
     }
     public function getData(Request $request)
     {
-        if($request->type == "Teacher"){
+        if ($request->type == "Teacher") {
             $temp = User::where('type', 'teacher')->where('publish_status', '1')->get();
             foreach ($temp as $value) {
                 $data[] = [
                     'id' => $value->id,
-                    'value' => $value->name.' - '.$value->email,
+                    'value' => $value->name . ' - ' . $value->email,
                 ];
             }
-        }
-        elseif($request->type == "Staff"){
+        } elseif ($request->type == "Staff") {
             $temp = User::where('type', 'staff')->where('publish_status', '1')->get();
             foreach ($temp as $value) {
                 $data[] = [
                     'id' => $value->id,
-                    'value' => $value->name.' - '.$value->email,
+                    'value' => $value->name . ' - ' . $value->email,
                 ];
             }
-        }
-        else{
+        } else {
             $data = 'Invalid Argument Supplied';
         }
         return response()->json($data);
@@ -84,41 +82,30 @@ class SalaryController extends Controller
         ]);
         DB::beginTransaction();
         try {
-                    $salary = [
-                        'monthly_salary' => $request->monthly_salary,
-                        'tada' => $request->tada,
-                        'extra_class_salary' => $request->extra_class_salary,
-                        'incentive' => $request->incentive,
-                        'transport_charges' => $request->transport_charges,
-                        'leave_charges' => $request->leave_charges,
-                        'bonus' => $request->bonus,
-                        'advance_salary' => $request->advance_salary,
-                        'total_amount' => 
-                        $request->monthly_salary +
-                        $request->tada +
-                        $request->extra_class_salary +
-                        $request->incentive -
-                        $request->transport_charges -
-                        $request->leave_charges +
-                        $request->bonus -
-                        $request->advance_salary
-                    ];
-                    Salary::create([
-                        'title' => htmlentities($request->title),
-                        'month' => htmlentities($request->month),
-                        'user_id' => htmlentities($request->user),
-                        'created_by' => Auth::user()->id,
-                        'added_by' => 'Salary Management',
-                        'salary' => $salary,
-                        'level_id' => htmlentities($request->level),
-                    ]);
-                    if(isset($request->advance_salary)){
-                        AdvanceSalary::create([
-                            'user_id' => $request->user,
-                            'created_by' => Auth::user()->id,
-                            'amount' => $request->advance_salary ,
-                        ]);
-                    }
+            Salary::create([
+                'title' => htmlentities($request->title),
+                'monthly_salary' => htmlentities($request->monthly_salary),
+                'tada' => htmlentities($request->tada),
+                'extra_class' => htmlentities($request->extra_class),
+                'incentive' => htmlentities($request->incentive),
+                'transport_charges' => htmlentities($request->transport_charges),
+                'leave_charges' => htmlentities($request->leave_charges),
+                'bonus' => htmlentities($request->bonus),
+                'advance_salary' => htmlentities($request->advance_salary),
+                'total_amount' => htmlentities($request->total_amount) + htmlentities($request->monthly_salary) + htmlentities($request->tada) + htmlentities($request->extra_class) + htmlentities($request->incentive) + htmlentities($request->transport_charges) + htmlentities($request->leave_charges) + htmlentities($request->bonus) + htmlentities($request->advance_salary) + htmlentities($request->total_amount),
+                'month' => htmlentities($request->month),
+                'user_id' => htmlentities($request->user),
+                'created_by' => Auth::user()->id,
+                'added_by' => 'Salary Management',
+                'level_id' => htmlentities($request->level),
+            ]);
+            if (isset($request->advance_salary)) {
+                AdvanceSalary::create([
+                    'user_id' => $request->user,
+                    'created_by' => Auth::user()->id,
+                    'amount' => $request->advance_salary,
+                ]);
+            }
             DB::commit();
             $request->session()->flash('success', 'Salary added successfully.');
             return redirect()->route('salary.index');
@@ -135,7 +122,7 @@ class SalaryController extends Controller
             abort(404);
         }
         $temp = $salary_info[0];
-        foreach($salary_info as $value){
+        foreach ($salary_info as $value) {
             $salary = [
                 'tuition_salary' => $value->salarys['tuition_salary'] - $temp->salarys['tuition_salary'],
                 'exam_salary' => $value->salarys['exam_salary'] - $temp->salarys['exam_salary'],

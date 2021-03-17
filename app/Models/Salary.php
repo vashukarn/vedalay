@@ -11,18 +11,23 @@ class Salary extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'title',
-        'month',
-        'salary',
         'rollback',
-        'user_id',
+        'month',
+        'monthly_salary',
+        'tada',
+        'extra_class',
+        'incentive',
+        'transport_charges',
+        'leave_charges',
+        'bonus',
+        'advance_salary',
+        'total_amount',
         'added_by',
+        'user_id',
         'created_by',
         'updated_by',
     ];
     protected $dates = ['deleted_at'];
-    protected $casts  = [
-        'salary' => 'json',
-    ];
     public function creator()
     {
         return $this->hasOne('App\Models\User', 'id', 'created_by');
