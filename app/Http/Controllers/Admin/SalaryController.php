@@ -79,6 +79,15 @@ class SalaryController extends Controller
             'title' => 'required|min:3|max:190',
             'type' => 'required|in:Teacher,Staff',
             'month' => 'required|required|numeric|in:1,2,3,4,5,6,7,8,9,10,11,12',
+            'monthly_salary' => 'nullable|numeric',
+            'tada' => 'nullable|numeric',
+            'extra_class' => 'nullable|numeric',
+            'incentive' => 'nullable|numeric',
+            'transport_charges' => 'nullable|numeric',
+            'leave_charges' => 'nullable|numeric',
+            'bonus' => 'nullable|numeric',
+            'advance_salary' => 'nullable|numeric',
+            
         ]);
         DB::beginTransaction();
         try {
@@ -123,21 +132,17 @@ class SalaryController extends Controller
         }
         $temp = $salary_info[0];
         foreach ($salary_info as $value) {
-            $salary = [
-                'tuition_salary' => $value->salarys['tuition_salary'] - $temp->salarys['tuition_salary'],
-                'exam_salary' => $value->salarys['exam_salary'] - $temp->salarys['exam_salary'],
-                'transport_salary' => $value->salarys['transport_salary'] - $temp->salarys['transport_salary'],
-                'stationery_salary' => $value->salarys['stationery_salary'] - $temp->salarys['stationery_salary'],
-                'club_salary' => $value->salarys['club_salary'] - $temp->salarys['club_salary'],
-                'hostel_salary' => $value->salarys['hostel_salary'] - $temp->salarys['hostel_salary'],
-                'laundry_salary' => $value->salarys['laundry_salary'] - $temp->salarys['laundry_salary'],
-                'eduaction_tax' => $value->salarys['eduaction_tax'] - $temp->salarys['eduaction_tax'],
-                'eca_salary' => $value->salarys['eca_salary'] - $temp->salarys['eca_salary'],
-                'late_fine' => $value->salarys['late_fine'] - $temp->salarys['late_fine'],
-                'extra_salary' => $value->salarys['extra_salary'] - $temp->salarys['extra_salary'],
-                'total_amount' => $value->salarys['total_amount'] - $temp->salarys['total_amount']
-            ];
             $single = $this->salary->find($value->id);
+            $single->title = $temp->title;
+            $single->monthly_salary = $temp->monthly_salary;
+            $single->tada = $temp->tada;
+            $single->extra_class = $temp->extra_class;
+            $single->incentive = $temp->incentive;
+            $single->transport_charges = $temp->transport_charges;
+            $single->leave_charges = $temp->leave_charges;
+            $single->bonus = $temp->bonus;
+            $single->advance_salary = $temp->advance_salary;
+            $single->total_amount = $temp->total_amount;
             $single->month = date('m');
             $single->added_by = "Roll backed";
             $single->updated_by = Auth::user()->id;
