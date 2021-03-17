@@ -203,7 +203,7 @@ class StudentController extends Controller
             }
             DB::commit();
             $user->assignRole('Student');
-            $request->session()->flash('success', 'Student added successfully.');
+            $request->session()->flash('success', 'Student profile created successfully.');
             return redirect()->route('student.index');
         } catch (\Exception $error) {
             DB::rollBack();
@@ -326,7 +326,7 @@ class StudentController extends Controller
             }
             $student->save();
             DB::commit();
-            $request->session()->flash('success', 'Student updated successfully.');
+            $request->session()->flash('success', 'Student profile updated successfully.');
             return redirect()->route('student.index');
         } catch (\Exception $error) {
             DB::rollBack();

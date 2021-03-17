@@ -59,7 +59,7 @@ class TeacherController extends Controller
     {
         $teacher_info = null;
         $title = 'Add Teacher';
-        $temp = Subject::where('publish_status', '1')->get();
+        $temp = Subject::all();
         $subjects = null;
         foreach ($temp as $value) {
             $subjects[$value->id] = $value->title.' - Level: ' .$value->get_level->standard;
@@ -76,9 +76,9 @@ class TeacherController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|unique:users|string|min:3|max:190',
+            'email' => 'required|unique:users|email|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
-            'gender' => 'required',
+            'gender' => 'required|in:male,female,others',
             'subject' => 'required',
             'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|max:190',
             'permanent_address' => 'required|string|min:3|max:190',
@@ -93,16 +93,6 @@ class TeacherController extends Controller
                 'type' => 'teacher',
                 'password' => Hash::make($request->password),
                 'publish_status' => htmlentities($request->publish_status),
-                'image' => htmlentities($request->image ?? null),
-                'phone' => htmlentities($request->phone),
-                'short_name' => htmlentities($request->short_name),
-                'salary' => htmlentities($request->salary),
-                'subject' => ($request->subject),
-                'dob' => htmlentities($request->dob),
-                'aadhar_number' => htmlentities($request->aadhar_number),
-                'gender' => htmlentities($request->gender),
-                'current_address' => htmlentities($request->current_address),
-                'permanent_address' => htmlentities($request->permanent_address),
                 'created_by' => Auth::user()->id,
             ]);
             Teacher::create([
@@ -119,11 +109,10 @@ class TeacherController extends Controller
                 'gender' => htmlentities($request->gender),
                 'current_address' => htmlentities($request->current_address),
                 'permanent_address' => htmlentities($request->permanent_address),
-                'created_by' => Auth::user()->id,
             ]);
             DB::commit();
             $user->assignRole('Teacher');
-            $request->session()->flash('success', 'Teacher added successfully.');
+            $request->session()->flash('success', 'Teacher profile created successfully.');
             return redirect()->route('teacher.index');
         } catch (\Exception $error) {
             DB::rollBack();
@@ -154,8 +143,8 @@ class TeacherController extends Controller
         if (!$teacher_info) {
             abort(404);
         }
-        $title = 'Edit User';
-        $temp = Subject::where('publish_status', '1')->get();
+        $title = 'Edit Teacher';
+        $temp = Subject::all();
         $subjects = null;
         foreach ($temp as $value) {
             $subjects[$value->id] = $value->title.' - Level: ' .$value->get_level->standard;
@@ -178,35 +167,33 @@ class TeacherController extends Controller
             'name' => 'required|string|min:3|max:190',
             'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
-            'gender' => 'required|string',
-            'level' => 'required',
-            'session' => 'required',
+            'gender' => 'required|in:male,female,others',
             'permanent_address' => 'required|string|min:3|max:190',
             'current_address' => 'required|string|min:3|max:190',
         ]);
         DB::beginTransaction();
         try {
             $user = User::find($teacher_info->user_id);
-            $user->name =htmlentities($request->name);
-            $user->email =htmlentities($request->email);
-            $user->publish_status =htmlentities($request->publish_status);
+            $user->name = htmlentities($request->name);
+            $user->email = htmlentities($request->email);
+            $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $user->save();
             $teacher = Teacher::find($teacher_info->id);
-            $teacher->phone =htmlentities($request->phone);
-            $teacher->salary =htmlentities($request->salary);
-            $teacher->dob =htmlentities($request->dob);
-            $teacher->gender =htmlentities($request->gender);
-            $teacher->aadhar_number =htmlentities($request->aadhar_number);
-            $teacher->current_address =htmlentities($request->current_address);
-            $teacher->permanent_address =htmlentities($request->permanent_address);
-            $teacher->updated_by = Auth::user()->id;
+            $teacher->phone = htmlentities($request->phone);
+            $teacher->salary = htmlentities($request->salary);
+            $teacher->dob = htmlentities($request->dob);
+            $teacher->subject = $request->subject;
+            $teacher->gender = htmlentities($request->gender);
+            $teacher->aadhar_number = htmlentities($request->aadhar_number);
+            $teacher->current_address = htmlentities($request->current_address);
+            $teacher->permanent_address = htmlentities($request->permanent_address);
             if(isset($request->image)){
-                $teacher['image'] =htmlentities($request->image);
+                $teacher['image'] = htmlentities($request->image);
             }
             $teacher->save();
             DB::commit();
-            $request->session()->flash('success', 'Teacher updated successfully.');
+            $request->session()->flash('success', 'Teacher profile updated successfully.');
             return redirect()->route('teacher.index');
         } catch (\Exception $error) {
             DB::rollBack();
