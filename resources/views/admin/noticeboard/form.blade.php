@@ -83,7 +83,7 @@
                                                         margin-top:15px;">
                                     </div>
 
-                                    @if (isset($student_info->image))
+                                    @if (isset($noticeboard_info->image))
                                         Old Image: &nbsp; <img src="{{ @$noticeboard_info->image }}"
                                             alt="No Image Found" class="img img-thumbail mt-2"
                                             style="width: 100px">
