@@ -74,7 +74,6 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $credits = 0;
                                                     $marks = 0;
                                                     $pass = 0;
                                                     $total = 0;
@@ -92,9 +91,6 @@
                                                                 <td>{{ $item['pass'] }}</td>
                                                                 <td>{{ $item['full'] }}</td>
                                                             @else
-                                                            <?php
-                                                            $credits += $item['credits'];
-                                                            ?>
                                                                 <td>{{ $item['credits'] }}</td>
                                                                 <td>{{ $item['grade'] }}</td>
                                                             @endif
@@ -107,7 +103,7 @@
                                                             <td>{{ $pass }}</td>
                                                             <td>{{ $total }}</td>
                                                         @else
-                                                            <td>{{ $credits/3 }}</td>
+                                                            <td>{{ $value->sgpa }}</td>
                                                             <td>{{ $value->grade }}</td>
                                                         @endif
                                                     </tr>

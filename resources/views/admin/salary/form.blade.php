@@ -147,11 +147,11 @@
                             </div>
 
                             <div id="forteacher">
-                                <div class="form-group row {{ $errors->has('extra_class_salary') ? 'has-error' : '' }}">
-                                    {{ Form::label('extra_class_salary', 'Extra Class Bonus :', ['class' => 'col-sm-3']) }}
+                                <div class="form-group row {{ $errors->has('extra_class') ? 'has-error' : '' }}">
+                                    {{ Form::label('extra_class', 'Extra Class Bonus :', ['class' => 'col-sm-3']) }}
                                     <div class="col-sm-9">
-                                        {{ Form::number('extra_class_salary', @$salary_info->extra_class_salary, ['class' => 'form-control', 'id' => 'extra_class_salary', 'placeholder' => 'Extra Class Bonus','style' => 'width:80%']) }}
-                                        @error('extra_class_salary')
+                                        {{ Form::number('extra_class', @$salary_info->extra_class, ['class' => 'form-control', 'id' => 'extra_class', 'placeholder' => 'Extra Class Bonus','style' => 'width:80%']) }}
+                                        @error('extra_class')
                                             <span class="help-block error">{{ $message }}</span>
                                         @enderror
                                     </div>
