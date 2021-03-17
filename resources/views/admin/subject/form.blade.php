@@ -55,7 +55,7 @@
                             <div class="form-group row {{ $errors->has('level') ? 'has-error' : '' }}">
                                 {{ Form::label('level', 'Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('level', @$levels, @$subject_info->level, ['class' => 'form-control', 'id' => 'level','style' => 'width:80%']) }}
+                                    {{ Form::select('level', @$levels, @$subject_info->level_id, ['class' => 'form-control', 'id' => 'level','style' => 'width:80%']) }}
                                     @error('level')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

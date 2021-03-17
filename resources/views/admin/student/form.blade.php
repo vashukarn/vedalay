@@ -348,7 +348,7 @@
 
                                     @if (isset($student_info->image))
                                         Old Image: &nbsp; <img src="{{ @$student_info->image }}"
-                                            alt="{{ @$student_info->get_user->name }}" class="img img-thumbail mt-2"
+                                            alt="No Image Found" class="img img-thumbail mt-2"
                                             style="width: 100px">
                                     @endif
                                     @error('image')
