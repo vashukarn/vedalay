@@ -121,7 +121,10 @@ class UserController extends Controller
         if(Auth::user()->type == 'Student'){
             $student_info = Student::where('user_id', Auth::user()->id)->first();
         }
-        return view('admin.auth.profile');
+        $data = [
+            'student_info' => $student_info,
+        ];
+        return view('admin.auth.profile')->with($data);
     }
 
     public function updatePassword(Request $request, $id){
