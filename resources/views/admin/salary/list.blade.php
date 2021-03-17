@@ -75,7 +75,7 @@
                                     @endif
                                 </span>
                             </td>
-                            <td>{{ @$value->salary['total_amount'] }}</td>
+                            <td>{{ @$value->total_amount }}</td>
                             <td>{{ @$value->creator->name }}</td>
                             <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                             </tr>

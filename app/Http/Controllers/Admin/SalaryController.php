@@ -101,7 +101,7 @@ class SalaryController extends Controller
                 'leave_charges' => htmlentities($request->leave_charges),
                 'bonus' => htmlentities($request->bonus),
                 'advance_salary' => htmlentities($request->advance_salary),
-                'total_amount' => htmlentities($request->monthly_salary) + htmlentities($request->tada) + htmlentities($request->extra_class) + htmlentities($request->incentive) + htmlentities($request->transport_charges) + htmlentities($request->leave_charges) + htmlentities($request->bonus) + htmlentities($request->advance_salary),
+                'total_amount' => ($request->monthly_salary ? htmlentities($request->monthly_salary) : 0) + ($request->tada ? htmlentities($request->tada) : 0) + ($request->extra_class ? htmlentities($request->extra_class) : 0) + ($request->incentive ? htmlentities($request->incentive) : 0) + ($request->transport_charges ? htmlentities($request->transport_charges) : 0) + ($request->leave_charges ? htmlentities($request->leave_charges) : 0) + ($request->bonus ? htmlentities($request->bonus) : 0) + ($request->advance_salary ? htmlentities($request->advance_salary) : 0),
                 'month' => htmlentities($request->month),
                 'user_id' => htmlentities($request->user),
                 'created_by' => Auth::user()->id,
