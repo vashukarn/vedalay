@@ -10,23 +10,39 @@
         <div class="card card-primary">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="img-fluid img-circle" src="{{ asset('img/logo.png') }}" style="width:80px" alt="User profile picture">
+              <img class="img-fluid img-circle" src="@if($student_info->image) {{ $student_info->image }} @else {{ asset('img/AdminLTELogo.png') }} @endif" style="width:80px" alt="User profile picture">
             </div>
 
             <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
 
-            <p class="text-muted text-center">{{request()->user()->roles->first()->name}}</p>
+            <p class="text-muted text-center">{{ request()->user()->roles->first()->name }}</p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Post Created</b> <a class="float-right">1,322</a>
+                <b>Email</b> <a class="float-right">{{ @$user_info->email }}</a>
+              </li>
+              @hasrole('Student')
+              <li class="list-group-item">
+                <b>Level/Class</b> <a class="float-right">{{ @$levels[$student_info->level_id] }}</a>
               </li>
               <li class="list-group-item">
-                <b>CMS Page Created</b> <a class="float-right">5</a>
+                <b>Date of Birth</b> <a class="float-right">{{ ReadableDate(@$student_info->dob, 'ymd') }}</a>
               </li>
               <li class="list-group-item">
-                <b>Menu Created</b> <a class="float-right">13</a>
+                <b>Gender</b> <a class="float-right">{{ @$student_info->gender }}</a>
               </li>
+              @endhasrole
+              @hasrole('Teacher')
+              <li class="list-group-item">
+                <b>Short Name</b> <a class="float-right">{{ @$teacher_info->short_name }}</a>
+              </li>
+              <li class="list-group-item">
+                <b>Joining Date</b> <a class="float-right">{{ ReadableDate(@$teacher_info->joining_date, 'ymd') }}</a>
+              </li>
+              <li class="list-group-item">
+                <b>Gender</b> <a class="float-right">{{ @$teacher_info->gender }}</a>
+              </li>
+              @endhasrole
             </ul>
 
             <a href="#" class="btn btn-primary btn-block"><b>View More</b></a>

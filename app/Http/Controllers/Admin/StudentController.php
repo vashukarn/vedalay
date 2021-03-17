@@ -320,7 +320,6 @@ class StudentController extends Controller
             $student->guardian_phone = htmlentities($request->guardian_phone);
             $student->current_address = htmlentities($request->current_address);
             $student->permanent_address = htmlentities($request->permanent_address);
-            $student->updated_by = Auth::user()->id;
             if (isset($request->image)) {
                 $student->image = htmlentities($request->image);
             }

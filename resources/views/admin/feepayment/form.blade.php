@@ -17,6 +17,19 @@
         });
     });
     $('#level_id').change(function () {
+        tuition = 0;
+        exam = 0;
+        transport = 0;
+        stationery = 0;
+        sports = 0;
+        club = 0;
+        hostel = 0;
+        laundry = 0;
+        education = 0;
+        eca = 0;
+        extra = 0;
+        late = 0;
+        total = 0;
         $('#feedetail').hide();
         $('#feepayment').hide();
         $('#tablebody').empty();
@@ -60,6 +73,19 @@
     var late = 0;
     var total = 0;
     $('#student_id').change(function () {
+        tuition = 0;
+        exam = 0;
+        transport = 0;
+        stationery = 0;
+        sports = 0;
+        club = 0;
+        hostel = 0;
+        laundry = 0;
+        education = 0;
+        eca = 0;
+        extra = 0;
+        late = 0;
+        total = 0;
         $('#feedetail').hide();
         $('#feepayment').hide();
         var tablebody = $('#tablebody');
