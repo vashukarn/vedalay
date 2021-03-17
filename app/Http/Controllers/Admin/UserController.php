@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Utilities\LogActivity;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -117,6 +118,9 @@ class UserController extends Controller
 
     public function profiledetail()
     {
+        if(Auth::user()->type == 'Student'){
+            $student_info = Student::where('user_id', Auth::user()->id)->first();
+        }
         return view('admin.auth.profile');
     }
 
@@ -125,7 +129,7 @@ class UserController extends Controller
             'name'=>'required|string|max:50',
             'current_password'=>'required',
             'password_confirmation'=>'required',
-            'password'=>'required|string|min:8|confirmed|different:current_password|regex:'. $this->user->regex()
+            'password'=>'required|string|min:6|confirmed|different:current_password',
         ]);
         $this->user = $this->user->find($id);
         if (!$this->user) {
