@@ -12,18 +12,6 @@
                             <i class="fa fa-list"></i></a>
                     </div>
                 </div>
-                <div class="card-header">
-                    <div class="row">
-                        <div class="float-right col-lg-2">
-                            <div class="card-tools">
-                                @can('feeadvance-create')
-                                <a href="{{ route('feeadvance.create') }}" class="btn btn-success btn-sm btn-flat mr-2">
-                                    <i class="fa fa-plus"></i> Pay Fee</a>
-                                @endcan
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
                     <table class="table table-striped table-hover">
                         <thead>

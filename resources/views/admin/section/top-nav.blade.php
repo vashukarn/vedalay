@@ -50,8 +50,10 @@
                         <a href="{{ route('profiledetail') }}" class="dropdown-item pl-3 href="" class="">
                             <i class=" fas fa-user pr-1"></i> Profile</a>
                         <div class="dropdown-divider"></div>
+                        @hasrole('Super Admin')
                         <a href="{{ route('setting.index') }}" class="dropdown-item pl-3" type="button"> <i class="fas fa-cog pr-1"></i>Settings</a>
                         <div class="dropdown-divider"></div>
+                        @endhasrole
                         <a class="dropdown-item pl-3" href="{{ route('user.logout') }}" title="Logout"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                                 class="fa fa-power-off pr-1"></i> Logout</a>

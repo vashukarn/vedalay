@@ -17,7 +17,6 @@
                         <div class="icon">
                             <i class="fas fa-admin"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 @endrole
@@ -32,7 +31,6 @@
                         <div class="icon">
                             <i class="fas fa-user-cog"></i>
                         </div>
-                        <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 @endhasanyrole
