@@ -25,15 +25,24 @@ class SubjectController extends Controller
         $query = $this->subject->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('level_id', $keyword);
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
+        $classes = Level::all();
+        foreach ($classes as $value) {
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
+                $levels[$value->id] = $value->standard;
+            }
+        }
         $data = $this->getsubject($request);
         $data = [
             'data' => $data,
+            'levels' => $levels,
         ];
         return view('admin/subject/list')->with($data);
     }
