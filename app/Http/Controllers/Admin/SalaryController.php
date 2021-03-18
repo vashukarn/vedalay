@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AdvanceSalary;
 use App\Models\Salary;
+use App\Models\Staff;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,15 +50,25 @@ class SalaryController extends Controller
         $query = $this->salary->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('user_id', $keyword);
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
         $data = $this->getsalary($request);
+        $users = [];
+        $temp = Teacher::all();
+        foreach ($temp as $value) {
+            $users[$value->user_id] = $value->get_user->name . ' - ' . $value->phone;
+        }
+        $temp = Staff::all();
+        foreach ($temp as $value) {
+            $users[$value->user_id] = $value->get_user->name . ' - ' . $value->phone;
+        }
         $data = [
             'data' => $data,
+            'users' => $users,
         ];
         return view('admin/salary/list')->with($data);
     }

@@ -1,5 +1,16 @@
 @extends('layouts.admin')
 @section('title', 'Subject List')
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#keyword').select2({
+                placeholder: "Search Name or Phone",
+                allowClear: true
+            });
+        });
+
+    </script>
+@endpush
 @section('content')
     <section class="content-header pt-0"></section>
     <section class="content">
@@ -18,7 +29,7 @@
                             <form action="" class="">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4">
-                                        {!! Form::select('keyword', [], @request()->keyword, ['class' => 'form-control select2', 'placeholder' =>
+                                        {!! Form::select('keyword', $levels, @request()->keyword, ['id' => 'keyword','class' => 'form-control select2', 'placeholder' =>
                                         'Search Name or Phone']) !!}
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4">
