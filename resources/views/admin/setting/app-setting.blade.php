@@ -8,10 +8,11 @@
                 border-color: #138192;
                 color: #fff;
             }
+
         </style>
     @endpush
     @push('scripts')
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+        <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
         <script src="{{ asset('/custom/appsetting.js') }}"></script>
         <script>
@@ -21,6 +22,7 @@
             $('#lfm1').filemanager('image');
             $('#lfm2').filemanager('image');
             $('#lfm3').filemanager('image');
+
         </script>
     @endpush
 @section('content')
@@ -57,7 +59,7 @@
                             href="#custom-tabs-three-mssetting" role="tab" aria-controls="custom-tabs-three-mssetting"
                             aria-selected="false">Management System Settings</a>
                     </li>
-                  
+
                 </ul>
             </div>
             <div class="card-body">
@@ -143,10 +145,10 @@
                                     </div>
                                     <div class="col-lg-6">
                                         {!! Form::text('contact_no[1][contact_city]', @$site_detail->phone[1]['contact_city'], ['class' => 'form-control', 'placeholder' => 'Contact City Name ']) !!}
-                                        
+
                                     </div>
                                 </div>
-                               
+
                             </div>
                         </div>
 
@@ -155,22 +157,23 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm" data-input="logo" data-preview="holder" class="btn btn-primary text-white">
-                                        <i class="fa fa-picture-o"></i> Choose
-                                      </a>
+                                        <a id="lfm" data-input="logo" data-preview="holder"
+                                            class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                        </a>
                                     </span>
                                     <input id="logo" class="form-control" type="text" name="logo">
                                 </div>
                                 <div id="holder" style="
-                                    border: 1px solid #ddd;
-                                    border-radius: 4px;
-                                    padding: 5px;
-                                    width: 150px;
-                                    margin-top:15px;">
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
                                 </div>
                                 @if (isset($site_detail->logo))
-                                Old Logo: &nbsp; <img src="{{ @$site_detail->logo }}" alt="Couldn't load logo" 
-                                class="img img-thumbail mt-2" style="width: 100px">
+                                    Old Logo: &nbsp; <img src="{{ @$site_detail->logo }}" alt="Couldn't load logo"
+                                        class="img img-thumbail mt-2" style="width: 100px">
                                 @endif
                                 @error('logo')
                                     <span class="help-block error">{{ $message }}</span>
@@ -183,22 +186,23 @@
                             <div class="col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-btn">
-                                      <a id="lfm1" data-input="logo_light" data-preview="holder1" class="btn btn-primary text-white">
-                                        <i class="fa fa-picture-o"></i> Choose
-                                      </a>
+                                        <a id="lfm1" data-input="logo_light" data-preview="holder1"
+                                            class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Choose
+                                        </a>
                                     </span>
                                     <input id="logo_light" class="form-control" type="text" name="logo_light">
                                 </div>
                                 <div id="holder1" style="
-                                    border: 1px solid #ddd;
-                                    border-radius: 4px;
-                                    padding: 5px;
-                                    width: 150px;
-                                    margin-top:15px;">
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
                                 </div>
                                 @if (isset($site_detail->logo_light))
-                                Old Light Logo: &nbsp; <img src="{{ @$site_detail->logo_light }}" alt="Couldn't load logo_light" 
-                                class="img img-thumbail mt-2" style="width: 100px">
+                                    Old Light Logo: &nbsp; <img src="{{ @$site_detail->logo_light }}"
+                                        alt="Couldn't load logo_light" class="img img-thumbail mt-2" style="width: 100px">
                                 @endif
                                 @error('logo_light')
                                     <span class="help-block error">{{ $message }}</span>
@@ -222,61 +226,64 @@
                         </div>
 
                         <div id="fav_icon-details">
-                        <div class="form-group row {{ $errors->has('favicon') ? 'has-error' : '' }}">    
-                            {{ Form::label('favicon', 'Institution favicon:*', ['class' => 'col-sm-3']) }}
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                      <a id="lfm2" data-input="favicon" data-preview="holder2" class="btn btn-primary text-white">
-                                        <i class="fa fa-picture-o"></i> Choose
-                                      </a>
-                                    </span>
-                                    <input id="favicon" class="form-control" type="text" name="favicon">
+                            <div class="form-group row {{ $errors->has('favicon') ? 'has-error' : '' }}">
+                                {{ Form::label('favicon', 'Institution favicon:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <a id="lfm2" data-input="favicon" data-preview="holder2"
+                                                class="btn btn-primary text-white">
+                                                <i class="fa fa-picture-o"></i> Choose
+                                            </a>
+                                        </span>
+                                        <input id="favicon" class="form-control" type="text" name="favicon">
+                                    </div>
+                                    <div id="holder2" style="
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
+                                    </div>
+                                    @if (isset($site_detail->favicon))
+                                        Old favicon: &nbsp; <img src="{{ @$site_detail->favicon }}"
+                                            alt="Couldn't load favicon" class="img img-thumbail mt-2" style="width: 100px">
+                                    @endif
+                                    @error('favicon')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <div id="holder2" style="
-                                    border: 1px solid #ddd;
-                                    border-radius: 4px;
-                                    padding: 5px;
-                                    width: 150px;
-                                    margin-top:15px;">
-                                </div>
-                                @if (isset($site_detail->favicon))
-                                Old favicon: &nbsp; <img src="{{ @$site_detail->favicon }}" alt="Couldn't load favicon" 
-                                class="img img-thumbail mt-2" style="width: 100px">
-                                @endif
-                                @error('favicon')
-                                    <span class="help-block error">{{ $message }}</span>
-                                @enderror
                             </div>
-                        </div>
 
-                        <div class="form-group row {{ $errors->has('og_image') ? 'has-error' : '' }}">    
-                            {{ Form::label('og_image', 'Meta OG Image:*', ['class' => 'col-sm-3']) }}
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                      <a id="lfm3" data-input="og_image" data-preview="holder3" class="btn btn-primary text-white">
-                                        <i class="fa fa-picture-o"></i> Choose
-                                      </a>
-                                    </span>
-                                    <input id="og_image" class="form-control" type="text" name="og_image">
+                            <div class="form-group row {{ $errors->has('og_image') ? 'has-error' : '' }}">
+                                {{ Form::label('og_image', 'Meta OG Image:*', ['class' => 'col-sm-3']) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <a id="lfm3" data-input="og_image" data-preview="holder3"
+                                                class="btn btn-primary text-white">
+                                                <i class="fa fa-picture-o"></i> Choose
+                                            </a>
+                                        </span>
+                                        <input id="og_image" class="form-control" type="text" name="og_image">
+                                    </div>
+                                    <div id="holder3" style="
+                                        border: 1px solid #ddd;
+                                        border-radius: 4px;
+                                        padding: 5px;
+                                        width: 150px;
+                                        margin-top:15px;">
+                                    </div>
+                                    @if (isset($site_detail->og_image))
+                                        Old Meta OG Image: &nbsp; <img src="{{ @$site_detail->og_image }}"
+                                            alt="Couldn't load Old OG Image" class="img img-thumbail mt-2"
+                                            style="width: 100px">
+                                    @endif
+                                    @error('og_image')
+                                        <span class="help-block error">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <div id="holder3" style="
-                                    border: 1px solid #ddd;
-                                    border-radius: 4px;
-                                    padding: 5px;
-                                    width: 150px;
-                                    margin-top:15px;">
-                                </div>
-                                @if (isset($site_detail->og_image))
-                                Old Meta OG Image: &nbsp; <img src="{{ @$site_detail->og_image }}" alt="Couldn't load Old OG Image" 
-                                class="img img-thumbail mt-2" style="width: 100px">
-                                @endif
-                                @error('og_image')
-                                    <span class="help-block error">{{ $message }}</span>
-                                @enderror
                             </div>
-                        </div>
                         </div>
 
 
@@ -284,7 +291,7 @@
 
                     <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
                         aria-labelledby="custom-tabs-three-profile-tab">
-                         
+
                         <div class="form-group row">
                             {{ Form::label('facebook', 'Official Facebook', ['class' => 'col-sm-4 col-form-label']) }}
                             <div class="col-sm-6">
@@ -354,52 +361,52 @@
 
                         <div class="page-description-div">
 
-                            
-                        <div class="form-group row">
-                            <label class="col-md-4">Use Meta Tag</label>
-                            <div class="btn-group btn-group-toggle col-md-3" data-toggle="buttons">
-                                <label class="btn btn-default active">
-                                    <input type="radio" name="is_meta" autocomplete="off" value="YES"
-                                        {{ @$site_detail->is_meta == 1 ? 'checked' : '' }}> Yes
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="is_meta" autocomplete="off" value="NO"
-                                        {{ @$site_detail->is_meta == 0 ? 'checked' : '' }}> No
-                                </label>
-                            </div>
-                        </div>
 
-                        <div id="metatag-details">
                             <div class="form-group row">
-                                {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
-                                    @error('meta[title]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                                <label class="col-md-4">Use Meta Tag</label>
+                                <div class="btn-group btn-group-toggle col-md-3" data-toggle="buttons">
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="is_meta" autocomplete="off" value="YES"
+                                            {{ @$site_detail->is_meta == 1 ? 'checked' : '' }}> Yes
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="is_meta" autocomplete="off" value="NO"
+                                            {{ @$site_detail->is_meta == 0 ? 'checked' : '' }}> No
+                                    </label>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
-                                    @error('meta[key]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                            <div id="metatag-details">
+                                <div class="form-group row">
+                                    {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
+                                        @error('meta[title]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
-                                    @error('meta[description]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                                <div class="form-group row">
+                                    {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
+                                        @error('meta[key]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
+                                        @error('meta[description]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
 
@@ -419,37 +426,37 @@
                                 </div>
                             </div>
 
-                        <div id="metatag-details">
-                            <div class="form-group row">
-                                {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
-                                    @error('meta[title]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                            <div id="metatag-details">
+                                <div class="form-group row">
+                                    {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
+                                        @error('meta[title]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
-                                    @error('meta[key]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                                <div class="form-group row">
+                                    {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
+                                        @error('meta[key]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                <div class="col-sm-6">
-                                    {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
-                                    @error('meta[description]')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
+                                <div class="form-group row">
+                                    {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
+                                    <div class="col-sm-6">
+                                        {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
+                                        @error('meta[description]')
+                                            <span class="help-block error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

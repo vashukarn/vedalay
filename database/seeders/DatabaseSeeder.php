@@ -6,11 +6,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         $this->call(PermissionTableSeeder::class);
@@ -18,5 +13,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SessionSeeder::class);
         $this->call(SubjectSeeder::class);
         $this->call(CreateAdminUserSeeder::class);
+        $this->call(AppSettingSeeder::class);
     }
 }
