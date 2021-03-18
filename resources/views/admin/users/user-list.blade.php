@@ -52,8 +52,8 @@
                                 @endif
                               </td>
                               <td>
-                                <span class="badge badge-{{ $value->status==0 ?'danger':'success' }}">
-                                {{ $value->status==1?'Active':'Inactive' }}
+                                <span class="badge badge-{{ $value->publish_status==0 ?'danger':'success' }}">
+                                {{ $value->publish_status==1?'Active':'Inactive' }}
                                 </span>
                               </td>
                               <td>{{$value->updated_at->format('Y-m-d')}}</td>

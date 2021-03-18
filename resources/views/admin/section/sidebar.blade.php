@@ -535,6 +535,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         @can('inventory-create')
+                        <li class="nav-item">
+                            <a href="{{ route('inventoryitem.index') }}"
+                                class="nav-link {{ request()->is('user/inventoryitem') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Inventory Item List</p>
+                            </a>
+                        </li>
+                        @endcan
                             <li class="nav-item">
                                 <a href="{{ route('inventory.create') }}"
                                     class="nav-link  {{ request()->is('user/inventory/create') ? 'active' : '' }}">
@@ -542,19 +550,11 @@
                                     <p>Add or Remove Stock</p>
                                 </a>
                             </li>
-                        @endcan
                         <li class="nav-item">
                             <a href="{{ route('inventory.index') }}"
                                 class="nav-link {{ request()->is('user/inventory') ? 'active' : '' }}">
                                 <i class="fas fa-list nav-icon"></i>
                                 <p>Inventory List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('inventoryitem.index') }}"
-                                class="nav-link {{ request()->is('user/inventorylist') ? 'active' : '' }}">
-                                <i class="fas fa-list nav-icon"></i>
-                                <p>Inventory Item List</p>
                             </a>
                         </li>
                     </ul>

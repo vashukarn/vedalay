@@ -41,22 +41,30 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $rules = $this->user->getRules();
-        $request->validate($rules);
-        $data = $request->all();
-        // dd($data);
-        $data['password'] = Hash::make($request->password);
-        $data['type'] = 'admin';
-        $this->user->fill($data);
-        $status = $this->user->save();
-        if ($status) {
-            $this->user->assignRole($request->input('roles'));
-            //$this->user->sendEmailVerificationNotification();
-            $request->session()->flash('success', "User Created Successfully");
-        } else {
-            $request->session()->flash('error', "Sorry! Error While Adding the new user");
+        DB::beginTransaction();
+        try {
+            $rules = $this->user->getRules();
+            $request->validate($rules);
+            $data = $request->all();
+            // dd($data);
+            $data['password'] = Hash::make($request->password);
+            $data['type'] = 'admin';
+            $this->user->fill($data);
+            $status = $this->user->save();
+            DB::commit();
+            if ($status) {
+                $this->user->assignRole($request->input('roles'));
+                //$this->user->sendEmailVerificationNotification();
+                $request->session()->flash('success', "User Created Successfully");
+            } else {
+                $request->session()->flash('error', "Sorry! Error While Adding the new user");
+            }
+            return redirect()->route('users.index');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
         }
-        return redirect()->route('users.index');
     }
 
     public function show($id)
@@ -71,35 +79,43 @@ class UserController extends Controller
             request()->session()->flash('error', 'Error ! User Not Found');
             return redirect()->back();
         }
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::where('name', 'Super Admin')->orwhere('name', 'Admin')->pluck('name', 'name');
         $userRole = $this->user->roles->pluck('name', 'name')->all();
         return view('admin.users.user-form', compact('roles', 'userRole'))->with('user_detail', $this->user);
     }
     public function update(Request $request, $id)
     {
-        $this->user = $this->user->find($id);
-        if (!$this->user) {
-            request()->session()->flash('error', 'Eror ! User Not Found');
+        DB::beginTransaction();
+        try {
+            $this->user = $this->user->find($id);
+            if (!$this->user) {
+                request()->session()->flash('error', 'Error ! User Not Found');
+                return redirect()->back();
+            }
+            $rules = $this->user->getRules('update', $id);
+            $request->validate($rules);
+            $data = $request->all();
+            if (isset($request->change_password)) {
+                $data['password'] = Hash::make($request->password);
+            } else {
+                $data['password'] = $this->user->password;  //if password comes blank set old password
+            }
+            $this->user->fill($data);
+            $status = $this->user->save();
+            if ($status) {
+                DB::table('model_has_roles')->where('model_id', $id)->delete();
+                $this->user->assignRole($request->input('roles'));
+                $request->session()->flash('success', "User Updated Successfully");
+            } else {
+                $request->session()->flash('error', "Sorry! Error While Updating the user");
+            }
+            DB::commit();
+            return redirect()->route('users.index');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
-        $rules = $this->user->getRules('update', $id);
-        $request->validate($rules);
-        $data = $request->all();
-        if (isset($request->change_password)) {
-            $data['password'] = Hash::make($request->password);
-        } else {
-            $data['password'] = $this->user->password;  //if password comes blank set old password
-        }
-        $this->user->fill($data);
-        $status = $this->user->save();
-        if ($status) {
-            DB::table('model_has_roles')->where('model_id', $id)->delete();
-            $this->user->assignRole($request->input('roles'));
-            $request->session()->flash('success', "User Updated Successfully");
-        } else {
-            $request->session()->flash('error', "Sorry! Error While Updating the user");
-        }
-        return redirect()->route('users.index');
     }
 
     public function destroy($id)
