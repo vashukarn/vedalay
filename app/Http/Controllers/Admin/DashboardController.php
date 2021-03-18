@@ -41,8 +41,8 @@ class DashboardController extends Controller
             $paidsalary = 0;
             $extraclass = 0;
             foreach ($tempo as $key => $value) {
-                $paidsalary += $value->salary['total_amount'];
-                $extraclass += $value->salary['extra_class_salary'];
+                $paidsalary += $value->total_amount;
+                $extraclass += $value->extra_class_salary;
             }
         }
         if($type == 'staff'){
@@ -51,8 +51,8 @@ class DashboardController extends Controller
             $paidsalary = 0;
             $incentives = 0;
             foreach ($tempo as $key => $value) {
-                $paidsalary += $value->salary['total_amount'];
-                $incentives += $value->salary['incentive'];
+                $paidsalary += $value->total_amount;
+                $incentives += $value->incentive;
             }
         }
         if($type == 'student'){
