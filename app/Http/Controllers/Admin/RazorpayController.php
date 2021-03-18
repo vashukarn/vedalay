@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Fee;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Razorpay\Api\Api;
 
 class RazorpayController extends Controller
@@ -14,28 +17,26 @@ class RazorpayController extends Controller
         return view('admin.shared.thankyou');
     }
 
-    public function razorPaySuccess(Request $request)
-    {
-        $input = $request->all();
-        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-        $payment = $api->payment->fetch($input['razorpay_payment_id']);
-        if(count($input)  && !empty($input['razorpay_payment_id'])) {
-            try {
-                $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount'=>$payment['amount'])); 
-            } catch (\Exception $e) {
-                return  $e->getMessage();
-                \Session::put('error',$e->getMessage());
-                return redirect()->back();
-            }
-        }
-        
-        \Session::put('success', 'Payment successful');
-        return redirect()->back();
-    }
-
     public function store(Request $request)
     {
-        //
+        $data = [
+            'user_id' => Auth::user()->id,
+            'payment_id' => $request->payment_id,
+            'type' => 'Razorpay',
+            'amount' => $request->amount,
+         ];
+        DB::beginTransaction();
+        Fee::where('id', $request->fee)->first()->delete();
+        try {
+            Payment::create($data);
+            DB::commit();
+            $request->session()->flash('success', 'Payment credited successfully.');
+            return redirect()->route('student.show');
+        } catch (\Exception $error) {
+            DB::rollBack();
+            $request->session()->flash('error', $error->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function show($id)

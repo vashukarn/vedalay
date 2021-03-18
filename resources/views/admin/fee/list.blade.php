@@ -17,21 +17,21 @@
     });
     $('#paynow').on('click', function(e) {
         var totalAmount = $(this).attr("data-amount");
-        var student_id = $(this).attr("data-id");
+        var fee_id = $(this).attr("data-id");
         var options = {
             "key": "{{ env('RAZOR_KEY') }}",
             "amount": (totalAmount * 100),
             "name": "{{ @$sitesetting->name ? @$sitesetting->name : 'VEDYALAY' }}",
-            "description": "Payment",
+            "description": "Fee Payment",
             "image": "{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}",
             "handler": function(response) {
-                window.location.href = SITEURL + '/' + 'paysuccess?payment_id=' + response
-                    .razorpay_payment_id + '&amp;student_id=' + student_id + '&amp;amount=' +
-                    totalAmount;
+                window.location.href = SITEURL + '/user/' + 'paysuccess?payment_id=' + response
+                    .razorpay_payment_id + '&amount=' +
+                    totalAmount + '&fee=' + fee_id;
             },
             "prefill": {
-                "contact": '',
-                "email": '',
+                "contact": '7070675425',
+                "email": 'jaykarvashu@gmail.com',
             },
             "theme": {
                 "color": "#528FF0"
@@ -111,9 +111,7 @@
                             <td>Rs. {{ @$value->total_amount }}</td>
                             <td>
                                 <div class="btn-group">
-                                    {{ Form::open(['method' => 'POST','route' => ['razorPaySuccess'],'style'=>'display:inline']) }}
-                                    <button id='paynow', title='Pay Fee', data-amount='{{ @$value->total_amount }}', student_id='{{ @$value->student_id }}', class='btn btn-success btn-sm btn-flat'><i class="fas fa-money-bill"></i> &nbsp; Pay Now</button>
-                                    {{ Form::close() }}
+                                    <button id='paynow', title='Pay Fee', data-amount='{{ @$value->total_amount }}', data-id='{{ @$value->id }}', class='btn btn-success btn-sm btn-flat'><i class="fas fa-money-bill"></i> &nbsp; Pay Now</button>
                               </div>
                               </td>
                             @else

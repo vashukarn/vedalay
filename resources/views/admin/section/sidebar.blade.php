@@ -208,8 +208,8 @@
                 @endcanany
 
                 @canany(['fee-list', 'fee-create','fee-edit','fee-delete'])
-                <li class="nav-item has-treeview {{ request()->is('user/fee*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('user/fee*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ request()->is('user/fee*') ? 'menu-open' : '' }}{{ request()->is('user/payment*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('user/fee*') ? 'active' : '' }}{{ request()->is('user/payment*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p>
                             Fee Management
@@ -249,6 +249,15 @@
                                 <p>Fee Payments</p>
                             </a>
                         </li>
+                        @role('Super Admin|Student')
+                        <li class="nav-item">
+                            <a href="{{ route('payment.index') }}"
+                                class="nav-link {{ request()->is('user/payment') ? 'active' : '' }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Online Payments</p>
+                            </a>
+                        </li>
+                        @endrole
                         {{-- @canany(['feeadvance-list', 'feeadvance-create','feeadvance-edit','feeadvance-delete'])
                         <li class="nav-item">
                             <a href="{{ route('feeadvance.index') }}"
