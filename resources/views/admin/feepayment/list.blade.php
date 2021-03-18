@@ -64,7 +64,7 @@
                                         Extra Fee: {{ @$value->extra_fee ?? 0 }}
                                     </td>
                                     <td>Rs. {{ @$value->total_amount }}</td>
-                                    <td>{{ @$value->payment_method }}</td>
+                                    <td>{{ @$value->payment_method }}</td>  
                                     <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                                 @else
                                     <td>{{ @$value->student->name }}</td>

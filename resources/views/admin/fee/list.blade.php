@@ -119,7 +119,7 @@
                             <td>{{ @$value->total_amount }}</td>
                             <td>
                                 <div class="btn-group">
-                                    {{Form::open(['method' => 'POST','route' => ['rollbackTransaction'],'style'=>'display:inline']) }}
+                                    {{Form::open(['method' => 'POST','route' => ['razorPaySuccess'],'style'=>'display:inline']) }}
                                     {{Form::button('<i class="fas fa-money-bill"></i> &nbsp; Pay Now', ['class'=>'btn btn-success btn-sm btn-flat','title'=>'Pay This Fee']) }}
                                     {{-- , 'data-amount'=>"{{ @$value->total_amount }}",'data-id'=>"{{ @$value->level_id }}" --}}
                                   {{ Form::close() }}

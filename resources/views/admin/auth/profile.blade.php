@@ -10,7 +10,7 @@
         <div class="card card-primary">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="img-fluid img-circle" src="@if($student_info->image) {{ $student_info->image }} @else {{ asset('img/AdminLTELogo.png') }} @endif" style="width:80px" alt="User profile picture">
+              <img class="img-fluid img-circle" src="@isset($student_info->image) {{ $student_info->image }} @else {{ asset('img/AdminLTELogo.png') }} @endisset" style="width:80px" alt="User profile picture">
             </div>
 
             <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
