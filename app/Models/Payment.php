@@ -10,21 +10,14 @@ class Payment extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'job_role',
-        'salary',
-        'required_no',
-        'description',
-        'publish_status',
-        'created_by',
-        'updated_by',
+        'payment_id',
+        'type',
+        'amount',
+        'user_id',
     ];
     protected $dates = ['deleted_at'];
-    public function creator()
+    public function payer()
     {
-        return $this->hasOne('App\Models\User', 'id', 'created_by');
-    }
-    public function updater()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'updated_by');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 }

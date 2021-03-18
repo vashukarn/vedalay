@@ -42,7 +42,7 @@ class DashboardController extends Controller
             $extraclass = 0;
             foreach ($tempo as $key => $value) {
                 $paidsalary += $value->total_amount;
-                $extraclass += $value->extra_class_salary;
+                $extraclass += $value->extra_class;
             }
         }
         if($type == 'staff'){
