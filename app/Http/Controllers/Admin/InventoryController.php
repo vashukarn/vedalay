@@ -58,14 +58,12 @@ class InventoryController extends Controller
             'item_id' => 'required|numeric',
             'act' => 'required|in:ADD,REMOVE',
             'quantity' => 'required|numeric',
-            'price_per' => 'nullable|numeric',
             'total_price' => 'nullable|numeric',
         ]);
         $data = [
             'item_id' => htmlentities($request->item_id),
             'act' => htmlentities($request->act),
             'quantity' => htmlentities($request->quantity),
-            'price_per' => htmlentities($request->price_per),
             'total_price' => htmlentities($request->total_price),
             'created_by' => Auth::user()->id,
         ];

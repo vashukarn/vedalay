@@ -6,9 +6,6 @@
         {{-- <script src="{{ asset('/custom/inventory.js') }}"></script> --}}
         <script>
             $('#lfm').filemanager('image');
-            $('#price_per').change(function()
-                $('#total_price').val(Number($('#quantity').val())*Number($('#price_per').val()));
-            });
             $(document).ready(function() {
                 $('#item_id').select2({
                     placeholder: "Select Item",
@@ -70,16 +67,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('price_per') ? 'has-error' : '' }}">
-                                {{ Form::label('price_per', 'Price of Unit:*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::number('price_per', @$inventory_info->price_per, ['class' => 'form-control', 'id' => 'price_per', 'placeholder' => 'Enter Single Item Price', 'style' => 'width:80%']) }}
-                                    @error('price_per')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="form-group row {{ $errors->has('total_price') ? 'has-error' : '' }}">
                                 {{ Form::label('total_price', 'Total Price:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
@@ -89,8 +76,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                     <div class="form-group row">

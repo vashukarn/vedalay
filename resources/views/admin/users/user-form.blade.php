@@ -55,16 +55,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group row {{ $errors->has('mobile') ? 'has-error' : '' }}">
-                        {{ Form::label('mobile', 'User Mobile:*', ['class' => 'col-sm-3']) }}
-                        <div class="col-sm-9">
-                            {{ Form::text('mobile', @$user_detail->mobile, ['class' => 'form-control', 'id' => 'mobile', 'placeholder' => 'User Mobile', 'required' => true, 'style' => 'width:80%']) }}
-                            @error('mobile')
-                                <span class="help-block error">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
                     <div class="form-group row {{ $errors->has('email') ? 'has-error' : '' }}">
                         {{ Form::label('email', 'User Email:*', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
@@ -75,7 +65,7 @@
                         </div>
                     </div>
                     <div class="form-group row {{ isset($user_detail) ? '' : 'd-none' }}">
-                        {{ Form::label('chanage_password', 'Change Password:', ['class' => 'col-sm-3']) }}
+                        {{ Form::label('change_password', 'Change Password:', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
                             {{ Form::checkbox('change_password', 1, false, ['id' => 'change_password']) }} Yes
                         </div>
@@ -108,11 +98,11 @@
                         </div>
                     </div>
 
-                    <div class="form-group row {{ $errors->has('status') ? 'has-error' : '' }}">
-                        {{ Form::label('status', 'User Status:*', ['class' => 'col-sm-3']) }}
+                    <div class="form-group row {{ $errors->has('publish_status') ? 'has-error' : '' }}">
+                        {{ Form::label('publish_status', 'User Status:*', ['class' => 'col-sm-3']) }}
                         <div class="col-sm-9">
-                            {{ Form::select('status', [1 => 'Active', 0 => 'Inactive'], @$user_detail->status, ['id' => 'status', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
-                            @error('status')
+                            {{ Form::select('publish_status', [1 => 'Active', 0 => 'Inactive'], @$user_detail->publish_status, ['id' => 'publish_status', 'required' => true, 'class' => 'form-control', 'style' => 'width:80%']) }}
+                            @error('publish_status')
                                 <span class="help-block error">{{ $message }}</span>
                             @enderror
                         </div>

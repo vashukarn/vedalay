@@ -12,7 +12,6 @@ class CreateInventoriesTable extends Migration
             $table->id();
             $table->enum('act',['ADD','REMOVE'])->default('ADD');
             $table->string('quantity')->nullable();
-            $table->string('price_per')->nullable();
             $table->string('total_price')->nullable();
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

@@ -458,7 +458,7 @@
     </div>
 
     <div class="card-footer">
-        {{ Form::button("<i class='fa fa-paper-plane'></i> Save Seting", ['class' => 'btn btn-success', 'type' => 'submit']) }}
+        {{ Form::button("<i class='fa fa-paper-plane'></i> Save Setting", ['class' => 'btn btn-success', 'type' => 'submit']) }}
         <a href="{{ route('dashboard.index') }}" class="btn btn-primary float-right"><i class="fa fa-list"></i>
             Dashboard</a>
     </div>

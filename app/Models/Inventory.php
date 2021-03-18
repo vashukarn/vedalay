@@ -11,7 +11,6 @@ class Inventory extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'quantity',
-        'price_per',
         'act',
         'total_price',
         'item_id',

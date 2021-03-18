@@ -35,7 +35,6 @@
                                 <th>Total Price</th>
                                 <th>Last Changed By</th>
                                 <th>Last Changed At</th>
-                                <th style="text-align:center;" width="10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,24 +51,9 @@
                                             Error @endif
                                     </span>
                                 </td>
-                                <td>
-                                    {{ @$value->quantity }} x {{ @$value->price_per }} = {{ @$value->total_price }}
-                                </td>
+                                <td>{{ @$value->total_price }}</td>
                                 <td>{{ @$value->updated_by ? @$value->updater->name : @$value->creator->name }}</td>
                                 <td>{{ @$value->updated_at ? ReadableDate(@$value->updated_at, 'all') : ReadableDate(@$value->created_at, 'all') }}
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        @can('inventory-edit')
-                                            <a href="{{ route('inventory.edit', $value->id) }}" title="Edit inventory"
-                                                class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
-                                        @endcan
-                                        @can('inventory-delete')
-                                            {{ Form::open(['method' => 'DELETE', 'route' => ['inventory.destroy', $value->id], 'style' => 'display:inline', 'onsubmit' => 'return confirm("Are you sure you want to delete this inventory?")']) }}
-                                            {{ Form::button('<i class="fas fa-trash-alt"></i>', ['class' => 'btn btn-danger btn-sm btn-flat', 'type' => 'submit', 'title' => 'Delete inventory ']) }}
-                                            {{ Form::close() }}
-                                        @endcan
-                                    </div>
                                 </td>
                             </tr>
                         @endforeach

@@ -50,7 +50,7 @@ class User extends Authenticatable
             'name' => 'required|string|max:50',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'status' => 'required|in:1,0',
+            'publish_status' => 'required|in:1,0',
             'roles' => 'required',
         ];
         if ($act == 'update') {
