@@ -32,7 +32,7 @@ class CreateAppSettingsTable extends Migration
             $table->string('logo_light')->nullable();
             $table->string('favicon')->nullable();
             $table->string('og_image')->nullable();
-            $table->unsignedBigInteger('current_session')->default(1);
+            $table->unsignedBigInteger('current_session')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('current_session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');

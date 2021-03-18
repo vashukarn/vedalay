@@ -28,10 +28,7 @@ function UpdateFavOg(is_favicon) {
 }
 
 $(function() {
-    // Initialize form validation on the registration form.
-    // It has the name attribute "registration"
     $("form[name='appsetting_form']").validate({
-        // Specify validation rules
         rules: {
             emailone: {
                 email: true,
