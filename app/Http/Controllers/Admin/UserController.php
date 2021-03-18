@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::where('name', 'Super Admin')->orwhere('name', 'Admin')->pluck('name', 'name');
+        $roles = Role::pluck('name', 'name');
         return view('admin.users.user-form', compact('roles'));
     }
 
@@ -79,7 +79,7 @@ class UserController extends Controller
             request()->session()->flash('error', 'Error ! User Not Found');
             return redirect()->back();
         }
-        $roles = Role::where('name', 'Super Admin')->orwhere('name', 'Admin')->pluck('name', 'name');
+        $roles = Role::pluck('name', 'name');
         $userRole = $this->user->roles->pluck('name', 'name')->all();
         return view('admin.users.user-form', compact('roles', 'userRole'))->with('user_detail', $this->user);
     }
