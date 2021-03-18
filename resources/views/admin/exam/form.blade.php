@@ -61,7 +61,7 @@
                         alert("Please Enter End Time Properly");
                     } else {
                         $('#table_row').append('<tr>');
-                        $('#table_row').append('<td><input type="text" class="form-control" value="' + $('#start_time')
+                        $('#table_row').append('<td><input type="text" style="width: 150px;" class="form-control" value="' + $('#start_time')
                             .val() + ' - ' + $('#end_time').val() + '" readonly></td>');
                         dates.forEach(element => {
                             $('#table_row').append('<td><select name="exam_routine[' + $('#' + element).val() +
@@ -81,7 +81,7 @@
                     alert("Please Enter Date");
                 } else {
                     document.getElementById("table_head").innerHTML += '<th><input id="date_' + datecounter +
-                        '" type="text" class="form-control" value="' + $('#exam_date').val() + '" readonly></th>';
+                        '" type="text" style="width: 150px;" class="form-control" value="' + $('#exam_date').val() + '" readonly></th>';
                     dates.push('date_' + datecounter);
                     datecounter++;
                 }
@@ -173,7 +173,7 @@
                                 </div>
                                 {{ Form::button("<i class='fa fa-plus'></i> &nbsp; Add Shift", ['id' => 'shiftbtn', 'class' => 'btn btn-primary btn-flat']) }}
                             </div>
-                            <div style="overflow-x: scroll" class="card-body card-format">
+                            <div style="overflow-x: scroll;" class="card-body card-format">
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr id="table_head">

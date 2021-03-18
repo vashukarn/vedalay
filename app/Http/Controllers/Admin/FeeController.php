@@ -181,16 +181,16 @@ class FeeController extends Controller
     public function show($id)
     {
         $student_info = Student::pluck('id', 'user_id');
-        $fee_info = $this->feepayment->find($id);
+        $fee_info = $this->fee->find($id);
         if (!$fee_info) {
             abort(404);
         }
-        $title = 'Fee Payment Detail';
+        $title = 'Fee Detail';
         $data = [
             'title' => $title,
             'student_info' => $student_info,
             'fee_info' => $fee_info,
         ];
-        return view('admin/feepayment/show')->with($data);
+        return view('admin/fee/show')->with($data);
     }
 }

@@ -30,10 +30,9 @@
                             <tr>
                                 <th style="width: 10px">#</th>
                                 @role('Student')
-                                <th>Fee Details</th>
+                                <th>Paid At</th>
                                 <th>Amount Paid</th>
                                 <th>Payment Method</th>
-                                <th>Paid At</th>
                             @else
                                 <th>Student Name</th>
                                 <th>Fee Paid</th>
@@ -49,23 +48,9 @@
                                 <tr>
                                     <td>{{ $key + 1 }}.</td>
                                     @role('Student')
-                                    <td>
-                                        Tuition Fee: {{ @$value->tuition_fee ?? 0 }} &emsp; &emsp;
-                                        Exam Fee: {{ @$value->exam_fee ?? 0 }} &emsp; &emsp;
-                                        Transport Fee: {{ @$value->transport_fee ?? 0 }} &emsp; &emsp;
-                                        Stationery Fee: {{ @$value->stationery_fee ?? 0 }} <br>
-                                        Sports Fee: {{ @$value->sports_fee ?? 0 }} &emsp; &emsp;
-                                        Club Fee: {{ @$value->club_fee ?? 0 }} &emsp; &emsp;
-                                        Hostel Fee: {{ @$value->hostel_fee ?? 0 }} &emsp; &emsp;
-                                        Laundry Fee: {{ @$value->laundry_fee ?? 0 }} <br>
-                                        Education Tax: {{ @$value->education_tax ?? 0 }} &emsp; &emsp;
-                                        ECA Fee: {{ @$value->eca_fee ?? 0 }} &emsp; &emsp;
-                                        Late Fine: {{ @$value->late_fine ?? 0 }} &emsp; &emsp;
-                                        Extra Fee: {{ @$value->extra_fee ?? 0 }}
-                                    </td>
+                                    <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                                     <td>Rs. {{ @$value->total_amount }}</td>
                                     <td>{{ @$value->payment_method }}</td>  
-                                    <td>{{ ReadableDate(@$value->created_at, 'all') }}</td>
                                 @else
                                     <td>{{ @$value->student->name }}</td>
                                     <td>Rs. {{ @$value->total_amount }}</td>
