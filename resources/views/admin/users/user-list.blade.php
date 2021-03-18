@@ -59,7 +59,7 @@
                               <td>{{$value->updated_at->format('Y-m-d')}}</td>
                               <td>
                                 <div class="btn-group">
-                                  <a href="{{route('users.show',$value->id)}}" title="View Detail"><button class="btn btn-primary btn-sm btn-flat"><i class="fas fa-eye"></i></button></a>
+                                  {{-- <a href="{{route('users.show',$value->id)}}" title="View Detail"><button class="btn btn-primary btn-sm btn-flat"><i class="fas fa-eye"></i></button></a> --}}
                                   @can('user-edit')
                                   <a href="{{route('users.edit',$value->id)}}" title="Edit User" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
                                   @endcan

@@ -43,7 +43,7 @@
                               <td>{{$value->updated_at}}</td>
                               <td>
                                 <div class="btn-group">
-                                  <a href="" title="View Detail"><button class="btn btn-primary btn-sm btn-flat"><i class="fas fa-eye"></i></button></a>
+                                  {{-- <a href="" title="View Detail"><button class="btn btn-primary btn-sm btn-flat"><i class="fas fa-eye"></i></button></a> --}}
                                   <a href="{{route('roles.edit',$value->id)}}" title="Edit User" class="btn btn-success btn-sm btn-flat"><i class="fas fa-edit"></i></a>
                                   {{Form::open(['method' => 'DELETE','route' => ['roles.destroy', $value->id],'style'=>'display:inline','onsubmit'=>'return confirm("Are you sure you want to delete this User?")']) }}
                                   {{Form::button('<i class="fas fa-trash-alt"></i>',['class'=>'btn btn-danger btn-sm btn-flat','type'=>'submit','title'=>'Delete User'])}}
