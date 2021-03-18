@@ -9,13 +9,17 @@ class AppSettingSeeder extends Seeder
 {
     public function run()
     {
-        $address = ['+917070675425','+9779845850197'];
-        $address = ['+917070675425','+9779845850197'];
+        $address = ['Agra','Mathura'];
+        $email = ['hello@vedyalay.com','jaykarvashu@gmail.com'];
         AppSetting::create([
             'id' => 1,
             'name' => 'Vedyalay School Management System',
             'address' => $address,
-            'address' => $address,
+            'email' => $email,
+            'current_session' => 1,
+            'logo' => 'https://vedyalay.com/assets/img/logo.png',
+            'logo_light' => 'https://vedyalay.com/assets/img/logo-light.png',
+            'favicon' => 'https://vedyalay.com/assets/img/favicon.png',
         ]);
     }
 }
