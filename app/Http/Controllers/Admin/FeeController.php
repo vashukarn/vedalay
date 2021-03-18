@@ -7,6 +7,7 @@ use App\Jobs\SendFeeAdditionJob;
 use App\Mail\FeeAdditionMail;
 use App\Models\Fee;
 use App\Models\Level;
+use App\Models\AppSetting;
 use App\Models\Notification;
 use App\Models\Student;
 use App\Models\User;
@@ -53,16 +54,25 @@ class FeeController extends Controller
         $query = $this->fee->orderBy('id', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
-            $query = $query->where('title', $keyword);
+            $query = $query->where('level_id', $keyword);
         }
         return $query->paginate(20);
     }
     public function index(Request $request)
     {
+        $classes = Level::all();
+        foreach ($classes as $value) {
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
+                $levels[$value->id] = $value->standard;
+            }
+        }
+        $sitesetting = AppSetting::orderBy('created_at', 'desc')->first();
         $data = $this->getFee($request);
-        $levels = Level::pluck('standard', 'id');
         $data = [
             'data' => $data,
+            'sitesetting' => $sitesetting,
             'levels' => $levels,
         ];
         return view('admin/fee/list')->with($data);

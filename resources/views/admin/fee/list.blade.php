@@ -1,32 +1,37 @@
 @extends('layouts.admin')
 @section('title', 'Fee List')
-
 @push('scripts')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
-    var SITEURL = '{{ URL::to('') }}';
+    $(document).ready(function() {
+        $('#keyword').select2({
+            placeholder: "Search by Level",
+            allowClear: true
+        });
+    });
+    var SITEURL = '{{ URL::to('/') }}';
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('body').on('click', '.buy_now', function(e) {
+    $('#paynow').on('click', function(e) {
         var totalAmount = $(this).attr("data-amount");
-        var product_id = $(this).attr("data-id");
+        var student_id = $(this).attr("data-id");
         var options = {
             "key": "{{ env('RAZOR_KEY') }}",
-            "amount": (totalAmount * 100), // 2000 paise = INR 20
-            "name": "Tutsmake",
+            "amount": (totalAmount * 100),
+            "name": "{{ @$sitesetting->name ? @$sitesetting->name : 'VEDYALAY' }}",
             "description": "Payment",
-            "image": "{{ asset('assets/img/logo.png') }}",
+            "image": "{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}",
             "handler": function(response) {
                 window.location.href = SITEURL + '/' + 'paysuccess?payment_id=' + response
-                    .razorpay_payment_id + '&amp;product_id=' + product_id + '&amp;amount=' +
+                    .razorpay_payment_id + '&amp;student_id=' + student_id + '&amp;amount=' +
                     totalAmount;
             },
             "prefill": {
-                "contact": '9988665544',
-                "email": 'tutsmake@gmail.com',
+                "contact": '',
+                "email": '',
             },
             "theme": {
                 "color": "#528FF0"
@@ -52,12 +57,12 @@
                 </div>
                 <div class="card-header">
                     <div class="row">
+                        @hasanyrole('Super Admin|Admin|Staff')
                         <div class="p-1 col-lg-10">
                             <form action="" class="">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4">
-                                        {!! Form::select('keyword', [], @request()->keyword, ['class' => 'form-control select2', 'placeholder' =>
-                                        'Search Name or Phone']) !!}
+                                        {!! Form::select('keyword', @$levels, @request()->keyword, ['id'=> 'keyword','class' => 'form-control select2', 'placeholder' =>'']) !!}
                                     </div>
                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                         <button class="btn btn-primary btn-flat"><i class="fa fa fa-search"></i>
@@ -66,6 +71,7 @@
                                 </div>
                             </form>
                         </div>
+                        @endhasrole
                         <div class="float-right col-lg-2">
                             <div class="card-tools">
                                 @can('fee-create')
@@ -102,13 +108,12 @@
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->title }}</td>
                             @role('Student')
-                            <td>{{ @$value->total_amount }}</td>
+                            <td>Rs. {{ @$value->total_amount }}</td>
                             <td>
                                 <div class="btn-group">
-                                    {{Form::open(['method' => 'POST','route' => ['razorPaySuccess'],'style'=>'display:inline']) }}
-                                    {{Form::button('<i class="fas fa-money-bill"></i> &nbsp; Pay Now', ['class'=>'btn btn-success btn-sm btn-flat','title'=>'Pay This Fee']) }}
-                                    {{-- , 'data-amount'=>"{{ @$value->total_amount }}",'data-id'=>"{{ @$value->level_id }}" --}}
-                                  {{ Form::close() }}
+                                    {{ Form::open(['method' => 'POST','route' => ['razorPaySuccess'],'style'=>'display:inline']) }}
+                                    <button id='paynow', title='Pay Fee', data-amount='{{ @$value->total_amount }}', student_id='{{ @$value->student_id }}', class='btn btn-success btn-sm btn-flat'><i class="fas fa-money-bill"></i> &nbsp; Pay Now</button>
+                                    {{ Form::close() }}
                               </div>
                               </td>
                             @else
