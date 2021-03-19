@@ -1,63 +1,116 @@
-$(function() {
+$(function () {
     $("form[name='result_form']").validate({
         rules: {
-                level_id : 'required',
-                exam_id : 'required',
-                student_id : 'required',
-                total_marks :{
-                    digits: true,
-                    min: 0,
-                },
-                marks_obtained :{
-                    digits: true,
-                    
-                },
-                marks :{
-                    // range : [0.08,20.09],
-                    required:true,
-                    min:0,
-                    max:10,
-                    digits: true,
-                    // number: true,
-                },
-                percentage :{
-                    digits: true,
-                    minlength: 0,
-                    max: 100,
-                },
-                sgpa :{
-                    digits: true,
-                    min: 0,
-                    max: 10,
-                },
-                status : 'required',
-
+            name: "required",
+            marks: {
+                required: true,
+                digits: true,
+                min: 0,
+                max: 10,
             },
-            messages: {
-                level_id : "Select level is required",
-                exam_id : "Select exam is required",
-                student_id : "Select Student is required",
-                total_marks :{
-                    digits: "Total marks should be digits only",
-                    min:"Total marks should be positive",
-                },
-                marks_obtained :{
-                    digits: "Marks obtained should be digits only",
-                },
-                percentage :{
-                    digits: "Percentage should be digits only",
-                    min: "This field is required",
-                    max: "Pecentage should not more than 100",
-                },
-                sgpa :{
-                    digits: "SGPA should be digits only",
-                    min: "This field is required",
-                    max: "SGPA should not be more than 10",
-                },
-                status : "This field is required",
+            email: {
+                required: true,
+                email: true,
+            },
+            fathername: {
+                required: true,
+                minlength: 3,
+            },
+            mothername: {
+                required: true,
+                minlength: 3,
+            },
+            guardian_name: {
+                required: true,
+                minlength: 3,
+            },
+            guardian_phone: {
+                required: true,
+                digits: true,
+                minlength: 10,
+                maxlength: 10,
+            },
+            password: {
+                required: true,
+                minlength: 5,
+            },
+            password_confirm: {
+                required: true,
+                minlength: 5,
+                equalTo: "#confirm_password",
+            },
+            aadhar_number: {
+                required: true,
+                digits: true,
+                minlength: 12,
+                maxlength: 12,
+            },
+            current_address: {
+                required: true,
+            },
+            permanent_address: {
+                required: true,
+            },
+            dob: {
+                required: true,
+            },
         },
-        submitHandler: function(form) {
+        messages: {
+            name: "Please enter name",
+            phone: {
+                required: "Phone number is required",
+                digits: "Phone number should be digits only",
+                minlength: "Phone number should be of 10 digits",
+                maxlength: "Phone number hould be of 10 digits only",
+            },
+            email: {
+                required: "Email is required",
+                email: "This is not a valid email",
+            },
+            fathername: {
+                required: "Father name is required",
+                minlength: "Please enter correct father's name",
+            },
+            mothername: {
+                required: "Mother name is required",
+                minlength: "Please enter correct mother's name",
+            },
+            guardian_name: {
+                required: "Local guardian name required",
+                minlength: "Please enter correct guardian name",
+            },
+            guardian_phone: {
+                required: "Phone number is required",
+                digits: "Phone number should be digits only",
+                minlength: "Phone number should be of 10 digits",
+                maxlength: "Phone number should be of 10 digits only",
+            },
+            password: {
+                required: "This field is required",
+                minlength: "Minimum 6 digit required ",
+            },
+            password_confirm: {
+                required: "This Field s required",
+                equalTo: "password",
+            },
+            aadhar_number: {
+                required: "Aadhar number is required",
+                digits: "Minimum 12 digit's required",
+                minlength: "Aadhar number should be 12 digit",
+                maxlength: "Aadhar number should be 12 digit only",
+            },
+            current_address: {
+                required: "This field is required",
+            },
+            permanent_address: {
+                required: "This field is required",
+            },
+            dob: {
+                required: "DOB is required",
+            },
+        },
+        submitHandler: function (form) {
             form.submit();
-        }
+        },
     });
 });

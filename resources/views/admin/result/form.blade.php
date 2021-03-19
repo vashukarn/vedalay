@@ -121,11 +121,11 @@
                                             data.subjects[i].id +
                                             '][pass]" placeholder="Pass Marks" class="form-control col-sm-3 ml-2 mt-2"><input type="number" name="marks[' +
                                             data.subjects[i].id +
-                                            '][full]" placeholder="Full Marks" class="form-control col-sm-3 ml-2 mt-2">'
+                                            '][full]" placeholder="Full Marks" min="0" step="1" class="form-control col-sm-3 ml-2 mt-2">'
                                         );
                                     } else {
                                         $('#temp' + i).append(
-                                            '<input type="number" name="marks[' + data.subjects[i].id +
+                                            '<input type="number" min="0" max="10" step="0.01" name="marks[' + data.subjects[i].id +
                                             '][credits]" placeholder="Credits Obtained" class="form-control col-sm-3 mt-2"><select name="marks[' +
                                             data.subjects[i].id +
                                             '][grade]" class="form-control ml-4 col-sm-3 mt-2"><option value="A+">A+</option><option value="A">A</option><option value="B+">B+</option><option value="B">B</option><option value="C+">C+</option><option value="C">C</option><option value="D">D</option><option value="F">F</option></select>'
@@ -272,7 +272,7 @@
                                     <div class="form-group row {{ $errors->has('sgpa') ? 'has-error' : '' }}">
                                         {{ Form::label('sgpa', 'SGPA :*', ['class' => 'col-sm-3']) }}
                                         <div class="col-sm-9">
-                                            {{ Form::text('sgpa', @$result_info->$sgpa, ['id' => 'sgpa', 'placeholder' => 'SGPA', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
+                                            {{ Form::number('sgpa', @$result_info->$sgpa, ['id' => 'sgpa', 'min'=>"0" ,'max'=>"10" ,'step'=>"0.01" , 'placeholder' => 'SGPA', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
                                             @error('sgpa')
                                                 <span class="help-block error">{{ $message }}</span>
                                             @enderror
@@ -294,7 +294,7 @@
                                         class="form-group row mt-4 {{ $errors->has('total_marks') ? 'has-error' : '' }}">
                                         {{ Form::label('total_marks', 'Total Marks :*', ['class' => 'col-sm-3']) }}
                                         <div class="col-sm-9">
-                                            {{ Form::text('total_marks', @$result_info->$total_marks, ['id' => 'total_marks', 'placeholder' => 'Total Marks', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
+                                            {{ Form::text('total_marks', @$result_info->$total_marks, ['id' => 'total_marks', 'min'=>"0" ,'step'=>"0.01", 'placeholder' => 'Total Marks', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
                                             @error('total_marks')
                                                 <span class="help-block error">{{ $message }}</span>
                                             @enderror
@@ -305,7 +305,7 @@
                                         class="form-group row mt-4 {{ $errors->has('marks_obtained') ? 'has-error' : '' }}">
                                         {{ Form::label('marks_obtained', 'Total Marks Obtained :*', ['class' => 'col-sm-3']) }}
                                         <div class="col-sm-9">
-                                            {{ Form::text('marks_obtained', @$result_info->$marks_obtained, ['id' => 'marks_obtained', 'placeholder' => 'Marks Obtained', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
+                                            {{ Form::text('marks_obtained', @$result_info->$marks_obtained, ['id' => 'marks_obtained', 'min'=>"0" ,'step'=>"0.01",  'placeholder' => 'Marks Obtained', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
                                             @error('marks_obtained')
                                                 <span class="help-block error">{{ $message }}</span>
                                             @enderror
@@ -315,7 +315,7 @@
                                     <div class="form-group row {{ $errors->has('percentage') ? 'has-error' : '' }}">
                                         {{ Form::label('percentage', 'Percentage :*', ['class' => 'col-sm-3']) }}
                                         <div class="col-sm-9">
-                                            {{ Form::text('percentage', @$result_info->$percentage, ['id' => 'percentage', 'placeholder' => '%', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
+                                            {{ Form::text('percentage', @$result_info->$percentage, ['id' => 'percentage', 'min'=>"0" ,'max'=>"100" ,'step'=>"0.01", 'placeholder' => '%', 'class' => 'form-control', 'style' => 'width:80%; border-color:none']) }}
                                             @error('percentage')
                                                 <span class="help-block error">{{ $message }}</span>
                                             @enderror
