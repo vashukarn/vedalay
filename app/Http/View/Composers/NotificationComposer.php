@@ -13,7 +13,7 @@ class NotificationComposer
 {
     public function compose(View $view)
     {
-        $notification = Notification::where('user_id', Auth::user()->id)->pluck('title', 'link');
+        $notification = Notification::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->pluck('title', 'link');
         $noticeboard =  NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->get();
         foreach ($noticeboard as $value) {
             $notification[route('noticeboard.show', @$value->id)] = $value->title;
