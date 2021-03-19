@@ -171,6 +171,11 @@ class PermissionTableSeeder extends Seeder
                 ['id'=>127,'name'=> 'team-edit'],
                 ['id'=>128,'name'=> 'team-delete'],
 
+                ['id'=>129,'name'=> 'requestdata-list'],
+                ['id'=>130,'name'=> 'requestdata-create'],
+                ['id'=>131,'name'=> 'requestdata-edit'],
+                ['id'=>132,'name'=> 'requestdata-delete'],
+
 
            ];
            foreach ($permissions as $permission) {
