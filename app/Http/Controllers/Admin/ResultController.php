@@ -136,6 +136,7 @@ class ResultController extends Controller
         $data = [
             'title' => $title,
             'result_info' => $result_info,
+            'scheme' => GETAPPSETTING()['marks_scheme'],
             'levels' => $levels,
         ];
         return view('admin/result/form')->with($data);
@@ -143,9 +144,7 @@ class ResultController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
-            'gper' => 'required|in:Percentage,Grade',
             'level_id' => 'required|numeric',
             'exam_id' => 'required|numeric',
             'student_id' => 'required|numeric',
@@ -158,12 +157,19 @@ class ResultController extends Controller
         ]);
         DB::beginTransaction();
         try {
+            if(GETAPPSETTING()['marks_scheme'] == 'GRADE'){
+                $scheme = 'Grade';
+            }
+            else{
+                $scheme = 'Percentage';
+            }
             $data = [
                 'marks' => $request->marks,
                 'backlogs' => $request->backlogs,
-                'gper' => $request->gper,
+                'gper' => $scheme,
                 'total_marks' => $request->total_marks,
                 'exam_id' => $request->exam_id,
+                'session' => GETAPPSETTING()['session'],
                 'percentage' => $request->percentage,
                 'marks_obtained' => $request->marks_obtained,
                 'grade' => $request->grade,

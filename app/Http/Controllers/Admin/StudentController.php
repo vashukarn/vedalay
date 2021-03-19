@@ -167,7 +167,7 @@ class StudentController extends Controller
                 'dob' => htmlentities($request->dob),
                 'regpriv' => htmlentities($request->regpriv),
                 'level_id' => htmlentities($request->level),
-                'session' => GETSESSION(),
+                'session' => GETAPPSETTING()['session'],
                 'aadhar_number' => htmlentities($request->aadhar_number),
                 'blood_group' => htmlentities($request->blood_group),
                 'gender' => htmlentities($request->gender),

@@ -17,6 +17,8 @@ class AppSetting extends Model
         'phone',
         'is_favicon',
         'twitter',
+        'razorpay_payment',
+        'marks_scheme',
         'instagram',
         'linkedin',
         'skype',

@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateResultsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('results', function (Blueprint $table) {
@@ -31,6 +26,8 @@ class CreateResultsTable extends Migration
             $table->unsignedBigInteger('level_id')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('session')->nullable();
+            $table->foreign('session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('exam_id')->references('id')->on('exams')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('student_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');

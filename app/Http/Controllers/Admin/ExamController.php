@@ -133,7 +133,6 @@ class ExamController extends Controller
         // dd($request->exam_routine);
         $this->validate($request, [
             'title' => 'required|string|min:3|max:190',
-            'session_id' => 'required|numeric',
             'level_id' => 'required|numeric',
             'exam_routine' => 'required',
         ]);
@@ -141,7 +140,7 @@ class ExamController extends Controller
         try {
             Exam::create([
                 'title' => htmlentities($request->title),
-                'session_id' => htmlentities($request->session_id),
+                'session_id' => GETAPPSETTING()['session'],
                 'level_id' => htmlentities($request->level_id),
                 'exam_routine' => $request->exam_routine,
                 'created_by' => Auth::user()->id,

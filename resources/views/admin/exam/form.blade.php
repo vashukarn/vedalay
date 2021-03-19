@@ -125,16 +125,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has('session_id') ? 'has-error' : '' }}">
-                                {{ Form::label('session_id', 'Session :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::select('session_id', @$sessions, @$session_id, ['id' => 'session_id', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
-                                    @error('session_id')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="form-group row {{ $errors->has('level_id') ? 'has-error' : '' }}">
                                 {{ Form::label('level_id', 'Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
