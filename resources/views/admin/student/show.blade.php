@@ -9,7 +9,7 @@
                     <h3 class="card-title">{{ $title }}</h3>
                 </div>
                 <div style="overflow-x: scroll" class="card-body card-format">
-                    <table class="table table-striped table-hover"> {{-- table-bordered --}}
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Detail</th>
@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td>Last Changed By</td>
-                            <td>{{ @$student_info->get_user->updater->name ? @$student_info->get_user->updater->name : @$student_info->get_user->creator->name }}
+                            <td>{{ @$student_info->get_user->updated_at ? @$student_info->get_user->updater->name : @$student_info->get_user->creator->name }}
                             </td>
                         </tr>
                         <tr>
@@ -93,7 +93,9 @@
                         </tr>
                         <tr>
                             <td>Aadhar Number</td>
-                            <td>{{ @$student_info->aadhar_number }}</td>
+                            <td>
+                                {{ @$student_info->aadhar_number }}
+                            </td>
                         </tr>
                         <tr>
                             <td>Father Name</td>
@@ -137,7 +139,8 @@
                         </tr>
                         <tr>
                             <td>Image</td>
-                            <td><img src="{{ @$student_info->image }}" height="200px" alt="Image Not Found"></td>
+                            <td><img src="{{ @$student_info->image }}" height="200px" alt="Image Not Found">
+                            </td>
                         </tr>
                     </tbody>
                 </table>
