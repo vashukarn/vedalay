@@ -144,25 +144,33 @@ class ResultController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'level_id' => 'required|numeric',
-            'exam_id' => 'required|numeric',
-            'student_id' => 'required|numeric',
-            'sgpa' => 'nullable|numeric|max:10',
-            'marks' => 'required',
-            'total_marks' => 'nullable|numeric',
-            'marks_obtained' => 'nullable|numeric',
-            'percentage' => 'nullable|numeric|max:100',
-            'status' => 'required|in:FAIL,PASS,WITHHELD',
-        ]);
+        if(GETAPPSETTING()['marks_scheme'] == 'GRADE'){
+            $scheme = 'Grade';
+            $this->validate($request, [
+                'level_id' => 'required|numeric',
+                'exam_id' => 'required|numeric',
+                'student_id' => 'required|numeric',
+                'sgpa' => 'required|numeric|min:0|max:10',
+                'grade' => 'required|in:A+,A,B+,B,C+,C,D,F',
+                'marks' => 'required',
+                'status' => 'required|in:FAIL,PASS,WITHHELD',
+            ]);
+        }
+        else{
+            $scheme = 'Percentage';
+            $this->validate($request, [
+                'level_id' => 'required|numeric',
+                'exam_id' => 'required|numeric',
+                'student_id' => 'required|numeric',
+                'marks' => 'required',
+                'total_marks' => 'required|numeric',
+                'marks_obtained' => 'required|numeric',
+                'percentage' => 'required|numeric|max:100',
+                'status' => 'required|in:FAIL,PASS,WITHHELD',
+            ]);
+        }
         DB::beginTransaction();
         try {
-            if(GETAPPSETTING()['marks_scheme'] == 'GRADE'){
-                $scheme = 'Grade';
-            }
-            else{
-                $scheme = 'Percentage';
-            }
             $data = [
                 'marks' => $request->marks,
                 'backlogs' => $request->backlogs,
