@@ -120,6 +120,24 @@ $(function () {
                 min: 0,
                 max: 100,
             },
+            medical_certificate: {
+                required: function () {
+                    if ($("#admission").is(":checked")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+            },
+            undertaking: {
+                required: function () {
+                    if ($("#admission").is(":checked")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+            },
         },
         messages: {
             name: "Please enter name",
@@ -127,7 +145,7 @@ $(function () {
                 required: "Phone number is required",
                 digits: "Phone number should be digits only",
                 minlength: "Phone number should be of 10 digits",
-                maxlength: "Phone number should be of 10 digits only",
+                maxlength: "Phone number hould be of 10 digits only",
             },
             email: {
                 required: "Email is required",
@@ -197,6 +215,12 @@ $(function () {
                 digits: "This value should be in numbers",
                 min: "Marks cannot be less than 0 % or 0 CGPA",
                 max: "Percentage or grade cannot be more than 100",
+            },
+            medical_certificate: {
+                required: "This field is required",
+            },
+            undertaking: {
+                required: "This field is required",
             },
         },
         submitHandler: function (form) {
