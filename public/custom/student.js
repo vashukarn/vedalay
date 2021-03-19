@@ -54,72 +54,6 @@ $(function () {
             dob: {
                 required: true,
             },
-            last_schoolname: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            last_level: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            transfer_certificate: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            migration_certificate: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            character_certificate: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            last_marksheet: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-            },
-            last_marks: {
-                required: function () {
-                    if ($("#admission").is(":checked")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                },
-                digits: true,
-                min: 0,
-                max: 100,
-            },
         },
         messages: {
             name: "Please enter name",
@@ -173,30 +107,6 @@ $(function () {
             },
             dob: {
                 required: "DOB is required",
-            },
-            last_schoolname: {
-                required: "This field is required",
-            },
-            last_level: {
-                required: "This field is required",
-            },
-            transfer_certificate: {
-                required: "This field is required",
-            },
-            migration_certificate: {
-                required: "This field is required",
-            },
-            character_certificate: {
-                required: "This field is required",
-            },
-            last_marksheet: {
-                required: "This field is required",
-            },
-            last_marks: {
-                required: "This field is required",
-                digits: "This value should be in numbers",
-                min: "Marks cannot be less than 0 % or 0 CGPA",
-                max: "Percentage or grade cannot be more than 100",
             },
         },
         submitHandler: function (form) {
