@@ -3,7 +3,7 @@
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-        {{-- <script src="{{ asset('/custom/inventoryitem.js') }}"></script> --}}
+        <script src="{{ asset('/custom/inventoryitem.js') }}"></script>
         <script>
             $('#lfm').filemanager('image');
         </script>
