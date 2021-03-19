@@ -1,7 +1,7 @@
 $(function() {
     $("form[name='inventory_form']").validate({
         rules: {
-                title: "required",
+            item_id: "required",
                 quantity: {
                     required: true,
                     digits: true,
@@ -14,7 +14,7 @@ $(function() {
                 },
             },
             messages: {
-                title: "This Title is Required",
+                item_id: "Item Field is Required",
                 quantity: {
                     required: "Quantity is Required",
                     digits: " Quantity Should Cannot be Negative",
