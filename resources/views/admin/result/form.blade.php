@@ -3,7 +3,7 @@
     @push('scripts')
         <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
         <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
-        {{-- <script src="{{ asset('/custom/result.js') }}"></script> --}}
+         {{-- <script src="{{ asset('/custom/result.js') }}"></script> --}}
         <script>
             var failed_subjects = [];
             $(document).ready(function() {
@@ -219,7 +219,7 @@
                             <div class="form-group row {{ $errors->has('level_id') ? 'has-error' : '' }}">
                                 {{ Form::label('level_id', 'Select Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('level_id', @$levels, @$result_info->level_id, ['id' => 'level_id', 'placeholder' => 'Select Level', 'required' => true, 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('level_id', @$levels, @$result_info->level_id, ['id' => 'level_id', 'placeholder' => 'Select Level', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
                                     @error('level_id')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror

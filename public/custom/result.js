@@ -10,6 +10,15 @@ $(function() {
                 },
                 marks_obtained :{
                     digits: true,
+                    
+                },
+                marks :{
+                    // range : [0.08,20.09],
+                    required:true,
+                    min:0,
+                    max:10,
+                    digits: true,
+                    // number: true,
                 },
                 percentage :{
                     digits: true,
@@ -21,7 +30,6 @@ $(function() {
                     min: 0,
                     max: 10,
                 },
-               
                 status : 'required',
 
             },

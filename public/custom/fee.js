@@ -2,6 +2,7 @@ $(function() {
     $("form[name='fee_form']").validate({
         rules: {
                 title: "required",
+                total_amount: "required",
                 tuition_fee: {
                     digits: true,
                     maxlength: 8,
@@ -71,6 +72,7 @@ $(function() {
             },
             messages: {
                 title: "Title is required",
+                total_amount: "Please Click Claculator Button",
                 tuition_fee: {
                     digits: "Tuition Fee should be positive",
                     maxlength: "Please enter a valid amount",
