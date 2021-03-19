@@ -296,7 +296,6 @@ class StudentController extends Controller
         try {
             $user = User::find($student_info->user_id);
             $user->name = htmlentities($request->name);
-            $user->email = htmlentities($request->email);
             $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $user->save();

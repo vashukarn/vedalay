@@ -51,15 +51,27 @@
                                 </div>
                             </div>
 
+                            @if (isset($staff_info))
                             <div class="form-group row {{ $errors->has('email') ? 'has-error' : '' }}">
                                 {{ Form::label('email', 'Email :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::text('email', @$staff_info->get_user->email, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Email','style' => 'width:80%']) }}
+                                    {{ Form::text('email', @$staff_info->get_user->email, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Email','style' => 'width:80%', 'disabled']) }}
                                     @error('email')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
+                        @else
+                        <div class="form-group row {{ $errors->has('email') ? 'has-error' : '' }}">
+                            {{ Form::label('email', 'Email :*', ['class' => 'col-sm-3']) }}
+                            <div class="col-sm-9">
+                                {{ Form::text('email', @$staff_info->get_user->email, ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Email','style' => 'width:80%']) }}
+                                @error('email')
+                                    <span class="help-block error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        @endif
 
                             <div class="form-group row {{ $errors->has('phone') ? 'has-error' : '' }}">
                                 {{ Form::label('phone', 'Phone :*', ['class' => 'col-sm-3']) }}

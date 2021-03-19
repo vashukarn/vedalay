@@ -12,11 +12,11 @@ class CreateResultsTable extends Migration
             $table->id();
             $table->longText('marks')->nullable();
             $table->longText('backlogs')->nullable();
-            $table->integer('total_marks')->nullable();
-            $table->integer('percentage')->nullable();
-            $table->integer('marks_obtained')->nullable();
+            $table->string('total_marks')->nullable();
+            $table->string('percentage')->nullable();
+            $table->string('marks_obtained')->nullable();
             $table->string('grade')->nullable();
-            $table->integer('sgpa')->nullable();
+            $table->string('sgpa')->nullable();
             $table->enum('gper',['Grade','Percentage'])->default('Percentage');
             $table->enum('status',['PASS','FAIL','WITHHELD'])->default('WITHHELD');
             $table->string('withheld_reason')->nullable();

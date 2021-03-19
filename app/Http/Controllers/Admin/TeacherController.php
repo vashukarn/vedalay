@@ -30,7 +30,7 @@ class TeacherController extends Controller
         }
         if ($request->filtersubject) {
             $filtersubject = $request->filtersubject;
-            $query = $query->whereRaw('json_contains(subject, \'["'.$filtersubject.'"]\')');
+            $query = $query->whereRaw('json_contains(subject, \'["' . $filtersubject . '"]\')');
         }
         return $query->paginate(20);
     }
@@ -43,7 +43,7 @@ class TeacherController extends Controller
         }
         $subjects = Subject::all();
         foreach ($subjects as $key => $value) {
-            $filtersubjects[$value->id] = $value->title . ' - ' . $value->get_level->standard.' '.$value->get_level->section;
+            $filtersubjects[$value->id] = $value->title . ' - ' . $value->get_level->standard . ' ' . $value->get_level->section;
         }
         $data = $this->getTeacher($request);
         $data = [
@@ -62,7 +62,7 @@ class TeacherController extends Controller
         $temp = Subject::all();
         $subjects = null;
         foreach ($temp as $value) {
-            $subjects[$value->id] = $value->title.' - Level: ' .$value->get_level->standard;
+            $subjects[$value->id] = $value->title . ' - Level: ' . $value->get_level->standard;
         }
         $data = [
             'title' => $title,
@@ -147,7 +147,7 @@ class TeacherController extends Controller
         $temp = Subject::all();
         $subjects = null;
         foreach ($temp as $value) {
-            $subjects[$value->id] = $value->title.' - Level: ' .$value->get_level->standard;
+            $subjects[$value->id] = $value->title . ' - Level: ' . $value->get_level->standard;
         }
         $data = [
             'title' => $title,
@@ -165,7 +165,6 @@ class TeacherController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required|in:male,female,others',
             'permanent_address' => 'required|string|min:3|max:190',
@@ -175,7 +174,6 @@ class TeacherController extends Controller
         try {
             $user = User::find($teacher_info->user_id);
             $user->name = htmlentities($request->name);
-            $user->email = htmlentities($request->email);
             $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $user->save();
@@ -188,7 +186,7 @@ class TeacherController extends Controller
             $teacher->aadhar_number = htmlentities($request->aadhar_number);
             $teacher->current_address = htmlentities($request->current_address);
             $teacher->permanent_address = htmlentities($request->permanent_address);
-            if(isset($request->image)){
+            if (isset($request->image)) {
                 $teacher['image'] = htmlentities($request->image);
             }
             $teacher->save();
@@ -200,7 +198,6 @@ class TeacherController extends Controller
             $request->session()->flash('error', $error->getMessage());
             return redirect()->back();
         }
-
     }
 
     public function destroy(Request $request, $id)

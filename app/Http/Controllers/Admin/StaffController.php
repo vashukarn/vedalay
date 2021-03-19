@@ -138,7 +138,6 @@ class StaffController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required',
             'position' => 'required',
@@ -149,7 +148,6 @@ class StaffController extends Controller
         try {
             $user = User::find($staff_info->user_id);
             $user->name = htmlentities($request->name);
-            $user->email = htmlentities($request->email);
             $user->publish_status = htmlentities($request->publish_status);
             $user->updated_by = Auth::user()->id;
             $user->save();
