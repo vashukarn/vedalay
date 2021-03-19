@@ -5,7 +5,7 @@ $(function() {
                 
             },
             messages: {
-                title: "This Title is Required",
+                title: "Title is Required",
 
                 
         },

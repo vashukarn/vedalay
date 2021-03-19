@@ -14,16 +14,16 @@ $(function() {
                 },
             },
             messages: {
-                item_id: "Item Field is Required",
+                item_id: "Please select product",
                 quantity: {
-                    required: "Quantity is Required",
-                    digits: " Quantity Should Cannot be Negative",
-                    min: "Minimum 1 digit requireds",
+                    required: "Quantity is required",
+                    digits: " Quantity cannot be a negative value",
+                    min: "Value cannot be less than one",
                 },
                 total_price: {
                     required: "Total Price is Required",
-                    digits: "Total price Should Cannot be Negative",
-                    min: "Minimum 1 digit required",
+                    digits: "Price cannot be a negative value",
+                    min: "Value cannot be less than one",
                 },
 
                 
