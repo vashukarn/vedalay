@@ -23,6 +23,8 @@ class CreateAppSettingsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
+            $table->enum('marks_scheme',['GRADE','PERCENTAGE'])->default('GRADE');
+            $table->enum('razorpay_payment',['0','1'])->default('1');
             $table->string('skype')->nullable();
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();

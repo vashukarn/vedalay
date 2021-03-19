@@ -73,6 +73,7 @@ class FeeController extends Controller
         $data = [
             'data' => $data,
             'sitesetting' => $sitesetting,
+            'payment' => GETAPPSETTING()['razorpay_payment'],
             'levels' => $levels,
         ];
         return view('admin/fee/list')->with($data);

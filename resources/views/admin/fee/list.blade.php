@@ -90,7 +90,9 @@
                                 <th>Title</th>
                                 @role('Student')
                                 <th>Total Amount</th>
+                                @if($payment)
                                 <th>Payment</th>
+                                @endif
                                 @else
                                 <th>Level</th>
                                 <th>Amount</th>
@@ -109,11 +111,13 @@
                             <td>{{ @$value->title }}</td>
                             @role('Student')
                             <td>Rs. {{ @$value->total_amount }}</td>
+                            @if($payment)
                             <td>
                                 <div class="btn-group">
                                     <button id='paynow', title='Pay Fee', data-amount='{{ @$value->total_amount }}', data-id='{{ @$value->id }}', class='btn btn-success btn-sm btn-flat'><i class="fas fa-money-bill"></i> &nbsp; Pay Now</button>
                               </div>
                               </td>
+                            @endif
                             @else
                             <td>{{ $levels[@$value->level_id] }}</td>
                             <td>{{ @$value->total_amount }}</td>

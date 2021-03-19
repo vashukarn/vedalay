@@ -15,6 +15,7 @@ class Result extends Model
         'gper',
         'total_marks',
         'percentage',
+        'session',
         'marks_obtained',
         'grade',
         'withheld_reason',

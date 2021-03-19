@@ -10,9 +10,6 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('session')->nullable();
-            $table->unsignedBigInteger('level_id')->nullable();
             $table->date('dob')->nullable();
             $table->string('blood_group')->nullable();
             $table->string('caste_category')->nullable();
@@ -32,8 +29,11 @@ class CreateStudentsTable extends Migration
             $table->string('mothername')->nullable();
             $table->string('motheroccupation')->nullable();
             $table->string('motherincome')->nullable();
-            $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('level_id')->nullable();
+            $table->unsignedBigInteger('session')->nullable();
             $table->foreign('session')->references('id')->on('sessions')->onUpdate('CASCADE')->onDelete('RESTRICT');
+            $table->foreign('level_id')->references('id')->on('levels')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('RESTRICT');
             $table->timestamps();
             $table->softDeletes();

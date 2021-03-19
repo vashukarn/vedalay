@@ -361,7 +361,6 @@
 
                         <div class="page-description-div">
 
-
                             <div class="form-group row">
                                 <label class="col-md-4">Use Meta Tag</label>
                                 <div class="btn-group btn-group-toggle col-md-3" data-toggle="buttons">
@@ -426,37 +425,34 @@
                                 </div>
                             </div>
 
-                            <div id="metatag-details">
-                                <div class="form-group row">
-                                    {{ Form::label('meta[title]', 'Meta Title', ['class' => 'col-sm-4 col-form-label']) }}
-                                    <div class="col-sm-6">
-                                        {{ Form::textarea('meta[title]', @$site_detail->meta['title'], ['class' => 'form-control', 'id' => 'meta[title]', 'placeholder' => 'Meta Title', 'required' => false, 'rows' => 1]) }}
-                                        @error('meta[title]')
-                                            <span class="help-block error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    {{ Form::label('meta[key]', 'Meta Keywords', ['class' => 'col-sm-4 col-form-label']) }}
-                                    <div class="col-sm-6">
-                                        {{ Form::textarea('meta[key]', @$site_detail->meta['key'], ['class' => 'form-control', 'id' => 'meta[key]', 'placeholder' => 'Meta Keywords', 'required' => false, 'rows' => 2]) }}
-                                        @error('meta[key]')
-                                            <span class="help-block error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    {{ Form::label('meta[description]', 'Meta Description', ['class' => 'col-sm-4 col-form-label']) }}
-                                    <div class="col-sm-6">
-                                        {{ Form::textarea('meta[description]', @$site_detail->meta['description'], ['class' => 'form-control', 'id' => '', 'placeholder' => 'Meta Description', 'required' => false, 'rows' => 5, 'style' => 'font-size:14px; text-align:justify']) }}
-                                        @error('meta[description]')
-                                            <span class="help-block error">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                            <div class="form-group row">
+                                <label class="col-md-4">Marks Scheme</label>
+                                <div class="btn-group btn-group-toggle col-md-3" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="marks_scheme" autocomplete="off" value="PERCENTAGE"
+                                            {{ @$site_detail->marks_scheme == 'PERCENTAGE' ? 'checked' : '' }}> Percentage
+                                    </label>
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="marks_scheme" autocomplete="off" value="GRADE"
+                                            {{ @$site_detail->marks_scheme == 'GRADE' ? 'checked' : '' }}> Grade
+                                    </label>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-4">Payment with Razorpay</label>
+                                <div class="btn-group btn-group-toggle col-md-3" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="razorpay_payment" autocomplete="off" value="1"
+                                            {{ @$site_detail->razorpay_payment == '1' ? 'checked' : '' }}> Enable
+                                    </label>
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="razorpay_payment" autocomplete="off" value="0"
+                                            {{ @$site_detail->razorpay_payment == '0' ? 'checked' : '' }}> Disable
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

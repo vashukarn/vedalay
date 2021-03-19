@@ -73,40 +73,6 @@ function mapErrorMessage($validation)
     return $errors;
 }
 
-//English to Nepali date:datenep('2076-12-30') for 2046-03-14 or  datenep('2046-03-14',true) for  २०४६ असार १४ गते बुधबार;
-function datenep($date, $num_date = null)
-{
-    $lib = new \App\Models\NepaliCalander();
-    $date = str_replace('/', '-', $date);
-    $a = explode("-", $date);
-    $b = explode(" ", $a[2]);
-    $cd = $lib->eng_to_nep($a[0], $a[1], $b[0]);
-    $cd = (array) $cd;
-    if ($num_date == true) {
-        return $cd['year'] . " " . $cd['nmonth'] . " " . $cd['date'] . " गते " . $cd['day'];
-    } else {
-        (getStandardNumber($cd['month']) > 9) ? $m = $cd['month'] : $m = "0" . $cd['month'];
-        (getStandardNumber($cd['date']) > 9) ? $d = $cd['date'] : $d = "0" . $cd['date'];
-        return getStandardNumber($cd['year'] . "-" . $m . "-" . $d);
-    }
-}
-//Nep to eng dateeng('2076-12-30') or dateeng(2076-12-30',true) for leading 0 & false for not leading 0
-function dateeng($date, $lead = true)
-{
-    $lib = new \App\Models\NepaliCalander();
-    $date = str_replace('/', '-', $date);
-    $a = explode("-", $date);
-    $b = explode(" ", $a[2]);
-    $cd = $lib->nep_to_eng($a[0], $a[1], $b[0]);
-    $cd = (array) $cd;
-    if ($lead == false) { //return the leading zero date
-        return $cd['year'] . "-" . $cd['month'] . "-" . $cd['date'];
-    } else {
-        ($cd['month'] > 9) ? $m = $cd['month'] : $m = "0" . $cd['month'];
-        ($cd['date'] > 9) ? $d = $cd['date'] : $d = "0" . $cd['date'];
-        return $cd['year'] . "-" . $m . "-" . $d;
-    }
-}
 
 // profile image loader
 function profileImage($image)
@@ -118,17 +84,34 @@ function profileImage($image)
     return $thumbnail;
 }
 
-// get Session anywhere
-function GETSESSION()
+// get GETAPPSETTING anywhere 
+function GETAPPSETTING()
 {
-    $session = AppSetting::first();
-    if($session){
-        $session = $session->current_session;
+    $appsetting = AppSetting::first();
+    if(isset($appsetting->current_session)){
+        $session = $appsetting->current_session;
     }
     else{
         $session = 1;
     }
-    return $session;
+    if(isset($appsetting->marks_scheme)){
+        $marks_scheme = $appsetting->marks_scheme;
+    }
+    else{
+        $marks_scheme = 'GRADE';
+    }
+    if(isset($appsetting->razorpay_payment)){
+        $razorpay_payment = $appsetting->razorpay_payment;
+    }
+    else{
+        $razorpay_payment = 1;
+    }
+    $data = [
+        'session' => $session,
+        'marks_scheme' => $marks_scheme,
+        'razorpay_payment' => $razorpay_payment,
+    ];
+    return $data;
 }
 
 // string date to readable dates format
@@ -169,7 +152,6 @@ define('SLIDER_TYPE', [
 define('SHOW_ON', [
     'header_menu' => 'Header Menu',
     'footer_menu' => 'Footer Menu',
-    // 'footer_menu' => '',
 ]);
 /*
  * Map pagination data for api response while returning data

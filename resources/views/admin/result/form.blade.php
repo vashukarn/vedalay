@@ -7,10 +7,7 @@
         <script>
             var failed_subjects = [];
             $(document).ready(function() {
-                $('#gper').val('');
                 $('#level_id').val('');
-                $('#percentagediv').hide();
-                $('#gradediv').hide();
                 $('#forms').hide();
                 $('#with').hide();
                 $('#exam_id').select2({
@@ -32,7 +29,8 @@
                 $("#backlogs").empty();
                 failed_subjects = [];
                 var sgpa = 0;
-                if ($('#gper').val() == 'Grade') {
+                
+                @if($scheme == 'GRADE')
                     for (let i = 0; i < main_interation.length; i++) {
                         sgpa += Number($('[name="marks[' + main_interation[i].id + '][credits]"]').val());
                         if ($('[name="marks[' + main_interation[i].id + '][grade]"]').val() == 'F') {
@@ -53,7 +51,7 @@
                         $('#status').val('');
                         $('#grade').val('');
                     }
-                } else if ($('#gper').val() == 'Percentage') {
+                    @else
                     var total = 0;
                     var obtained = 0;
                     var percentage = 0;
@@ -81,29 +79,13 @@
                         $('#status').val('');
                         $('#grade').val('');
                     }
-                } else {
-                    alert('Please select marks schema first');
-                }
+                    @endif
             };
             $('#status').change(function() {
                 if ($('#status').val() == 'WITHHELD') {
                     $('#with').show();
                 } else {
                     $('#with').hide();
-                }
-            });
-            $('#gper').change(function() {
-                $('#forms').hide();
-                $('#level_id').val('');
-                if ($('#gper').val() == 'Grade') {
-                    $('#gradediv').show();
-                    $('#percentagediv').hide();
-                } else if ($('#gper').val() == 'Percentage') {
-                    $('#gradediv').hide();
-                    $('#percentagediv').show();
-                } else {
-                    $('#percentagediv').hide();
-                    $('#gradediv').hide();
                 }
             });
 
@@ -132,7 +114,7 @@
                                         '<div id="temp' + i +
                                         '" class="col-sm-12 form-group row mt-4"><label class="col-sm-2 mt-2">' +
                                         data.subjects[i].value + ' :</label>');
-                                    if ($('#gper').val() != 'Grade') {
+                                    if ("{{$scheme}}" != 'GRADE') {
                                         $('#temp' + i).append(
                                             '<input type="number" name="marks[' + data.subjects[i].id +
                                             '][obtained]" placeholder="Marks Obtained" class="form-control col-sm-3 mt-2"><input type="number" name="marks[' +
@@ -234,16 +216,6 @@
                     <div class="row">
                         <div class="col-sm-10 offset-lg-1">
 
-                            <div class="form-group row {{ $errors->has('gper') ? 'has-error' : '' }}">
-                                {{ Form::label('gper', 'Select Schema :*', ['class' => 'col-sm-3']) }}
-                                <div class="col-sm-9">
-                                    {{ Form::select('gper', ['Grade' => 'Grade', 'Percentage' => 'Percentage'], @$result_info->gper, ['id' => 'gper', 'placeholder' => 'Select Schema', 'required' => true, 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
-                                    @error('gper')
-                                        <span class="help-block error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="form-group row {{ $errors->has('level_id') ? 'has-error' : '' }}">
                                 {{ Form::label('level_id', 'Select Level :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
@@ -296,7 +268,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div id="gradediv">
+                                    @if($scheme == 'GRADE')
                                     <div class="form-group row {{ $errors->has('sgpa') ? 'has-error' : '' }}">
                                         {{ Form::label('sgpa', 'SGPA :*', ['class' => 'col-sm-3']) }}
                                         <div class="col-sm-9">
@@ -316,9 +288,8 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                    @else
 
-                                <div id="percentagediv">
                                     <div
                                         class="form-group row mt-4 {{ $errors->has('total_marks') ? 'has-error' : '' }}">
                                         {{ Form::label('total_marks', 'Total Marks :*', ['class' => 'col-sm-3']) }}
@@ -350,7 +321,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                    @endif
 
 
                                 <div class="form-group row mt-4 {{ $errors->has('status') ? 'has-error' : '' }}">
