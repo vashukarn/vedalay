@@ -12,6 +12,7 @@
                     allowClear: true
                 });
             });
+
         </script>
     @endpush
 @section('content')
@@ -50,7 +51,7 @@
                             <div class="form-group row {{ $errors->has('act') ? 'has-error' : '' }}">
                                 {{ Form::label('act', 'Add / Remove:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('act', ['ADD' => 'Add','REMOVE' => 'Remove' ], @$inventory_info->act, ['class' => 'form-control', 'id' => 'act', 'style' => 'width:80%']) }}
+                                    {{ Form::select('act', ['ADD' => 'Add', 'REMOVE' => 'Remove'], @$inventory_info->act, ['class' => 'form-control', 'id' => 'act', 'style' => 'width:80%']) }}
                                     @error('act')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
