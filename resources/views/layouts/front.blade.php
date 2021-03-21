@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ========== Page Title ========== -->
-    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
+    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedyalay School Management' }} | @yield('page_title')</title>
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png') }}"
