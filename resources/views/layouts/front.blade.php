@@ -61,9 +61,9 @@
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ $sitesetting ? $sitesetting->logo_light : asset('assets/img/logo-light.png') }}"
-                            class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
+                            class="logo logo-display" style="height: 50px !important;" alt="Vedyalay">
                         <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}"
-                            class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
+                            class="logo logo-scrolled" style="height: 50px !important;" alt="Vedyalay">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -200,7 +200,7 @@
                                         <div class="info">
                                             <h5>Website:</h5>
                                             <a href="http://vedyalay.com/">
-                                                <span>vedalay.com</span>
+                                                <span>vedyalay.com</span>
                                             </a>
                                         </div>
                                     </li>
@@ -241,7 +241,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedalay.com">Vedalay</a></p>
+                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedyalay.com">Vedyalay</a></p>
                         </div>
                         {{-- <div class="col-md-6 text-right link">
                             <ul>

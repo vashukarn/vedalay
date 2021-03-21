@@ -91,7 +91,7 @@
                     <a class="popup-youtube light video-play-button"
                         href="{{ @$page->whyus_link ? $page->whyus_link : '#' }}">
                         <img src="{{ @$page->whyus_image ? $page->whyus_image : asset('assets/img/nodata/4.png') }}"
-                            alt="{{ @$page->whyus_title ? $page->whyus_title : 'Vedalay about us image' }}">
+                            alt="{{ @$page->whyus_title ? $page->whyus_title : 'Vedyalay about us image' }}">
                         <i class="fa fa-play"></i>
                     </a>
                 </div>
