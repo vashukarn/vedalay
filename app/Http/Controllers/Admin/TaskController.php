@@ -17,13 +17,13 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'task' => 'required|string|min:3|max:350',
+            'description' => 'required|string|min:3|max:350',
             'deadline' => 'required|date',
         ]);
         DB::beginTransaction();
         try {
             $task = new Task();
-            $task->description = htmlentities($request->task);
+            $task->description = htmlentities($request->description);
             $task->deadline = htmlentities($request->deadline);
             $task->created_by = Auth::user()->id;
             $status = $task->save();

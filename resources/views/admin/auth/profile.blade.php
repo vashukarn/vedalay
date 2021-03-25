@@ -182,20 +182,20 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{ Form::open(['url' => route('task.store'), 'files' => true, 'class' => 'form', 'name' => 'task_form']) }}
+                {{ Form::open(['url' => route('task.store'), 'class' => 'form', 'name' => 'task_form']) }}
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="description">Task</label>
-                        <input type="text" class="form-control" maxlength="400" id="description" name="description"></input>
+                        {{ Form::label('description', 'Description') }}
+                        {{ Form::text('description', null, ['class' => 'form-control']) }}
                     </div>
                     <div class="form-group">
-                        <label for="deadline">Deadline</label>
-                        <input class="form-control" type="date" id="deadline" name="deadline"></input>
+                        {{ Form::label('deadline', 'Deadline Date') }}
+                        {{ Form::date('deadline', null, ['class' => 'form-control']) }}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="todosubmit" class="btn btn-primary">Save changes</button>
+                    {{ Form::button("<i class='fa fa-paper-plane'></i> Submit", ['class' => 'btn btn-success btn-flat', 'type' => 'submit']) }}
                 </div>
                 {{ Form::close() }}
             </div>
