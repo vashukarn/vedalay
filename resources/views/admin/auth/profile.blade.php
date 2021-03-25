@@ -127,7 +127,7 @@
                                         <?php
                                         $now = time(); // or your date as well
                                         $your_date = strtotime($item->deadline);
-                                        $datediff = $now - $your_date;
+                                        $datediff = $your_date - $now;
                                         $rem = round($datediff / (60 * 60 * 24)) + 1;
                                         ?>
                                         <div class="icheck-primary d-inline ml-2">
