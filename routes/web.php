@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -85,6 +86,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('leave', LeaveController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('task', TaskController::class);
     Route::resource('noticeboard', NoticeboardController::class);
     Route::resource('expense', ExpenseController::class);
     Route::resource('assignment', AssignmentController::class);
@@ -110,6 +112,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::post('getSubjects', [ExamController::class, 'getSubjects'])->name('getSubjects');
     Route::post('getFeeDetails', [FeePaymentController::class, 'getFeeDetails'])->name('getFeeDetails');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::post('changeTaskStatus', [TaskController::class, 'changeTaskStatus'])->name('changeTaskStatus');
     Route::post('feeadvance/{id}', [AdvanceFeeController::class, 'pay'])->name('feeadvance.pay');
     Route::get('profiledetail', [UserController::class, 'profiledetail'])->name('profiledetail')->middleware('password.confirm');
     Route::post('getSalary', [SalaryController::class, 'getData'])->name('getSalary');

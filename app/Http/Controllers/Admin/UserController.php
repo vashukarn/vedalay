@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Models\Level;
 use App\Models\Student;
+use App\Models\Task;
 use App\Models\Teacher;
 use App\Utilities\LogActivity;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +47,6 @@ class UserController extends Controller
             $rules = $this->user->getRules();
             $request->validate($rules);
             $data = $request->all();
-            // dd($data);
             $data['password'] = Hash::make($request->password);
             $data['type'] = 'admin';
             $this->user->fill($data);
@@ -54,7 +54,6 @@ class UserController extends Controller
             DB::commit();
             if ($status) {
                 $this->user->assignRole($request->input('roles'));
-                //$this->user->sendEmailVerificationNotification();
                 $request->session()->flash('success', "User Created Successfully");
             } else {
                 $request->session()->flash('error', "Sorry! Error While Adding the new user");
@@ -151,13 +150,14 @@ class UserController extends Controller
         if (Auth::user()->type == 'teacher') {
             $teacher_info = Teacher::where('user_id', Auth::user()->id)->first();
         }
+        $tasks = Task::where('created_by', $user_info->id)->orderBy('deadline', 'ASC')->paginate(5);
         $data = [
             'user_info' => $user_info,
             'student_info' => $student_info ?? null,
+            'tasks' => $tasks,
             'teacher_info' => $teacher_info ?? null,
             'levels' => $levels ?? null,
         ];
-        // dd($data);
         return view('admin.auth.profile')->with($data);
     }
 
