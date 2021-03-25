@@ -152,11 +152,12 @@ class UserController extends Controller
             $teacher_info = Teacher::where('user_id', Auth::user()->id)->first();
         }
         $data = [
-            'user_info' => $user_info ?? null,
+            'user_info' => $user_info,
             'student_info' => $student_info ?? null,
             'teacher_info' => $teacher_info ?? null,
             'levels' => $levels ?? null,
         ];
+        // dd($data);
         return view('admin.auth.profile')->with($data);
     }
 
