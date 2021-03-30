@@ -258,7 +258,7 @@
                                     </p>
                                     @isset($attendancetoday)
                                         <div class="progress-group">
-                                            Present Students (Today)
+                                            Present Attendents (Today)
                                             <span
                                                 class="float-right"><b>{{ $attendancetoday['present'] }}</b>/{{ $attendancetoday['total'] }}</span>
                                             <div class="progress progress-sm">
@@ -270,7 +270,7 @@
                                             </div>
                                         </div>
                                         <div class="progress-group">
-                                            Absent Students (Today)
+                                            Absent Attendents (Today)
                                             <span
                                                 class="float-right"><b>{{ $attendancetoday['absent'] }}</b>/{{ $attendancetoday['total'] }}</span>
                                             <div class="progress progress-sm">
@@ -285,7 +285,7 @@
 
                                     @isset($attendanceall)
                                         <div class="progress-group">
-                                            <span class="progress-text">Total Present Students (Month)</span>
+                                            <span class="progress-text">Total Present Attendents (Month)</span>
                                             <span
                                                 class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
                                             <div class="progress progress-sm">
@@ -297,7 +297,7 @@
                                             </div>
                                         </div>
                                         <div class="progress-group">
-                                            Total Absent Students (Month)
+                                            Total Absent Attendents (Month)
                                             <span
                                                 class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
                                             <div class="progress progress-sm">
