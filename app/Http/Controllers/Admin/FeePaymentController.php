@@ -233,14 +233,7 @@ class FeePaymentController extends Controller
                         $single->extra_fee = 0;
                     }
                 }
-                if ($single->total_amount > 0) {
-                    $single->total_amount = $single->total_amount - $request->total_amount;
-                    if ($single->total_amount < 0) {
-                        if($single->total_amount < $request->total_amount){$total_amount = abs($single->total_amount);}
-                        $single->total_amount = 0;
-                    }
-                }
-
+                $single->total_amount = $single->tuition_fee + $single->exam_fee + $single->transport_fee + $single->stationery_fee + $single->sports_fee + $single->club_fee + $single->hostel_fee + $single->laundry_fee + $single->education_tax + $single->eca_fee + $single->late_fine + $single->extra_fee;
                 if ($single->total_amount == 0) {
                     $single->delete();
                 } else {
