@@ -18,6 +18,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +47,7 @@ class DashboardController extends Controller
                 ];
             }
             $attemptoday = Attendance::whereBetween('created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])->get();
-            $attempall = Attendance::whereBetween('created_at', [date('Y-m-01 00:00:00'), date('Y-m-30 23:59:59')])->get();
+            $attempall = Attendance::whereMonth('created_at', Carbon::now()->month)->get();
             $totalstudtoday = 0;
             $presentstudtoday = 0;
             $absentstudtoday = 0;
@@ -85,6 +86,7 @@ class DashboardController extends Controller
                 'absent' => $absentstudall,
                 'present' => $presentstudall,
             ];
+            // dd($allattendancesummary);
             $data = [
                 'usertotal' => $usertotal,
                 'attendancetoday' => $todayattendancesummary,

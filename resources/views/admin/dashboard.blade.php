@@ -257,7 +257,7 @@
                                         <strong>Attendance Report</strong>
                                     </p>
                                     @isset($attendancetoday)
-                                        @if ($attendancetoday['total'] != 0)
+                                        @if ($attendancetoday['total'] > 0)
                                             <div class="progress-group">
                                                 Present Attendents (Today)
                                                 <span
@@ -269,7 +269,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        @if ($attendancetoday['total'] != 0)
+                                        @if ($attendancetoday['total'] > 0)
                                             <div class="progress-group">
                                                 Absent Attendents (Today)
                                                 <span
@@ -284,19 +284,19 @@
                                     @endisset
 
                                     @isset($attendanceall)
-                                        @if ($attendanceall['total'] != 0)
+                                        @if ($attendanceall['total'] > 0)
                                             <div class="progress-group">
                                                 <span class="progress-text">Total Present Attendents (Month)</span>
                                                 <span
-                                                    class="float-right"><b>{{ round(($attendanceall['absent'] * 100) / $attendanceall['total'], 2) }}%</b></span>
+                                                    class="float-right"><b>{{ round(($attendanceall['present'] * 100) / $attendanceall['total'], 2) }}%</b></span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-success"
-                                                        style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
+                                                        style="width: {{ ($attendanceall['present'] * 100) / $attendanceall['total'] }}%">
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
-                                        @if ($attendanceall['total'] != 0)
+                                        @if ($attendanceall['total'] > 0)
                                             <div class="progress-group">
                                                 Total Absent Attendents (Month)
                                                 <span
