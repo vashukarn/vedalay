@@ -123,7 +123,7 @@
                                         <small class="badge @if ($rem < 2) badge-danger @elseif($rem < 5) badge-warning @elseif($rem < 10) badge-primary @else badge-success @endif">
                                             <i class="far fa-clock"></i> &nbsp;
                                             @if ($rem > 365) {{ round($rem / 365, 2) }} year
-                                            @elseif ($rem > 30) {{ round($rem / 30, 2) }} month
+                                            @elseif ($rem > 30) {{ round($rem / 30) }} month
                                             @else {{ $rem }} days @endif
                                         </small>
                                         <!-- General tools such as edit or delete-->
