@@ -14,28 +14,10 @@
                         '_token': $('meta[name="csrf-token"]').attr('content'),
                         'id': id,
                     },
-                    // success: function(data) {
-                    //     if (data.length < 1) {
-                    //         alert("No Subjects found on this level");
-                    //     } else {
-                    //         subjects = data;
-                    //         datecounter = 0;
-                    //         dates = [];
-                    //         subjects = null;
-                    //         subjectselect = '';
-                    //         diffcounter = 0;
-                    //         for (let index = 0; index < data.length; index++) {
-                    //             subjectselect += '<option value="' + data[index]['id'] + '">' + data[index][
-                    //                 'title'
-                    //             ] + '</option>';
-                    //         }
-                    //         console.log(subjectselect)
-                    //     }
-                    // }
                 });
             }
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementsByName("deadline")[0].setAttribute('min', today);
+            // var today = new Date().toISOString().split('T')[0];
+            // document.getElementsByName("deadline")[0].setAttribute('min', today);
 
         </script>
     @endpush
@@ -189,7 +171,7 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('deadline', 'Deadline Date') }}
-                        {{ Form::date('deadline', null, ['class' => 'form-control']) }}
+                        {{ Form::date('deadline', null, ['min'=>date('Y-m-d', strtotime(date('Y-m-d'). ' +1 day')),'class' => 'form-control']) }}
                     </div>
                 </div>
                 <div class="modal-footer">
