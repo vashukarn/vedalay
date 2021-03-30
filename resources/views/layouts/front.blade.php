@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ========== Page Title ========== -->
-    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedalay School Management' }} | @yield('page_title')</title>
+    <title>{{ @$sitesetting->name ? @$sitesetting->name : 'Vedyalay School Management' }} | @yield('page_title')</title>
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ $sitesetting ? $sitesetting->favicon : asset('assets/img/favicon.png') }}"
@@ -61,9 +61,9 @@
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img src="{{ $sitesetting ? $sitesetting->logo_light : asset('assets/img/logo-light.png') }}"
-                            class="logo logo-display" style="height: 50px !important;" alt="Vedalay">
+                            class="logo logo-display" style="height: 50px !important;" alt="Vedyalay">
                         <img src="{{ $sitesetting ? $sitesetting->logo : asset('assets/img/logo.png') }}"
-                            class="logo logo-scrolled" style="height: 50px !important;" alt="Vedalay">
+                            class="logo logo-scrolled" style="height: 50px !important;" alt="Vedyalay">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
@@ -200,7 +200,7 @@
                                         <div class="info">
                                             <h5>Website:</h5>
                                             <a href="http://vedyalay.com/">
-                                                <span>vedalay.com</span>
+                                                <span>vedyalay.com</span>
                                             </a>
                                         </div>
                                     </li>
@@ -241,7 +241,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedalay.com">Vedalay</a></p>
+                            <p>&copy; Copyright 2021. All Rights Reserved by <a href="www.vedyalay.com">Vedyalay</a></p>
                         </div>
                         {{-- <div class="col-md-6 text-right link">
                             <ul>
