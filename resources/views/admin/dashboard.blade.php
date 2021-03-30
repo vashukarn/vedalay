@@ -5,9 +5,20 @@
     ->roles->first()->name . ' Dashboard',)
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script src="{{ asset('/custom/chartdata.js') }}"></script>
+        @role('Super Admin|Admin')
+        <script src="{{ asset('/custom/adminchartdata.js') }}"></script>
+        @endrole
+        @role('Student')
+        <script src="{{ asset('/custom/studentchartdata.js') }}"></script>
+        @endrole
     @endpush
 @section('content')
+    @role('Super Admin|Admin')
+    <meta name="expenseIncomeChart" content="{{ route('chart.incomeexpense') }}">
+    @endrole
+    @role('Student')
+    {{-- <meta name="expenseIncomeChart" content="{{ route('attendacneChart') }}"> --}}
+    @endrole
     <div class="content-header">
         <div class="container-fluid">
             <div class="row">
@@ -98,7 +109,8 @@
                         </div>
                     </div>
                 </div>
-                @hasanyrole('Teacher|Staff|Student|Admin')
+                @endrole
+                @role('Teacher|Staff|Student|Admin')
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-calendar-day"></i></span>
@@ -112,13 +124,115 @@
                         </div>
                     </div>
                 </div>
-                @endhasanyrole
-                {{-- {{ dd($month) }} --}}
+                @endrole
+                @role('Teacher')
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-book"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Subjects</span>
+                            <span class="info-box-number">
+                                {{ @$subjectcount }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-rupee-sign"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Extra Class Earnings</span>
+                            <span class="info-box-number">
+                                Rs. {{ @$extraclass }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @endrole
+                @role('Staff')
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-rupee-sign"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Incentives</span>
+                            <span class="info-box-number">
+                                Rs. {{ @$incentives }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @endrole
+                @role('Teacher|Staff')
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-navy elevation-1"><i class="fas fa-rupee-sign"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Salary Recieved</span>
+                            <span class="info-box-number">
+                                Rs. {{ @$paidsalary }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-light elevation-1"><i class="fas fa-rupee-sign"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Advance Salary Recieved</span>
+                            <span class="info-box-number">
+                                Rs. {{ @$advancesalary }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @endrole
+                @role('Student')
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-list"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Assignment</span>
+                            <a href="{{ route('assignment.index') }}">
+                                <span class="info-box-number">
+                                    {{ @$assignment }}
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-calendar"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Attendance</span>
+                            <span class="info-box-number">
+                                {{ @$attendance_percentage ? @$attendance_percentage . '%' : 'No Data Yet' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-rupee-sign"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Due Fee</span>
+                            <span class="info-box-number">
+                                Rs. {{ @$due_fee }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                @endrole
+                @role('Super Admin|Admin')
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Monthly Report</h5>
-
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -134,12 +248,10 @@
                                     <p class="text-center">
                                         <strong>Earning/Expenditure: ({{ date('Y') }})</strong>
                                     </p>
-
                                     <div class="chart">
                                         <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
                                     </div>
                                 </div>
-                                <!-- /.col -->
                                 <div class="col-md-4">
                                     <p class="text-center">
                                         <strong>Attendance Report</strong>
@@ -150,242 +262,124 @@
                                             <span
                                                 class="float-right"><b>{{ $attendancetoday['present'] }}</b>/{{ $attendancetoday['total'] }}</span>
                                             <div class="progress progress-sm">
-                                                <div class="progress-bar bg-primary" @if ($attendancetoday['total'] != 0) style="width: {{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%"> @endif </div>
-                                                </div>
+                                                @if ($attendancetoday['total'] != 0)
+                                                    <div class="progress-bar bg-primary"
+                                                        style="width: {{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%">
+                                                    </div>
+                                                @endif
                                             </div>
-                                            <!-- /.progress-group -->
-
-                                            <div class="progress-group">
-                                                Absent Students (Today)
-                                                <span
-                                                    class="float-right"><b>{{ $attendancetoday['absent'] }}</b>/{{ $attendancetoday['total'] }}</span>
-                                                <div class="progress progress-sm">
-                                                    @if ($attendancetoday['total'] != 0)
-                                                        <div class="progress-bar bg-danger"
-                                                            style="width: {{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%">
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                        @endisset
-
-                                        @isset($attendanceall)
-                                            <!-- /.progress-group -->
-                                            <div class="progress-group">
-                                                <span class="progress-text">Total Present Students (Month)</span>
-                                                <span
-                                                    class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
-                                                <div class="progress progress-sm">
-                                                    @if ($attendanceall['total'] != 0)
-                                                        <div class="progress-bar bg-success"
-                                                            style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] ?? 0 }}%">
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            <!-- /.progress-group -->
-                                            <div class="progress-group">
-                                                Total Absent Students (Month)
-                                                <span
-                                                    class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
-                                                <div class="progress progress-sm">
-                                                    @if ($attendanceall['total'] != 0)
-                                                        <div class="progress-bar bg-warning"
-                                                            style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        @endisset
-                                        <!-- /.progress-group -->
-                                    </div>
-                                    <!-- /.col -->
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- ./card-body -->
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-sm-3 col-6">
-                                        <div id="incomedifference" class="description-block border-right">
                                         </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-6">
-                                        <div id="expensedifference" class="description-block border-right">
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-6">
-                                        <div id="yearincome" class="description-block border-right">
-                                        </div>
-                                        <!-- /.description-block -->
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-sm-3 col-6">
-                                        <div id="yearexpense" class="description-block">
-                                        </div>
-                                        <!-- /.description-block -->
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </div>
-                            <!-- /.card-footer -->
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">New Admissions
-                                    ({{ date_format(date_create(date('Y-m-d')), 'M') }})
-                                </h3>
-                                <div class="card-tools">
-                                    <span class="badge badge-danger">{{ count(@$admission) }} New
-                                        {{ count(@$admission) > 1 ? 'Admissions' : 'Admission' }}</span>
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                            class="fas fa-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                            class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body p-0">
-                                <ul class="users-list clearfix">
-                                    @foreach ($admission as $key => $item)
-                                        <li>
-                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }} Image">
-                                            <a class="users-list-name"
-                                                href="{{ route('admissionshow', @$key) }}">{{ $item['name'] }}</a>
+                                        <div class="progress-group">
+                                            Absent Students (Today)
                                             <span
-                                                class="users-list-date">{{ ReadableDate($item['join_date'], 'all') }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="card-footer text-center">
-                                <a href="{{ route('admission') }}">View All Users</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endrole
+                                                class="float-right"><b>{{ $attendancetoday['absent'] }}</b>/{{ $attendancetoday['total'] }}</span>
+                                            <div class="progress progress-sm">
+                                                @if ($attendancetoday['total'] != 0)
+                                                    <div class="progress-bar bg-danger"
+                                                        style="width: {{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endisset
 
-                    @hasanyrole('Teacher')
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-primary">
-                            <div class="inner" style="color:#fff;">
-                                <h3>{{ @$subjectcount }}</h3>
-                                <p>Subjects</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-secondary">
-                            <div class="inner" style="color:#fff;">
-                                <h3>{{ @$extraclass }}</h3>
-                                <p>Extra Class Earnings</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    @endhasanyrole
-                    @hasanyrole('Staff')
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-secondary">
-                            <div class="inner" style="color:#fff;">
-                                <h3>{{ @$incentives }}</h3>
-                                <p>Incentives till now</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-rupee-sign"></i>
+                                    @isset($attendanceall)
+                                        <div class="progress-group">
+                                            <span class="progress-text">Total Present Students (Month)</span>
+                                            <span
+                                                class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
+                                            <div class="progress progress-sm">
+                                                @if ($attendanceall['total'] != 0)
+                                                    <div class="progress-bar bg-success"
+                                                        style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] ?? 0 }}%">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="progress-group">
+                                            Total Absent Students (Month)
+                                            <span
+                                                class="float-right"><b>{{ $attendanceall['present'] }}</b>/{{ $attendanceall['total'] }}</span>
+                                            <div class="progress progress-sm">
+                                                @if ($attendanceall['total'] != 0)
+                                                    <div class="progress-bar bg-warning"
+                                                        style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endisset
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endhasanyrole
-                    @hasanyrole('Teacher|Staff')
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-success">
-                            <div class="inner" style="color:#fff;">
-                                <h3>Rs. {{ @$paidsalary }}</h3>
-                                <p>Salary till now</p>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-3 col-6">
+                                    <div id="incomedifference" class="description-block border-right">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div id="expensedifference" class="description-block border-right">
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div id="yearincome" class="description-block border-right">
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div id="yearexpense" class="description-block">
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
                             </div>
-                            <div class="icon">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
+                            <!-- /.row -->
                         </div>
+                        <!-- /.card-footer -->
                     </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-warning">
-                            <div class="inner" style="color:#fff;">
-                                <h3>Rs. {{ @$advancesalary }}</h3>
-                                <p>Advance Salary</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    @endhasanyrole
-                    @hasanyrole('Student')
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-warning">
-                            <div class="inner" style="color:#fff;">
-                                <h3>{{ @$assignment }}</h3>
-                                <p>Assignment</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                            <a href="{{ route('assignment.index') }}" class="small-box-footer" color="#fff">More info <i
-                                    class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-info">
-                            <div class="inner" style="color:#fff;">
-                                <h3>{{ @$attendance_percentage ? @$attendance_percentage . '%' : 'No Data' }}</h3>
-                                <p>Attendance</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="small-box bg-success">
-                            <div class="inner" style="color:#fff;">
-                                <h3>Rs. {{ @$due_fee }}</h3>
-                                <p>Due Fee Till Now</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fas fa-rupee-sign"></i>
-                            </div>
-                            {{-- <a href="{{ route('student.index') }}" class="small-box-footer" color="#fff">More info <i
-                                class="fas fa-arrow-circle-right"></i></a> --}}
-                        </div>
-                    </div>
-                    @endhasanyrole
-
                 </div>
 
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">New Admissions
+                                ({{ date_format(date_create(date('Y-m-d')), 'M') }})
+                            </h3>
+                            <div class="card-tools">
+                                <span class="badge badge-danger">{{ count(@$admission) }} New
+                                    {{ count(@$admission) > 1 ? 'Admissions' : 'Admission' }}</span>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                        class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                        class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="users-list clearfix">
+                                @foreach ($admission as $key => $item)
+                                    <li>
+                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }} Image">
+                                        <a class="users-list-name"
+                                            href="{{ route('admissionshow', @$key) }}">{{ $item['name'] }}</a>
+                                        <span
+                                            class="users-list-date">{{ ReadableDate($item['join_date'], 'all') }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ route('admission') }}">View All Users</a>
+                        </div>
+                    </div>
+                </div>
+                @endrole
             </div>
+
         </div>
-    @endsection
+    </div>
+@endsection

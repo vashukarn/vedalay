@@ -52,35 +52,35 @@ class ChartController extends Controller
         }
         end($temp);
         $key = key($temp);
-        for ($index=1; $index <= $key ; $index++) {
-            if(isset($temp[$index])){
+        for ($index = 1; $index <= $key; $index++) {
+            if (isset($temp[$index])) {
                 $income[] = $temp[$index];
-            }else{
+            } else {
                 $income[] = 0;
             }
-            if(isset($tempo[$index])){
+            if (isset($tempo[$index])) {
                 $expense[] = $tempo[$index];
-            }else{
+            } else {
                 $expense[] = 0;
             }
         }
         $lastmonthincome = 0;
         $currentmonthincome = 0;
         foreach ($income as $keya => $value) {
-            if($keya == $key-2){
+            if ($keya == $key - 2) {
                 $lastmonthincome = $value;
             }
-            if($keya == $key-1){
+            if ($keya == $key - 1) {
                 $currentmonthincome = $value;
             }
         }
         $lastmonthexpense = 0;
         $currentmonthexpense = 0;
         foreach ($expense as $keya => $value) {
-            if($keya == $key-2){
+            if ($keya == $key - 2) {
                 $lastmonthexpense = $value;
             }
-            if($keya == $key-1){
+            if ($keya == $key - 1) {
                 $currentmonthexpense = $value;
             }
         }
