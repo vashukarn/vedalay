@@ -55,13 +55,13 @@ $(document).ready(function () {
         if (Number(expensedifference) > 0) {
             $("#expensedifference").append(
                 '<span class="description-percentage text-danger"><i class="fas fa-caret-up"></i> ' +
-                    expensepercentage +
+                    Math.round(expensepercentage) +
                     "%</span>"
             );
         } else if (Number(expensedifference) < 0) {
             $("#expensedifference").append(
                 '<span class="description-percentage text-success"><i class="fas fa-caret-down"></i> ' +
-                    expensepercentage +
+                    Math.round(expensepercentage) +
                     "%</span>"
             );
         } else {
