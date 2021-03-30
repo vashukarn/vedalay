@@ -1,4 +1,4 @@
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-gray-dark">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -22,8 +22,8 @@
                         <span class="badge badge-danger navbar-badge"><span class="update_notification">{{ @$notificaitoncount }}</span></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header"> <span class="update_notification">{{ @$notificaitoncount }}</span> Notifications</span> 
-                            
+                            <span class="dropdown-header"> <span class="update_notification">{{ @$notificaitoncount }}</span> Notifications</span>
+
                         <div class="dropdown-divider"></div>
                         @foreach ($notification as $key => $item)
                             <a href="{{ $key }}">
@@ -33,7 +33,7 @@
                             </a>
                         @endforeach
 
-                    <span class="dropdown-footer"> <a href="{{ route('clearNotification', Auth::user()->id) }}"> Clear All Notifications <i class="ml-2 fas fa-trash"></i></a> </span> 
+                    <span class="dropdown-footer"> <a href="{{ route('clearNotification', Auth::user()->id) }}"> Clear All Notifications <i class="ml-2 fas fa-trash"></i></a> </span>
 
                 </li>
                 <li class="nav-item">

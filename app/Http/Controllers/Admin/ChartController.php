@@ -2,44 +2,69 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Rider;
-use App\Models\RidingPayment;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChartController extends Controller
 {
-    public function monthlyRiderChart()
+    public function expenseIncomeChart()
     {
 
-        $riders = Rider::selectRaw('monthname(created_at) month, MONTH(created_at) monthid, count(*) data')
-            ->groupBy('month','monthid')
-            ->orderBy('monthid', 'asc')
-            ->limit(12)
-            ->get();
-            // dd($riders);
-
-        $page_title = 'Monthly Rider Bar Graph';
-        return view('admin/charts/monthly-rider',compact('page_title','riders'));
-    }
-
-    public function totalRidingPayments()
-    {
-        $yearlyPayments = RidingPayment::selectRaw('YEAR(created_at) year, sum(total_amount) data')
-            ->groupBy('year')
-            ->orderBy('year', 'asc')
-            ->limit(12)
-            ->get();
-            // dd($yearlyPayments);
-
-        $monthlyPayments = RidingPayment::selectRaw('monthname(created_at) month, MONTH(created_at) monthid, sum(total_amount) data')
-            ->groupBy('month','monthid')
-            ->orderBy('monthid', 'asc')
-            ->limit(12)
-            ->get();
-            // dd($monthlyPayments);
-
-        $page_title = 'Riding Payment Bar Graph';
-        return view('admin/charts/riding-payment',compact('page_title','yearlyPayments','monthlyPayments'));
+        $months = [
+            1 => 'January',
+            2 => 'February',
+            3 => 'March',
+            4 => 'April',
+            5 => 'May',
+            6 => 'June',
+            7 => 'July',
+            8 => 'August',
+            9 => 'September',
+            10 => 'October',
+            11 => 'November',
+            12 => 'December',
+        ];
+        $spendmonth = [];
+        foreach ($months as $key => $value) {
+            if ($key == date('m') + 1) {
+                break;
+            } else {
+                $spendmonth[] = $value;
+            }
+        }
+        $feepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(total_amount) as total_amount from fee_payments group by year(created_at), month(created_at)');
+        $expenses = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from expenses group by year(created_at), month(created_at)');
+        $temp = [];
+        $tempo = [];
+        foreach ($feepayment as $key => $value) {
+            if ($value->year == date('Y')) {
+                $temp[$value->month] = $value->total_amount;
+            }
+        }
+        foreach ($expenses as $key => $value) {
+            if ($value->year == date('Y')) {
+                $tempo[$value->month] = $value->total_amount;
+            }
+        }
+        end($temp);
+        $key = key($temp);
+        for ($index=1; $index <= $key ; $index++) {
+            if(isset($temp[$index])){
+                $income[] = $temp[$index];
+            }else{
+                $income[] = 0;
+            }
+            if(isset($tempo[$index])){
+                $expense[] = $tempo[$index];
+            }else{
+                $expense[] = 0;
+            }
+        }
+        $data = [
+            'month' => $spendmonth,
+            'income' => $income,
+            'expense' => $expense,
+        ];
+        return response()->json($data);
     }
 }

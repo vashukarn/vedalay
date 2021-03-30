@@ -1,79 +1,12 @@
 @extends('layouts.admin')
 @section('title', $title)
-@push('styles')
-    <style>
-        .btn-default.active,
-        .btn-default.active:hover {
-            background-color: #17a2b8;
-            border-color: #138192;
-            color: #fff;
-        }
-    </style>
-@endpush
 @push('scripts')
-<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
 <script src="{{ asset('/custom/fee.js') }}"></script>
-    <script>
-    $(document).ready(function() {
-        $('#level').select2({
-            placeholder: "Choose Level",
-        });
-        $('#student').select2({
-            placeholder: "Choose Students",
-        });
-    });
-
-    
-    $('#level').change(function () {
-        var id = $(this).val();
-        var students = $('#student');
-        $.ajax({
-            type: 'POST',
-            url: "/user/getStudents",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'id': id,
-            },
-            success: function (data) {
-                if(data == "No Data Found"){
-                    students.empty();
-                    alert(data);
-                }
-                else{
-                    students.empty();
-                    for (var i = 0; i < data.length; i++) {
-                        students.append('<option value=' + data[i].id + '>' + data[i].value + '</option>');
-                    }
-                    students.change();
-                }
-            }
-        });
-
-    });
-
-    $("#calculate").click(function() {
-        var total = 
-            Number($('#tuition_fee').val()) +
-            Number($('#exam_fee').val()) +
-            Number($('#transport_fee').val()) +
-            Number($('#stationery_fee').val()) +
-            Number($('#sports_fee').val()) +
-            Number($('#club_fee').val()) +
-            Number($('#hostel_fee').val()) +
-            Number($('#laundry_fee').val()) +
-            Number($('#education_tax').val()) +
-            Number($('#eca_fee').val()) +
-            Number($('#late_fine').val()) +
-            Number($('#extra_fee').val());
-        $("#total_amount").val(total);
-    });
-
-    </script>
-
 @endpush
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="getstudentroute" content="{{ route('getStudents') }}">
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -246,7 +179,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row {{ $errors->has('total_amount') ? 'has-error' : '' }}">
                                 {{ Form::label('total_amount', 'Total Amount :', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-6">

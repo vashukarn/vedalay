@@ -1,242 +1,13 @@
 @extends('layouts.admin')
 @section('title', $title)
 @push('scripts')
-{{-- <script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script> --}}
-{{-- <script src="{{ asset('/custom/feepayment.js') }}"></script> --}}
-<script>
-    $(document).ready(function() {
-        $('#level_id').val('');
-        $('#feedetail').hide();
-        $('#feepayment').hide();
-        $('#bank_details').hide();
-        $('#forupi').hide();
-        $('#forcard').hide();
-        $('#phone_det').hide();
-        $('#student_id').select2({
-            placeholder: "Please Select Student",
-        });
-    });
-    $('#level_id').change(function () {
-        tuition = 0;
-        exam = 0;
-        transport = 0;
-        stationery = 0;
-        sports = 0;
-        club = 0;
-        hostel = 0;
-        laundry = 0;
-        education = 0;
-        eca = 0;
-        extra = 0;
-        late = 0;
-        total = 0;
-        $('#feedetail').hide();
-        $('#feepayment').hide();
-        $('#tablebody').empty();
-        var id = $(this).val();
-        var students = $('#student_id');
-        students.empty();
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('getStudents') }}",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'id': id,
-            },
-            success: function (data) {
-                if(data == "No Data Found"){
-                    students.empty();
-                    alert(data);
-                }
-                else{
-                    students.empty();
-                    for (var i = 0; i < data.length; i++) {
-                        students.append('<option value=' + data[i].id + '>' + data[i].value + '</option>');
-                    }
-                    students.change();
-                }
-            }
-        });
-    });
-
-    var tuition = 0;
-    var exam = 0;
-    var transport = 0;
-    var stationery = 0;
-    var sports = 0;
-    var club = 0;
-    var hostel = 0;
-    var laundry = 0;
-    var education = 0;
-    var eca = 0;
-    var extra = 0;
-    var late = 0;
-    var total = 0;
-    $('#student_id').change(function () {
-        tuition = 0;
-        exam = 0;
-        transport = 0;
-        stationery = 0;
-        sports = 0;
-        club = 0;
-        hostel = 0;
-        laundry = 0;
-        education = 0;
-        eca = 0;
-        extra = 0;
-        late = 0;
-        total = 0;
-        $('#feedetail').hide();
-        $('#feepayment').hide();
-        var tablebody = $('#tablebody');
-        tablebody.empty();
-        var id = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('getFeeDetails') }}",
-            data: {
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-                'id': id,
-            },
-            success: function (data) {
-                if(data.length < 1){
-                    alert("No Fee Data Found");
-                }
-                else{
-                    $('#feedetail').show();
-                    $('#feepayment').show();
-                    tablebody.empty();
-                    for (var i = 0; i < data.length; i++) {
-                        total += Number(data[i].total_amount);
-                        late += Number(data[i].late_fine);
-                        extra += Number(data[i].extra_fee);
-                        eca += Number(data[i].eca_fee);
-                        education += Number(data[i].education_tax);
-                        laundry += Number(data[i].laundry_fee);
-                        hostel += Number(data[i].hostel_fee);
-                        club += Number(data[i].club_fee);
-                        sports += Number(data[i].sports_fee);
-                        stationery += Number(data[i].stationery_fee);
-                        transport += Number(data[i].transport_fee);
-                        exam += Number(data[i].exam_fee);
-                        tuition += Number(data[i].tuition_fee);
-                            tablebody.append('<tr>');
-                            tablebody.append('<td>'+data[i].created_at.split("T")[0]+'</td>');
-                            tablebody.append('<td>'+data[i].tuition_fee+'</td>');
-                            tablebody.append('<td>'+data[i].exam_fee+'</td>');
-                            tablebody.append('<td>'+data[i].transport_fee+'</td>');
-                            tablebody.append('<td>'+data[i].stationery_fee+'</td>');
-                            tablebody.append('<td>'+data[i].sports_fee+'</td>');
-                            tablebody.append('<td>'+data[i].club_fee+'</td>');
-                            tablebody.append('<td>'+data[i].hostel_fee+'</td>');
-                            tablebody.append('<td>'+data[i].laundry_fee+'</td>');
-                            tablebody.append('<td>'+data[i].education_tax+'</td>');
-                            tablebody.append('<td>'+data[i].eca_fee+'</td>');
-                            tablebody.append('<td>'+data[i].late_fine+'</td>');
-                            tablebody.append('<td>'+data[i].extra_fee+'</td>');
-                            tablebody.append('<td>'+data[i].total_amount+'</td>');
-                            tablebody.append('</tr>');
-                    }
-                    
-                    tablebody.append('<tr>');
-                    tablebody.append('<td>Grand Total</td>');
-                    tablebody.append('<td>'+tuition+'</td>');
-                    tablebody.append('<td>'+exam+'</td>');
-                    tablebody.append('<td>'+transport+'</td>');
-                    tablebody.append('<td>'+stationery+'</td>');
-                    tablebody.append('<td>'+sports+'</td>');
-                    tablebody.append('<td>'+club+'</td>');
-                    tablebody.append('<td>'+hostel+'</td>');
-                    tablebody.append('<td>'+laundry+'</td>');
-                    tablebody.append('<td>'+education+'</td>');
-                    tablebody.append('<td>'+eca+'</td>');
-                    tablebody.append('<td>'+late+'</td>');
-                    tablebody.append('<td>'+extra+'</td>');
-                    tablebody.append('<td>'+total+'</td>');
-                    tablebody.append('</tr>');
-                }
-            }
-        });
-    });
-    
-    $('#payment_method').change(function () {
-        var val = $(this).val();
-        if(val == 'Bank Transfer'){
-            $('#bank_details').show();
-            $('#forupi').hide();
-            $('#phone_det').hide();
-            $('#forcard').hide();
-        }
-        else if(val == 'UPI'){
-            $('#bank_details').hide();
-            $('#forcard').hide();
-            $('#forupi').show();
-            $('#phone_det').show();
-        }
-        else if(val == 'Paytm'){
-            $('#bank_details').hide();
-            $('#forupi').hide();
-            $('#forcard').hide();
-            $('#phone_det').show();
-        }
-        else if(val == 'Card'){
-            $('#bank_details').hide();
-            $('#forupi').hide();
-            $('#phone_det').hide();
-            $('#forcard').show();
-        }
-        else{
-            $('#bank_details').hide();
-            $('#forupi').hide();
-            $('#phone_det').hide();
-            $('#forcard').hide();
-        }
-    });
-    
-    
-    $("#calculate").click(function() {
-        var calculatetotal = Number($('#tuition_fee').val()) +
-            Number($('#exam_fee').val()) +
-            Number($('#transport_fee').val()) +
-            Number($('#stationery_fee').val()) +
-            Number($('#sports_fee').val()) +
-            Number($('#club_fee').val()) +
-            Number($('#hostel_fee').val()) +
-            Number($('#laundry_fee').val()) +
-            Number($('#education_tax').val()) +
-            Number($('#eca_fee').val()) +
-            Number($('#late_fine').val()) +
-            Number($('#extra_fee').val());
-        $("#total_amount").val(calculatetotal);
-        $("#advancewarn").empty();
-        var advancefee = Number(calculatetotal)-Number(total);
-        console.log(calculatetotal);
-        console.log(total);
-        if(calculatetotal > total){
-            $("#advancewarn").append('You will be paying advance fee amount : '+ advancefee +'. It can be deducted on next fee payment.');
-        }
-    });
-    
-    $("#autofill").click(function() {
-        $('#tuition_fee').val(Number(tuition));
-        $('#exam_fee').val(Number(exam));
-        $('#transport_fee').val(Number(transport));
-        $('#stationery_fee').val(Number(stationery));
-        $('#sports_fee').val(Number(sports));
-        $('#club_fee').val(Number(club));
-        $('#hostel_fee').val(Number(hostel));
-        $('#laundry_fee').val(Number(laundry));
-        $('#education_tax').val(Number(education));
-        $('#eca_fee').val(Number(eca));
-        $('#late_fine').val(Number(late));
-        $('#extra_fee').val(Number(extra));
-        $("#total_amount").val(Number(total));
-    });
-
-</script>
+<script type="text/javascript" src="{{ asset('/custom/jqueryvalidate.js') }}"></script>
+<script src="{{ asset('/custom/feepayment.js') }}"></script>
 @endpush
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="getstudentroute" content="{{ route('getStudents') }}">
+<meta name="getFeeDetails" content="{{ route('getFeeDetails') }}">
     <section class="content-header pt-0"></section>
     <section class="content">
         <div class="container-fluid">
@@ -262,7 +33,7 @@
                             <div class="form-group row {{ $errors->has('session') ? 'has-error' : '' }}">
                                 {{ Form::label('session', 'Session :', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('session', $session, @$feepayment_info->session, ['class' => 'form-control', 'id' => 'session','style' => 'width:80%']) }}
+                                    {{ Form::select('session', $session, GETAPPSETTING()['session'], ['class' => 'form-control', 'id' => 'session','style' => 'width:80%']) }}
                                     @error('session')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -282,7 +53,7 @@
                             <div class="form-group row {{ $errors->has('student_id') ? 'has-error' : '' }}">
                                 {{ Form::label('student_id', 'Select Student :*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('student_id', [], @$result_info->$student_id, ['id' => 'student_id', 'placeholder' => 'Select Students', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('student_id', [], @$feepayment_info->$student_id, ['id' => 'student_id', 'placeholder' => 'Select Students', 'class' => 'form-control select2', 'style' => 'width:80%; border-color:none']) }}
                                     @error('student_id')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
@@ -314,9 +85,9 @@
                                 </table>
                             </div>
 
-                            
+
                             <div id="feepayment">
-                                
+
                             {{ Form::button("<i class='fa fa-fill-drip'></i> Auto Fill", ['id' => 'autofill','class' => 'mt-4 btn btn-primary btn-flat']) }}
 
                                 <div class="form-group row mt-4">
@@ -391,7 +162,7 @@
                                         @enderror
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group row {{ $errors->has('bank_accountno') ? 'has-error' : '' }}">
                                     {{ Form::label('bank_accountno', 'Bank Account Number :', ['class' => 'col-sm-3']) }}
                                     <div class="col-sm-9">

@@ -1,8 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="" class="brand-link" style="background-color:#374f65">
-        <img src="{{ asset('img/AdminLTELogo.png') }}" alt="Guru Logo" class="brand-image img-circle elevation-3"
+    <a href="" class="brand-link" >
+        <img src="{{ asset('img/AdminLTELogo.png') }}" alt="Vedyalay Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ @$sitesetting->name ?? env('APP_NAME') }}</span>
+        <span class="ml-4 brand-text font-weight-light">VEDYALAY</span>
     </a>
 
     <div class="sidebar">
@@ -580,7 +580,7 @@
                 </li>
                 @endcanany
 
-                @hasanyrole('Super Admin')
+                @role('Super Admin|Admin')
                 <li class="nav-header">WEB CONTENT</li>
                 <li class="nav-item">
                     <a href="{{ route('homepage.index') }}"
@@ -596,20 +596,6 @@
                         <p>Slider</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href="{{ route('information.index') }}"
-                        class="nav-link {{ request()->is('user/information*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-book"></i>
-                        <p>Information</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('feature.index') }}"
-                        class="nav-link {{ request()->is('user/feature*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-star"></i>
-                        <p>Features</p>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}"
                         class="nav-link {{ request()->is('user/testimonial*') ? 'active' : '' }}">
@@ -652,6 +638,8 @@
                         <p>Newsletter Requests</p>
                     </a>
                 </li>
+                @endrole
+                @role('Super Admin')
 
                 <li class="nav-header">APP SETTINGS</li>
                 <li
@@ -747,7 +735,7 @@
                         </li>
                     </ul>
                 </li>
-                @endhasallroles
+                @endrole
             </ul>
         </nav>
     </div>

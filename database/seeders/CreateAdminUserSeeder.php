@@ -34,6 +34,7 @@ class CreateAdminUserSeeder extends Seeder
             'type' => 'admin',
         ]);
         $roleadmin = Role::create(['name' => 'Admin']);
+        $roleadmin->syncPermissions($permissions);
         $adminuser->assignRole([$roleadmin->id]);
 
         $teacheruser = User::create([

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AssignmentController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\CkeditorController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\ContentController;
@@ -94,6 +95,11 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::resource('razorpay', RazorpayController::class);
     Route::resource('menu', MenuController::class)->middleware('password.confirm');
     Route::resource('setting', AppSettingController::class)->middleware('password.confirm');
+
+    // Charts
+    Route::get('expenseIncomeChart', [ChartController::class, 'expenseIncomeChart'])->name('chart.incomeexpense');
+
+
     Route::get('clearNotification/{id}', [DashboardController::class, 'clearNotification'])->name('clearNotification');
     Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('paysuccess', [RazorpayController::class, 'store']);
@@ -129,5 +135,4 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::get('additional-menu/{id}', [MenuController::class, 'additional_menu'])->name('menu.additonal');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
-
 });
