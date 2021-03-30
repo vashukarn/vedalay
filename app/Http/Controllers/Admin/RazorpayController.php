@@ -24,10 +24,10 @@ class RazorpayController extends Controller
             'payment_id' => $request->payment_id,
             'type' => 'Razorpay',
             'amount' => $request->amount,
-         ];
-        DB::beginTransaction();
-        Fee::where('id', $request->fee)->first()->delete();
+        ];
         try {
+            DB::beginTransaction();
+            Fee::where('id', $request->fee)->first()->delete();
             Payment::create($data);
             DB::commit();
             $request->session()->flash('success', 'Payment credited successfully.');
