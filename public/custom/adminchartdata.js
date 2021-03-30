@@ -34,7 +34,7 @@ $(document).ready(function () {
         } else if (Number(incomedifference) < 0) {
             $("#incomedifference").append(
                 '<span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> ' +
-                    incomepercentage +
+                    Math.round(incomepercentage) +
                     "%</span>"
             );
         } else {
@@ -44,9 +44,9 @@ $(document).ready(function () {
         }
         $("#incomedifference").append(
             '<h5 class="description-header">Rs. ' +
-                response.currentmonthincome +
+                Math.round(response.currentmonthincome) +
                 " - Rs. " +
-                response.lastmonthincome +
+                Math.round(response.lastmonthincome) +
                 " = Rs. " +
                 Number(incomedifference) +
                 '</h5><span class="description-text">Current & Last month income</span>'
