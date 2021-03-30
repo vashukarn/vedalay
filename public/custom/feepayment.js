@@ -241,7 +241,23 @@ $(function () {
             student_id: "required",
             payment_method: "required",
             bank_ifsc: "required",
-            total_amount: "required",
+            bank_accountno: {
+                required: true,
+                digits: true,
+            },
+            card_type: "required",
+            transfer_phone: {
+                required: true,
+                digits: true,
+                maxlength: 10,
+                minlength: 10,
+                min: 0,
+            },
+            upi_type: "required",
+            transfer_date: {
+                required: true,
+                date: true,
+            },
             tuition_fee: {
                 digits: true,
                 maxlength: 8,
@@ -305,9 +321,27 @@ $(function () {
         },
         messages: {
             title: "Title is required",
-            level_id: "Level selection is required",
-            student_id: "Please select at least one student",
-            total_amount: "Please Click Claculator Button",
+            level_id: "Please select level",
+            student_id: "Please select student",
+            payment_method: "Please select mode of payment",
+            bank_ifsc: "Enter bank IFSC number",
+            bank_accountno: {
+                required: "Bank account number is required",
+                digits: "Bank number should be in digits",
+            },
+            card_type: "Please select card type",
+            transfer_phone: {
+                required: "Please enter phone number from which amount is transferred",
+                digits: "Phone number should be digits",
+                maxlength: "Phone number should be of 10 digits only",
+                minlength: "Phone number should be of 10 digits",
+                min: "Phone number cannot be less than zero",
+            },
+            upi_type: "Please select the UPI type",
+            transfer_date: {
+                required: "Please add transfer date (if not enter today's date)",
+                date: "The input should be date",
+            },
             tuition_fee: {
                 digits: "Tuition Fee should be positive",
                 maxlength: "Please enter a valid amount",

@@ -129,7 +129,7 @@ $(function () {
             title: "Title is required",
             level: "Level selection is required",
             student: "Please select at least one student",
-            total_amount: "Please Click Claculator Button",
+            total_amount: "Please click calculate Button",
             tuition_fee: {
                 digits: "Tuition Fee should be positive",
                 maxlength: "Please enter a valid amount",

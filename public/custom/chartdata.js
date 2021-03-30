@@ -4,6 +4,93 @@ $(document).ready(function () {
         var Month = response.month;
         var Income = response.income;
         var Expense = response.expense;
+        var incomedifference =
+            Number(response.currentmonthincome) -
+            Number(response.lastmonthincome);
+        var expensedifference =
+            Number(response.currentmonthexpense) -
+            Number(response.lastmonthexpense);
+        if (Number(response.lastmonthincome) == 0) {
+            var incomepercentage = 100;
+        } else {
+            var incomepercentage =
+                (Number(incomedifference) * 100) /
+                Number(response.lastmonthincome);
+        }
+        if (Number(response.lastmonthexpense) == 0) {
+            var expensepercentage = 100;
+        } else {
+            var expensepercentage =
+                (Number(expensedifference) * 100) /
+                Number(response.lastmonthexpense);
+        }
+        console.log(response);
+        if (Number(incomedifference) > 0) {
+            $("#incomedifference").append(
+                '<span class="description-percentage text-success"><i class="fas fa-caret-up"></i> ' +
+                    Math.round(incomepercentage) +
+                    "%</span>"
+            );
+        } else if (Number(incomedifference) < 0) {
+            $("#incomedifference").append(
+                '<span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> ' +
+                    incomepercentage +
+                    "%</span>"
+            );
+        } else {
+            $("#incomedifference").append(
+                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>0 %</span>'
+            );
+        }
+        $("#incomedifference").append(
+            '<h5 class="description-header">Rs. ' +
+                response.currentmonthincome +
+                " - Rs. " +
+                response.lastmonthincome +
+                " = Rs. " +
+                Number(incomedifference) +
+                '</h5><span class="description-text">Current & Last month income</span>'
+        );
+
+        if (Number(expensedifference) > 0) {
+            $("#expensedifference").append(
+                '<span class="description-percentage text-danger"><i class="fas fa-caret-up"></i> ' +
+                    expensepercentage +
+                    "%</span>"
+            );
+        } else if (Number(expensedifference) < 0) {
+            $("#expensedifference").append(
+                '<span class="description-percentage text-success"><i class="fas fa-caret-down"></i> ' +
+                    expensepercentage +
+                    "%</span>"
+            );
+        } else {
+            $("#expensedifference").append(
+                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>0 %</span>'
+            );
+        }
+        $("#expensedifference").append(
+            '<h5 class="description-header">Rs. ' +
+                response.currentmonthexpense +
+                " - Rs. " +
+                response.lastmonthexpense +
+                " = Rs. " +
+                Number(expensedifference) +
+                '</h5><span class="description-text">Current & Last month expense</span>'
+        );
+
+        $("#yearincome").append(
+            '<h5 class="description-header">Rs. ' +
+                response.incometotal +
+                '</h5><span class="description-text">total Incomes this year</span>'
+        );
+        $("#yearexpense").append(
+            '<h5 class="description-header">Rs. ' +
+                response.expensetotal +
+                '</h5><span class="description-text">TOTAL EXPENSES this year</span>'
+        );
+
+        $("#totalexpense").append("Rs. " + response.expensetotal);
         var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
         var salesChartData = {
             labels: Month,
