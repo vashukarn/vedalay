@@ -276,7 +276,6 @@ class StudentController extends Controller
         }
         $this->validate($request, [
             'name' => 'required|string|min:3|max:190',
-            'email' => 'required|string|min:3|max:190',
             'phone' => 'required|string|min:10|max:10',
             'gender' => 'required|string',
             'level' => 'required',
