@@ -9,7 +9,6 @@ class ChartController extends Controller
 {
     public function expenseIncomeChart()
     {
-
         $months = [
             1 => 'January',
             2 => 'February',
@@ -33,6 +32,7 @@ class ChartController extends Controller
             }
         }
         $feepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(total_amount) as total_amount from fee_payments group by year(created_at), month(created_at)');
+        $onlinefeepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from payments group by year(created_at), month(created_at)');
         $expenses = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from expenses group by year(created_at), month(created_at)');
         $temp = [];
         $tempo = [];
@@ -40,18 +40,20 @@ class ChartController extends Controller
         $expensetotal = 0;
         foreach ($feepayment as $key => $value) {
             if ($value->year == date('Y')) {
-                $temp[$value->month] = $value->total_amount;
-                $incometotal = $value->total_amount;
+                $temp[$value->month] = $value->total_amount + $onlinefeepayment[$key]->total_amount;
+                $incometotal += $value->total_amount + $onlinefeepayment[$key]->total_amount;
             }
         }
         foreach ($expenses as $key => $value) {
             if ($value->year == date('Y')) {
                 $tempo[$value->month] = $value->total_amount;
-                $expensetotal = $value->total_amount;
+                $expensetotal += $value->total_amount;
             }
         }
         end($temp);
         $key = key($temp);
+        $income = [];
+        $expense = [];
         for ($index = 1; $index <= $key; $index++) {
             if (isset($temp[$index])) {
                 $income[] = $temp[$index];
