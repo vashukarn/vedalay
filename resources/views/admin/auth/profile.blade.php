@@ -123,12 +123,11 @@
                             <ul class="todo-list" data-widget="todo-list">
                                 @foreach ($tasks as $item)
                                     <li>
-                                        <!-- checkbox -->
                                         <?php
-                                        $now = time(); // or your date as well
+                                        $now = time();
                                         $your_date = strtotime($item->deadline);
                                         $datediff = $your_date - $now;
-                                        $rem = round($datediff / (60 * 60 * 24)) + 1;
+                                        $rem = round($datediff / (60 * 60 * 24));
                                         ?>
                                         <div class="icheck-primary d-inline ml-2">
                                             <input type="checkbox" data-message="{{ $item->id }}" onclick="pop(this)"
