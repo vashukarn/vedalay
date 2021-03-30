@@ -31,7 +31,7 @@ class RazorpayController extends Controller
             Payment::create($data);
             DB::commit();
             $request->session()->flash('success', 'Payment credited successfully.');
-            return redirect()->route('student.show');
+            return redirect()->back();
         } catch (\Exception $error) {
             DB::rollBack();
             $request->session()->flash('error', $error->getMessage());

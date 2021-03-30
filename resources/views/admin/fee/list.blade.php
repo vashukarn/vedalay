@@ -30,8 +30,8 @@
                     totalAmount + '&fee=' + fee_id;
             },
             "prefill": {
-                "contact": '7070675425',
-                "email": 'jaykarvashu@gmail.com',
+                "contact": '',
+                "email": '',
             },
             "theme": {
                 "color": "#528FF0"
@@ -110,7 +110,7 @@
                             <td>{{ $key+1}}.</td>
                             <td>{{ @$value->title }}</td>
                             @role('Student')
-                            <td>Rs. {{ @$value->total_amount }}</td>
+                            <td>@if($value->total_amount == 0) PAID @else Rs. {{ @$value->total_amount }} @endif</td>
                             @if($payment)
                             <td>
                                 <div class="btn-group">

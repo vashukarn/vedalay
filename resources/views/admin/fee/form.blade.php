@@ -50,10 +50,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row {{ $errors->has(' ') ? 'has-error' : '' }}">
+                            <div class="form-group row {{ $errors->has('student') ? 'has-error' : '' }}">
                                 {{ Form::label('student', 'Students:*', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">
-                                    {{ Form::select('student[]', [], @$student, ['id' => 'student', 'class' => 'form-control select2', 'placeholder' => 'Select Student(s)', 'multiple', 'style' => 'width:80%; border-color:none']) }}
+                                    {{ Form::select('student[]', [], @$student, ['required'=> true,'id' => 'student', 'class' => 'form-control select2', 'placeholder' => 'Select Student(s)', 'multiple', 'style' => 'width:80%; border-color:none']) }}
                                     @error('student')
                                         <span class="help-block error">{{ $message }}</span>
                                     @enderror
