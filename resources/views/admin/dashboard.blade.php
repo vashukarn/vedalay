@@ -261,7 +261,7 @@
                                             <div class="progress-group">
                                                 Present Attendents (Today)
                                                 <span
-                                                    class="float-right"><b>{{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%</b></span>
+                                                    class="float-right"><b>{{ round(($attendancetoday['present'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-primary"
                                                         style="width: {{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%">
@@ -273,7 +273,7 @@
                                             <div class="progress-group">
                                                 Absent Attendents (Today)
                                                 <span
-                                                    class="float-right"><b>{{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%</b></span>
+                                                    class="float-right"><b>{{ round(($attendancetoday['absent'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-danger"
                                                         style="width: {{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%">
@@ -288,7 +288,7 @@
                                             <div class="progress-group">
                                                 <span class="progress-text">Total Present Attendents (Month)</span>
                                                 <span
-                                                    class="float-right"><b>{{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%</b></span>
+                                                    class="float-right"><b>{{ round(($attendanceall['absent'] * 100) / $attendanceall['total'], 2) }}%</b></span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-success"
                                                         style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
@@ -300,7 +300,7 @@
                                             <div class="progress-group">
                                                 Total Absent Attendents (Month)
                                                 <span
-                                                    class="float-right"><b>{{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%</b></span>
+                                                    class="float-right"><b>{{ round(($attendanceall['absent'] * 100) / $attendanceall['total'], 2) }}%</b></span>
                                                 <div class="progress progress-sm">
                                                     <div class="progress-bar bg-warning"
                                                         style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
