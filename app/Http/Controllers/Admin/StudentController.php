@@ -301,7 +301,7 @@ class StudentController extends Controller
             $student = Student::find($student_info->id);
             $student->phone = htmlentities($request->phone);
             $student->level_id = htmlentities($request->level);
-            $student->session = htmlentities($request->session);
+            $student->session = GETAPPSETTING()['session'];
             $student->dob = htmlentities($request->dob);
             $student->aadhar_number = htmlentities($request->aadhar_number);
             $student->blood_group = htmlentities($request->blood_group);
