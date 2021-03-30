@@ -45,10 +45,50 @@ class DashboardController extends Controller
                     'name' => $value->get_user->name,
                 ];
             }
-
-            // dd(Expense::pluck('title'));
+            $attemptoday = Attendance::whereBetween('created_at', [date('Y-m-d 00:00:00'), date('Y-m-d 23:59:59')])->get();
+            $attempall = Attendance::whereBetween('created_at', [date('Y-m-01 00:00:00'), date('Y-m-30 23:59:59')])->get();
+            $totalstudtoday = 0;
+            $presentstudtoday = 0;
+            $absentstudtoday = 0;
+            $totalstudall = 0;
+            $presentstudall = 0;
+            $absentstudall = 0;
+            foreach ($attemptoday as $key => $value) {
+                foreach ($value->students as $key => $value) {
+                    if($value == '1'){
+                        $presentstudtoday++;
+                    }
+                    else{
+                        $absentstudtoday++;
+                    }
+                    $totalstudtoday++;
+                }
+            }
+            foreach ($attempall as $key => $value) {
+                foreach ($value->students as $key => $value) {
+                    if($value == '1'){
+                        $presentstudall++;
+                    }
+                    else{
+                        $absentstudall++;
+                    }
+                    $totalstudall++;
+                }
+            }
+            $todayattendancesummary = [
+                'total' => $totalstudtoday,
+                'absent' => $absentstudtoday,
+                'present' => $presentstudtoday,
+            ];
+            $allattendancesummary = [
+                'total' => $totalstudall,
+                'absent' => $absentstudall,
+                'present' => $presentstudall,
+            ];
             $data = [
                 'usertotal' => $usertotal,
+                'attendancetoday' => $todayattendancesummary,
+                'attendanceall' => $allattendancesummary,
                 'leaves' => $leaves,
                 'admission' => $admission,
                 'notices' => NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->count(),
