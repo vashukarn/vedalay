@@ -210,7 +210,7 @@ class TeacherController extends Controller
         try {
             $user = User::find($teacher_info->user_id);
             $teacher_info->phone = $teacher_info->phone . '-' . time();
-            $teacher_info->updated_by = Auth::user()->id;
+            $user->updated_by = Auth::user()->id;
             $user->email = $user->email . '-' . time();
             $user->save();
             $teacher_info->save();

@@ -185,7 +185,7 @@ class StaffController extends Controller
         try {
             $user = User::find($staff_info->user_id);
             $staff_info->phone = $staff_info->phone . '-' . time();
-            $staff_info->updated_by = Auth::user()->id;
+            $user->updated_by = Auth::user()->id;
             $user->email = $user->email . '-' . time();
             $user->save();
             $staff_info->save();

@@ -343,8 +343,8 @@ class StudentController extends Controller
             $user = User::find($student_info->user_id);
             $student_info->phone = $student_info->phone . '-' . time();
             $user->email = $user->email . '-' . time();
+            $user->updated_by = Auth::user()->id;
             $user->save();
-            $student_info->updated_by = Auth::user()->id;
             $student_info->save();
             $student_info->delete();
             $user->delete();
