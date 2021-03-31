@@ -34,14 +34,19 @@ class ChartController extends Controller
         $feepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(total_amount) as total_amount from fee_payments group by year(created_at), month(created_at)');
         $onlinefeepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from payments group by year(created_at), month(created_at)');
         $expenses = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from expenses group by year(created_at), month(created_at)');
+        // dd($onlinefeepayment);
         $temp = [];
         $tempo = [];
+        $tempoo = [];
+        $income = [];
+        $expense = [];
         $incometotal = 0;
         $expensetotal = 0;
+        $onlinetotal = 0;
         foreach ($feepayment as $key => $value) {
             if ($value->year == date('Y')) {
-                $temp[$value->month] = $value->total_amount + $onlinefeepayment[$key]->total_amount;
-                $incometotal += $value->total_amount + $onlinefeepayment[$key]->total_amount;
+                $temp[$value->month] = $value->total_amount;
+                $incometotal += $value->total_amount;
             }
         }
         foreach ($expenses as $key => $value) {
@@ -50,13 +55,22 @@ class ChartController extends Controller
                 $expensetotal += $value->total_amount;
             }
         }
+        foreach ($onlinefeepayment as $key => $value) {
+            if ($value->year == date('Y')) {
+                $tempoo[$value->month] = $value->total_amount;
+                $onlinetotal += $value->total_amount;
+            }
+        }
+        $incometotal = $incometotal + $onlinetotal;
         end($temp);
         $key = key($temp);
-        $income = [];
-        $expense = [];
         for ($index = 1; $index <= $key; $index++) {
             if (isset($temp[$index])) {
-                $income[] = $temp[$index];
+                if (isset($tempoo[$index])) {
+                    $income[] = $temp[$index] + $tempoo[$index];
+                } else {
+                    $income[] = $temp[$index];
+                }
             } else {
                 $income[] = 0;
             }
