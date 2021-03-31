@@ -204,7 +204,7 @@ tr:nth-child(even) {
           	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           		<tr>
           			<td class="logo" style="text-align: center;">
-			            <h1><a href="https://www.vedyalay.com/">Vedalay</a></h1>
+			            <h1><a href="https://www.vedyalay.com/">Vedyalay</a></h1>
 			          </td>
           		</tr>
           	</table>
@@ -220,7 +220,7 @@ tr:nth-child(even) {
             			</div>
             		</td>
             	</tr>
-                
+
                 <table>
                     <tr>
                       <th>Fee</th>

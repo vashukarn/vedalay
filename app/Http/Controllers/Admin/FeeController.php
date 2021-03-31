@@ -8,6 +8,7 @@ use App\Mail\FeeAdditionMail;
 use App\Models\Fee;
 use App\Models\Level;
 use App\Models\AppSetting;
+use App\Models\Attendance;
 use App\Models\Notification;
 use App\Models\Student;
 use App\Models\User;
@@ -36,10 +37,9 @@ class FeeController extends Controller
                 'value' => $value->get_user->name . ' - ' . $value->phone,
             ];
         }
-        if($data){
+        if ($data) {
             return response()->json($data);
-        }
-        else{
+        } else {
             $data = "No Data Found";
             return response()->json($data);
         }
@@ -85,10 +85,9 @@ class FeeController extends Controller
         $title = 'Add Fee';
         $classes = Level::all();
         foreach ($classes as $value) {
-            if(isset($value->section)){
-                $levels[$value->id] = $value->standard.' - Section: ' .$value->section;
-            }
-            else{
+            if (isset($value->section)) {
+                $levels[$value->id] = $value->standard . ' - Section: ' . $value->section;
+            } else {
                 $levels[$value->id] = $value->standard;
             }
         }
@@ -125,7 +124,7 @@ class FeeController extends Controller
             foreach ($request->student as $value) {
                 Fee::create([
                     'title' => htmlentities($request->title),
-                    'created_by' => Auth::user()->id ,
+                    'created_by' => Auth::user()->id,
                     'added_by' => 'Fee Management',
                     'tuition_fee' => htmlentities($request->tuition_fee),
                     'exam_fee' => htmlentities($request->exam_fee),
@@ -168,20 +167,44 @@ class FeeController extends Controller
             abort(404);
         }
         $temp = $fee_info[0];
-        foreach($fee_info as $value){
+        foreach ($fee_info as $value) {
             $single = $this->fee->find($value->id);
-            if($single->tuition_fee > 0 && $temp->tuition_fee > 0){$single->tuition_fee = $single->tuition_fee - $temp->tuition_fee;}
-            if($single->exam_fee > 0 && $temp->exam_fee > 0){$single->exam_fee = $single->exam_fee - $temp->exam_fee;}
-            if($single->transport_fee > 0 && $temp->transport_fee > 0){$single->transport_fee = $single->transport_fee - $temp->transport_fee;}
-            if($single->stationery_fee > 0 && $temp->stationery_fee > 0){$single->stationery_fee = $single->stationery_fee - $temp->stationery_fee;}
-            if($single->club_fee > 0 && $temp->club_fee > 0){$single->club_fee = $single->club_fee - $temp->club_fee;}
-            if($single->hostel_fee > 0 && $temp->hostel_fee > 0){$single->hostel_fee = $single->hostel_fee - $temp->hostel_fee;}
-            if($single->laundry_fee > 0 && $temp->laundry_fee > 0){$single->laundry_fee = $single->laundry_fee - $temp->laundry_fee;}
-            if($single->education_tax > 0 && $temp->education_tax > 0){$single->education_tax = $single->education_tax - $temp->education_tax;}
-            if($single->eca_fee > 0 && $temp->eca_fee > 0){$single->eca_fee = $single->eca_fee - $temp->eca_fee;}
-            if($single->late_fine > 0 && $temp->late_fine > 0){$single->late_fine = $single->late_fine - $temp->late_fine;}
-            if($single->extra_fee > 0 && $temp->extra_fee > 0){$single->extra_fee = $single->extra_fee - $temp->extra_fee;}
-            if($single->total_amount > 0 && $temp->total_amount > 0){$single->total_amount = $single->total_amount - $temp->total_amount;}
+            if ($single->tuition_fee > 0 && $temp->tuition_fee > 0) {
+                $single->tuition_fee = $single->tuition_fee - $temp->tuition_fee;
+            }
+            if ($single->exam_fee > 0 && $temp->exam_fee > 0) {
+                $single->exam_fee = $single->exam_fee - $temp->exam_fee;
+            }
+            if ($single->transport_fee > 0 && $temp->transport_fee > 0) {
+                $single->transport_fee = $single->transport_fee - $temp->transport_fee;
+            }
+            if ($single->stationery_fee > 0 && $temp->stationery_fee > 0) {
+                $single->stationery_fee = $single->stationery_fee - $temp->stationery_fee;
+            }
+            if ($single->club_fee > 0 && $temp->club_fee > 0) {
+                $single->club_fee = $single->club_fee - $temp->club_fee;
+            }
+            if ($single->hostel_fee > 0 && $temp->hostel_fee > 0) {
+                $single->hostel_fee = $single->hostel_fee - $temp->hostel_fee;
+            }
+            if ($single->laundry_fee > 0 && $temp->laundry_fee > 0) {
+                $single->laundry_fee = $single->laundry_fee - $temp->laundry_fee;
+            }
+            if ($single->education_tax > 0 && $temp->education_tax > 0) {
+                $single->education_tax = $single->education_tax - $temp->education_tax;
+            }
+            if ($single->eca_fee > 0 && $temp->eca_fee > 0) {
+                $single->eca_fee = $single->eca_fee - $temp->eca_fee;
+            }
+            if ($single->late_fine > 0 && $temp->late_fine > 0) {
+                $single->late_fine = $single->late_fine - $temp->late_fine;
+            }
+            if ($single->extra_fee > 0 && $temp->extra_fee > 0) {
+                $single->extra_fee = $single->extra_fee - $temp->extra_fee;
+            }
+            if ($single->total_amount > 0 && $temp->total_amount > 0) {
+                $single->total_amount = $single->total_amount - $temp->total_amount;
+            }
             $single->added_by = "Roll backed";
             $single->updated_by = Auth::user()->id;
             $single->rollback = 1;

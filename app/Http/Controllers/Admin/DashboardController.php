@@ -144,8 +144,10 @@ class DashboardController extends Controller
             ];
         }
         if ($user->roles->first()->name == 'Student') {
-            $total_attendance = 0;
-            $student_attendance = 0;
+            $total_attendance_year = 0;
+            $student_attendance_year = 0;
+            $total_attendance_month = 0;
+            $student_attendance_month = 0;
             $due_fee = 0;
             $assignment = 0;
             $student = Student::where('user_id', $user->id)->first();
@@ -155,37 +157,47 @@ class DashboardController extends Controller
                     $assignment++;
                 }
             }
-            $attendtemp = Attendance::where('holiday', '0')->where('level_id', $student->level_id)->get();
+            $attendtempyear = Attendance::whereYear('created_at', Carbon::now()->year)->where('holiday', '0')->where('level_id', $student->level_id)->get();
+            $attendtempmonth = Attendance::whereMonth('created_at', Carbon::now()->month)->where('holiday', '0')->where('level_id', $student->level_id)->get();
             $feetemp = Fee::where('rollback', '0')->where('student_id', $user->id)->get();
 
             foreach ($feetemp as $item) {
                 $due_fee += $item->total_amount;
             }
-            if (count($attendtemp) > 0) {
-                foreach ($attendtemp as $temp) {
+            if (count($attendtempyear) > 0) {
+                foreach ($attendtempyear as $temp) {
                     if (count($temp->students) > 0) {
                         foreach ($temp->students as $key => $item) {
                             if ($key == $user->id) {
-                                $total_attendance++;
+                                $total_attendance_year++;
                                 if ($item == '1')
-                                    $student_attendance++;
+                                    $student_attendance_year++;
                             }
                         }
                     }
                 }
-                $attendance_percentage = ($student_attendance * 100) / $total_attendance;
+                $attendance_percentage_year = ($student_attendance_year * 100) / $total_attendance_year;
+            }
+            if (count($attendtempmonth) > 0) {
+                foreach ($attendtempmonth as $temp) {
+                    if (count($temp->students) > 0) {
+                        foreach ($temp->students as $key => $item) {
+                            if ($key == $user->id) {
+                                $total_attendance_month++;
+                                if ($item == '1')
+                                    $student_attendance_month++;
+                            }
+                        }
+                    }
+                }
+                $attendance_percentage_month = ($student_attendance_month * 100) / $total_attendance_month;
             }
             $data = [
-                'subjectcount' => $subjectcount ?? null,
-                'advancesalary' => $advancesalary ?? null,
-                'paidsalary' => $paidsalary ?? null,
-                'incentives' => $incentives ?? null,
-                'leaves' => $leaves ?? null,
-                'extraclass' => $extraclass ?? null,
-                'assignment' => $assignment ?? null,
-                'attendance_percentage' => $attendance_percentage ?? null,
-                'due_fee' => $due_fee ?? null,
-                'admission' => $admission ?? null,
+                'leaves' => $leaves,
+                'assignment' => $assignment,
+                'attendance_percentage_year' => $attendance_percentage_year,
+                'attendance_percentage_month' => $attendance_percentage_month,
+                'due_fee' => $due_fee,
                 'notices' => NoticeBoard::select('id', 'title')->where('publish_status', '1')->latest()->count(),
             ];
         }

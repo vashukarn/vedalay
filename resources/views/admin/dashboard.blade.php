@@ -8,16 +8,10 @@
         @role('Super Admin|Admin')
         <script src="{{ asset('/custom/adminchartdata.js') }}"></script>
         @endrole
-        @role('Student')
-        <script src="{{ asset('/custom/studentchartdata.js') }}"></script>
-        @endrole
     @endpush
 @section('content')
     @role('Super Admin|Admin')
     <meta name="expenseIncomeChart" content="{{ route('chart.incomeexpense') }}">
-    @endrole
-    @role('Student')
-    {{-- <meta name="expenseIncomeChart" content="{{ route('attendacneChart') }}"> --}}
     @endrole
     <div class="content-header">
         <div class="container-fluid">
@@ -211,7 +205,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Attendance</span>
                             <span class="info-box-number">
-                                {{ @$attendance_percentage ? @$attendance_percentage . '%' : 'No Data Yet' }}
+                                {{ @$attendance_percentage_year ? round(@$attendance_percentage_year, 2) . '%' : 'No Data Yet' }}
                             </span>
                         </div>
                     </div>
@@ -227,88 +221,47 @@
                         </div>
                     </div>
                 </div>
-                @endrole
-                @role('Super Admin|Admin')
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Monthly Report</h5>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
+                @isset($attendance_percentage_year)
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Attendance Report</h5>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <p class="text-center">
-                                        <strong>Earning/Expenditure: ({{ date('Y') }})</strong>
-                                    </p>
-                                    <div class="chart">
-                                        <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="progress-group">
+                                            Attendance ( {{ date_format(date_create(date('Y-m-d')), 'M') }} )
+                                            <span
+                                                class="float-right"><b>{{ round($attendance_percentage_month, 2) }}%</b></span>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar @if ($attendance_percentage_month> 80) bg-success
+                                            @elseif($attendance_percentage_month > 50) bg-warning @else bg-danger @endif"
+                                                style="width: {{ round($attendance_percentage_month, 2) }}%">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <p class="text-center">
-                                        <strong>Attendance Report</strong>
-                                    </p>
-                                    @isset($attendancetoday)
-                                        @if ($attendancetoday['total'] > 0)
-                                            <div class="progress-group">
-                                                Present Attendents (Today)
-                                                <span
-                                                    class="float-right"><b>{{ round(($attendancetoday['present'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-primary"
-                                                        style="width: {{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%">
-                                                    </div>
-                                                </div>
+                                <div class="col-md-12">
+                                    <div class="progress-group">
+                                        Attendance ( {{ date('Y') }} )
+                                        <span
+                                            class="float-right"><b>{{ round($attendance_percentage_year, 2) }}%</b></span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar @if ($attendance_percentage_year> 80) bg-success
+                                                @elseif($attendance_percentage_year > 50) bg-warning @else bg-danger @endif"
+                                                style="width: {{ round($attendance_percentage_year, 2) }}%">
                                             </div>
-                                        @endif
-                                        @if ($attendancetoday['total'] > 0)
-                                            <div class="progress-group">
-                                                Absent Attendents (Today)
-                                                <span
-                                                    class="float-right"><b>{{ round(($attendancetoday['absent'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-danger"
-                                                        style="width: {{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endisset
-
-                                    @isset($attendanceall)
-                                        @if ($attendanceall['total'] > 0)
-                                            <div class="progress-group">
-                                                <span class="progress-text">Total Present Attendents (Month)</span>
-                                                <span
-                                                    class="float-right"><b>{{ round(($attendanceall['present'] * 100) / $attendanceall['total'], 2) }}%</b></span>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-success"
-                                                        style="width: {{ ($attendanceall['present'] * 100) / $attendanceall['total'] }}%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        @if ($attendanceall['total'] > 0)
-                                            <div class="progress-group">
-                                                Total Absent Attendents (Month)
-                                                <span
-                                                    class="float-right"><b>{{ round(($attendanceall['absent'] * 100) / $attendanceall['total'], 2) }}%</b></span>
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-warning"
-                                                        style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endisset
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -318,68 +271,169 @@
                                     <div id="incomedifference" class="description-block border-right">
                                     </div>
                                 </div>
-                                <!-- /.col -->
                                 <div class="col-sm-3 col-6">
                                     <div id="expensedifference" class="description-block border-right">
                                     </div>
                                 </div>
-                                <!-- /.col -->
                                 <div class="col-sm-3 col-6">
                                     <div id="yearincome" class="description-block border-right">
                                     </div>
-                                    <!-- /.description-block -->
                                 </div>
-                                <!-- /.col -->
                                 <div class="col-sm-3 col-6">
                                     <div id="yearexpense" class="description-block">
                                     </div>
-                                    <!-- /.description-block -->
                                 </div>
                             </div>
-                            <!-- /.row -->
                         </div>
-                        <!-- /.card-footer -->
                     </div>
                 </div>
+            @endisset
+            @endrole
+            @role('Super Admin|Admin')
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Monthly Report</h5>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="text-center">
+                                    <strong>Earning/Expenditure: ({{ date('Y') }})</strong>
+                                </p>
+                                <div class="chart">
+                                    <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-center">
+                                    <strong>Attendance Report</strong>
+                                </p>
+                                @isset($attendancetoday)
+                                    @if ($attendancetoday['total'] > 0)
+                                        <div class="progress-group">
+                                            Present Attendents (Today)
+                                            <span
+                                                class="float-right"><b>{{ round(($attendancetoday['present'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-primary"
+                                                    style="width: {{ ($attendancetoday['present'] * 100) / $attendancetoday['total'] }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($attendancetoday['total'] > 0)
+                                        <div class="progress-group">
+                                            Absent Attendents (Today)
+                                            <span
+                                                class="float-right"><b>{{ round(($attendancetoday['absent'] * 100) / $attendancetoday['total'], 2) }}%</b></span>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-danger"
+                                                    style="width: {{ ($attendancetoday['absent'] * 100) / $attendancetoday['total'] }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endisset
 
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">New Admissions
-                                ({{ date_format(date_create(date('Y-m-d')), 'M') }})
-                            </h3>
-                            <div class="card-tools">
-                                <span class="badge badge-danger">{{ count(@$admission) }} New
-                                    {{ count(@$admission) > 1 ? 'Admissions' : 'Admission' }}</span>
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                        class="fas fa-times"></i>
-                                </button>
+                                @isset($attendanceall)
+                                    @if ($attendanceall['total'] > 0)
+                                        <div class="progress-group">
+                                            <span class="progress-text">Total Present Attendents (Month)</span>
+                                            <span
+                                                class="float-right"><b>{{ round(($attendanceall['present'] * 100) / $attendanceall['total'], 2) }}%</b></span>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success"
+                                                    style="width: {{ ($attendanceall['present'] * 100) / $attendanceall['total'] }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if ($attendanceall['total'] > 0)
+                                        <div class="progress-group">
+                                            Total Absent Attendents (Month)
+                                            <span
+                                                class="float-right"><b>{{ round(($attendanceall['absent'] * 100) / $attendanceall['total'], 2) }}%</b></span>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-warning"
+                                                    style="width: {{ ($attendanceall['absent'] * 100) / $attendanceall['total'] }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endisset
                             </div>
                         </div>
-                        <div class="card-body p-0">
-                            <ul class="users-list clearfix">
-                                @foreach ($admission as $key => $item)
-                                    <li>
-                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }} Image">
-                                        <a class="users-list-name"
-                                            href="{{ route('admissionshow', @$key) }}">{{ $item['name'] }}</a>
-                                        <span
-                                            class="users-list-date">{{ ReadableDate($item['join_date'], 'all') }}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{{ route('admission') }}">View All Users</a>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-3 col-6">
+                                <div id="incomedifference" class="description-block border-right">
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-6">
+                                <div id="expensedifference" class="description-block border-right">
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-6">
+                                <div id="yearincome" class="description-block border-right">
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-6">
+                                <div id="yearexpense" class="description-block">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                @endrole
             </div>
 
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">New Admissions
+                            ({{ date_format(date_create(date('Y-m-d')), 'M') }})
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-danger">{{ count(@$admission) }} New
+                                {{ count(@$admission) > 1 ? 'Admissions' : 'Admission' }}</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                    class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                    class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="users-list clearfix">
+                            @foreach ($admission as $key => $item)
+                                <li>
+                                    <img src="{{ $item['image'] }}" alt="{{ $item['name'] }} Image">
+                                    <a class="users-list-name"
+                                        href="{{ route('admissionshow', @$key) }}">{{ $item['name'] }}</a>
+                                    <span
+                                        class="users-list-date">{{ ReadableDate($item['join_date'], 'all') }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('admission') }}">View All Users</a>
+                    </div>
+                </div>
+            </div>
+            @endrole
         </div>
+
     </div>
+</div>
 @endsection

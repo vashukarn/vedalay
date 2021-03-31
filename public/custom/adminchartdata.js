@@ -39,7 +39,7 @@ $(document).ready(function () {
             );
         } else {
             $("#incomedifference").append(
-                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>0 %</span>'
+                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0 %</span>'
             );
         }
         $("#incomedifference").append(
@@ -66,7 +66,7 @@ $(document).ready(function () {
             );
         } else {
             $("#expensedifference").append(
-                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i>0 %</span>'
+                '<span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0 %</span>'
             );
         }
         $("#expensedifference").append(

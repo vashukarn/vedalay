@@ -113,4 +113,11 @@ class ChartController extends Controller
         ];
         return response()->json($data);
     }
+    public function studentAttendanceChart()
+    {
+        $attendances = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from attendances group by year(created_at), month(created_at)');
+        dd($attendances);
+        $data = [];
+        return response()->json($data);
+    }
 }

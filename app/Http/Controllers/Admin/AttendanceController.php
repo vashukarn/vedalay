@@ -26,7 +26,7 @@ class AttendanceController extends Controller
     }
     protected function getAttendance($request)
     {
-        $query = $this->attendance->orderBy('id', 'DESC');
+        $query = $this->attendance->orderBy('created_by', 'DESC');
         if ($request->keyword) {
             $keyword = $request->keyword;
             $query = $query->where('user_id', $keyword);
@@ -39,8 +39,6 @@ class AttendanceController extends Controller
             $session = $request->session;
             $query = $query->where('session', $session);
         }
-        $query = $this->attendance->orderBy('id', 'DESC');
-
         if(Auth::user()->roles->pluck('name')[0] == 'Teacher'){
             $subjects = Teacher::where('user_id', Auth::user()->id)->pluck('subject')->first();
             $query = $query->whereIn('subject_id', $subjects);
@@ -50,7 +48,7 @@ class AttendanceController extends Controller
             $keyword = $request->keyword;
             $query = $query->where('user_id', $keyword);
         }
-        
+
         return $query->paginate(20);
     }
     public function index(Request $request)

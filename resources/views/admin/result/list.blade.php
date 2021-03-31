@@ -127,7 +127,7 @@
                                             <div class="mt-2 btn-group float-right">
                                                 @can('staff-edit')
                                                     <a href="{{ route('publishResult', @$value->id) }}"
-                                                        title="{{ $value->publish_status == 0 ? 'Publish Routine' : 'Unpublish Routine' }}"
+                                                        title="{{ $value->publish_status == 0 ? 'Publish Result' : 'Unpublish Result' }}"
                                                         class="btn {{ $value->publish_status == 0 ? 'btn-success' : 'btn-warning' }} btn-sm btn-flat"><i
                                                             class="fas {{ $value->publish_status == 0 ? 'fa-eye' : 'fa-eye-slash' }}"></i></a>
                                                 @endcan
