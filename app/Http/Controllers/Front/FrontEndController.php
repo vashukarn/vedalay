@@ -23,7 +23,7 @@ class FrontEndController extends Controller
     public function mail()
     {
         $fee = Fee::select('title', 'tuition_fee', 'exam_fee', 'transport_fee',
-         'stationery_fee', 'sports_fee', 'club_fee', 'hostel_fee', 'laundry_fee', 
+         'stationery_fee', 'sports_fee', 'club_fee', 'hostel_fee', 'laundry_fee',
          'education_tax', 'eca_fee', 'late_fine', 'extra_fee', 'total_amount')->first();
         $student = User::select('name')->first();
         $data = [
@@ -34,6 +34,7 @@ class FrontEndController extends Controller
     }
     public function home()
     {
+        return redirect()->route('login');
         $sliders = Slider::where('publish_status', '1')->get();
         $pagedata = HomePage::latest()->first();
         $features = Feature::where('publish_status', '1')->get();
@@ -77,6 +78,7 @@ class FrontEndController extends Controller
 
     public function blogs()
     {
+        return redirect()->route('login');
         $blogs = Blog::where('publish_status', '1')->paginate(3);
         $meta = AppSetting::orderBy('created_at', 'desc')->first();
         return view('website.blogs', compact('blogs', 'categories', 'tags', 'pagedata', 'meta'));
@@ -84,6 +86,7 @@ class FrontEndController extends Controller
 
     public function blogdetail($slug)
     {
+        return redirect()->route('login');
         $blog = Blog::where('slug', $slug)->first();
         $blog->view_count ++;
         $blog->save();
@@ -93,8 +96,8 @@ class FrontEndController extends Controller
         ];
         return view('website.blogdetail')->with($data);
     }
-    
-    
+
+
     // public function page($pagedata = null)
     // {
     //     if ($pagedata != null) {
