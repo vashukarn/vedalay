@@ -34,7 +34,6 @@ class ChartController extends Controller
         $feepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(total_amount) as total_amount from fee_payments group by year(created_at), month(created_at)');
         $onlinefeepayment = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from payments group by year(created_at), month(created_at)');
         $expenses = DB::select('select year(created_at) as year, month(created_at) as month, sum(amount) as total_amount from expenses group by year(created_at), month(created_at)');
-        // dd($onlinefeepayment);
         $temp = [];
         $tempo = [];
         $tempoo = [];
