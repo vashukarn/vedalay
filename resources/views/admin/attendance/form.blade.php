@@ -19,7 +19,6 @@
         submitAttendance();
     });
     $("#holiday").click(function() {
-        console.log('clicked');
         var attendance = [];
         @foreach ($student_info as $item)
         attendance['{{ $item->user_id }}'] = 0;
@@ -45,7 +44,6 @@
                 else{
                     alert("Error Occurred");
                 }
-                console.log(data);
             }
         });
     });
@@ -71,7 +69,7 @@
 
                             {{ Form::hidden('subject_id', @$subject_info->id) }}
                             {{ Form::hidden('level_id', @$subject_info->level_id) }}
-                            
+
                             <div class="form-group row">
                                 {{ Form::label('date', 'Date', ['class' => 'col-sm-2']) }}
                                 <div class="col-sm-4">
@@ -88,7 +86,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group row">
                                 {{ Form::label('level', 'Level', ['class' => 'col-sm-2']) }}
                                 <div class="col-sm-4">

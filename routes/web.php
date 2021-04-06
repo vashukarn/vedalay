@@ -44,7 +44,6 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserLogController;
 use App\Http\Controllers\Admin\VacancyController;
-use App\Jobs\SendFeeAdditionJob;
 use Illuminate\Support\Facades\Route;
 
 Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');

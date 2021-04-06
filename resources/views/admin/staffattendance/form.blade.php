@@ -45,7 +45,6 @@
                 else{
                     alert("Error Occurred");
                 }
-                console.log(data);
             }
         });
     }
@@ -75,7 +74,7 @@
                     <label for="id of input"></label>
                     <div class="row">
                         <div class="col-sm-10 offset-lg-1">
-                            
+
                             <div class="form-group row">
                                 {{ Form::label('date', 'Date', ['class' => 'col-sm-3']) }}
                                 <div class="col-sm-9">

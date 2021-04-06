@@ -29,7 +29,7 @@
                 $("#backlogs").empty();
                 failed_subjects = [];
                 var sgpa = 0;
-                
+
                 @if($scheme == 'GRADE')
                     for (let i = 0; i < main_interation.length; i++) {
                         sgpa += Number($('[name="marks[' + main_interation[i].id + '][credits]"]').val());
@@ -106,7 +106,6 @@
                             if (data.length < 1) {
                                 alert("No subjects in this exam");
                             } else {
-                                console.log(subjects);
                                 subjects.empty();
                                 main_interation = data.subjects;
                                 for (var i = 0; i < data.subjects.length; i++) {

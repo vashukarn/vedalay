@@ -24,7 +24,6 @@ $(document).ready(function () {
                 (Number(expensedifference) * 100) /
                 Number(response.lastmonthexpense);
         }
-        console.log(response);
         if (Number(incomedifference) > 0) {
             $("#incomedifference").append(
                 '<span class="description-percentage text-success"><i class="fas fa-caret-up"></i> ' +

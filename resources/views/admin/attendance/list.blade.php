@@ -16,7 +16,7 @@
                 allowClear: true
             });
         });
-        
+
         $('#level').change(function() {
                 var level = $(this).val();
                 $.ajax({
@@ -36,7 +36,6 @@
                                     'title'
                                 ] + '</option>';
                             }
-                            console.log(subjectselect)
                         }
                     }
                 });

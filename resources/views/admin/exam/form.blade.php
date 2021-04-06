@@ -46,7 +46,6 @@
                                     'title'
                                 ] + '</option>';
                             }
-                            console.log(subjectselect)
                         }
                     }
                 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @csrf
     <meta charset="utf-8">
@@ -9,7 +10,8 @@
     <link rel="shortcut icon" href="{{ asset('img/AdminLTELogo.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     @stack('styles')
-     
+
 </head>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
