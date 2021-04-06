@@ -135,3 +135,5 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
 });
+
+\PWA::routes();

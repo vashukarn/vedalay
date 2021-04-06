@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6bdb9ef57964924fddc8a09a236c146c",
+    "content-hash": "856ad2f569bed9dd10f365762ea4f4ed",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -170,6 +170,84 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "codexshaper/laravel-pwa",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codexshaper/laravel-pwa.git",
+                "reference": "01d28182a9fd09cb45b30f6808df483f6c0d729b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codexshaper/laravel-pwa/zipball/01d28182a9fd09cb45b30f6808df483f6c0d729b",
+                "reference": "01d28182a9fd09cb45b30f6808df483f6c0d729b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.6|^6.0|^7.0|^8.0",
+                "php": "^7.0|^7.1|^7.2|^7.3|^7.4"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "CodexShaper\\PWA\\PwaServiceProvider"
+                    ],
+                    "aliases": {
+                        "PWA": "CodexShaper\\PWA\\Facades\\PWA"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CodexShaper\\PWA\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Md Abu Ahsan Basir",
+                    "email": "maab.career@gmail.com"
+                }
+            ],
+            "description": "Laravel Progressive Web App",
+            "homepage": "https://github.com/Codexshaper/laravel-pwa",
+            "keywords": [
+                "android",
+                "app",
+                "chrome",
+                "firefox",
+                "firefox-pwa",
+                "google-pwa",
+                "ios",
+                "ios-pwa",
+                "laravel",
+                "laravel-pwa",
+                "multi-tenancy",
+                "multitenancy",
+                "multitenant",
+                "progressive",
+                "progressive-web-app",
+                "pwa",
+                "pwa-laravel",
+                "safari",
+                "safari-pwa",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/Codexshaper/laravel-pwa/issues",
+                "source": "https://github.com/Codexshaper/laravel-pwa"
+            },
+            "time": "2020-11-16T08:31:19+00:00"
         },
         {
             "name": "dasprid/enum",
