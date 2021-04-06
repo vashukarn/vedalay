@@ -738,7 +738,7 @@
                         <li class="nav-item">
                             <a href="{{ url('/pwa') }}"
                                 class="nav-link {{ request()->is('pwa') ? 'active' : '' }}">
-                                <i class="fas fa-tasks nav-icon"></i>
+                                <i class="fas fa-mobile nav-icon"></i>
                                 <p>PWA Setting</p>
                             </a>
                         </li>

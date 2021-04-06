@@ -146,7 +146,6 @@
                                 <option value="minimal-ui" {{ ($pwa->data['manifest']['display'] == 'minimal-ui') ? 'selected=selected': false }} disabled="disabled">Minimal UI</option>
                                 <option value="browser" {{ ($pwa->data['manifest']['display'] == 'browser') ? 'selected=selected': false }} disabled="disabled">Browser</option>
                             </select>
-                            <p class="mt-3">For more details <a href="https://web.dev/add-manifest/#display">click here</a></p>
                         </div>
                     </div>
 
