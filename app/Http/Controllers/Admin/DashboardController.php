@@ -164,6 +164,8 @@ class DashboardController extends Controller
             foreach ($feetemp as $item) {
                 $due_fee += $item->total_amount;
             }
+            $attendance_percentage_year = 0;
+            $attendance_percentage_month = 0;
             if (count($attendtempyear) > 0) {
                 foreach ($attendtempyear as $temp) {
                     if (count($temp->students) > 0) {

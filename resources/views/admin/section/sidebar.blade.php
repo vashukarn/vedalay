@@ -690,7 +690,7 @@
                         <p>Session Management</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview {{ request()->is('user/menu*') ? 'menu-open' : '' }}">
+                {{-- <li class="nav-item has-treeview {{ request()->is('user/menu*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('user/menu*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-bars"></i>
                         <p>
@@ -714,11 +714,11 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li
-                    class="nav-item has-treeview {{ request()->is('user/setting*') || request()->is('user/cities') || request()->is('user/vehicletype') || request()->is('user/ridingcost') ? 'menu-open' : '' }}">
+                    class="nav-item has-treeview {{ request()->is('user/setting*') || request()->is('pwa') ? 'menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('user/setting*') || request()->is('user/cities') || request()->is('user/vehicletype') || request()->is('user/ridingcost') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('user/setting*') || request()->is('pwa') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>
                             General Setting
@@ -730,7 +730,16 @@
                             <a href="{{ route('setting.index') }}"
                                 class="nav-link {{ request()->is('user/setting') ? 'active' : '' }}">
                                 <i class="fas fa-tasks nav-icon"></i>
-                                <p>App Setting</p>
+                                <p>Web Setting</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('/pwa') }}"
+                                class="nav-link {{ request()->is('pwa') ? 'active' : '' }}">
+                                <i class="fas fa-tasks nav-icon"></i>
+                                <p>PWA Setting</p>
                             </a>
                         </li>
                     </ul>

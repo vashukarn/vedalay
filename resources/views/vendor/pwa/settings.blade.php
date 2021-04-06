@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+@section('title', 'PWA Settings')
 @section('content')
     <style>
         .pwa-title-box {
@@ -9,7 +10,7 @@
             font-weight: 600;
             font-size: 14px;
             margin-bottom: 30px;
-            flex: 1; 
+            flex: 1;
             align-self: center;
             margin: 0px;
         }
@@ -44,7 +45,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                @if(session()->get('success'))
+                {{-- @if(session()->get('success'))
                     <div class="alert alert-success">
                         {{ session()->get('success') }}
                     </div><br/>
@@ -55,12 +56,12 @@
                         {{$error }}
                     </div>
                     @endforeach
-                @endif
+                @endif --}}
                 {{-- PWA actions --}}
                 @if(!isset($pwa->data))
-                <form method="POST" action="{{ route('pwa.store') }}">
+                <form class="mt-4 text-center" method="POST" action="{{ route('pwa.store') }}">
                     @csrf
-                    <button class="btn btn-success" type="submit">Make PWA</button>
+                    <button class="btn btn-success" type="submit">Start PWA</button>
                 </form>
                 @elseif(isset($pwa->data) && $pwa->status == 0)
                 <form method="POST" action="{{ route('pwa.activate') }}" class="d-inline-block">
@@ -210,4 +211,5 @@
             </div>
         </div>
     </div>
-@endsection
+
+    @endsection
