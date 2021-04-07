@@ -97,7 +97,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
 
     // Charts
     Route::get('expenseIncomeChart', [ChartController::class, 'expenseIncomeChart'])->name('chart.incomeexpense');
-    
+
     Route::get('clearNotification/{id}', [DashboardController::class, 'clearNotification'])->name('clearNotification');
     Route::get('publishNotice/{id}', [NoticeboardController::class, 'publishNotice'])->name('publishNotice');
     Route::get('paysuccess', [RazorpayController::class, 'store']);
@@ -133,9 +133,4 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'verified']], functio
     Route::get('additional-menu/{id}', [MenuController::class, 'additional_menu'])->name('menu.additonal');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::put('{id}/changepassword', [UserController::class, 'updatePassword'])->name('update-password');
-});
-
-
-Route::group(['middleware' => ['auth', 'verified', 'role:Super Admin']], function () {
-    \PWA::routes();
 });

@@ -10,7 +10,6 @@
     <link rel="shortcut icon" href="{{ asset('img/AdminLTELogo.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     @stack('styles')
-    @PWA
 </head>
 
 <body class="hold-transition sidebar-mini">
