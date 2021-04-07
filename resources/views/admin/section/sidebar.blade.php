@@ -142,7 +142,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/vacancy*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-id-badge"></i>
                         <p>
-                            Vacancy Management
+                            Vacancies
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -182,7 +182,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/subject*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-graduation-cap"></i>
                         <p>
-                            Subject Management
+                            Subjects
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -212,7 +212,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/fee*') ? 'active' : '' }}{{ request()->is('user/payment*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p>
-                            Fee Management
+                            Fees
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -276,7 +276,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/salary*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
-                            Salary Management
+                            Salary
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -316,7 +316,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/noticeboard*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clipboard"></i>
                         <p>
-                            Notice Board Management
+                            Notice Board
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -348,7 +348,7 @@
                         class="nav-link {{ request()->is('user/attendance*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Attendance Management
+                            Attendances
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -384,7 +384,7 @@
                         class="nav-link {{ request()->is('user/assignment*') || request()->is('user/takeassignment*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>
-                            Assignment Management
+                            Assignments
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -419,7 +419,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/exam*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-diagnoses"></i>
                         <p>
-                            Exam Management
+                            Exams
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -449,7 +449,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/result*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-poll-h"></i>
                         <p>
-                            Result Management
+                            Results
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -478,7 +478,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/leave*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-calendar-day"></i>
                         <p>
-                            Leave Management
+                            Leaves
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -509,7 +509,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/expense*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-check"></i>
                         <p>
-                            Expense Management
+                            Expenses
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -538,7 +538,7 @@
                     <a href="#" class="nav-link {{ request()->is('user/inventory*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-boxes"></i>
                         <p>
-                            Inventory Management
+                            Inventory
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -575,7 +575,7 @@
                     <a href="{{ route('level.index') }}"
                         class="nav-link {{ request()->is('user/level') ? 'active' : '' }}">
                         <i class="fas fa-list nav-icon"></i>
-                        <p>Level/Class Management</p>
+                        <p>Level/Class</p>
                     </a>
                 </li>
                 @endcanany

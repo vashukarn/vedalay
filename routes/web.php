@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NoticeboardController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PWAController;
 use App\Http\Controllers\Admin\RazorpayController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Admin\RoleController;
