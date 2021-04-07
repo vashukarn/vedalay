@@ -5,9 +5,10 @@ return [
     'manifest' => [
         'name' => env('APP_NAME', 'My PWA App'),
         'short_name' => 'PWA',
-        'start_url' => '/',
+        'start_url' => url('/user'),
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
+        'prefer_related_applications'=> true,
         'display' => 'standalone',
         'orientation'=> 'any',
         'status_bar'=> 'black',
