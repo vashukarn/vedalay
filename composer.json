@@ -21,7 +21,6 @@
         "laravelcollective/html": "^6.2",
         "mafftor/laravel-file-manager": "^2.0",
         "razorpay/razorpay": "2.*",
-        "silviolleite/laravelpwa": "~2.0.3",
         "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
@@ -46,8 +45,7 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Mafftor\\LaravelFileManager\\": "packages/nectar/file-manager/src/"
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
