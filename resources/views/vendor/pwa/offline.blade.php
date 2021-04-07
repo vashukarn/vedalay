@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Offline')
 @section('content')
-    <h1>You are currently not connected to any networks. Maybe you are offline. Please check your internet connection.</h1>
+<img src="assets/images/404.svg" alt="404">
+{{-- <a href="index.html" class="box-btn">Go to Home</a> --}}
 @endsection

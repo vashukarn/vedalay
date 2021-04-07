@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePwaSettingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pwa_settings', function (Blueprint $table) {
@@ -23,11 +18,6 @@ class CreatePwaSettingsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('pwa_settings');
