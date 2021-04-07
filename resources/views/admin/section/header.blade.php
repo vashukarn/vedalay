@@ -9,9 +9,8 @@
     <title>@yield('title',env('APP_NAME'))</title>
     <link rel="shortcut icon" href="{{ asset('img/AdminLTELogo.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <link rel="manifest" href="/manifest.json">
-    @stack('styles')
     @laravelPWA
+    @stack('styles')
 </head>
 
 <body class="hold-transition sidebar-mini">
