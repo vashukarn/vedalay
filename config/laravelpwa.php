@@ -8,7 +8,6 @@ return [
         'start_url' => url('/user'),
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
-        'prefer_related_applications'=> true,
         'display' => 'standalone',
         'orientation'=> 'any',
         'status_bar'=> 'black',

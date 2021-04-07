@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @csrf
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title',env('APP_NAME'))</title>
+    @csrf
+
     <link rel="shortcut icon" href="{{ asset('img/AdminLTELogo.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    @laravelPWA
     @stack('styles')
+    @laravelPWA
 </head>
 
 <body class="hold-transition sidebar-mini">
