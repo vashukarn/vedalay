@@ -4549,16 +4549,16 @@
     font-style: normal;
     font-weight: 400;
     font-display: block;
-    src: url(/fonts/fa-regular-400.eot?261d666b0147c6c5cda07265f98b8f8c);
-    src: url(/fonts/fa-regular-400.eot?261d666b0147c6c5cda07265f98b8f8c?#iefix)
+    src: url(/fonts/fa-regular-400.eot);
+    src: url(/fonts/fa-regular-400.eot)
             format("embedded-opentype"),
-        url(/fonts/fa-regular-400.woff2?c20b5b7362d8d7bb7eddf94344ace33e)
+        url(/fonts/fa-regular-400.woff2)
             format("woff2"),
-        url(/fonts/fa-regular-400.woff?f89ea91ecd1ca2db7e09baa2c4b156d1)
+        url(/fonts/fa-regular-400.woff)
             format("woff"),
-        url(/fonts/fa-regular-400.ttf?db78b9359171f24936b16d84f63af378)
+        url(/fonts/fa-regular-400.ttf)
             format("truetype"),
-        url(/fonts/fa-regular-400.svg?89f9806b964f92ad282fd60947eba588#fontawesome)
+        url(/fonts/fa-regular-400.svg)
             format("svg");
 }
 .fab,

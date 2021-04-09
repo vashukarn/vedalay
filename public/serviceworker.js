@@ -1,7 +1,6 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/img/AdminLTELogo.png',
     '/css/admin.css',
     '/js/app.js',
     '/images/icons/icon-72x72.png',

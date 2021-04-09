@@ -21,6 +21,7 @@
         "laravelcollective/html": "^6.2",
         "mafftor/laravel-file-manager": "^2.0",
         "razorpay/razorpay": "2.*",
+        "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
