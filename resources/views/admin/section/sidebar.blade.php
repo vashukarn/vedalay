@@ -734,15 +734,6 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('/pwa') }}"
-                                class="nav-link {{ request()->is('pwa') ? 'active' : '' }}">
-                                <i class="fas fa-mobile nav-icon"></i>
-                                <p>PWA Setting</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 @endrole
             </ul>
